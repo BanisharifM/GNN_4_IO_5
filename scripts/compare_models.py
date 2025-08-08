@@ -1,5 +1,5 @@
 """
-Model comparison script for GNN4_IO_4.
+Model comparison script for GNN4_IO_5.
 
 This script compares the performance of different models trained on I/O performance data,
 including traditional tabular models and TabGNN models.

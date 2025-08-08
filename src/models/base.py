@@ -1,5 +1,5 @@
 """
-Base model interface for all models in GNN4_IO_4.
+Base model interface for all models in GNN4_IO_5.
 
 This module defines the base interface that all models should implement,
 ensuring consistency across different model types.

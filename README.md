@@ -1,11 +1,11 @@
-# GNN4_IO_4
+# GNN4_IO_5
 
 This project implements a Graph Neural Network (GNN) approach for I/O performance prediction by combining the TabGNN approach with IODiagnose methods. The implementation constructs multiplex graphs based on important I/O counter features and integrates GNN embeddings with traditional tabular models to improve prediction performance.
 
 ## Project Structure
 
 ```
-GNN4_IO_4/
+GNN4_IO_5/
 ├── configs/           # Configuration files
 ├── data/              # Data directory
 ├── models/            # Saved models
@@ -50,8 +50,8 @@ Based on the AIIO paper, the following important I/O counter features are used f
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/GNN4_IO_4.git
-cd GNN4_IO_4
+git clone https://github.com/yourusername/GNN4_IO_5.git
+cd GNN4_IO_5
 
 # Install dependencies
 pip install -r requirements.txt

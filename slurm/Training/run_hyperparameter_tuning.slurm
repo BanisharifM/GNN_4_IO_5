@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=GNN4_IO_4_tune
+#SBATCH --job-name=GNN4_IO_5_tune
 #SBATCH --account=bdau-delta-gpu    
 #SBATCH --partition=gpuA100x4
 #SBATCH --nodes=1
@@ -8,8 +8,8 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem=128G
 #SBATCH --time=48:00:00
-#SBATCH --output=logs/slurm/GNN4_IO_4_tune_%j.out
-#SBATCH --error=logs/slurm/GNN4_IO_4_tune_%j.err
+#SBATCH --output=logs/slurm/GNN4_IO_5_tune_%j.out
+#SBATCH --error=logs/slurm/GNN4_IO_5_tune_%j.err
 
 # Load required modules
 module load cuda
@@ -23,7 +23,7 @@ mkdir -p logs/tuning
 
 # Set variables for the workflow
 DATA_PATH="data/sample_train_100.csv"
-OUTPUT_DIR="logs/tuning/GNN4_IO_4"
+OUTPUT_DIR="logs/tuning/GNN4_IO_5"
 TARGET_COLUMN="tag"
 TUNE_COMPONENT="all"  # Options: graph, gnn, tabular, all
 
@@ -49,7 +49,7 @@ MAX_EPOCHS=50
 GPUS_PER_TRIAL=0.5
 CPUS_PER_TRIAL=8
 
-echo "Starting GNN4_IO_4 hyperparameter tuning at $(date)"
+echo "Starting GNN4_IO_5 hyperparameter tuning at $(date)"
 
 # Create output directory
 mkdir -p $OUTPUT_DIR

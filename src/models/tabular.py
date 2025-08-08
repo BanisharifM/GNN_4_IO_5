@@ -1,5 +1,5 @@
 """
-Tabular models implementation for GNN4_IO_4.
+Tabular models implementation for GNN4_IO_5.
 
 This module implements various tabular models from aiio-master:
 - LightGBM

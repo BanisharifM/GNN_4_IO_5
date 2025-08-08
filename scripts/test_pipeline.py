@@ -1,5 +1,5 @@
 """
-Test script for GNN4_IO_4 implementation.
+Test script for GNN4_IO_5 implementation.
 
 This script tests the data processing, graph construction, and model training
 components using the sample_train_100.csv dataset.
@@ -96,7 +96,7 @@ def test_data_processing():
     logger.info(f"Test samples: {split_data.test_mask.sum().item()}")
     
     # Save processed data
-    output_dir = "/home/ubuntu/GNN4_IO_4/test_output/processed_data"
+    output_dir = "/home/ubuntu/GNN4_IO_5/test_output/processed_data"
     processor.save_processed_data(output_dir, target_column=target_column)
     
     logger.info(f"Saved processed data to {output_dir}")
@@ -140,7 +140,7 @@ def test_tabular_models(split_data, target_column):
     logger.info(f"LightGBM metrics: {lgb_metrics}")
     
     # Save model
-    output_dir = "/home/ubuntu/GNN4_IO_4/test_output/models"
+    output_dir = "/home/ubuntu/GNN4_IO_5/test_output/models"
     os.makedirs(output_dir, exist_ok=True)
     lgb_model.save(os.path.join(output_dir, "lightgbm_model.joblib"))
     
@@ -247,10 +247,10 @@ def plot_model_comparison(metrics, output_dir):
 
 def main():
     """Main function."""
-    logger.info("Starting GNN4_IO_4 test script...")
+    logger.info("Starting GNN4_IO_5 test script...")
     
     # Create output directory
-    output_dir = "/home/ubuntu/GNN4_IO_4/test_output"
+    output_dir = "/home/ubuntu/GNN4_IO_5/test_output"
     os.makedirs(output_dir, exist_ok=True)
     
     # Test data processing

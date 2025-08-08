@@ -1,5 +1,5 @@
 """
-Data module for GNN4_IO_4.
+Data module for GNN4_IO_5.
 
 This module provides utilities for data processing, graph construction,
 and PyTorch Geometric data creation for I/O performance prediction.

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Run script for GNN4_IO_4
+# Run script for GNN4_IO_5
 
 # Check if data path is provided
 if [ -z "$1" ]; then
@@ -17,7 +17,7 @@ TARGET_COLUMN=${3:-"TARGET"}
 mkdir -p $OUTPUT_DIR
 
 # Run the training script
-echo "Running GNN4_IO_4 training with TabGNN model..."
+echo "Running GNN4_IO_5 training with TabGNN model..."
 '~/.conda/envs/gnn4_env/bin/python' scripts/train.py \
     --data_path $DATA_PATH \
     --output_dir $OUTPUT_DIR \

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=GNN4_IO_4
+#SBATCH --job-name=GNN4_IO_5
 #SBATCH --account=bdau-delta-gpu    
 #SBATCH --partition=gpuH200x8-interactive
 #SBATCH --nodes=1

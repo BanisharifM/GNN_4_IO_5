@@ -1,5 +1,5 @@
 """
-Ray Tune integration for GNN4_IO_4.
+Ray Tune integration for GNN4_IO_5.
 
 This module implements Ray Tune integration for hyperparameter optimization
 of both graph construction parameters and model hyperparameters.

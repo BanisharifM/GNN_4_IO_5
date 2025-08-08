@@ -1,8 +1,8 @@
 """
-Testing script for the GNN4_IO_4 implementation.
+Testing script for the GNN4_IO_5 implementation.
 
 This script tests the data processing, graph construction, and model training
-components of the GNN4_IO_4 solution using the provided sample data.
+components of the GNN4_IO_5 solution using the provided sample data.
 """
 
 import os
@@ -38,7 +38,7 @@ logger = logging.getLogger(__name__)
 
 def parse_args():
     """Parse command line arguments."""
-    parser = argparse.ArgumentParser(description="Test GNN4_IO_4 implementation")
+    parser = argparse.ArgumentParser(description="Test GNN4_IO_5 implementation")
     
     # Data arguments
     parser.add_argument("--data_path", type=str, default="/home/ubuntu/upload/sample_train_100.csv", 
