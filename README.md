@@ -1,9 +1,3 @@
-"""
-README for GNN4_IO_4
-
-A Graph Neural Network approach for I/O performance prediction, combining TabGNN with IODiagnose methods.
-"""
-
 # GNN4_IO_4
 
 This project implements a Graph Neural Network (GNN) approach for I/O performance prediction by combining the TabGNN approach with IODiagnose methods. The implementation constructs multiplex graphs based on important I/O counter features and integrates GNN embeddings with traditional tabular models to improve prediction performance.
