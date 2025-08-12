@@ -1,0 +1,31 @@
+2025-08-11 22:27:48,598 - Loading data from /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/10K/aiio_sample_10000.csv
+2025-08-11 22:27:48,646 - Loaded 10,000 samples with 45 features
+2025-08-11 22:27:48,646 - Data type: float64 (preserving precision)
+2025-08-11 22:27:48,646 - Memory usage: 0.00 GB
+2025-08-11 22:27:48,646 - Feature value ranges (log-normalized):
+2025-08-11 22:27:48,646 -   Min: 0.000000
+2025-08-11 22:27:48,646 -   Max: 97361398.000000
+2025-08-11 22:27:48,647 -   Mean: 1608.275490
+2025-08-11 22:27:48,647 - Computing cosine similarity with threshold=0.75
+2025-08-11 22:27:48,647 - Batch size: 1000
+Computing similarities:   0%|          | 0/10 [00:00<?, ?it/s]Computing similarities:  10%|█         | 1/10 [00:02<00:20,  2.26s/it]Computing similarities:  20%|██        | 2/10 [00:04<00:18,  2.31s/it]Computing similarities:  30%|███       | 3/10 [00:07<00:17,  2.45s/it]Computing similarities:  40%|████      | 4/10 [00:09<00:13,  2.27s/it]Computing similarities:  50%|█████     | 5/10 [00:11<00:11,  2.27s/it]Computing similarities:  60%|██████    | 6/10 [00:14<00:09,  2.42s/it]Computing similarities:  70%|███████   | 7/10 [00:17<00:08,  2.72s/it]Computing similarities:  80%|████████  | 8/10 [00:18<00:04,  2.06s/it]Computing similarities:  90%|█████████ | 9/10 [00:22<00:02,  2.62s/it]Computing similarities: 100%|██████████| 10/10 [00:26<00:00,  3.20s/it]Computing similarities: 100%|██████████| 10/10 [00:26<00:00,  2.65s/it]
+2025-08-11 22:28:21,199 - 
+=== Graph Statistics ===
+2025-08-11 22:28:21,199 - Total edges: 38,280,104
+2025-08-11 22:28:21,199 - Average degree: 3828.0
+2025-08-11 22:28:21,199 - Median degree: 4198.0
+2025-08-11 22:28:21,199 - Max degree: 4819
+2025-08-11 22:28:21,199 - Min degree: 99
+2025-08-11 22:28:21,199 - Isolated nodes: 0
+2025-08-11 22:28:21,228 - Weight range: [0.750000, 1.000000]
+2025-08-11 22:28:23,461 - Saved PyTorch format to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/10K/similarity_output/similarity_graph_20250811_222822.pt
+2025-08-11 22:28:48,270 - Saved NumPy format to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/10K/similarity_output/similarity_graph_20250811_222822.npz
+2025-08-11 22:28:48,502 - Saved metadata to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/10K/similarity_output/similarity_metadata_20250811_222822.json
+2025-08-11 22:28:48,503 - 
+=== Graph Quality Analysis ===
+2025-08-11 22:28:48,503 - Quality concerns:
+2025-08-11 22:28:48,503 - ⚠️  9942 potential hub nodes (>500 neighbors) - might dominate
+2025-08-11 22:28:48,503 - ⚠️  High average degree (3828.0) - graph too dense
+2025-08-11 22:28:48,503 - 
+Consider adjusting threshold (current: 0.75)
+2025-08-11 22:28:48,503 - Suggestion: Try threshold=0.80 for fewer connections

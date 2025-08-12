@@ -249,8 +249,8 @@ def main():
     Main function to compute similarity for I/O dataset
     """
     # Configuration
-    DATA_PATH = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/total/sample_train_total_normalized.csv'
-    OUTPUT_DIR = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/total/similarity_output_0.75'
+    DATA_PATH = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/aiio_sample_1000000_normalized.csv'
+    OUTPUT_DIR = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/similarity_output_0.75'
     THRESHOLD = 0.75
     BATCH_SIZE = 1000  # Adjust based on memory
     

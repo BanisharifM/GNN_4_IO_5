@@ -1,0 +1,31 @@
+2025-08-11 22:40:28,873 - Loading data from /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/10K/aiio_sample_10000.csv
+2025-08-11 22:40:28,920 - Loaded 10,000 samples with 45 features
+2025-08-11 22:40:28,920 - Data type: float64 (preserving precision)
+2025-08-11 22:40:28,920 - Memory usage: 0.00 GB
+2025-08-11 22:40:28,920 - Feature value ranges (log-normalized):
+2025-08-11 22:40:28,920 -   Min: 0.000000
+2025-08-11 22:40:28,920 -   Max: 97361398.000000
+2025-08-11 22:40:28,920 -   Mean: 1608.275490
+2025-08-11 22:40:28,921 - Computing cosine similarity with threshold=0.9
+2025-08-11 22:40:28,921 - Batch size: 1000
+Computing similarities:   0%|          | 0/10 [00:00<?, ?it/s]Computing similarities:  10%|█         | 1/10 [00:01<00:14,  1.61s/it]Computing similarities:  20%|██        | 2/10 [00:03<00:13,  1.75s/it]Computing similarities:  30%|███       | 3/10 [00:05<00:13,  1.95s/it]Computing similarities:  40%|████      | 4/10 [00:07<00:10,  1.80s/it]Computing similarities:  50%|█████     | 5/10 [00:09<00:09,  1.81s/it]Computing similarities:  60%|██████    | 6/10 [00:11<00:07,  1.93s/it]Computing similarities:  70%|███████   | 7/10 [00:13<00:06,  2.14s/it]Computing similarities:  80%|████████  | 8/10 [00:14<00:03,  1.63s/it]Computing similarities:  90%|█████████ | 9/10 [00:17<00:02,  2.11s/it]Computing similarities: 100%|██████████| 10/10 [00:21<00:00,  2.58s/it]Computing similarities: 100%|██████████| 10/10 [00:21<00:00,  2.11s/it]
+2025-08-11 22:40:54,897 - 
+=== Graph Statistics ===
+2025-08-11 22:40:54,897 - Total edges: 30,911,508
+2025-08-11 22:40:54,897 - Average degree: 3091.2
+2025-08-11 22:40:54,897 - Median degree: 2929.0
+2025-08-11 22:40:54,897 - Max degree: 4777
+2025-08-11 22:40:54,897 - Min degree: 0
+2025-08-11 22:40:54,897 - Isolated nodes: 3
+2025-08-11 22:40:54,919 - Weight range: [0.900000, 1.000000]
+2025-08-11 22:40:56,642 - Saved PyTorch format to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/10K/similarity_output_0.9/similarity_graph_20250811_224055.pt
+2025-08-11 22:41:17,540 - Saved NumPy format to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/10K/similarity_output_0.9/similarity_graph_20250811_224055.npz
+2025-08-11 22:41:17,698 - Saved metadata to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/10K/similarity_output_0.9/similarity_metadata_20250811_224055.json
+2025-08-11 22:41:17,698 - 
+=== Graph Quality Analysis ===
+2025-08-11 22:41:17,699 - Quality concerns:
+2025-08-11 22:41:17,699 - ⚠️  7782 potential hub nodes (>500 neighbors) - might dominate
+2025-08-11 22:41:17,699 - ⚠️  High average degree (3091.2) - graph too dense
+2025-08-11 22:41:17,699 - 
+Consider adjusting threshold (current: 0.9)
+2025-08-11 22:41:17,699 - Suggestion: Try threshold=0.95 for fewer connections

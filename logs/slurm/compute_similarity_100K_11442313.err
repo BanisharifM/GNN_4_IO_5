@@ -1,0 +1,13 @@
+2025-08-12 00:00:42,668 - Loading data from /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/100K/aiio_sample_100000.csv
+2025-08-12 00:00:43,307 - Loaded 100,000 samples with 45 features
+2025-08-12 00:00:43,307 - Data type: float64 (preserving precision)
+2025-08-12 00:00:43,308 - Memory usage: 0.04 GB
+2025-08-12 00:00:43,308 - Feature value ranges (log-normalized):
+2025-08-12 00:00:43,309 -   Min: 0.000000
+2025-08-12 00:00:43,311 -   Max: 164361530.000000
+2025-08-12 00:00:43,312 -   Mean: 1439.308995
+2025-08-12 00:00:43,312 - Computing cosine similarity with threshold=0.75
+2025-08-12 00:00:43,312 - Batch size: 1000
+Computing similarities:   0%|          | 0/100 [00:00<?, ?it/s]Computing similarities:   1%|          | 1/100 [00:23<39:32, 23.97s/it]Computing similarities:   2%|▏         | 2/100 [00:46<37:35, 23.02s/it]Computing similarities:   3%|▎         | 3/100 [01:10<38:08, 23.59s/it]Computing similarities:   4%|▍         | 4/100 [01:30<35:35, 22.25s/it]Computing similarities:   5%|▌         | 5/100 [01:53<35:23, 22.35s/it]Computing similarities:   6%|▌         | 6/100 [02:19<36:57, 23.59s/it]Computing similarities:   7%|▋         | 7/100 [02:50<40:37, 26.21s/it]Computing similarities:   8%|▊         | 8/100 [03:28<45:38, 29.77s/it]Computing similarities:   9%|▉         | 9/100 [03:38<35:44, 23.56s/it]Computing similarities:  10%|█         | 10/100 [05:02<1:03:32, 42.37s/it]Computing similarities:  11%|█         | 11/100 [05:12<48:05, 32.43s/it]  Computing similarities:  12%|█▏        | 12/100 [05:22<37:28, 25.55s/it]Computing similarities:  13%|█▎        | 13/100 [06:20<51:27, 35.48s/it]Computing similarities:  14%|█▍        | 14/100 [06:30<39:41, 27.69s/it]Computing similarities:  15%|█▌        | 15/100 [06:40<31:37, 22.33s/it]Computing similarities:  16%|█▌        | 16/100 [07:54<52:59, 37.85s/it]Computing similarities:  17%|█▋        | 17/100 [08:04<40:42, 29.43s/it]slurmstepd: error: *** STEP 11442313.0 ON gpua023 CANCELLED AT 2025-08-12T00:08:50 ***
+slurmstepd: error: *** JOB 11442313 ON gpua023 CANCELLED AT 2025-08-12T00:08:50 ***
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.

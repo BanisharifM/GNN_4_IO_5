@@ -1,0 +1,26 @@
+2025-08-11 22:13:09,938 - Loading data from /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1K/aiio_sample_1000.csv
+2025-08-11 22:13:09,947 - Loaded 1,000 samples with 45 features
+2025-08-11 22:13:09,947 - Data type: float64 (preserving precision)
+2025-08-11 22:13:09,947 - Memory usage: 0.00 GB
+2025-08-11 22:13:09,947 - Feature value ranges (log-normalized):
+2025-08-11 22:13:09,947 -   Min: 0.000000
+2025-08-11 22:13:09,947 -   Max: 97361398.000000
+2025-08-11 22:13:09,947 -   Mean: 3200.514668
+2025-08-11 22:13:09,947 - Computing cosine similarity with threshold=0.75
+2025-08-11 22:13:09,947 - Batch size: 100
+Computing similarities:   0%|          | 0/10 [00:00<?, ?it/s]Computing similarities:  50%|█████     | 5/10 [00:00<00:00, 46.28it/s]Computing similarities: 100%|██████████| 10/10 [00:00<00:00, 43.52it/s]Computing similarities: 100%|██████████| 10/10 [00:00<00:00, 43.89it/s]
+2025-08-11 22:13:10,235 - 
+=== Graph Statistics ===
+2025-08-11 22:13:10,235 - Total edges: 383,748
+2025-08-11 22:13:10,235 - Average degree: 383.7
+2025-08-11 22:13:10,235 - Median degree: 423.0
+2025-08-11 22:13:10,235 - Max degree: 479
+2025-08-11 22:13:10,235 - Min degree: 4
+2025-08-11 22:13:10,236 - Isolated nodes: 0
+2025-08-11 22:13:10,236 - Weight range: [0.750005, 1.000000]
+2025-08-11 22:13:10,367 - Saved PyTorch format to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1K/similarity_output/similarity_graph_20250811_221310.pt
+2025-08-11 22:13:10,623 - Saved NumPy format to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1K/similarity_output/similarity_graph_20250811_221310.npz
+2025-08-11 22:13:10,656 - Saved metadata to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1K/similarity_output/similarity_metadata_20250811_221310.json
+2025-08-11 22:13:10,656 - 
+=== Graph Quality Analysis ===
+2025-08-11 22:13:10,656 - ✅ Graph quality looks good for GNN training!

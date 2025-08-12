@@ -1,0 +1,26 @@
+2025-08-11 22:54:06,243 - Loading data from /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/10K/aiio_sample_10000.csv
+2025-08-11 22:54:06,370 - Loaded 10,000 samples with 45 features
+2025-08-11 22:54:06,370 - Data type: float64 (preserving precision)
+2025-08-11 22:54:06,370 - Memory usage: 0.00 GB
+2025-08-11 22:54:06,370 - Feature value ranges (log-normalized):
+2025-08-11 22:54:06,371 -   Min: 0.000000
+2025-08-11 22:54:06,371 -   Max: 97361398.000000
+2025-08-11 22:54:06,371 -   Mean: 1608.275490
+2025-08-11 22:54:06,371 - Computing cosine similarity with threshold=0.75
+2025-08-11 22:54:06,371 - Batch size: 1000
+Computing similarities:   0%|          | 0/10 [00:00<?, ?it/s]Computing similarities:  10%|█         | 1/10 [00:00<00:01,  5.75it/s]Computing similarities:  20%|██        | 2/10 [00:00<00:01,  6.47it/s]Computing similarities:  30%|███       | 3/10 [00:00<00:01,  5.88it/s]Computing similarities:  40%|████      | 4/10 [00:00<00:00,  6.38it/s]Computing similarities:  50%|█████     | 5/10 [00:00<00:00,  6.06it/s]Computing similarities:  60%|██████    | 6/10 [00:00<00:00,  6.44it/s]Computing similarities:  70%|███████   | 7/10 [00:01<00:00,  6.73it/s]Computing similarities:  80%|████████  | 8/10 [00:01<00:00,  5.69it/s]Computing similarities:  90%|█████████ | 9/10 [00:01<00:00,  6.11it/s]Computing similarities: 100%|██████████| 10/10 [00:01<00:00,  5.24it/s]Computing similarities: 100%|██████████| 10/10 [00:01<00:00,  5.84it/s]
+2025-08-11 22:54:08,158 - 
+=== Graph Statistics ===
+2025-08-11 22:54:08,158 - Total edges: 500,000
+2025-08-11 22:54:08,158 - Average degree: 50.0
+2025-08-11 22:54:08,159 - Median degree: 50.0
+2025-08-11 22:54:08,159 - Max degree: 50
+2025-08-11 22:54:08,159 - Min degree: 50
+2025-08-11 22:54:08,159 - Isolated nodes: 0
+2025-08-11 22:54:08,159 - Weight range: [0.774170, 1.000000]
+2025-08-11 22:54:08,225 - Saved PyTorch format to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/10K/similarity_output_0.75/similarity_graph_20250811_225408.pt
+2025-08-11 22:54:08,749 - Saved NumPy format to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/10K/similarity_output_0.75/similarity_graph_20250811_225408.npz
+2025-08-11 22:54:08,803 - Saved metadata to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/10K/similarity_output_0.75/similarity_metadata_20250811_225408.json
+2025-08-11 22:54:08,803 - 
+=== Graph Quality Analysis ===
+2025-08-11 22:54:08,804 - ✅ Graph quality looks good for GNN training!

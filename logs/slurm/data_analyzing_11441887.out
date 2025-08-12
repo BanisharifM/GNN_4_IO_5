@@ -1,0 +1,351 @@
+Loading data...
+
+================================================================================
+COLUMN-BY-COLUMN NORMALIZATION ANALYSIS
+================================================================================
+
+nprocs                         | ✅ NORMALIZED
+  Range: [0.301030, 4.500799]
+  Mean: 1.625105
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_OPENS                    | ✅ NORMALIZED
+  Range: [0.301030, 7.995557]
+  Mean: 3.402160
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+LUSTRE_STRIPE_SIZE             | ✅ NORMALIZED
+  Range: [5.515451, 8.127810]
+  Mean: 6.123437
+  → Max < 20, suggests normalized
+
+LUSTRE_STRIPE_WIDTH            | ✅ NORMALIZED
+  Range: [0.301030, 2.396199]
+  Mean: 0.479875
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_FILENOS                  | ❌ NOT NORMALIZED
+  Range: [1.000000, 97361398.000000]
+  Mean: 148154.635637
+  → Max > 100, suggests NOT normalized
+
+POSIX_MEM_ALIGNMENT            | ✅ NORMALIZED
+  Range: [0.954243, 0.954243]
+  Mean: 0.954243
+  → Max < 20, suggests normalized
+
+POSIX_FILE_ALIGNMENT           | ✅ NORMALIZED
+  Range: [3.612466, 7.224720]
+  Mean: 5.805193
+  → Max < 20, suggests normalized
+
+POSIX_READS                    | ✅ NORMALIZED
+  Range: [0.301030, 9.158193]
+  Mean: 3.929093
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_WRITES                   | ✅ NORMALIZED
+  Range: [0.301030, 9.682642]
+  Mean: 4.142484
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_SEEKS                    | ✅ NORMALIZED
+  Range: [0.301030, 9.681629]
+  Mean: 3.831942
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_STATS                    | ✅ NORMALIZED
+  Range: [0.301030, 7.390001]
+  Mean: 2.773789
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_BYTES_READ               | ✅ NORMALIZED
+  Range: [2.053078, 14.309376]
+  Mean: 8.148873
+  → Max < 20, suggests normalized
+
+POSIX_BYTES_WRITTEN            | ✅ NORMALIZED
+  Range: [1.919078, 12.986023]
+  Mean: 7.374762
+  → Max < 20, suggests normalized
+
+POSIX_CONSEC_READS             | ✅ NORMALIZED
+  Range: [0.301030, 9.158006]
+  Mean: 3.700009
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_CONSEC_WRITES            | ✅ NORMALIZED
+  Range: [0.301030, 9.682640]
+  Mean: 4.209535
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_SEQ_READS                | ✅ NORMALIZED
+  Range: [0.301030, 9.158187]
+  Mean: 3.829510
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_SEQ_WRITES               | ✅ NORMALIZED
+  Range: [0.301030, 9.682641]
+  Mean: 4.129823
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_RW_SWITCHES              | ✅ NORMALIZED
+  Range: [0.301030, 6.767245]
+  Mean: 1.395298
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_MEM_NOT_ALIGNED          | ✅ NORMALIZED
+  Range: [0.301030, 8.890747]
+  Mean: 3.664608
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_FILE_NOT_ALIGNED         | ✅ NORMALIZED
+  Range: [0.301030, 9.682641]
+  Mean: 4.269045
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_SIZE_READ_0_100          | ✅ NORMALIZED
+  Range: [0.301030, 7.283828]
+  Mean: 3.129593
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_SIZE_READ_100_1K         | ✅ NORMALIZED
+  Range: [0.301030, 6.332855]
+  Mean: 2.607883
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_SIZE_READ_1K_10K         | ✅ NORMALIZED
+  Range: [0.301030, 9.158005]
+  Mean: 3.461732
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_SIZE_READ_100K_1M        | ✅ NORMALIZED
+  Range: [0.301030, 8.579516]
+  Mean: 2.301954
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_SIZE_WRITE_0_100         | ✅ NORMALIZED
+  Range: [0.301030, 9.682642]
+  Mean: 3.908874
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_SIZE_WRITE_100_1K        | ✅ NORMALIZED
+  Range: [0.301030, 8.224711]
+  Mean: 2.992732
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_SIZE_WRITE_1K_10K        | ✅ NORMALIZED
+  Range: [0.301030, 7.446463]
+  Mean: 1.895576
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_SIZE_WRITE_10K_100K      | ✅ NORMALIZED
+  Range: [0.301030, 7.045284]
+  Mean: 1.670207
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_SIZE_WRITE_100K_1M       | ✅ NORMALIZED
+  Range: [0.301030, 7.234953]
+  Mean: 1.979159
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_STRIDE1_STRIDE           | ✅ NORMALIZED
+  Range: [0.698970, 9.749765]
+  Mean: 5.427474
+  → Max < 20, suggests normalized
+
+POSIX_STRIDE2_STRIDE           | ✅ NORMALIZED
+  Range: [0.477121, 10.208474]
+  Mean: 5.428300
+  → Max < 20, suggests normalized
+
+POSIX_STRIDE3_STRIDE           | ✅ NORMALIZED
+  Range: [0.698970, 10.536056]
+  Mean: 5.338452
+  → Max < 20, suggests normalized
+
+POSIX_STRIDE4_STRIDE           | ✅ NORMALIZED
+  Range: [0.301030, 10.450271]
+  Mean: 5.996651
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_STRIDE1_COUNT            | ✅ NORMALIZED
+  Range: [0.301030, 6.792127]
+  Mean: 1.540737
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_STRIDE2_COUNT            | ✅ NORMALIZED
+  Range: [0.301030, 6.427967]
+  Mean: 1.289233
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_STRIDE3_COUNT            | ✅ NORMALIZED
+  Range: [0.301030, 6.579674]
+  Mean: 1.300143
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_STRIDE4_COUNT            | ✅ NORMALIZED
+  Range: [0.301030, 6.288395]
+  Mean: 1.160926
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_ACCESS1_ACCESS           | ✅ NORMALIZED
+  Range: [0.301030, 9.331929]
+  Mean: 3.373684
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_ACCESS2_ACCESS           | ✅ NORMALIZED
+  Range: [0.301030, 9.030900]
+  Mean: 2.988190
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_ACCESS3_ACCESS           | ✅ NORMALIZED
+  Range: [0.301030, 8.731657]
+  Mean: 2.580124
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_ACCESS4_ACCESS           | ✅ NORMALIZED
+  Range: [0.301030, 7.701841]
+  Mean: 2.565235
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_ACCESS1_COUNT            | ✅ NORMALIZED
+  Range: [0.301030, 9.633134]
+  Mean: 3.343677
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_ACCESS2_COUNT            | ✅ NORMALIZED
+  Range: [0.301030, 8.817966]
+  Mean: 2.676275
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_ACCESS3_COUNT            | ✅ NORMALIZED
+  Range: [0.301030, 7.826780]
+  Mean: 2.487729
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+POSIX_ACCESS4_COUNT            | ✅ NORMALIZED
+  Range: [0.301030, 7.691219]
+  Mean: 2.391896
+  → Min ≈ log10(2), suggests normalized
+  → Max < 20, suggests normalized
+
+tag                            | ⚠️  AMBIGUOUS
+  Range: [0.000219, 5.709047]
+  Mean: 1.857264
+  → Max < 20, suggests normalized
+
+================================================================================
+SUMMARY
+================================================================================
+
+✅ Normalized columns (44): 
+   - nprocs
+   - POSIX_OPENS
+   - LUSTRE_STRIPE_SIZE
+   - LUSTRE_STRIPE_WIDTH
+   - POSIX_MEM_ALIGNMENT
+   - POSIX_FILE_ALIGNMENT
+   - POSIX_READS
+   - POSIX_WRITES
+   - POSIX_SEEKS
+   - POSIX_STATS
+   - POSIX_BYTES_READ
+   - POSIX_BYTES_WRITTEN
+   - POSIX_CONSEC_READS
+   - POSIX_CONSEC_WRITES
+   - POSIX_SEQ_READS
+   - POSIX_SEQ_WRITES
+   - POSIX_RW_SWITCHES
+   - POSIX_MEM_NOT_ALIGNED
+   - POSIX_FILE_NOT_ALIGNED
+   - POSIX_SIZE_READ_0_100
+   - POSIX_SIZE_READ_100_1K
+   - POSIX_SIZE_READ_1K_10K
+   - POSIX_SIZE_READ_100K_1M
+   - POSIX_SIZE_WRITE_0_100
+   - POSIX_SIZE_WRITE_100_1K
+   - POSIX_SIZE_WRITE_1K_10K
+   - POSIX_SIZE_WRITE_10K_100K
+   - POSIX_SIZE_WRITE_100K_1M
+   - POSIX_STRIDE1_STRIDE
+   - POSIX_STRIDE2_STRIDE
+   - POSIX_STRIDE3_STRIDE
+   - POSIX_STRIDE4_STRIDE
+   - POSIX_STRIDE1_COUNT
+   - POSIX_STRIDE2_COUNT
+   - POSIX_STRIDE3_COUNT
+   - POSIX_STRIDE4_COUNT
+   - POSIX_ACCESS1_ACCESS
+   - POSIX_ACCESS2_ACCESS
+   - POSIX_ACCESS3_ACCESS
+   - POSIX_ACCESS4_ACCESS
+   - POSIX_ACCESS1_COUNT
+   - POSIX_ACCESS2_COUNT
+   - POSIX_ACCESS3_COUNT
+   - POSIX_ACCESS4_COUNT
+
+❌ NOT normalized columns (1): 
+   - POSIX_FILENOS
+
+⚠️  Ambiguous columns (1): 
+   - tag
+
+================================================================================
+VISUALIZING SUSPICIOUS COLUMNS
+================================================================================
+
+Column: POSIX_BYTES_READ
+Raw - Min: 2.053078, Max: 14.309376
+Log - Min: 0.484738, Max: 1.184957
+
+Column: POSIX_BYTES_WRITTEN
+Raw - Min: 1.919078, Max: 12.986023
+Log - Min: 0.465246, Max: 1.145694
+
+Column: nprocs
+Raw - Min: 0.301030, Max: 4.500799
+Log - Min: 0.114287, Max: 0.740426
+
+Column: LUSTRE_STRIPE_SIZE
+Raw - Min: 5.515451, Max: 8.127810
+Log - Min: 0.813945, Max: 0.960367
+
+Column: LUSTRE_STRIPE_WIDTH
+Raw - Min: 0.301030, Max: 2.396199
+Log - Min: 0.114287, Max: 0.530993

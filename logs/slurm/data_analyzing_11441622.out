@@ -1,0 +1,93 @@
+======================================================================
+I/O DATASET COMPREHENSIVE ANALYSIS
+======================================================================
+
+Loading sample_total from /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/total/sample_train_total.csv
+  Shape: (6647219, 46)
+
+======================================================================
+NORMALIZATION ANALYSIS (AIIO Paper Check)
+======================================================================
+
+SAMPLE_TOTAL Dataset:
+----------------------------------------
+
+Feature Statistics:
+  Overall Min: 0.000000
+  Overall Max: 7748157072.000000
+  Overall Mean: 1839.561773
+  ⚠️ Features appear NOT log-normalized (max > 100)
+  After log(x+1): Min=0.00, Max=22.77
+    POSIX_BYTES_READ: raw=17, log(x+1)=2.86
+    POSIX_BYTES_WRITTEN: raw=15, log(x+1)=2.76
+    POSIX_SEQ_READS: raw=12, log(x+1)=2.60
+    POSIX_SEQ_WRITES: raw=11, log(x+1)=2.49
+
+Tag (Performance) Statistics:
+  Min: 0.000000
+  Max: 6.749247
+  Mean: 1.856681
+  Std: 0.974263
+  Actual Performance Range: 0.00 - 852.42 MB/s
+
+======================================================================
+FEATURE DISTRIBUTION ANALYSIS
+======================================================================
+
+SAMPLE_TOTAL - Key Features:
+----------------------------------------
+POSIX_SEQ_WRITES               | Zero:   8.7% | NonZero Range: [3.01e-01, 1.11e+01]
+POSIX_SEQ_READS                | Zero:   5.5% | NonZero Range: [3.01e-01, 1.24e+01]
+POSIX_CONSEC_WRITES            | Zero:  12.1% | NonZero Range: [3.01e-01, 1.11e+01]
+POSIX_CONSEC_READS             | Zero:   5.6% | NonZero Range: [3.01e-01, 1.24e+01]
+POSIX_SIZE_READ_0_100          | Zero:   6.1% | NonZero Range: [3.01e-01, 1.24e+01]
+POSIX_SIZE_WRITE_0_100         | Zero:   9.8% | NonZero Range: [3.01e-01, 1.11e+01]
+POSIX_SIZE_READ_1K_10K         | Zero:  13.9% | NonZero Range: [3.01e-01, 9.73e+00]
+POSIX_SIZE_WRITE_1K_10K        | Zero:  67.2% | NonZero Range: [3.01e-01, 9.26e+00]
+POSIX_MEM_NOT_ALIGNED          | Zero:  18.9% | NonZero Range: [3.01e-01, 1.21e+01]
+POSIX_FILE_NOT_ALIGNED         | Zero:   2.9% | NonZero Range: [3.01e-01, 1.24e+01]
+POSIX_BYTES_READ               | Zero:   5.2% | NonZero Range: [3.01e-01, 1.65e+01]
+POSIX_BYTES_WRITTEN            | Zero:   8.6% | NonZero Range: [3.01e-01, 1.48e+01]
+
+======================================================================
+DATA INTEGRITY CHECK
+======================================================================
+
+SAMPLE_TOTAL:
+  Null values: 0
+  Negative values: 0
+  Inf values: 0
+  Data types: {dtype('float64'): 45, dtype('int64'): 1}
+
+======================================================================
+SIMILARITY ANALYSIS
+======================================================================
+
+SAMPLE_TOTAL - Feature Characteristics:
+  Overall sparsity: 24.1% zeros
+  Low variance features: 1/45
+  Applying log(x+1) for similarity test...
+  Similarity distribution (100 samples):
+    Min: 0.0000
+    25%: 0.5850
+    50%: 0.6538
+    75%: 0.8909
+    95%: 0.9896
+    Max: 1.0000
+    Pairs with similarity > 0.9: 1209.0/4950.0 (24.4%)
+
+======================================================================
+RECOMMENDATIONS
+======================================================================
+
+sample_total: Data needs log(x+1) normalization!
+  Fix: df.iloc[:, :-1] = np.log(df.iloc[:, :-1] + 1)  # All except 'tag'
+
+For Graph Construction:
+  1. Use MAX_NEIGHBORS = 50-100
+  2. Use THRESHOLD = 0.85-0.90
+  3. Consider feature selection to reduce similarity
+
+======================================================================
+ANALYSIS COMPLETE
+======================================================================

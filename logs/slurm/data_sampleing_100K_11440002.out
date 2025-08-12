@@ -1,0 +1,20 @@
+============================================================
+AIIO Dataset Stratified Sampling
+Sampling 1,000 rows from dataset
+============================================================
+
+Step 1: Getting dataset info...
+Dataset: 6,647,219 rows x 46 columns
+
+Step 2: Stratified sampling of 1,000 rows...
+
+Step 3: Extracting selected samples...
+
+============================================================
+SAMPLING COMPLETE!
+✓ Sampled 1,000 rows
+✓ Saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1K/aiio_sample_1000.csv
+✓ Performance range: 0.00 - 5.43
+✓ Performance mean: 1.86
+============================================================
+✓ Metadata saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1K/metadata.json
