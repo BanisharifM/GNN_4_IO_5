@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/similarity_analyzing.py", line 311, in <module>
+    main()
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/similarity_analyzing.py", line 301, in main
+    analyzer.load_data()
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/similarity_analyzing.py", line 32, in load_data
+    self.pt_data = torch.load(self.pt_path)
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/torch/serialization.py", line 791, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/torch/serialization.py", line 271, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/torch/serialization.py", line 252, in __init__
+    super().__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/similarity_output_0.75/similarity_graph_20250812_002240.pt'
+srun: error: gpue02: task 0: Exited with exit code 1

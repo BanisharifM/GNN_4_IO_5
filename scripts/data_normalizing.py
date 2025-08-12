@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # Load your dataset
-df = pd.read_csv('/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/aiio_sample_1000000.csv')
+df = pd.read_csv('/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/total/sample_train_total.csv')
 
 # Check current state
 print(f"Before normalization:")
@@ -23,6 +23,6 @@ print(f"Max across all features: {df[feature_cols].max().max():.2f}")
 print(f"Min across all features: {df[feature_cols].min().min():.2f}")
 
 # Save the properly normalized dataset
-output_path = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/aiio_sample_1000000_normalized.csv'
+output_path = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/total/sample_train_total_normalized_v2.csv'
 df.to_csv(output_path, index=False)
 print(f"\nSaved normalized data to: {output_path}")

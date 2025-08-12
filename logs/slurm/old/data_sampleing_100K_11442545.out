@@ -1,0 +1,13 @@
+Before normalization:
+POSIX_FILENOS max: 7,748,157,072
+POSIX_FILENOS min: 0
+
+After normalization:
+POSIX_FILENOS max: 9.89
+POSIX_FILENOS min: 0.00
+
+Overall data range check:
+Max across all features: 16.54
+Min across all features: 0.00
+
+Saved normalized data to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/total/sample_train_total_normalized_v2.csv

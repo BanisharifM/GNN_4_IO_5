@@ -139,7 +139,7 @@ class DetailedColumnAnalyzer:
 
 def main():
     # Analyze your dataset
-    analyzer = DetailedColumnAnalyzer('/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/total/sample_train_total_normalized.csv')
+    analyzer = DetailedColumnAnalyzer('/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/total/sample_train_total_normalized_v2.csv')
     
     # Check all columns
     results = analyzer.analyze_all_columns()
