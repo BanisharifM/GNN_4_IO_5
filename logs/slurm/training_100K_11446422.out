@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/train_gat.py", line 29, in <module>
+    from src.interpretability.gradient_methods import BottleneckIdentifier
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/src/interpretability/gradient_methods.py", line 16, in <module>
+    class GradientAnalyzer:
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/src/interpretability/gradient_methods.py", line 229, in GradientAnalyzer
+    ) -> pd.DataFrame:
+NameError: name 'pd' is not defined
+Training complete! Results saved to ./experiments/gat_exp_20250812_184921
