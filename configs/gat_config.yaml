@@ -1,0 +1,69 @@
+# GAT Configuration for I/O Performance Prediction
+
+# Data settings
+data:
+  similarity_pt_path: "/path/to/similarity_graph.pt"
+  similarity_npz_path: "/path/to/similarity_graph.npz"
+  features_csv_path: "/path/to/normalized_features.csv"
+  root: "./data/processed"
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+  stratify: true  # Stratify by performance
+
+# Model architecture
+model:
+  type: "standard"  # Options: standard, lightweight, deep
+  hidden_channels: 256
+  num_layers: 3
+  heads: [8, 8, 1]  # Attention heads per layer
+  dropout: 0.2
+  edge_dim: 1  # Similarity score dimension
+  residual: true
+  layer_norm: true
+  feature_augmentation: true
+  pool_type: "mean"  # Options: mean, max, add
+
+# Training settings
+training:
+  epochs: 200
+  learning_rate: 0.001
+  weight_decay: 0.00001
+  optimizer: "adamw"  # Options: adam, adamw, sgd
+  scheduler: "plateau"  # Options: plateau, cosine, step
+  gradient_clip: 1.0
+  early_stopping_patience: 30
+  
+  # Batch settings
+  batch_size: 2048
+  num_neighbors: [25, 10]  # Neighbors per layer for mini-batch
+  accumulation_steps: 1
+  
+  # Mixed precision (set false for float64)
+  mixed_precision: false
+
+# Experiment settings
+experiment:
+  seed: 42
+  save_dir: "./experiments/gat_baseline"
+  use_wandb: false
+  project_name: "io_performance_gnn"
+  run_name: "gat_baseline_run"
+
+# AIIO baselines for comparison (RMSE values)
+aiio_baselines:
+  XGBoost: 0.5634
+  LightGBM: 0.2632
+  CatBoost: 0.2686
+  MLP: 0.5416
+  TabNet: 0.3078
+  Closest_Method: 0.1860
+  Average_Method: 0.2405
+
+# Interpretability settings
+interpretability:
+  attention_analysis: true
+  gnn_explainer: true
+  gradient_methods: true
+  num_samples_to_analyze: 10
+  save_visualizations: true

@@ -1,0 +1,6 @@
+PyTorch: 2.0.1+cu118
+PyG: 2.6.1
+CUDA available: True
+CUDA version: 11.8
+GPU: NVIDIA H200
+✅ PyG CUDA test passed!
