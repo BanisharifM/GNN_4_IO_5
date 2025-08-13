@@ -32,6 +32,8 @@ class EnhancedGATConv(nn.Module):
     ):
         super().__init__()
         
+        self.dtype = dtype
+        
         self.gat_conv = GATConv(
             in_channels=in_channels,
             out_channels=out_channels,
@@ -43,7 +45,10 @@ class EnhancedGATConv(nn.Module):
         )
         
         # Convert to float64
-        self.gat_conv = self.gat_conv.double()
+        if dtype == torch.float32:
+            self.gat_conv = self.gat_conv.float()
+        else:
+            self.gat_conv = self.gat_conv.double()
         
         # Store attention weights for interpretability
         self.attention_weights = None
@@ -59,9 +64,14 @@ class EnhancedGATConv(nn.Module):
         Forward pass with optional attention weight extraction
         """
         # Ensure float64
-        x = x.double()
-        if edge_attr is not None:
-            edge_attr = edge_attr.double()
+        if self.dtype == torch.float32:
+            x = x.float()
+            if edge_attr is not None:
+                edge_attr = edge_attr.float()
+        else:
+            x = x.double()
+            if edge_attr is not None:
+                edge_attr = edge_attr.double()
         
         # Forward pass with attention weights
         out, attention = self.gat_conv(
@@ -244,9 +254,14 @@ class IOPerformanceGAT(nn.Module):
             attention_weights: List of attention weights per layer (optional)
         """
         # Ensure float64
-        x = x.double()
-        if edge_attr is not None:
-            edge_attr = edge_attr.double()
+        if self.dtype == torch.float32:
+            x = x.float()
+            if edge_attr is not None:
+                edge_attr = edge_attr.float()
+        else:
+            x = x.double()
+            if edge_attr is not None:
+                edge_attr = edge_attr.double()
         
         # Feature augmentation
         x = self.augment_features(x)

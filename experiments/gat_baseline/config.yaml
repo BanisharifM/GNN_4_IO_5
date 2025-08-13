@@ -29,6 +29,7 @@ interpretability:
   save_visualizations: true
 model:
   dropout: 0.1
+  dtype: float32
   edge_dim: 1
   feature_augmentation: true
   heads:
@@ -45,6 +46,7 @@ model:
 training:
   accumulation_steps: 1
   batch_size: 2048
+  dtype: float32
   early_stopping_patience: 50
   epochs: 300
   gradient_clip: 1.0

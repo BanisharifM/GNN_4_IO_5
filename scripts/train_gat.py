@@ -120,6 +120,24 @@ def main(args):
             }
         }
     
+    # Convert dtype string from config to torch dtype
+    dtype_map = {
+        'float32': torch.float32,
+        'float64': torch.float64
+    }
+
+    # Get dtype from config, with fallback to command line arg or default
+    if 'dtype' in config['model']:
+        dtype = dtype_map[config['model']['dtype']]
+    elif args.dtype:  # if you still want command line override
+        dtype = dtype_map[args.dtype]
+        config['model']['dtype'] = args.dtype
+        config['training']['dtype'] = args.dtype
+    else:
+        dtype = torch.float64  # default
+        config['model']['dtype'] = 'float64'
+        config['training']['dtype'] = 'float64'
+
     # Setup directories
     save_dir = Path(config['experiment']['save_dir'])
     save_dir.mkdir(parents=True, exist_ok=True)
@@ -155,7 +173,7 @@ def main(args):
         similarity_npz_path=config['data']['similarity_npz_path'],
         features_csv_path=config['data']['features_csv_path'],
         use_edge_weights=True,
-        dtype=torch.float64,
+        dtype=dtype,
         lazy_load=True
     )
     
@@ -214,7 +232,7 @@ def main(args):
         residual=config['model']['residual'],
         layer_norm=config['model']['layer_norm'],
         feature_augmentation=config['model']['feature_augmentation'],
-        dtype=torch.float64
+        dtype=dtype
     )
     
     # Model summary
@@ -238,7 +256,7 @@ def main(args):
         scheduler_type=config['training']['scheduler'],
         gradient_clip=config['training']['gradient_clip'],
         accumulation_steps=config['training']['accumulation_steps'],
-        dtype=torch.float64,
+        dtype=dtype,
         save_dir=save_dir / 'checkpoints',
         use_wandb=config['experiment']['use_wandb'],
         project_name=config['experiment']['project_name']
@@ -439,6 +457,10 @@ if __name__ == "__main__":
                         help='Force CPU usage')
     parser.add_argument('--debug', action='store_true',
                         help='Enable debug logging')
+
+    parser.add_argument('--dtype', type=str, choices=['float32', 'float64'], 
+                        default='float64',
+                        help='Data type for model and tensors (float32 or float64)')
     
     args = parser.parse_args()
     

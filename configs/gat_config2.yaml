@@ -23,6 +23,7 @@ model:
   layer_norm: true
   feature_augmentation: true
   pool_type: "mean"  # Options: mean, max, add
+  dtype: "float32"
 
 # Training settings
 training:
@@ -33,6 +34,7 @@ training:
   scheduler: "cosine"  # Options: plateau, cosine, step
   gradient_clip: 1.0
   early_stopping_patience: 50
+  dtype: "float32"
   
   # Batch settings
   batch_size: 2048
