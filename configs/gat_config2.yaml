@@ -2,9 +2,9 @@
 
 # Data settings
 data:
-  similarity_pt_path: "/path/to/similarity_graph.pt"
-  similarity_npz_path: "/path/to/similarity_graph.npz"
-  features_csv_path: "/path/to/normalized_features.csv"
+  similarity_pt_path: "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/100K/similarity_output_0.75/similarity_graph_20250812_002240.pt"
+  similarity_npz_path: "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/100K/similarity_output_0.75/similarity_graph_20250812_002240.npz"
+  features_csv_path: "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/100K/aiio_sample_100000_normalized.csv"
   root: "./data/processed"
   train_ratio: 0.6
   val_ratio: 0.2
@@ -13,11 +13,11 @@ data:
 
 # Model architecture
 model:
-  type: "standard"  # Options: standard, lightweight, deep
-  hidden_channels: 256
-  num_layers: 3
-  heads: [8, 8, 1]  # Attention heads per layer
-  dropout: 0.2
+  type: "deep"  # Options: standard, lightweight, deep
+  hidden_channels: 512
+  num_layers: 4
+  heads: [16, 8, 4, 1]  # Attention heads per layer
+  dropout: 0.1
   edge_dim: 1  # Similarity score dimension
   residual: true
   layer_norm: true
@@ -26,13 +26,13 @@ model:
 
 # Training settings
 training:
-  epochs: 200
-  learning_rate: 0.001
-  weight_decay: 0.00001
+  epochs: 300
+  learning_rate: 0.0005
+  weight_decay: 0.0001
   optimizer: "adamw"  # Options: adam, adamw, sgd
-  scheduler: "plateau"  # Options: plateau, cosine, step
+  scheduler: "cosine"  # Options: plateau, cosine, step
   gradient_clip: 1.0
-  early_stopping_patience: 30
+  early_stopping_patience: 50
   
   # Batch settings
   batch_size: 2048
