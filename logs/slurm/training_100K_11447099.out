@@ -1,0 +1,59 @@
+2025-08-12 19:09:38,058 - INFO - ================================================================================
+2025-08-12 19:09:38,058 - INFO - GAT TRAINING FOR I/O PERFORMANCE PREDICTION
+2025-08-12 19:09:38,058 - INFO - ================================================================================
+2025-08-12 19:09:38,061 - INFO - Random seed: 42
+2025-08-12 19:09:38,061 - INFO - Using device: cuda
+2025-08-12 19:09:38,079 - INFO - Configuration saved to experiments/gat_exp_20250812_190931/config.yaml
+2025-08-12 19:09:38,079 - INFO - 
+========================================
+2025-08-12 19:09:38,079 - INFO - LOADING DATASET
+2025-08-12 19:09:38,079 - INFO - ========================================
+2025-08-12 19:09:38,140 - INFO - Dataset loaded: 100,000 nodes, 5,000,000 edges
+2025-08-12 19:09:38,140 - INFO - Features: torch.Size([100000, 45]), Targets: torch.Size([100000, 1])
+2025-08-12 19:09:38,294 - INFO - Data splits - Train: 60,000, Val: 20,000, Test: 20,000
+2025-08-12 19:09:38,295 - INFO - 
+========================================
+2025-08-12 19:09:38,295 - INFO - SETTING UP DATA LOADER
+2025-08-12 19:09:38,295 - INFO - ========================================
+2025-08-12 19:09:38,295 - INFO - Using mini-batch data loading
+2025-08-12 19:09:38,742 - INFO - Train loader: 60,000 nodes, 30 batches
+2025-08-12 19:09:39,130 - INFO - Val loader: 20,000 nodes, 5 batches
+2025-08-12 19:09:39,539 - INFO - Test loader: 20,000 nodes, 5 batches
+2025-08-12 19:09:39,795 - INFO - Memory stats: {'gpu_allocated': 0.0, 'gpu_reserved': 0.0, 'gpu_total': 143.771, 'gpu_free': 142.547, 'gpu_used': 0.526, 'ram_available': 2054.729302016, 'ram_used': 83.235897344, 'ram_total': 2164.173791232}
+2025-08-12 19:09:39,795 - INFO - Memory stats: {'gpu_allocated': 0.0, 'gpu_reserved': 0.0, 'gpu_total': 143.771, 'gpu_free': 142.547, 'gpu_used': 0.526, 'ram_available': 2054.729302016, 'ram_used': 83.235897344, 'ram_total': 2164.173791232}
+2025-08-12 19:09:39,795 - INFO - 
+========================================
+2025-08-12 19:09:39,795 - INFO - CREATING MODEL
+2025-08-12 19:09:39,795 - INFO - ========================================
+2025-08-12 19:09:39,898 - INFO - Model: IOPerformanceGAT
+2025-08-12 19:09:39,898 - INFO - Total parameters: 6,435,841
+2025-08-12 19:09:39,898 - INFO - Trainable parameters: 6,435,841
+2025-08-12 19:09:39,899 - INFO - 
+========================================
+2025-08-12 19:09:39,899 - INFO - SETTING UP TRAINER
+2025-08-12 19:09:39,899 - INFO - ========================================
+2025-08-12 19:09:39,924 - INFO - 
+========================================
+2025-08-12 19:09:39,924 - INFO - STARTING TRAINING
+2025-08-12 19:09:39,924 - INFO - ========================================
+2025-08-12 19:09:39,924 - INFO - Training for 200 epochs
+2025-08-12 19:09:39,924 - INFO - Early stopping patience: 30
+2025-08-12 19:09:39,924 - INFO - AIIO Best Baseline: 0.186
+2025-08-12 19:09:39,924 - INFO - AIIO LightGBM: 0.2632
+2025-08-12 19:09:39,924 - INFO - Starting training for 200 epochs on cuda
+2025-08-12 19:09:39,924 - INFO - AIIO baselines - Best: 0.186, LightGBM: 0.2632
+Training:   0%|          | 0/30 [00:00<?, ?it/s]Training:   0%|          | 0/30 [00:00<?, ?it/s]
+2025-08-12 19:09:40,823 - ERROR - Training failed: 'tuple' object has no attribute 'squeeze'
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/train_gat.py", line 447, in <module>
+    final_rmse = main(args)
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/train_gat.py", line 257, in main
+    history = trainer.train(
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/src/training/trainer.py", line 349, in train
+    train_metrics = self.train_epoch_mini_batch(train_data['train'])
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/src/training/trainer.py", line 219, in train_epoch_mini_batch
+    loss = self.calculate_rmse_loss(out, batch.y)
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/src/training/trainer.py", line 441, in calculate_rmse_loss
+    return torch.sqrt(torch.mean((pred.squeeze() - target.squeeze()) ** 2))
+AttributeError: 'tuple' object has no attribute 'squeeze'
+Training complete! Results saved to ./experiments/gat_exp_20250812_190931

@@ -6,7 +6,7 @@
 #SBATCH --ntasks=1                   
 #SBATCH --gres=gpu:1                
 #SBATCH --cpus-per-task=32
-#SBATCH --mem=256G
+#SBATCH --mem=900G
 #SBATCH --time=01:00:00
 #SBATCH --output=logs/slurm/training_100K_%j.out
 #SBATCH --error=logs/slurm/training_100K_%j.err
@@ -34,6 +34,7 @@ python scripts/train_gat.py \
     --seed 42 \
     --save-dir "$SAVE_DIR" \
     --run-name "gat_100k_${TIMESTAMP}" \
+    --force-mode mini \
     --interpret \
     --plot \
     2>&1 | tee "${SAVE_DIR}/training.log"
