@@ -31,7 +31,7 @@ SAVE_DIR="./experiments/gat_exp_${TIMESTAMP}"
 mkdir -p "$SAVE_DIR"
 
 # Set Config path
-CONFIG="/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/configs/gat_config3.yaml"
+CONFIG="/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/configs/gat_config2.yaml"
 
 # Run training
 python scripts/train_gat.py \
