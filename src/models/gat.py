@@ -377,7 +377,6 @@ class LightweightGAT(IOPerformanceGAT):
             **kwargs
         )
 
-
 def create_gat_model(
     num_features: int,
     model_type: str = 'standard',
@@ -397,12 +396,43 @@ def create_gat_model(
     if model_type == 'lightweight':
         return LightweightGAT(num_features, **kwargs)
     elif model_type == 'deep':
-        return IOPerformanceGAT(
-            num_features,
-            hidden_channels=512,
-            num_layers=4,
-            heads=[16, 8, 4, 1],
-            **kwargs
-        )
+        # Deep model defaults (will be overridden by config)
+        deep_defaults = {
+            'hidden_channels': 512,
+            'num_layers': 4,
+            'heads': [16, 8, 4, 1]
+        }
+        # Update defaults with provided kwargs
+        deep_defaults.update(kwargs)
+        return IOPerformanceGAT(num_features, **deep_defaults)
     else:  # standard
         return IOPerformanceGAT(num_features, **kwargs)
+
+# def create_gat_model(
+#     num_features: int,
+#     model_type: str = 'standard',
+#     **kwargs
+# ) -> IOPerformanceGAT:
+#     """
+#     Factory function to create GAT models
+    
+#     Args:
+#         num_features: Number of input features
+#         model_type: 'standard', 'lightweight', or 'deep'
+#         **kwargs: Additional arguments for the model
+    
+#     Returns:
+#         GAT model instance
+#     """
+#     if model_type == 'lightweight':
+#         return LightweightGAT(num_features, **kwargs)
+#     elif model_type == 'deep':
+#         return IOPerformanceGAT(
+#             num_features,
+#             hidden_channels=512,
+#             num_layers=4,
+#             heads=[16, 8, 4, 1],
+#             **kwargs
+#         )
+#     else:  # standard
+#         return IOPerformanceGAT(num_features, **kwargs)

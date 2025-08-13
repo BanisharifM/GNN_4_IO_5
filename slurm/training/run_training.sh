@@ -31,7 +31,7 @@ SAVE_DIR="./experiments/gat_exp_${TIMESTAMP}"
 mkdir -p "$SAVE_DIR"
 
 # Set Config path
-CONFIG="/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/configs/gat_config2.yaml"
+CONFIG="/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/configs/gat_config3.yaml"
 
 # Run training
 python scripts/train_gat.py \
@@ -39,9 +39,6 @@ python scripts/train_gat.py \
     --similarity-npz "$SIMILARITY_NPZ" \
     --features-csv "$FEATURES_CSV" \
     --config "$CONFIG" \
-    # --epochs 200 \
-    # --lr 0.001 \
-    # --seed 42 \
     --save-dir "$SAVE_DIR" \
     --run-name "gat_100k_${TIMESTAMP}" \
     --force-mode mini \
