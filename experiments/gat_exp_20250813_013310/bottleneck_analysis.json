@@ -1,0 +1,11 @@
+{
+  "0": {
+    "analysis": {
+      "attention": {},
+      "gnn_explainer": {},
+      "integrated_gradients": {}
+    },
+    "consensus": [],
+    "performance": 0.4968675374984741
+  }
+}

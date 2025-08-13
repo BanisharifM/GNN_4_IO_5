@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH --job-name=training
 #SBATCH --account=bdau-delta-gpu
-#SBATCH --partition=gpuA40x4
+#SBATCH --partition=gpuH200x8
 #SBATCH --nodes=1                     
 #SBATCH --ntasks=1                   
 #SBATCH --gres=gpu:1                
 #SBATCH --cpus-per-task=32
-#SBATCH --mem=128G
+#SBATCH --mem=256G
 #SBATCH --time=12:00:00
 #SBATCH --output=logs/slurm/training_100K_%j.out
 #SBATCH --error=logs/slurm/training_100K_%j.err
