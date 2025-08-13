@@ -2,9 +2,6 @@
 
 # Data settings
 data:
-  similarity_pt_path: "/path/to/similarity_graph.pt"
-  similarity_npz_path: "/path/to/similarity_graph.npz"
-  features_csv_path: "/path/to/normalized_features.csv"
   root: "./data/processed"
   train_ratio: 0.6
   val_ratio: 0.2
@@ -47,7 +44,6 @@ training:
 # Experiment settings
 experiment:
   seed: 7
-  save_dir: "./experiments/gat_baseline"
   use_wandb: false
   project_name: "io_performance_gnn"
   run_name: "gat_baseline_run"
