@@ -1,0 +1,52 @@
+2025-08-12 18:55:15,972 - INFO - ================================================================================
+2025-08-12 18:55:15,972 - INFO - GAT TRAINING FOR I/O PERFORMANCE PREDICTION
+2025-08-12 18:55:15,972 - INFO - ================================================================================
+2025-08-12 18:55:15,975 - INFO - Random seed: 42
+2025-08-12 18:55:15,975 - INFO - Using device: cuda
+2025-08-12 18:55:15,999 - INFO - Configuration saved to experiments/gat_exp_20250812_185508/config.yaml
+2025-08-12 18:55:15,999 - INFO - 
+========================================
+2025-08-12 18:55:15,999 - INFO - LOADING DATASET
+2025-08-12 18:55:15,999 - INFO - ========================================
+Processing...
+2025-08-12 18:55:16,055 - INFO - Processing I/O performance graph dataset...
+2025-08-12 18:55:16,055 - INFO - Loading similarity graph...
+2025-08-12 18:55:16,526 - INFO - Edge weights loaded: shape torch.Size([5000000]), range [0.7701, 1.0000]
+2025-08-12 18:55:16,594 - INFO - Graph loaded: 100,000 nodes, 5,000,000 edges
+2025-08-12 18:55:16,595 - INFO - Loading node features...
+2025-08-12 18:55:17,159 - INFO - Features loaded from NPZ: shape torch.Size([100000, 45])
+2025-08-12 18:55:17,210 - INFO - Graph statistics - Avg degree: 50.00, Min: 50, Max: 50
+2025-08-12 18:55:17,211 - INFO - Saving processed data to data/processed/processed/io_graph_data.pt
+Done!
+2025-08-12 18:55:17,554 - INFO - Dataset loaded: 100,000 nodes, 5,000,000 edges
+2025-08-12 18:55:17,554 - INFO - Features: torch.Size([100000, 45]), Targets: torch.Size([100000, 1])
+2025-08-12 18:55:17,604 - INFO - Data splits - Train: 60,000, Val: 20,000, Test: 20,000
+2025-08-12 18:55:17,605 - INFO - 
+========================================
+2025-08-12 18:55:17,605 - INFO - SETTING UP DATA LOADER
+2025-08-12 18:55:17,605 - INFO - ========================================
+2025-08-12 18:55:17,657 - INFO - Estimated memory usage: 6.13 GB
+2025-08-12 18:55:17,657 - INFO - Using full-batch data loading
+2025-08-12 18:55:17,917 - INFO - Full-batch mode: 100,000 nodes, 5,000,000 edges
+2025-08-12 18:55:17,963 - INFO - Memory stats: {'gpu_allocated': 0.157901824, 'gpu_reserved': 0.163577856, 'gpu_total': 143.771, 'gpu_free': 142.391, 'gpu_used': 0.682, 'ram_available': 2052.794105856, 'ram_used': 85.391470592, 'ram_total': 2164.173791232}
+2025-08-12 18:55:17,963 - INFO - Memory stats: {'gpu_allocated': 0.157901824, 'gpu_reserved': 0.163577856, 'gpu_total': 143.771, 'gpu_free': 142.391, 'gpu_used': 0.682, 'ram_available': 2052.794105856, 'ram_used': 85.391470592, 'ram_total': 2164.173791232}
+2025-08-12 18:55:17,963 - INFO - 
+========================================
+2025-08-12 18:55:17,963 - INFO - CREATING MODEL
+2025-08-12 18:55:17,963 - INFO - ========================================
+2025-08-12 18:55:17,964 - ERROR - Training failed: __init__() got an unexpected keyword argument 'share_weights'
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/train_gat.py", line 447, in <module>
+    final_rmse = main(args)
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/train_gat.py", line 207, in main
+    model = create_gat_model(
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/src/models/gat.py", line 407, in create_gat_model
+    return IOPerformanceGAT(num_features, **kwargs)
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/src/models/gat.py", line 146, in __init__
+    EnhancedGATConv(
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/src/models/gat.py", line 36, in __init__
+    self.gat_conv = GATConv(
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/torch_geometric/nn/conv/gat_conv.py", line 146, in __init__
+    super().__init__(node_dim=0, **kwargs)
+TypeError: __init__() got an unexpected keyword argument 'share_weights'
+Training complete! Results saved to ./experiments/gat_exp_20250812_185508

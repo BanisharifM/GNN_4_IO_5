@@ -28,7 +28,6 @@ class EnhancedGATConv(nn.Module):
         edge_dim: int = 1,
         add_self_loops: bool = True,
         bias: bool = True,
-        share_weights: bool = False,
         dtype: torch.dtype = torch.float64
     ):
         super().__init__()
@@ -41,7 +40,6 @@ class EnhancedGATConv(nn.Module):
             edge_dim=edge_dim,
             add_self_loops=add_self_loops,
             bias=bias,
-            share_weights=share_weights
         )
         
         # Convert to float64
