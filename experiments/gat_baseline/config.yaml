@@ -1,11 +1,3 @@
-aiio_baselines:
-  Average_Method: 0.2405
-  CatBoost: 0.2686
-  Closest_Method: 0.186
-  LightGBM: 0.2632
-  MLP: 0.5416
-  TabNet: 0.3078
-  XGBoost: 0.5634
 data:
   features_csv_path: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/100K/aiio_sample_100000_normalized.csv
   root: ./data/processed
@@ -17,43 +9,36 @@ data:
   val_ratio: 0.2
 experiment:
   project_name: io_performance_gnn
-  run_name: gat_baseline_run
+  run_name: gat_memory_efficient
   save_dir: ./experiments/gat_baseline
-  seed: 7
+  seed: 42
   use_wandb: false
-interpretability:
-  attention_analysis: true
-  gnn_explainer: true
-  gradient_methods: true
-  num_samples_to_analyze: 10
-  save_visualizations: true
 model:
-  dropout: 0.1
+  dropout: 0.15
   dtype: float32
   edge_dim: 1
-  feature_augmentation: true
+  feature_augmentation: false
   heads:
-  - 16
   - 8
   - 4
   - 1
-  hidden_channels: 512
+  hidden_channels: 256
   layer_norm: true
-  num_layers: 4
+  num_layers: 3
   pool_type: mean
   residual: true
-  type: deep
+  type: standard
 training:
-  accumulation_steps: 1
-  batch_size: 2048
+  accumulation_steps: 2
+  batch_size: 1024
   dtype: float32
-  early_stopping_patience: 50
-  epochs: 300
+  early_stopping_patience: 40
+  epochs: 200
   gradient_clip: 1.0
-  learning_rate: 0.0005
+  learning_rate: 0.001
   mixed_precision: false
   num_neighbors:
-  - 25
+  - 15
   - 10
   optimizer: adamw
   scheduler: cosine
