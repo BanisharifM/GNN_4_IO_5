@@ -40,7 +40,7 @@ class IOSimilarityComputer:
         self.logger.info(f"Loading data from {self.data_path}")
         
         # Load with float64 precision as discussed
-        df = pd.read_csv(self.data_path, dtype=np.float64)
+        df = pd.read_csv(self.data_path, dtype=np.float32)
         
         # Separate features and target
         self.target = df['tag'].values
@@ -82,9 +82,9 @@ class IOSimilarityComputer:
             # Compute similarity with ALL samples (not just forward)
             # Using float64 as discussed
             similarities = cosine_similarity(
-                batch_i.astype(np.float64), 
-                self.features.astype(np.float64)
-            ).astype(np.float64)
+                batch_i.astype(np.float32),
+                self.features.astype(np.float32)
+            ).astype(np.float32)
             
             # Process each sample in batch
             for local_idx in range(len(batch_i)):
@@ -121,7 +121,7 @@ class IOSimilarityComputer:
         
         # Convert to arrays
         edges = np.array(edge_list, dtype=np.int64)
-        weights = np.array(edge_weights, dtype=np.float64)
+        weights = np.array(edge_weights, dtype=np.float32)
         
         # Log statistics
         self.logger.info(f"\n=== Graph Statistics ===")
@@ -145,7 +145,7 @@ class IOSimilarityComputer:
         pt_file = os.path.join(self.output_dir, f'similarity_graph_{timestamp}.pt')
         torch.save({
             'edge_index': torch.tensor(edges.T, dtype=torch.long),  # (2, n_edges) format
-            'edge_weight': torch.tensor(weights, dtype=torch.float64),
+            'edge_weight': torch.tensor(weights, dtype=torch.float32),
             'num_nodes': len(self.features),
             'threshold': threshold,
             'degree_counts': torch.tensor(degree_counts, dtype=torch.long),
@@ -250,9 +250,9 @@ def main():
     """
     # Configuration
     DATA_PATH = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/total/sample_train_total_normalized.csv'
-    OUTPUT_DIR = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/total/similarity_output_0.75'
+    OUTPUT_DIR = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/total/similarity_output_0.75_v2'
     THRESHOLD = 0.75
-    BATCH_SIZE = 1000  # Adjust based on memory
+    BATCH_SIZE = 500  # Adjust based on memory
     
     print("="*70)
     print("I/O Performance Data - Cosine Similarity Computation")

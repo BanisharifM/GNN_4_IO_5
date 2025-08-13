@@ -76,8 +76,50 @@ def main(args):
     # Load configuration
     if args.config:
         config = load_config(args.config)
+        
+        # Override config with command-line arguments if provided
+        
+        # Always use command-line save-dir if provided
+        if args.save_dir:
+            if 'experiment' not in config:
+                config['experiment'] = {}
+            config['experiment']['save_dir'] = args.save_dir
+        
+        # Override other args if provided
+        if args.epochs != 200:  # 200 is the default
+            if 'training' not in config:
+                config['training'] = {}
+            config['training']['epochs'] = args.epochs
+        
+        if args.lr != 0.001:  # 0.001 is the default
+            if 'training' not in config:
+                config['training'] = {}
+            config['training']['learning_rate'] = args.lr
+        
+        if args.seed != 42:  # 42 is the default
+            if 'experiment' not in config:
+                config['experiment'] = {}
+            config['experiment']['seed'] = args.seed
+        
+        if args.run_name:
+            if 'experiment' not in config:
+                config['experiment'] = {}
+            config['experiment']['run_name'] = args.run_name
+        
+        if args.use_wandb:
+            if 'experiment' not in config:
+                config['experiment'] = {}
+            config['experiment']['use_wandb'] = args.use_wandb
+            
+        # Handle data paths from command line
+        if 'data' not in config:
+            config['data'] = {}
+        config['data']['similarity_pt_path'] = args.similarity_pt
+        config['data']['similarity_npz_path'] = args.similarity_npz
+        config['data']['features_csv_path'] = args.features_csv
+        
     else:
-        # Default configuration
+        # Default configuration when no config file is provided
         config = {
             'data': {
                 'similarity_pt_path': args.similarity_pt,
@@ -90,7 +132,7 @@ def main(args):
                 'stratify': True
             },
             'model': {
-                'type': 'standard',  # 'standard', 'lightweight', 'deep'
+                'type': 'standard',
                 'hidden_channels': 256,
                 'num_layers': 3,
                 'heads': [8, 8, 1],
@@ -119,6 +161,7 @@ def main(args):
                 'run_name': args.run_name or f'gat_{datetime.now().strftime("%Y%m%d_%H%M%S")}'
             }
         }
+
     
     # Convert dtype string from config to torch dtype
     dtype_map = {

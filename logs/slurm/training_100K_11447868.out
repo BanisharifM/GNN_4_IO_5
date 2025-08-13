@@ -1,7 +1,0 @@
-2025-08-12 23:23:23,582 - ERROR - Training failed: 'save_dir'
-Traceback (most recent call last):
-  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/train_gat.py", line 469, in <module>
-    final_rmse = main(args)
-  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/train_gat.py", line 142, in main
-    save_dir = Path(config['experiment']['save_dir'])
-KeyError: 'save_dir'

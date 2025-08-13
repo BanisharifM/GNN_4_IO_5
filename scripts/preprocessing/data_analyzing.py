@@ -234,8 +234,8 @@ def main():
     # Configure paths
     data_paths = {
         # 'sample_10k': '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/10K/aiio_sample_10000.csv',
-        'sample_100k': '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/aiio_sample_1000000_normalized.csv'
-        # 'sample_total': '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/total/sample_train_total_normalized.csv'
+        # 'sample_100k': '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/aiio_sample_1000000_normalized.csv'
+        'sample_total': '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/total/sample_train_total_normalized.csv'
     }
     
     print("="*70)
