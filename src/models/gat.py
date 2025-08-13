@@ -299,7 +299,10 @@ class IOPerformanceGAT(nn.Module):
         # Final prediction
         out = self.predictor(x)
         
-        return out, attention_weights if return_attention else out
+        if return_attention:
+            return out, attention_weights
+        else:
+            return out        
     
     def get_attention_weights(self) -> List[Tuple]:
         """
