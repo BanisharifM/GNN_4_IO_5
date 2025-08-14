@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/test/interpretability.py", line 22, in <module>
+    from src.data.dataset import IOPerformanceGraphDataset
+ModuleNotFoundError: No module named 'src'
+srun: error: gpue03: task 0: Exited with exit code 1
