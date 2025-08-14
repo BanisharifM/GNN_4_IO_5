@@ -1,0 +1,64 @@
+# Wide shallow model with enhanced features
+data:
+  root: "./data/processed"
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+  stratify: true
+
+model:
+  type: "standard"
+  hidden_channels: 512  # Much wider
+  num_layers: 2  # Shallow but wide
+  heads: [8, 1]
+  dropout: 0.05  # Minimal dropout for wide model
+  edge_dim: 1
+  residual: true
+  layer_norm: true
+  feature_augmentation: true
+  pool_type: "mean"
+  dtype: "float32"
+
+training:
+  epochs: 250
+  learning_rate: 0.001  # Higher LR for shallow model
+  weight_decay: 0.0002  # More regularization for wide model
+  optimizer: "adamw"
+  scheduler: "plateau"
+  gradient_clip: 2.0
+  early_stopping_patience: 40
+  batch_size: 2048  # Larger batches
+  num_neighbors: [15, 10]  # Fewer neighbors
+  accumulation_steps: 1
+  mixed_precision: false
+  dtype: "float32"
+
+experiment:
+  seed: 42
+  use_wandb: false
+  project_name: "io_performance_gnn"
+  run_name: "gat_wide_shallow"
+
+# AIIO baselines for comparison (RMSE values)
+aiio_baselines:
+  XGBoost: 0.5634
+  LightGBM: 0.2632
+  CatBoost: 0.2686
+  MLP: 0.5416
+  TabNet: 0.3078
+  Closest_Method: 0.1860
+  Average_Method: 0.2405
+
+interpretability:
+  num_hops: 2
+  max_subgraph_size: 500
+  n_per_category: 5
+  percentiles: [0.25, 0.75]
+  top_k_features: 5
+  top_k_consensus: 5
+  min_consensus_methods: 2
+  output_dir: "./analysis/results"
+  methods:
+    attention: true
+    gnn_explainer: true
+    gradients: true

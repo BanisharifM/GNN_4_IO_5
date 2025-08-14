@@ -1,0 +1,65 @@
+# Model designed for ensemble potential
+data:
+  root: "./data/processed"
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+  stratify: true
+
+model:
+  type: "standard"
+  hidden_channels: 384
+  num_layers: 3
+  heads: [10, 6, 1]
+  dropout: 0.2  # Higher dropout for diversity
+  edge_dim: 1
+  residual: true
+  layer_norm: true
+  feature_augmentation: true
+  pool_type: "max"  # Different pooling
+  dtype: "float32"
+
+training:
+  epochs: 350
+  learning_rate: 0.0008
+  weight_decay: 0.00008
+  optimizer: "adamw"
+  scheduler: "cosine"
+  scheduler_warmup: 20
+  gradient_clip: 1.5
+  early_stopping_patience: 45
+  batch_size: 1536
+  num_neighbors: [20, 12]
+  accumulation_steps: 2
+  mixed_precision: false
+  dtype: "float32"
+
+experiment:
+  seed: 123  # Different seed for diversity
+  use_wandb: false
+  project_name: "io_performance_gnn"
+  run_name: "gat_ensemble_ready"
+
+# AIIO baselines for comparison (RMSE values)
+aiio_baselines:
+  XGBoost: 0.5634
+  LightGBM: 0.2632
+  CatBoost: 0.2686
+  MLP: 0.5416
+  TabNet: 0.3078
+  Closest_Method: 0.1860
+  Average_Method: 0.2405
+
+interpretability:
+  num_hops: 2
+  max_subgraph_size: 500
+  n_per_category: 5
+  percentiles: [0.25, 0.75]
+  top_k_features: 5
+  top_k_consensus: 5
+  min_consensus_methods: 2
+  output_dir: "./analysis/results"
+  methods:
+    attention: true
+    gnn_explainer: true
+    gradients: true

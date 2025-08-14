@@ -1,0 +1,65 @@
+# Deep GAT with enhanced attention mechanisms
+data:
+  root: "./data/processed"
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+  stratify: true
+
+model:
+  type: "standard"
+  hidden_channels: 256
+  num_layers: 4  # Deeper for complex patterns
+  heads: [16, 12, 8, 1]  # Progressive attention reduction
+  dropout: 0.15
+  edge_dim: 1
+  residual: true
+  layer_norm: true
+  feature_augmentation: true
+  pool_type: "attention"  # Use attention pooling
+  dtype: "float32"
+
+training:
+  epochs: 400
+  learning_rate: 0.0003  # Even lower LR for stability
+  weight_decay: 0.00005  # Reduced regularization
+  optimizer: "adamw"
+  scheduler: "cosine"
+  scheduler_warmup: 15
+  gradient_clip: 0.5  # Gentler clipping
+  early_stopping_patience: 60
+  batch_size: 768  # Smaller batches for stability
+  num_neighbors: [30, 20, 15]  # More neighbors for deeper model
+  accumulation_steps: 3
+  mixed_precision: false
+  dtype: "float32"
+
+experiment:
+  seed: 42
+  use_wandb: false
+  project_name: "io_performance_gnn"
+  run_name: "gat_deep_attention"
+
+# AIIO baselines for comparison (RMSE values)
+aiio_baselines:
+  XGBoost: 0.5634
+  LightGBM: 0.2632
+  CatBoost: 0.2686
+  MLP: 0.5416
+  TabNet: 0.3078
+  Closest_Method: 0.1860
+  Average_Method: 0.2405
+
+interpretability:
+  num_hops: 2
+  max_subgraph_size: 500
+  n_per_category: 5
+  percentiles: [0.25, 0.75]
+  top_k_features: 5
+  top_k_consensus: 5
+  min_consensus_methods: 2
+  output_dir: "./analysis/results"
+  methods:
+    attention: true
+    gnn_explainer: true
+    gradients: true
