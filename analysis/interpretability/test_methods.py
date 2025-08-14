@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
 Standalone script to test interpretability methods on saved GAT model
-Processes nodes one at a time with subgraph extraction to avoid OOM
+Dynamically loads all model configuration from training config file
 """
 
 import os
@@ -12,12 +12,13 @@ import pandas as pd
 from pathlib import Path
 import logging
 import json
-from typing import Dict, List, Tuple
+import yaml
+from typing import Dict, List, Tuple, Optional
 import warnings
 warnings.filterwarnings('ignore')
 
 # Add src to path
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from src.data.dataset import IOPerformanceGraphDataset
 from src.models.gat import create_gat_model
@@ -40,19 +41,46 @@ class InterpretabilityTester:
     def __init__(
         self,
         checkpoint_path: str,
+        config_path: str,
         data_paths: Dict[str, str],
-        device: str = 'cpu',
-        max_subgraph_size: int = 500
+        device: Optional[str] = None,
+        max_subgraph_size: Optional[int] = None
     ):
         """
         Args:
             checkpoint_path: Path to saved model checkpoint
+            config_path: Path to training config YAML file
             data_paths: Paths to data files (similarity_pt, features_csv, etc.)
-            device: Device to use (recommend 'cpu' to avoid OOM)
-            max_subgraph_size: Maximum nodes in subgraph
+            device: Device to use (if None, reads from config or defaults to 'cpu')
+            max_subgraph_size: Maximum nodes in subgraph (if None, uses default)
         """
-        self.device = torch.device(device)
-        self.max_subgraph_size = max_subgraph_size
+        # Load configuration
+        logger.info(f"Loading config from {config_path}")
+        with open(config_path, 'r') as f:
+            self.config = yaml.safe_load(f)
+        
+        # Set device (priority: argument > config > default)
+        if device:
+            self.device = torch.device(device)
+        elif 'experiment' in self.config and 'device' in self.config['experiment']:
+            self.device = torch.device(self.config['experiment']['device'])
+        else:
+            self.device = torch.device('cpu')
+        logger.info(f"Using device: {self.device}")
+        
+        # Set max subgraph size
+        self.max_subgraph_size = max_subgraph_size or 500
+        
+        # Set data type from config
+        dtype_map = {
+            'float32': torch.float32,
+            'float64': torch.float64
+        }
+        self.dtype = dtype_map.get(
+            self.config.get('model', {}).get('dtype', 'float32'),
+            torch.float32
+        )
+        logger.info(f"Using dtype: {self.dtype}")
         
         # Load model
         logger.info("Loading model...")
@@ -62,7 +90,7 @@ class InterpretabilityTester:
         logger.info("Loading data...")
         self.data = self._load_data(data_paths)
         
-        # Get feature names
+        # Get feature names dynamically based on actual data
         self.feature_names = self._get_feature_names()
         
         # Initialize analyzers
@@ -79,24 +107,91 @@ class InterpretabilityTester:
         self.bottleneck_identifier = BottleneckIdentifier(
             self.model, self.feature_names, self.device
         )
-    
+
     def _load_model(self, checkpoint_path: str):
-        """Load saved model"""
+        """Load saved model with dynamic configuration"""
         # Load checkpoint
         checkpoint = torch.load(checkpoint_path, map_location=self.device)
         
-        # Recreate model architecture
-        model = create_gat_model(
-            num_features=45,  # Your feature count
-            model_type='standard',
-            hidden_channels=256,
-            num_layers=3,
-            heads=[8, 8, 1],
-            dropout=0.2,
-            residual=True,
-            layer_norm=True,
-            dtype=torch.float64
-        )
+        # Log checkpoint structure
+        logger.info(f"Checkpoint keys: {checkpoint.keys()}")
+        
+        # Try to get model config from checkpoint first (if saved)
+        if 'model_config' in checkpoint:
+            model_config = checkpoint['model_config']
+            logger.info("Using model config from checkpoint")
+        else:
+            # Use config file
+            model_config = self.config.get('model', {})
+            logger.info("Using model config from config file")
+        
+        # Detect actual input dimension from saved weights
+        if 'model_state_dict' in checkpoint:
+            state_dict = checkpoint['model_state_dict']
+        else:
+            state_dict = checkpoint
+        
+        # Auto-detect number of input features from saved weights
+        checkpoint_features = None
+        if 'input_proj.weight' in state_dict:
+            checkpoint_features = state_dict['input_proj.weight'].shape[1]
+            logger.info(f"Detected {checkpoint_features} input features from checkpoint")
+        
+        # SMART DETECTION: Check if augmentation is already applied
+        # If config says feature_augmentation=True and we expect 45 base features
+        # but checkpoint has 49, then augmentation is already applied
+        base_features = 45  # Your actual base feature count
+        feature_augmentation_in_config = model_config.get('feature_augmentation', False)
+        
+        # Determine if we need to apply augmentation when creating the model
+        if feature_augmentation_in_config and checkpoint_features == base_features + 4:
+            # Augmentation was applied during training and is baked into checkpoint
+            # So we create model WITHOUT augmentation (it's already in the weights)
+            use_augmentation = False
+            actual_base_features = checkpoint_features  # Use 49 as base
+            logger.info(f"Detected pre-augmented features in checkpoint ({checkpoint_features}), "
+                    f"disabling feature_augmentation for model creation")
+        elif feature_augmentation_in_config and checkpoint_features == base_features:
+            # This shouldn't happen if training was done correctly, but handle it
+            use_augmentation = True
+            actual_base_features = base_features
+            logger.warning(f"Config says augmentation=True but checkpoint has base features only")
+        else:
+            # No augmentation or already handled
+            use_augmentation = False
+            actual_base_features = checkpoint_features if checkpoint_features else base_features
+            logger.info(f"Using {actual_base_features} features, augmentation={use_augmentation}")
+        
+        # Create model with detected parameters
+        model_args = {
+            'num_features': actual_base_features,
+            'model_type': model_config.get('type', 'standard'),
+            'hidden_channels': model_config.get('hidden_channels', 256),
+            'num_layers': model_config.get('num_layers', 3),
+            'heads': model_config.get('heads', [8, 8, 1]),
+            'dropout': model_config.get('dropout', 0.2),
+            'residual': model_config.get('residual', True),
+            'layer_norm': model_config.get('layer_norm', True),
+            'feature_augmentation': use_augmentation,  # Dynamically determined!
+            'dtype': self.dtype
+        }
+
+        # Add any additional model parameters from config
+        exclude_keys = {'type', 'dtype', 'model_type', 'feature_augmentation'}
+        for key, value in model_config.items():
+            if key not in model_args and key not in exclude_keys:
+                model_args[key] = value
+        
+        logger.info(f"Creating model with config: {model_args}")
+        
+        # Create model
+        model = create_gat_model(**model_args)
+        
+        # Verify dimensions match before loading
+        model_input_dim = model.input_proj.weight.shape[1]
+        if model_input_dim != checkpoint_features:
+            raise ValueError(f"Model input dimension ({model_input_dim}) doesn't match "
+                            f"checkpoint ({checkpoint_features}). Check feature_augmentation setting.")
         
         # Load weights
         if 'model_state_dict' in checkpoint:
@@ -107,39 +202,93 @@ class InterpretabilityTester:
         model = model.to(self.device)
         model.eval()
         
-        logger.info(f"Model loaded from {checkpoint_path}")
-        return model
-    
-    def _load_data(self, data_paths: Dict[str, str]):
-        """Load graph data"""
-        dataset = IOPerformanceGraphDataset(
-            root='./data/processed',
-            similarity_pt_path=data_paths['similarity_pt'],
-            similarity_npz_path=data_paths['similarity_npz'],
-            features_csv_path=data_paths['features_csv'],
-            use_edge_weights=True,
-            dtype=torch.float64,
-            lazy_load=True
-        )
+        logger.info(f"Model loaded successfully from {checkpoint_path}")
         
+        # Store for later reference
+        self.model_config = model_args
+        self.checkpoint_features = checkpoint_features
+        
+        return model    
+
+    def _load_data(self, data_paths: Dict[str, str]):
+        """Load graph data with dynamic configuration"""
+        # Get data config
+        data_config = self.config.get('data', {})
+        
+        dataset_args = {
+            'root': data_config.get('root', './data/processed'),
+            'similarity_pt_path': data_paths['similarity_pt'],
+            'similarity_npz_path': data_paths['similarity_npz'],
+            'features_csv_path': data_paths['features_csv'],
+            'use_edge_weights': True,
+            'dtype': self.dtype,
+            'lazy_load': True
+        }
+        
+        logger.info(f"Loading dataset with args: {dataset_args}")
+        
+        dataset = IOPerformanceGraphDataset(**dataset_args)
         data = dataset[0]
         
+        # Log data statistics
+        logger.info(f"Data loaded: {data.num_nodes:,} nodes, {data.num_edges:,} edges")
+        logger.info(f"Feature shape: {data.x.shape}")
+        logger.info(f"Target shape: {data.y.shape}")
+        
+        # Now update model if we didn't know feature count
+        if hasattr(self, 'model_config') and self.model_config['num_features'] != data.x.shape[1]:
+            logger.warning(f"Feature mismatch: Model expects {self.model_config['num_features']}, "
+                         f"but data has {data.x.shape[1]}")
+        
         # Load splits if available
-        if 'splits_path' in data_paths:
+        if 'splits_path' in data_paths and data_paths['splits_path']:
+            logger.info(f"Loading splits from {data_paths['splits_path']}")
             splits = torch.load(data_paths['splits_path'])
             data.train_mask = splits['train_mask']
             data.val_mask = splits['val_mask']
             data.test_mask = splits['test_mask']
+        else:
+            # Create splits based on config ratios
+            logger.info("Creating data splits from config")
+            splits = dataset.get_splits(
+                train_ratio=data_config.get('train_ratio', 0.6),
+                val_ratio=data_config.get('val_ratio', 0.2),
+                test_ratio=data_config.get('test_ratio', 0.2),
+                seed=self.config.get('experiment', {}).get('seed', 42),
+                stratify=data_config.get('stratify', True)
+            )
+            data.train_mask = splits['train_mask']
+            data.val_mask = splits['val_mask']
+            data.test_mask = splits['test_mask']
         
+        # Check if we need to augment features to match model
+        if hasattr(self, 'checkpoint_features') and self.checkpoint_features > data.x.shape[1]:
+            logger.info(f"Adding placeholder features from {data.x.shape[1]} to {self.checkpoint_features}")
+            # Add zero features as placeholders (they'll be overridden by the model's learned representations)
+            num_missing = self.checkpoint_features - data.x.shape[1]
+            placeholder_features = torch.zeros(data.x.shape[0], num_missing, dtype=data.x.dtype)
+            data.x = torch.cat([data.x, placeholder_features], dim=1)
+            logger.info(f"Features augmented to shape: {data.x.shape}")
+
         # Move to device
         data = data.to(self.device)
-        
-        logger.info(f"Data loaded: {data.num_nodes} nodes, {data.num_edges} edges")
+
         return data
     
     def _get_feature_names(self) -> List[str]:
-        """Get feature names"""
-        return [
+        """Get feature names - can be customized or loaded from file"""
+        # First check if feature names are in config
+        if 'feature_names' in self.config.get('data', {}):
+            return self.config['data']['feature_names']
+        
+        # Check if there's a feature names file
+        feature_names_path = self.config.get('data', {}).get('feature_names_path')
+        if feature_names_path and Path(feature_names_path).exists():
+            with open(feature_names_path, 'r') as f:
+                return json.load(f)
+        
+        # Default feature names (you can customize this list)
+        default_names = [
             'nprocs', 'POSIX_OPENS', 'LUSTRE_STRIPE_SIZE', 'LUSTRE_STRIPE_WIDTH',
             'POSIX_FILENOS', 'POSIX_MEM_ALIGNMENT', 'POSIX_FILE_ALIGNMENT',
             'POSIX_READS', 'POSIX_WRITES', 'POSIX_SEEKS', 'POSIX_STATS',
@@ -156,9 +305,27 @@ class InterpretabilityTester:
             'POSIX_ACCESS1_COUNT', 'POSIX_ACCESS2_COUNT', 'POSIX_ACCESS3_COUNT',
             'POSIX_ACCESS4_COUNT'
         ]
+        
+        # Adjust to actual number of features in data
+        actual_features = self.data.x.shape[1]
+        if len(default_names) < actual_features:
+            # Add generic names for extra features
+            for i in range(len(default_names), actual_features):
+                default_names.append(f'feature_{i}')
+        elif len(default_names) > actual_features:
+            # Trim to actual number
+            default_names = default_names[:actual_features]
+        
+        logger.info(f"Using {len(default_names)} feature names")
+        
+        return default_names
     
-    def extract_subgraph(self, node_idx: int, num_hops: int = 2):
+    def extract_subgraph(self, node_idx: int, num_hops: Optional[int] = None):
         """Extract k-hop subgraph around node"""
+        # Get num_hops from config or use default
+        if num_hops is None:
+            num_hops = self.config.get('interpretability', {}).get('num_hops', 2)
+        
         subset, edge_index, mapping, edge_mask = k_hop_subgraph(
             node_idx, 
             num_hops, 
@@ -184,40 +351,53 @@ class InterpretabilityTester:
         logger.info(f"Extracted subgraph: {len(subset)} nodes, {edge_index.size(1)} edges")
         return subgraph, mapping
     
-    def find_test_nodes(self, n_per_category: int = 5) -> Dict[str, List[int]]:
+    def find_test_nodes(self, n_per_category: Optional[int] = None) -> Dict[str, List[int]]:
         """Find nodes in different performance categories"""
-        # Use test mask if available, otherwise sample
+        # Get n_per_category from config or use default
+        if n_per_category is None:
+            n_per_category = self.config.get('interpretability', {}).get('n_per_category', 5)
+        
+        # Use test mask
         if hasattr(self.data, 'test_mask'):
             mask = self.data.test_mask
         else:
-            # Use last 20% as test
-            n_test = int(0.2 * self.data.num_nodes)
+            # Fallback: use last portion based on test ratio
+            test_ratio = self.config.get('data', {}).get('test_ratio', 0.2)
+            n_test = int(test_ratio * self.data.num_nodes)
             mask = torch.zeros(self.data.num_nodes, dtype=torch.bool)
             mask[-n_test:] = True
         
         test_indices = torch.where(mask)[0]
         test_performance = self.data.y[mask]
         
-        # Find percentiles
-        perf_25 = torch.quantile(test_performance, 0.25)
-        perf_75 = torch.quantile(test_performance, 0.75)
+        # Find percentiles (configurable)
+        percentiles = self.config.get('interpretability', {}).get('percentiles', [0.25, 0.75])
+        perf_low = torch.quantile(test_performance, percentiles[0])
+        perf_high = torch.quantile(test_performance, percentiles[1])
         
         # Categorize
-        poor_mask = test_performance < perf_25
-        medium_mask = (test_performance >= perf_25) & (test_performance <= perf_75)
-        good_mask = test_performance > perf_75
+        poor_mask = test_performance < perf_low
+        medium_mask = (test_performance >= perf_low) & (test_performance <= perf_high)
+        good_mask = test_performance > perf_high
         
-        # Sample nodes
+        # Sample nodes - fix tensor indexing
+        categories = {}
+
+        # Get indices for each category
+        poor_indices = test_indices[torch.where(poor_mask)[0]]
+        medium_indices = test_indices[torch.where(medium_mask)[0]]
+        good_indices = test_indices[torch.where(good_mask)[0]]
+
         categories = {
-            'poor': test_indices[poor_mask][:n_per_category].tolist(),
-            'medium': test_indices[medium_mask][:n_per_category].tolist(),
-            'good': test_indices[good_mask][:n_per_category].tolist()
+            'poor': poor_indices[:n_per_category].tolist() if len(poor_indices) > 0 else [],
+            'medium': medium_indices[:n_per_category].tolist() if len(medium_indices) > 0 else [],
+            'good': good_indices[:n_per_category].tolist() if len(good_indices) > 0 else []
         }
         
         logger.info(f"Selected test nodes:")
-        logger.info(f"  Poor performers (<{perf_25:.2f}): {len(categories['poor'])} nodes")
+        logger.info(f"  Poor performers (<{perf_low:.2f}): {len(categories['poor'])} nodes")
         logger.info(f"  Medium performers: {len(categories['medium'])} nodes")
-        logger.info(f"  Good performers (>{perf_75:.2f}): {len(categories['good'])} nodes")
+        logger.info(f"  Good performers (>{perf_high:.2f}): {len(categories['good'])} nodes")
         
         return categories
     
@@ -225,7 +405,10 @@ class InterpretabilityTester:
         """Analyze single node with all methods"""
         logger.info(f"\n{'='*60}")
         logger.info(f"Analyzing node {node_idx}")
-        logger.info(f"Performance: {self.data.y[node_idx]:.4f}")
+
+        # Convert tensor to float before formatting
+        performance_value = self.data.y[node_idx].item() if self.data.y[node_idx].numel() == 1 else self.data.y[node_idx].squeeze().item()
+        logger.info(f"Performance: {performance_value:.4f}")
         
         # Extract subgraph
         try:
@@ -240,71 +423,86 @@ class InterpretabilityTester:
             'methods': {}
         }
         
+        # Check which methods to run from config
+        methods_config = self.config.get('interpretability', {}).get('methods', {
+            'attention': True,
+            'gnn_explainer': True,
+            'gradients': True
+        })
+        
         # 1. Attention Analysis
-        logger.info("Running attention analysis...")
-        try:
-            attention_bottlenecks = self.attention_analyzer.attention_based_bottleneck_detection(
-                subgraph, mapping
-            )
-            results['methods']['attention'] = attention_bottlenecks
-            
-            # Log top features
-            if attention_bottlenecks:
-                top_features = list(attention_bottlenecks.items())[:5]
-                logger.info("  Top attention features:")
-                for feat, score in top_features:
-                    logger.info(f"    - {feat}: {score:.4f}")
-        except Exception as e:
-            logger.warning(f"Attention analysis failed: {e}")
-            results['methods']['attention'] = {}
+        if methods_config.get('attention', True):
+            logger.info("Running attention analysis...")
+            try:
+                attention_bottlenecks = self.attention_analyzer.attention_based_bottleneck_detection(
+                    subgraph, mapping
+                )
+                results['methods']['attention'] = attention_bottlenecks
+                
+                # Log top features
+                if attention_bottlenecks:
+                    top_k = self.config.get('interpretability', {}).get('top_k_features', 5)
+                    top_features = list(attention_bottlenecks.items())[:top_k]
+                    logger.info("  Top attention features:")
+                    for feat, score in top_features:
+                        logger.info(f"    - {feat}: {score:.4f}")
+            except Exception as e:
+                logger.warning(f"Attention analysis failed: {e}")
+                results['methods']['attention'] = {}
         
         # 2. GNNExplainer
-        logger.info("Running GNNExplainer...")
-        try:
-            gnn_bottlenecks = self.gnn_explainer.explain_bottleneck_pattern(
-                subgraph, mapping, self.feature_names
-            )
-            results['methods']['gnn_explainer'] = gnn_bottlenecks
-            
-            if gnn_bottlenecks:
-                top_features = list(gnn_bottlenecks.items())[:5]
-                logger.info("  Top GNNExplainer features:")
-                for feat, score in top_features:
-                    logger.info(f"    - {feat}: {score:.4f}")
-        except Exception as e:
-            logger.warning(f"GNNExplainer failed: {e}")
-            results['methods']['gnn_explainer'] = {}
+        if methods_config.get('gnn_explainer', True):
+            logger.info("Running GNNExplainer...")
+            try:
+                gnn_bottlenecks = self.gnn_explainer.explain_bottleneck_pattern(
+                    subgraph, mapping, self.feature_names
+                )
+                results['methods']['gnn_explainer'] = gnn_bottlenecks
+                
+                if gnn_bottlenecks:
+                    top_k = self.config.get('interpretability', {}).get('top_k_features', 5)
+                    top_features = list(gnn_bottlenecks.items())[:top_k]
+                    logger.info("  Top GNNExplainer features:")
+                    for feat, score in top_features:
+                        logger.info(f"    - {feat}: {score:.4f}")
+            except Exception as e:
+                logger.warning(f"GNNExplainer failed: {e}")
+                results['methods']['gnn_explainer'] = {}
         
         # 3. Gradient Methods
-        logger.info("Running gradient analysis...")
-        try:
-            gradient_bottlenecks = self.gradient_analyzer.integrated_gradients(
-                subgraph, mapping
-            )
-            results['methods']['gradients'] = gradient_bottlenecks
-            
-            if gradient_bottlenecks:
-                top_features = list(gradient_bottlenecks.items())[:5]
-                logger.info("  Top gradient features:")
-                for feat, score in top_features:
-                    logger.info(f"    - {feat}: {score:.4f}")
-        except Exception as e:
-            logger.warning(f"Gradient analysis failed: {e}")
-            results['methods']['gradients'] = {}
+        if methods_config.get('gradients', True):
+            logger.info("Running gradient analysis...")
+            try:
+                gradient_bottlenecks = self.gradient_analyzer.integrated_gradients(
+                    subgraph, mapping
+                )
+                results['methods']['gradients'] = gradient_bottlenecks
+                
+                if gradient_bottlenecks:
+                    top_k = self.config.get('interpretability', {}).get('top_k_features', 5)
+                    top_features = list(gradient_bottlenecks.items())[:top_k]
+                    logger.info("  Top gradient features:")
+                    for feat, score in top_features:
+                        logger.info(f"    - {feat}: {score:.4f}")
+            except Exception as e:
+                logger.warning(f"Gradient analysis failed: {e}")
+                results['methods']['gradients'] = {}
         
         # 4. Consensus
-        logger.info("Finding consensus...")
-        consensus = self.find_consensus(results['methods'])
+        min_consensus = self.config.get('interpretability', {}).get('min_consensus_methods', 2)
+        logger.info(f"Finding consensus (min {min_consensus} methods)...")
+        consensus = self.find_consensus(results['methods'], min_methods=min_consensus)
         results['consensus'] = consensus
         
         if consensus:
             logger.info("  Consensus bottlenecks:")
-            for feat, score, methods in consensus[:5]:
+            top_k = self.config.get('interpretability', {}).get('top_k_consensus', 5)
+            for feat, score, methods in consensus[:top_k]:
                 logger.info(f"    - {feat}: {score:.4f} (agreed by: {', '.join(methods)})")
         
         return results
     
-    def find_consensus(self, methods_results: Dict) -> List[Tuple[str, float, List[str]]]:
+    def find_consensus(self, methods_results: Dict, min_methods: int = 2) -> List[Tuple[str, float, List[str]]]:
         """Find features that multiple methods agree on"""
         from collections import defaultdict
         
@@ -317,10 +515,10 @@ class InterpretabilityTester:
                     feature_scores[feature].append(score)
                     feature_methods[feature].append(method_name)
         
-        # Calculate consensus (at least 2 methods agree)
+        # Calculate consensus
         consensus = []
         for feature, scores in feature_scores.items():
-            if len(scores) >= 2:  # At least 2 methods
+            if len(scores) >= min_methods:
                 avg_score = np.mean(scores)
                 consensus.append((feature, avg_score, feature_methods[feature]))
         
@@ -329,34 +527,56 @@ class InterpretabilityTester:
         
         return consensus
     
-    def run_analysis(self, save_results: bool = True):
-        """Run complete analysis"""
-        # Find test nodes
-        test_nodes = self.find_test_nodes(n_per_category=3)
+    def run_analysis(self, save_results: bool = True, specific_nodes: Optional[List[int]] = None):
+        """
+        Run complete analysis
         
+        Args:
+            save_results: Whether to save results to file
+            specific_nodes: Optional list of specific node indices to analyze
+        """
         all_results = {}
         
-        # Analyze each category
-        for category, node_list in test_nodes.items():
-            logger.info(f"\n{'='*60}")
-            logger.info(f"Analyzing {category.upper()} performers")
-            logger.info(f"{'='*60}")
-            
-            category_results = []
-            
-            for node_idx in node_list:
+        if specific_nodes:
+            # Analyze specific nodes
+            logger.info(f"Analyzing {len(specific_nodes)} specific nodes")
+            specific_results = []
+            for node_idx in specific_nodes:
                 try:
                     results = self.analyze_node(node_idx)
-                    category_results.append(results)
+                    specific_results.append(results)
                 except Exception as e:
                     logger.error(f"Failed to analyze node {node_idx}: {e}")
                     continue
+            all_results['specific'] = specific_results
+        else:
+            # Find and analyze test nodes by category
+            test_nodes = self.find_test_nodes()
             
-            all_results[category] = category_results
+            # Analyze each category
+            for category, node_list in test_nodes.items():
+                logger.info(f"\n{'='*60}")
+                logger.info(f"Analyzing {category.upper()} performers")
+                logger.info(f"{'='*60}")
+                
+                category_results = []
+                
+                for node_idx in node_list:
+                    try:
+                        results = self.analyze_node(node_idx)
+                        category_results.append(results)
+                    except Exception as e:
+                        logger.error(f"Failed to analyze node {node_idx}: {e}")
+                        continue
+                
+                all_results[category] = category_results
         
         # Save results
         if save_results:
-            output_path = Path('interpretability_test_results.json')
+            output_dir = Path(self.config.get('interpretability', {}).get('output_dir', '.'))
+            output_dir.mkdir(parents=True, exist_ok=True)
+            output_path = output_dir / 'interpretability_test_results.json'
+            
             with open(output_path, 'w') as f:
                 json.dump(all_results, f, indent=2, default=str)
             logger.info(f"\nResults saved to {output_path}")
@@ -373,6 +593,7 @@ class InterpretabilityTester:
         logger.info("="*60)
         
         # Collect all consensus features
+        from collections import defaultdict
         all_features = defaultdict(list)
         
         for category, nodes in results.items():
@@ -380,7 +601,8 @@ class InterpretabilityTester:
             
             for node_result in nodes:
                 if 'consensus' in node_result and node_result['consensus']:
-                    for feat, score, methods in node_result['consensus'][:3]:
+                    top_k = self.config.get('interpretability', {}).get('summary_top_k', 3)
+                    for feat, score, methods in node_result['consensus'][:top_k]:
                         all_features[feat].append((category, score))
                         logger.info(f"  Node {node_result['node_idx']}: {feat} ({score:.3f})")
         
@@ -401,18 +623,30 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(description='Test interpretability methods')
+    
+    # Required arguments
     parser.add_argument('--checkpoint', type=str, required=True,
                        help='Path to model checkpoint')
+    parser.add_argument('--config', type=str, required=True,
+                       help='Path to training config YAML file')
     parser.add_argument('--similarity-pt', type=str, required=True,
                        help='Path to similarity graph')
     parser.add_argument('--similarity-npz', type=str, required=True,
                        help='Path to similarity npz')
     parser.add_argument('--features-csv', type=str, required=True,
                        help='Path to features CSV')
-    parser.add_argument('--device', type=str, default='cpu',
-                       help='Device to use (cpu recommended)')
-    parser.add_argument('--max-subgraph', type=int, default=500,
-                       help='Maximum subgraph size')
+    
+    # Optional arguments
+    parser.add_argument('--device', type=str,
+                       help='Device to use (overrides config)')
+    parser.add_argument('--max-subgraph', type=int,
+                       help='Maximum subgraph size (overrides default)')
+    parser.add_argument('--splits-path', type=str,
+                       help='Path to saved data splits')
+    parser.add_argument('--specific-nodes', type=int, nargs='+',
+                       help='Specific node indices to analyze')
+    parser.add_argument('--no-save', action='store_true',
+                       help='Do not save results')
     
     args = parser.parse_args()
     
@@ -423,15 +657,23 @@ def main():
         'features_csv': args.features_csv
     }
     
+    if args.splits_path:
+        data_paths['splits_path'] = args.splits_path
+    
     # Run tester
     tester = InterpretabilityTester(
         checkpoint_path=args.checkpoint,
+        config_path=args.config,
         data_paths=data_paths,
         device=args.device,
         max_subgraph_size=args.max_subgraph
     )
     
-    results = tester.run_analysis(save_results=True)
+    # Run analysis
+    results = tester.run_analysis(
+        save_results=not args.no_save,
+        specific_nodes=args.specific_nodes
+    )
     
     logger.info("\nTest complete!")
 

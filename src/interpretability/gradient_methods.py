@@ -81,12 +81,18 @@ class GradientAnalyzer:
         gradients = x.grad[node_idx].abs().cpu().numpy()
         
         # Normalize
-        gradients = gradients / (gradients.sum() + 1e-10)
+        gradients = gradients / (np.sum(gradients) + 1e-10)
         
         # Create importance dictionary
+        # importance = {
+        #     self.feature_names[i]: float(gradients[i])
+        #     for i in range(min(len(gradients), len(self.feature_names)))
+        # }
+
+        # Create importance dictionary - ensure scalar conversion
         importance = {
-            self.feature_names[i]: float(gradients[i])
-            for i in range(min(len(gradients), len(self.feature_names)))
+            self.feature_names[i]: float(importance_scores[i].item() if hasattr(importance_scores[i], 'item') else importance_scores[i])
+            for i in range(min(len(importance_scores), len(self.feature_names)))
         }
         
         return importance
@@ -152,11 +158,12 @@ class GradientAnalyzer:
         
         # Take absolute value and normalize
         importance_scores = integrated_grads.abs().cpu().numpy()
-        importance_scores = importance_scores / (importance_scores.sum() + 1e-10)
+        importance_scores = importance_scores / (np.sum(importance_scores) + 1e-10)
         
         # Create importance dictionary
+        # Create importance dictionary - ensure scalar conversion
         importance = {
-            self.feature_names[i]: float(importance_scores[i])
+            self.feature_names[i]: float(importance_scores[i].item() if hasattr(importance_scores[i], 'item') else importance_scores[i])
             for i in range(min(len(importance_scores), len(self.feature_names)))
         }
         
@@ -217,14 +224,20 @@ class GradientAnalyzer:
         
         # Normalize
         importance_scores = avg_grads.cpu().numpy()
-        importance_scores = importance_scores / (importance_scores.sum() + 1e-10)
+        importance_scores = importance_scores / (np.sum(importance_scores) + 1e-10)
         
         # Create importance dictionary
+        # importance = {
+        #     self.feature_names[i]: float(importance_scores[i])
+        #     for i in range(min(len(importance_scores), len(self.feature_names)))
+        # }
+
+        # Create importance dictionary - ensure scalar conversion
         importance = {
-            self.feature_names[i]: float(importance_scores[i])
+            self.feature_names[i]: float(importance_scores[i].item() if hasattr(importance_scores[i], 'item') else importance_scores[i])
             for i in range(min(len(importance_scores), len(self.feature_names)))
         }
-        
+
         return importance
     
     def compare_methods(

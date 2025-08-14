@@ -41,3 +41,17 @@ experiment:
   use_wandb: false
   project_name: "io_performance_gnn"
   run_name: "gat_memory_efficient"
+
+interpretability:
+  num_hops: 2
+  max_subgraph_size: 500
+  n_per_category: 5
+  percentiles: [0.25, 0.75]
+  top_k_features: 5
+  top_k_consensus: 5
+  min_consensus_methods: 2
+  output_dir: "./analysis/results"
+  methods:
+    attention: true
+    gnn_explainer: true
+    gradients: true

@@ -1,0 +1,282 @@
+2025-08-13 20:21:01,219 - INFO - Loading config from /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/configs/gat_config4.yaml
+2025-08-13 20:21:01,223 - INFO - Using device: cuda
+2025-08-13 20:21:01,223 - INFO - Using dtype: torch.float32
+2025-08-13 20:21:01,223 - INFO - Loading model...
+2025-08-13 20:21:01,556 - INFO - Checkpoint keys: dict_keys(['epoch', 'model_state_dict', 'optimizer_state_dict', 'val_rmse', 'history'])
+2025-08-13 20:21:01,556 - INFO - Using model config from config file
+2025-08-13 20:21:01,557 - INFO - Detected 49 input features from checkpoint
+2025-08-13 20:21:01,557 - INFO - Detected pre-augmented features in checkpoint (49), disabling feature_augmentation for model creation
+2025-08-13 20:21:01,557 - INFO - Creating model with config: {'num_features': 49, 'model_type': 'standard', 'hidden_channels': 320, 'num_layers': 3, 'heads': [12, 8, 2], 'dropout': 0.1, 'residual': True, 'layer_norm': True, 'feature_augmentation': False, 'dtype': torch.float32, 'edge_dim': 1, 'pool_type': 'mean'}
+2025-08-13 20:21:01,779 - INFO - Model loaded successfully from /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/experiments/gat_exp_20250813_020454/checkpoints/best_model.pt
+2025-08-13 20:21:01,779 - INFO - Loading data...
+2025-08-13 20:21:01,779 - INFO - Loading dataset with args: {'root': './data/processed', 'similarity_pt_path': '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/similarity_output_0.75/similarity_graph_20250812_043913.pt', 'similarity_npz_path': '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/similarity_output_0.75/similarity_graph_20250812_043913.npz', 'features_csv_path': '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/aiio_sample_1000000_normalized.csv', 'use_edge_weights': True, 'dtype': torch.float32, 'lazy_load': True}
+2025-08-13 20:21:02,082 - INFO - Data loaded: 1,000,000 nodes, 50,000,000 edges
+2025-08-13 20:21:02,082 - INFO - Feature shape: torch.Size([1000000, 45])
+2025-08-13 20:21:02,082 - INFO - Target shape: torch.Size([1000000, 1])
+2025-08-13 20:21:02,082 - WARNING - Feature mismatch: Model expects 49, but data has 45
+2025-08-13 20:21:02,082 - INFO - Creating data splits from config
+2025-08-13 20:21:02,424 - INFO - Data splits - Train: 600,000, Val: 200,000, Test: 200,000
+2025-08-13 20:21:02,430 - INFO - Adding placeholder features from 45 to 49
+2025-08-13 20:21:02,441 - INFO - Features augmented to shape: torch.Size([1000000, 49])
+2025-08-13 20:21:02,557 - INFO - Using 49 feature names
+2025-08-13 20:21:02,557 - INFO - Initializing analyzers...
+2025-08-13 20:21:02,629 - INFO - Selected test nodes:
+2025-08-13 20:21:02,629 - INFO -   Poor performers (<1.05): 5 nodes
+2025-08-13 20:21:02,629 - INFO -   Medium performers: 5 nodes
+2025-08-13 20:21:02,630 - INFO -   Good performers (>2.57): 5 nodes
+2025-08-13 20:21:02,630 - INFO - 
+============================================================
+2025-08-13 20:21:02,630 - INFO - Analyzing POOR performers
+2025-08-13 20:21:02,630 - INFO - ============================================================
+2025-08-13 20:21:02,630 - INFO - 
+============================================================
+2025-08-13 20:21:02,630 - INFO - Analyzing node 25
+2025-08-13 20:21:02,630 - INFO - Performance: 0.3631
+2025-08-13 20:21:02,653 - INFO - Extracted subgraph: 105 nodes, 4175 edges
+2025-08-13 20:21:02,653 - INFO - Running attention analysis...
+2025-08-13 20:21:02,750 - INFO - Running GNNExplainer...
+2025-08-13 20:21:04,195 - INFO -   Top GNNExplainer features:
+2025-08-13 20:21:04,195 - INFO -     - POSIX_SIZE_READ_0_100: 0.5902
+2025-08-13 20:21:04,196 - INFO -     - POSIX_ACCESS2_COUNT: 0.5599
+2025-08-13 20:21:04,196 - INFO -     - POSIX_FILE_NOT_ALIGNED: 0.5559
+2025-08-13 20:21:04,196 - INFO -     - POSIX_OPENS: 0.5537
+2025-08-13 20:21:04,196 - INFO -     - POSIX_SEQ_READS: 0.5420
+2025-08-13 20:21:04,196 - INFO - Running gradient analysis...
+2025-08-13 20:21:04,441 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:04,441 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:04,441 - INFO - 
+============================================================
+2025-08-13 20:21:04,441 - INFO - Analyzing node 38
+2025-08-13 20:21:04,441 - INFO - Performance: 0.8760
+2025-08-13 20:21:04,444 - INFO - Extracted subgraph: 79 nodes, 2565 edges
+2025-08-13 20:21:04,444 - INFO - Running attention analysis...
+2025-08-13 20:21:04,449 - INFO - Running GNNExplainer...
+2025-08-13 20:21:05,767 - INFO -   Top GNNExplainer features:
+2025-08-13 20:21:05,767 - INFO -     - POSIX_BYTES_READ: 0.5358
+2025-08-13 20:21:05,767 - INFO - Running gradient analysis...
+2025-08-13 20:21:05,993 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:05,993 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:05,993 - INFO - 
+============================================================
+2025-08-13 20:21:05,993 - INFO - Analyzing node 61
+2025-08-13 20:21:05,993 - INFO - Performance: 0.6283
+2025-08-13 20:21:05,996 - INFO - Extracted subgraph: 272 nodes, 8071 edges
+2025-08-13 20:21:05,996 - INFO - Running attention analysis...
+2025-08-13 20:21:06,003 - INFO - Running GNNExplainer...
+2025-08-13 20:21:07,759 - INFO -   Top GNNExplainer features:
+2025-08-13 20:21:07,759 - INFO -     - POSIX_SEEKS: 0.5542
+2025-08-13 20:21:07,759 - INFO -     - POSIX_ACCESS2_COUNT: 0.5340
+2025-08-13 20:21:07,759 - INFO -     - POSIX_SIZE_READ_100_1K: 0.5287
+2025-08-13 20:21:07,759 - INFO -     - POSIX_BYTES_WRITTEN: 0.5221
+2025-08-13 20:21:07,759 - INFO -     - POSIX_MEM_NOT_ALIGNED: 0.5207
+2025-08-13 20:21:07,759 - INFO - Running gradient analysis...
+2025-08-13 20:21:08,097 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:08,097 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:08,097 - INFO - 
+============================================================
+2025-08-13 20:21:08,097 - INFO - Analyzing node 62
+2025-08-13 20:21:08,097 - INFO - Performance: 0.8625
+2025-08-13 20:21:08,100 - INFO - Extracted subgraph: 310 nodes, 8043 edges
+2025-08-13 20:21:08,100 - INFO - Running attention analysis...
+2025-08-13 20:21:08,107 - INFO - Running GNNExplainer...
+2025-08-13 20:21:09,877 - INFO -   Top GNNExplainer features:
+2025-08-13 20:21:09,877 - INFO -     - POSIX_CONSEC_WRITES: 0.5476
+2025-08-13 20:21:09,877 - INFO -     - POSIX_CONSEC_READS: 0.5455
+2025-08-13 20:21:09,877 - INFO -     - POSIX_SIZE_WRITE_0_100: 0.5336
+2025-08-13 20:21:09,877 - INFO -     - POSIX_SEEKS: 0.5328
+2025-08-13 20:21:09,877 - INFO -     - POSIX_ACCESS1_ACCESS: 0.5322
+2025-08-13 20:21:09,877 - INFO - Running gradient analysis...
+2025-08-13 20:21:10,219 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:10,219 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:10,219 - INFO - 
+============================================================
+2025-08-13 20:21:10,219 - INFO - Analyzing node 70
+2025-08-13 20:21:10,219 - INFO - Performance: 0.5202
+2025-08-13 20:21:10,222 - INFO - Extracted subgraph: 358 nodes, 10633 edges
+2025-08-13 20:21:10,222 - INFO - Running attention analysis...
+2025-08-13 20:21:10,229 - INFO - Running GNNExplainer...
+2025-08-13 20:21:12,231 - INFO -   Top GNNExplainer features:
+2025-08-13 20:21:12,231 - INFO -     - POSIX_SEQ_READS: 0.5896
+2025-08-13 20:21:12,231 - INFO -     - POSIX_ACCESS2_COUNT: 0.5861
+2025-08-13 20:21:12,231 - INFO -     - POSIX_STATS: 0.5791
+2025-08-13 20:21:12,231 - INFO -     - POSIX_SEEKS: 0.5704
+2025-08-13 20:21:12,231 - INFO -     - POSIX_SIZE_READ_0_100: 0.5646
+2025-08-13 20:21:12,231 - INFO - Running gradient analysis...
+2025-08-13 20:21:12,619 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:12,619 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:12,619 - INFO - 
+============================================================
+2025-08-13 20:21:12,619 - INFO - Analyzing MEDIUM performers
+2025-08-13 20:21:12,619 - INFO - ============================================================
+2025-08-13 20:21:12,619 - INFO - 
+============================================================
+2025-08-13 20:21:12,619 - INFO - Analyzing node 0
+2025-08-13 20:21:12,619 - INFO - Performance: 2.3416
+2025-08-13 20:21:12,622 - INFO - Extracted subgraph: 34 nodes, 877 edges
+2025-08-13 20:21:12,622 - INFO - Running attention analysis...
+2025-08-13 20:21:12,627 - INFO - Running GNNExplainer...
+2025-08-13 20:21:13,836 - INFO -   Top GNNExplainer features:
+2025-08-13 20:21:13,836 - INFO -     - POSIX_CONSEC_WRITES: 0.5564
+2025-08-13 20:21:13,836 - INFO -     - POSIX_ACCESS2_COUNT: 0.5349
+2025-08-13 20:21:13,836 - INFO -     - POSIX_FILE_NOT_ALIGNED: 0.5144
+2025-08-13 20:21:13,836 - INFO - Running gradient analysis...
+2025-08-13 20:21:14,056 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:14,056 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:14,056 - INFO - 
+============================================================
+2025-08-13 20:21:14,056 - INFO - Analyzing node 12
+2025-08-13 20:21:14,056 - INFO - Performance: 2.3622
+2025-08-13 20:21:14,059 - INFO - Extracted subgraph: 112 nodes, 5335 edges
+2025-08-13 20:21:14,059 - INFO - Running attention analysis...
+2025-08-13 20:21:14,064 - INFO - Running GNNExplainer...
+2025-08-13 20:21:15,504 - INFO -   Top GNNExplainer features:
+2025-08-13 20:21:15,504 - INFO -     - POSIX_CONSEC_WRITES: 0.5229
+2025-08-13 20:21:15,504 - INFO -     - POSIX_BYTES_WRITTEN: 0.5211
+2025-08-13 20:21:15,504 - INFO -     - POSIX_BYTES_READ: 0.5032
+2025-08-13 20:21:15,504 - INFO - Running gradient analysis...
+2025-08-13 20:21:15,764 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:15,764 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:15,764 - INFO - 
+============================================================
+2025-08-13 20:21:15,764 - INFO - Analyzing node 13
+2025-08-13 20:21:15,764 - INFO - Performance: 1.4532
+2025-08-13 20:21:15,767 - INFO - Extracted subgraph: 185 nodes, 8041 edges
+2025-08-13 20:21:15,767 - INFO - Running attention analysis...
+2025-08-13 20:21:15,773 - INFO - Running GNNExplainer...
+2025-08-13 20:21:17,428 - INFO -   Top GNNExplainer features:
+2025-08-13 20:21:17,428 - INFO -     - POSIX_FILENOS: 0.5814
+2025-08-13 20:21:17,428 - INFO -     - POSIX_SIZE_WRITE_1K_10K: 0.5627
+2025-08-13 20:21:17,428 - INFO -     - POSIX_BYTES_WRITTEN: 0.5602
+2025-08-13 20:21:17,428 - INFO -     - POSIX_ACCESS4_ACCESS: 0.5560
+2025-08-13 20:21:17,428 - INFO -     - POSIX_BYTES_READ: 0.5314
+2025-08-13 20:21:17,428 - INFO - Running gradient analysis...
+2025-08-13 20:21:17,741 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:17,741 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:17,741 - INFO - 
+============================================================
+2025-08-13 20:21:17,741 - INFO - Analyzing node 30
+2025-08-13 20:21:17,741 - INFO - Performance: 2.0893
+2025-08-13 20:21:17,744 - INFO - Extracted subgraph: 101 nodes, 4292 edges
+2025-08-13 20:21:17,744 - INFO - Running attention analysis...
+2025-08-13 20:21:17,749 - INFO - Running GNNExplainer...
+2025-08-13 20:21:19,145 - INFO -   Top GNNExplainer features:
+2025-08-13 20:21:19,145 - INFO -     - POSIX_SIZE_READ_1K_10K: 0.5994
+2025-08-13 20:21:19,145 - INFO -     - POSIX_ACCESS4_COUNT: 0.5743
+2025-08-13 20:21:19,145 - INFO -     - POSIX_READS: 0.5487
+2025-08-13 20:21:19,145 - INFO -     - POSIX_ACCESS4_ACCESS: 0.5465
+2025-08-13 20:21:19,145 - INFO -     - POSIX_STATS: 0.5389
+2025-08-13 20:21:19,145 - INFO - Running gradient analysis...
+2025-08-13 20:21:19,390 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:19,390 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:19,390 - INFO - 
+============================================================
+2025-08-13 20:21:19,390 - INFO - Analyzing node 46
+2025-08-13 20:21:19,390 - INFO - Performance: 1.4780
+2025-08-13 20:21:19,393 - INFO - Extracted subgraph: 1 nodes, 0 edges
+2025-08-13 20:21:19,393 - INFO - Running attention analysis...
+2025-08-13 20:21:19,400 - INFO - Running GNNExplainer...
+2025-08-13 20:21:20,422 - INFO -   Top GNNExplainer features:
+2025-08-13 20:21:20,422 - INFO -     - POSIX_WRITES: 0.5577
+2025-08-13 20:21:20,422 - INFO -     - POSIX_MEM_ALIGNMENT: 0.5541
+2025-08-13 20:21:20,422 - INFO -     - POSIX_SIZE_WRITE_10K_100K: 0.5517
+2025-08-13 20:21:20,422 - INFO -     - POSIX_ACCESS1_ACCESS: 0.5409
+2025-08-13 20:21:20,422 - INFO -     - POSIX_SIZE_WRITE_100_1K: 0.5273
+2025-08-13 20:21:20,422 - INFO - Running gradient analysis...
+2025-08-13 20:21:20,617 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:20,617 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:20,618 - INFO - 
+============================================================
+2025-08-13 20:21:20,618 - INFO - Analyzing GOOD performers
+2025-08-13 20:21:20,618 - INFO - ============================================================
+2025-08-13 20:21:20,618 - INFO - 
+============================================================
+2025-08-13 20:21:20,618 - INFO - Analyzing node 15
+2025-08-13 20:21:20,618 - INFO - Performance: 3.5475
+2025-08-13 20:21:20,620 - INFO - Extracted subgraph: 112 nodes, 5582 edges
+2025-08-13 20:21:20,620 - INFO - Running attention analysis...
+2025-08-13 20:21:20,626 - INFO - Running GNNExplainer...
+2025-08-13 20:21:22,079 - INFO - Running gradient analysis...
+2025-08-13 20:21:22,342 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:22,342 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:22,342 - INFO - 
+============================================================
+2025-08-13 20:21:22,342 - INFO - Analyzing node 19
+2025-08-13 20:21:22,342 - INFO - Performance: 2.5808
+2025-08-13 20:21:22,345 - INFO - Extracted subgraph: 141 nodes, 4911 edges
+2025-08-13 20:21:22,345 - INFO - Running attention analysis...
+2025-08-13 20:21:22,350 - INFO - Running GNNExplainer...
+2025-08-13 20:21:23,817 - INFO -   Top GNNExplainer features:
+2025-08-13 20:21:23,817 - INFO -     - POSIX_ACCESS1_ACCESS: 0.5467
+2025-08-13 20:21:23,817 - INFO -     - POSIX_ACCESS1_COUNT: 0.5410
+2025-08-13 20:21:23,817 - INFO -     - POSIX_CONSEC_READS: 0.5353
+2025-08-13 20:21:23,817 - INFO -     - POSIX_ACCESS3_COUNT: 0.5296
+2025-08-13 20:21:23,817 - INFO -     - POSIX_ACCESS4_COUNT: 0.5280
+2025-08-13 20:21:23,817 - INFO - Running gradient analysis...
+2025-08-13 20:21:24,082 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:24,082 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:24,082 - INFO - 
+============================================================
+2025-08-13 20:21:24,082 - INFO - Analyzing node 43
+2025-08-13 20:21:24,082 - INFO - Performance: 2.8307
+2025-08-13 20:21:24,085 - INFO - Extracted subgraph: 1 nodes, 0 edges
+2025-08-13 20:21:24,085 - INFO - Running attention analysis...
+2025-08-13 20:21:24,089 - INFO - Running GNNExplainer...
+2025-08-13 20:21:25,112 - INFO -   Top GNNExplainer features:
+2025-08-13 20:21:25,113 - INFO -     - POSIX_ACCESS1_ACCESS: 0.5766
+2025-08-13 20:21:25,113 - INFO -     - POSIX_STRIDE2_COUNT: 0.5562
+2025-08-13 20:21:25,113 - INFO -     - POSIX_READS: 0.5499
+2025-08-13 20:21:25,113 - INFO -     - POSIX_BYTES_READ: 0.5380
+2025-08-13 20:21:25,113 - INFO -     - POSIX_CONSEC_READS: 0.5341
+2025-08-13 20:21:25,113 - INFO - Running gradient analysis...
+2025-08-13 20:21:25,308 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:25,308 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:25,308 - INFO - 
+============================================================
+2025-08-13 20:21:25,308 - INFO - Analyzing node 56
+2025-08-13 20:21:25,308 - INFO - Performance: 3.1380
+2025-08-13 20:21:25,311 - INFO - Extracted subgraph: 1 nodes, 0 edges
+2025-08-13 20:21:25,311 - INFO - Running attention analysis...
+2025-08-13 20:21:25,315 - INFO - Running GNNExplainer...
+2025-08-13 20:21:26,339 - INFO -   Top GNNExplainer features:
+2025-08-13 20:21:26,339 - INFO -     - POSIX_STRIDE3_COUNT: 0.5359
+2025-08-13 20:21:26,339 - INFO -     - POSIX_ACCESS1_COUNT: 0.5333
+2025-08-13 20:21:26,339 - INFO -     - POSIX_SIZE_WRITE_100K_1M: 0.5332
+2025-08-13 20:21:26,339 - INFO -     - POSIX_SIZE_WRITE_10K_100K: 0.5315
+2025-08-13 20:21:26,339 - INFO -     - POSIX_MEM_ALIGNMENT: 0.5298
+2025-08-13 20:21:26,339 - INFO - Running gradient analysis...
+2025-08-13 20:21:26,534 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:26,534 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:26,534 - INFO - 
+============================================================
+2025-08-13 20:21:26,534 - INFO - Analyzing node 86
+2025-08-13 20:21:26,534 - INFO - Performance: 2.8873
+2025-08-13 20:21:26,537 - INFO - Extracted subgraph: 96 nodes, 4242 edges
+2025-08-13 20:21:26,537 - INFO - Running attention analysis...
+2025-08-13 20:21:26,542 - INFO - Running GNNExplainer...
+2025-08-13 20:21:27,928 - INFO -   Top GNNExplainer features:
+2025-08-13 20:21:27,928 - INFO -     - POSIX_FILE_NOT_ALIGNED: 0.6063
+2025-08-13 20:21:27,928 - INFO -     - POSIX_SEQ_READS: 0.5988
+2025-08-13 20:21:27,928 - INFO -     - POSIX_STRIDE2_COUNT: 0.5828
+2025-08-13 20:21:27,928 - INFO -     - POSIX_SEEKS: 0.5711
+2025-08-13 20:21:27,928 - INFO -     - POSIX_SIZE_WRITE_0_100: 0.5671
+2025-08-13 20:21:27,928 - INFO - Running gradient analysis...
+2025-08-13 20:21:28,170 - WARNING - Gradient analysis failed: only size-1 arrays can be converted to Python scalars
+2025-08-13 20:21:28,170 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 20:21:28,328 - INFO - 
+Results saved to analysis/results/interpretability_test_results.json
+2025-08-13 20:21:28,328 - INFO - 
+============================================================
+2025-08-13 20:21:28,328 - INFO - ANALYSIS SUMMARY
+2025-08-13 20:21:28,328 - INFO - ============================================================
+2025-08-13 20:21:28,329 - INFO - 
+POOR Performers:
+2025-08-13 20:21:28,329 - INFO - 
+MEDIUM Performers:
+2025-08-13 20:21:28,329 - INFO - 
+GOOD Performers:
+2025-08-13 20:21:28,329 - INFO - 
+============================================================
+2025-08-13 20:21:28,329 - INFO - COMMON PATTERNS
+2025-08-13 20:21:28,329 - INFO - ============================================================
+2025-08-13 20:21:28,329 - INFO - 
+Test complete!

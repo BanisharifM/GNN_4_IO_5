@@ -218,7 +218,7 @@ class AttentionAnalyzer:
         self,
         data,
         node_idx: int,
-        threshold: float = 0.1
+        threshold: float = 0.01
     ) -> Dict[str, float]:
         """
         Detect I/O bottlenecks based on attention-weighted neighbor analysis
@@ -265,7 +265,11 @@ class AttentionAnalyzer:
             # If neighbor has worse performance, its different features might be bottlenecks
             if neighbor_performance < target_performance:
                 feature_diff = np.abs(target_features - neighbor_features)
-                feature_importance += feature_diff * att_weight * (target_performance - neighbor_performance)
+                # Ensure all are 1D arrays
+                feature_diff = feature_diff.flatten() if feature_diff.ndim > 1 else feature_diff
+                # Calculate importance contribution
+                importance_contrib = feature_diff * float(att_weight) * float(target_performance - neighbor_performance)
+                feature_importance = feature_importance + importance_contrib
         
         # Normalize and create dictionary
         if feature_importance.sum() > 0:
