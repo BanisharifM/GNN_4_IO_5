@@ -42,7 +42,6 @@ python scripts/train_gat.py \
     --save-dir "$SAVE_DIR" \
     --run-name "gat_100k_${TIMESTAMP}" \
     --force-mode mini \
-    --interpret \
     --plot \
     2>&1 | tee "${SAVE_DIR}/training.log"
 

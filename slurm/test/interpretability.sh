@@ -20,4 +20,4 @@ srun python analysis/interpretability/test_methods.py \
     --features-csv /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/aiio_sample_1000000_normalized.csv \
     --device cuda \
     --output-dir /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/analysis/results \
-    --visualize-nodes 25 38 30 229 56 86 19
+    --visualize-nodes 61 62 70 0 12 13 30 46 15 43 86
