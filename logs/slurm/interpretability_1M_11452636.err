@@ -1,0 +1,581 @@
+2025-08-13 21:45:32,751 - INFO - Loading config from /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/configs/gat_config4.yaml
+2025-08-13 21:45:32,756 - INFO - Using device: cuda
+2025-08-13 21:45:32,756 - INFO - Using dtype: torch.float32
+2025-08-13 21:45:32,756 - INFO - Loading model...
+2025-08-13 21:45:33,111 - INFO - Checkpoint keys: dict_keys(['epoch', 'model_state_dict', 'optimizer_state_dict', 'val_rmse', 'history'])
+2025-08-13 21:45:33,111 - INFO - Using model config from config file
+2025-08-13 21:45:33,111 - INFO - Detected 49 input features from checkpoint
+2025-08-13 21:45:33,111 - INFO - Detected pre-augmented features in checkpoint (49), disabling feature_augmentation for model creation
+2025-08-13 21:45:33,111 - INFO - Creating model with config: {'num_features': 49, 'model_type': 'standard', 'hidden_channels': 320, 'num_layers': 3, 'heads': [12, 8, 2], 'dropout': 0.1, 'residual': True, 'layer_norm': True, 'feature_augmentation': False, 'dtype': torch.float32, 'edge_dim': 1, 'pool_type': 'mean'}
+2025-08-13 21:45:33,431 - INFO - Model loaded successfully from /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/experiments/gat_exp_20250813_020454/checkpoints/best_model.pt
+2025-08-13 21:45:33,431 - INFO - Loading data...
+2025-08-13 21:45:33,431 - INFO - Loading dataset with args: {'root': './data/processed', 'similarity_pt_path': '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/similarity_output_0.75/similarity_graph_20250812_043913.pt', 'similarity_npz_path': '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/similarity_output_0.75/similarity_graph_20250812_043913.npz', 'features_csv_path': '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/aiio_sample_1000000_normalized.csv', 'use_edge_weights': True, 'dtype': torch.float32, 'lazy_load': True}
+2025-08-13 21:45:33,652 - INFO - Data loaded: 1,000,000 nodes, 50,000,000 edges
+2025-08-13 21:45:33,652 - INFO - Feature shape: torch.Size([1000000, 45])
+2025-08-13 21:45:33,652 - INFO - Target shape: torch.Size([1000000, 1])
+2025-08-13 21:45:33,652 - WARNING - Feature mismatch: Model expects 49, but data has 45
+2025-08-13 21:45:33,652 - INFO - Creating data splits from config
+2025-08-13 21:45:34,077 - INFO - Data splits - Train: 600,000, Val: 200,000, Test: 200,000
+2025-08-13 21:45:34,089 - INFO - Adding placeholder features from 45 to 49
+2025-08-13 21:45:34,110 - INFO - Features augmented to shape: torch.Size([1000000, 49])
+2025-08-13 21:45:34,199 - INFO - Using 49 feature names
+2025-08-13 21:45:34,200 - INFO - Initializing analyzers...
+2025-08-13 21:45:34,269 - INFO - Selected test nodes:
+2025-08-13 21:45:34,269 - INFO -   Poor performers (<1.05): 5 nodes
+2025-08-13 21:45:34,269 - INFO -   Medium performers: 5 nodes
+2025-08-13 21:45:34,269 - INFO -   Good performers (>2.57): 5 nodes
+2025-08-13 21:45:34,269 - INFO - 
+============================================================
+2025-08-13 21:45:34,269 - INFO - Analyzing POOR performers
+2025-08-13 21:45:34,269 - INFO - ============================================================
+2025-08-13 21:45:34,269 - INFO - 
+============================================================
+2025-08-13 21:45:34,269 - INFO - Analyzing node 25
+2025-08-13 21:45:34,274 - INFO - DEBUG - Node 25 has 50 outgoing edges and 26 incoming edges in full graph
+2025-08-13 21:45:34,274 - INFO - Performance: 0.3631
+2025-08-13 21:45:34,283 - INFO - Extracted subgraph: 105 nodes, 4175 edges
+2025-08-13 21:45:34,284 - INFO - Running attention analysis...
+2025-08-13 21:45:34,334 - INFO -   Top attention features:
+2025-08-13 21:45:34,334 - INFO -     - POSIX_MEM_NOT_ALIGNED: 0.2950
+2025-08-13 21:45:34,334 - INFO -     - POSIX_ACCESS4_COUNT: 0.2833
+2025-08-13 21:45:34,334 - INFO -     - POSIX_SIZE_READ_1K_10K: 0.1536
+2025-08-13 21:45:34,334 - INFO -     - POSIX_BYTES_READ: 0.1430
+2025-08-13 21:45:34,334 - INFO -     - POSIX_SIZE_READ_100_1K: 0.0428
+2025-08-13 21:45:34,334 - INFO - Running GNNExplainer...
+2025-08-13 21:45:36,808 - INFO -   Top GNNExplainer features:
+2025-08-13 21:45:36,809 - INFO -     - POSIX_SIZE_READ_0_100: 0.5871
+2025-08-13 21:45:36,809 - INFO -     - POSIX_ACCESS2_COUNT: 0.5588
+2025-08-13 21:45:36,809 - INFO -     - POSIX_FILE_NOT_ALIGNED: 0.5547
+2025-08-13 21:45:36,809 - INFO -     - POSIX_OPENS: 0.5536
+2025-08-13 21:45:36,809 - INFO -     - POSIX_SEQ_READS: 0.5437
+2025-08-13 21:45:36,809 - INFO - Running gradient analysis...
+2025-08-13 21:45:37,228 - INFO -   Top gradient features:
+2025-08-13 21:45:37,228 - INFO -     - nprocs: 0.0129
+2025-08-13 21:45:37,228 - INFO -     - POSIX_OPENS: 0.0515
+2025-08-13 21:45:37,228 - INFO -     - LUSTRE_STRIPE_SIZE: 0.0733
+2025-08-13 21:45:37,228 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0065
+2025-08-13 21:45:37,228 - INFO -     - POSIX_FILENOS: 0.0000
+2025-08-13 21:45:37,228 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:45:37,228 - INFO -   Consensus bottlenecks:
+2025-08-13 21:45:37,228 - INFO -     - POSIX_SIZE_READ_0_100: 0.3074 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:37,228 - INFO -     - POSIX_OPENS: 0.3026 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:37,228 - INFO -     - POSIX_FILE_NOT_ALIGNED: 0.2995 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:37,228 - INFO -     - POSIX_MEM_NOT_ALIGNED: 0.2795 (agreed by: attention, gnn_explainer, gradients)
+2025-08-13 21:45:37,228 - INFO -     - nprocs: 0.2670 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:37,228 - INFO - 
+============================================================
+2025-08-13 21:45:37,229 - INFO - Analyzing node 38
+2025-08-13 21:45:37,231 - INFO - DEBUG - Node 38 has 50 outgoing edges and 37 incoming edges in full graph
+2025-08-13 21:45:37,231 - INFO - Performance: 0.8760
+2025-08-13 21:45:37,237 - INFO - Extracted subgraph: 79 nodes, 2565 edges
+2025-08-13 21:45:37,237 - INFO - Running attention analysis...
+2025-08-13 21:45:37,247 - INFO -   Top attention features:
+2025-08-13 21:45:37,247 - INFO -     - POSIX_SIZE_WRITE_100_1K: 0.1473
+2025-08-13 21:45:37,247 - INFO -     - POSIX_BYTES_WRITTEN: 0.0915
+2025-08-13 21:45:37,247 - INFO -     - POSIX_CONSEC_WRITES: 0.0911
+2025-08-13 21:45:37,247 - INFO -     - POSIX_SEQ_WRITES: 0.0908
+2025-08-13 21:45:37,247 - INFO -     - POSIX_WRITES: 0.0908
+2025-08-13 21:45:37,247 - INFO - Running GNNExplainer...
+2025-08-13 21:45:39,466 - INFO -   Top GNNExplainer features:
+2025-08-13 21:45:39,466 - INFO -     - POSIX_BYTES_READ: 0.5359
+2025-08-13 21:45:39,466 - INFO - Running gradient analysis...
+2025-08-13 21:45:39,853 - INFO -   Top gradient features:
+2025-08-13 21:45:39,853 - INFO -     - nprocs: 0.0016
+2025-08-13 21:45:39,853 - INFO -     - POSIX_OPENS: 0.0612
+2025-08-13 21:45:39,853 - INFO -     - LUSTRE_STRIPE_SIZE: 0.0561
+2025-08-13 21:45:39,853 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0101
+2025-08-13 21:45:39,853 - INFO -     - POSIX_FILENOS: 0.0000
+2025-08-13 21:45:39,853 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:45:39,853 - INFO -   Consensus bottlenecks:
+2025-08-13 21:45:39,853 - INFO -     - POSIX_BYTES_READ: 0.2340 (agreed by: attention, gnn_explainer, gradients)
+2025-08-13 21:45:39,853 - INFO -     - POSIX_BYTES_WRITTEN: 0.1033 (agreed by: attention, gradients)
+2025-08-13 21:45:39,853 - INFO -     - POSIX_SIZE_WRITE_100_1K: 0.0809 (agreed by: attention, gradients)
+2025-08-13 21:45:39,853 - INFO -     - POSIX_STATS: 0.0682 (agreed by: attention, gradients)
+2025-08-13 21:45:39,853 - INFO -     - POSIX_WRITES: 0.0675 (agreed by: attention, gradients)
+2025-08-13 21:45:39,853 - INFO - 
+============================================================
+2025-08-13 21:45:39,853 - INFO - Analyzing node 61
+2025-08-13 21:45:39,856 - INFO - DEBUG - Node 61 has 50 outgoing edges and 53 incoming edges in full graph
+2025-08-13 21:45:39,856 - INFO - Performance: 0.6283
+2025-08-13 21:45:39,861 - INFO - Extracted subgraph: 272 nodes, 8071 edges
+2025-08-13 21:45:39,862 - INFO - Running attention analysis...
+2025-08-13 21:45:39,875 - INFO -   Top attention features:
+2025-08-13 21:45:39,876 - INFO -     - POSIX_SIZE_WRITE_100_1K: 0.1064
+2025-08-13 21:45:39,876 - INFO -     - POSIX_BYTES_WRITTEN: 0.0733
+2025-08-13 21:45:39,876 - INFO -     - POSIX_SIZE_READ_1K_10K: 0.0716
+2025-08-13 21:45:39,876 - INFO -     - POSIX_SEQ_WRITES: 0.0682
+2025-08-13 21:45:39,876 - INFO -     - POSIX_WRITES: 0.0682
+2025-08-13 21:45:39,876 - INFO - Running GNNExplainer...
+2025-08-13 21:45:43,087 - INFO -   Top GNNExplainer features:
+2025-08-13 21:45:43,087 - INFO -     - POSIX_SEEKS: 0.5503
+2025-08-13 21:45:43,087 - INFO -     - POSIX_ACCESS2_COUNT: 0.5336
+2025-08-13 21:45:43,087 - INFO -     - POSIX_SIZE_READ_100_1K: 0.5278
+2025-08-13 21:45:43,087 - INFO -     - POSIX_MEM_NOT_ALIGNED: 0.5221
+2025-08-13 21:45:43,087 - INFO -     - POSIX_BYTES_WRITTEN: 0.5217
+2025-08-13 21:45:43,087 - INFO - Running gradient analysis...
+2025-08-13 21:45:43,690 - INFO -   Top gradient features:
+2025-08-13 21:45:43,690 - INFO -     - nprocs: 0.0216
+2025-08-13 21:45:43,690 - INFO -     - POSIX_OPENS: 0.0490
+2025-08-13 21:45:43,690 - INFO -     - LUSTRE_STRIPE_SIZE: 0.0760
+2025-08-13 21:45:43,690 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0097
+2025-08-13 21:45:43,690 - INFO -     - POSIX_FILENOS: 0.0000
+2025-08-13 21:45:43,690 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:45:43,691 - INFO -   Consensus bottlenecks:
+2025-08-13 21:45:43,691 - INFO -     - POSIX_MEM_ALIGNMENT: 0.2583 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:43,691 - INFO -     - POSIX_BYTES_WRITTEN: 0.2402 (agreed by: attention, gnn_explainer, gradients)
+2025-08-13 21:45:43,691 - INFO -     - POSIX_SIZE_READ_1K_10K: 0.2014 (agreed by: attention, gnn_explainer, gradients)
+2025-08-13 21:45:43,691 - INFO -     - POSIX_ACCESS2_COUNT: 0.1982 (agreed by: attention, gnn_explainer, gradients)
+2025-08-13 21:45:43,691 - INFO -     - POSIX_SEEKS: 0.1953 (agreed by: attention, gnn_explainer, gradients)
+2025-08-13 21:45:43,691 - INFO - 
+============================================================
+2025-08-13 21:45:43,691 - INFO - Analyzing node 62
+2025-08-13 21:45:43,693 - INFO - DEBUG - Node 62 has 50 outgoing edges and 18 incoming edges in full graph
+2025-08-13 21:45:43,694 - INFO - Performance: 0.8625
+2025-08-13 21:45:43,699 - INFO - Extracted subgraph: 310 nodes, 8043 edges
+2025-08-13 21:45:43,699 - INFO - Running attention analysis...
+2025-08-13 21:45:43,711 - INFO -   Top attention features:
+2025-08-13 21:45:43,711 - INFO -     - POSIX_ACCESS4_COUNT: 0.0684
+2025-08-13 21:45:43,711 - INFO -     - nprocs: 0.0579
+2025-08-13 21:45:43,711 - INFO -     - POSIX_SEEKS: 0.0505
+2025-08-13 21:45:43,711 - INFO -     - POSIX_SIZE_READ_0_100: 0.0505
+2025-08-13 21:45:43,711 - INFO -     - POSIX_ACCESS1_COUNT: 0.0505
+2025-08-13 21:45:43,711 - INFO - Running GNNExplainer...
+2025-08-13 21:45:46,962 - INFO -   Top GNNExplainer features:
+2025-08-13 21:45:46,962 - INFO -     - POSIX_CONSEC_WRITES: 0.5476
+2025-08-13 21:45:46,962 - INFO -     - POSIX_CONSEC_READS: 0.5455
+2025-08-13 21:45:46,962 - INFO -     - POSIX_SIZE_WRITE_0_100: 0.5336
+2025-08-13 21:45:46,962 - INFO -     - POSIX_SEEKS: 0.5328
+2025-08-13 21:45:46,962 - INFO -     - POSIX_ACCESS1_ACCESS: 0.5322
+2025-08-13 21:45:46,962 - INFO - Running gradient analysis...
+2025-08-13 21:45:47,583 - INFO -   Top gradient features:
+2025-08-13 21:45:47,583 - INFO -     - nprocs: 0.0109
+2025-08-13 21:45:47,583 - INFO -     - POSIX_OPENS: 0.0564
+2025-08-13 21:45:47,583 - INFO -     - LUSTRE_STRIPE_SIZE: 0.0697
+2025-08-13 21:45:47,583 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0040
+2025-08-13 21:45:47,583 - INFO -     - POSIX_FILENOS: 0.0113
+2025-08-13 21:45:47,583 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:45:47,584 - INFO -   Consensus bottlenecks:
+2025-08-13 21:45:47,584 - INFO -     - POSIX_MEM_ALIGNMENT: 0.2647 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:47,584 - INFO -     - POSIX_ACCESS2_ACCESS: 0.2574 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:47,584 - INFO -     - POSIX_WRITES: 0.2139 (agreed by: attention, gnn_explainer, gradients)
+2025-08-13 21:45:47,584 - INFO -     - POSIX_FILE_NOT_ALIGNED: 0.2042 (agreed by: attention, gnn_explainer, gradients)
+2025-08-13 21:45:47,584 - INFO -     - POSIX_CONSEC_READS: 0.2015 (agreed by: attention, gnn_explainer, gradients)
+2025-08-13 21:45:47,584 - INFO - 
+============================================================
+2025-08-13 21:45:47,584 - INFO - Analyzing node 70
+2025-08-13 21:45:47,586 - INFO - DEBUG - Node 70 has 50 outgoing edges and 60 incoming edges in full graph
+2025-08-13 21:45:47,586 - INFO - Performance: 0.5202
+2025-08-13 21:45:47,592 - INFO - Extracted subgraph: 358 nodes, 10633 edges
+2025-08-13 21:45:47,592 - INFO - Running attention analysis...
+2025-08-13 21:45:47,608 - INFO -   Top attention features:
+2025-08-13 21:45:47,608 - INFO -     - POSIX_SIZE_READ_1K_10K: 0.1015
+2025-08-13 21:45:47,608 - INFO -     - POSIX_BYTES_READ: 0.0965
+2025-08-13 21:45:47,608 - INFO -     - POSIX_BYTES_WRITTEN: 0.0723
+2025-08-13 21:45:47,608 - INFO -     - POSIX_ACCESS1_ACCESS: 0.0720
+2025-08-13 21:45:47,608 - INFO -     - POSIX_SIZE_WRITE_0_100: 0.0714
+2025-08-13 21:45:47,608 - INFO - Running GNNExplainer...
+2025-08-13 21:45:51,343 - INFO -   Top GNNExplainer features:
+2025-08-13 21:45:51,343 - INFO -     - POSIX_SEQ_READS: 0.5896
+2025-08-13 21:45:51,343 - INFO -     - POSIX_ACCESS2_COUNT: 0.5861
+2025-08-13 21:45:51,343 - INFO -     - POSIX_STATS: 0.5791
+2025-08-13 21:45:51,343 - INFO -     - POSIX_SEEKS: 0.5704
+2025-08-13 21:45:51,343 - INFO -     - POSIX_SIZE_READ_0_100: 0.5646
+2025-08-13 21:45:51,343 - INFO - Running gradient analysis...
+2025-08-13 21:45:52,042 - INFO -   Top gradient features:
+2025-08-13 21:45:52,042 - INFO -     - nprocs: 0.0143
+2025-08-13 21:45:52,042 - INFO -     - POSIX_OPENS: 0.0438
+2025-08-13 21:45:52,042 - INFO -     - LUSTRE_STRIPE_SIZE: 0.0697
+2025-08-13 21:45:52,042 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0076
+2025-08-13 21:45:52,042 - INFO -     - POSIX_FILENOS: 0.0000
+2025-08-13 21:45:52,042 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:45:52,043 - INFO -   Consensus bottlenecks:
+2025-08-13 21:45:52,043 - INFO -     - POSIX_STATS: 0.3249 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:52,043 - INFO -     - POSIX_SIZE_READ_0_100: 0.2954 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:52,043 - INFO -     - POSIX_SEEKS: 0.2952 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:52,043 - INFO -     - LUSTRE_STRIPE_SIZE: 0.2864 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:52,043 - INFO -     - nprocs: 0.2793 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:52,043 - INFO - 
+============================================================
+2025-08-13 21:45:52,043 - INFO - Analyzing MEDIUM performers
+2025-08-13 21:45:52,043 - INFO - ============================================================
+2025-08-13 21:45:52,043 - INFO - 
+============================================================
+2025-08-13 21:45:52,043 - INFO - Analyzing node 0
+2025-08-13 21:45:52,046 - INFO - DEBUG - Node 0 has 50 outgoing edges and 10 incoming edges in full graph
+2025-08-13 21:45:52,046 - INFO - Performance: 2.3416
+2025-08-13 21:45:52,051 - INFO - Extracted subgraph: 34 nodes, 877 edges
+2025-08-13 21:45:52,051 - INFO - Running attention analysis...
+2025-08-13 21:45:52,061 - INFO -   Top attention features:
+2025-08-13 21:45:52,061 - INFO -     - POSIX_SIZE_WRITE_0_100: 0.2146
+2025-08-13 21:45:52,061 - INFO -     - POSIX_SEQ_WRITES: 0.2101
+2025-08-13 21:45:52,061 - INFO -     - POSIX_CONSEC_WRITES: 0.2100
+2025-08-13 21:45:52,061 - INFO -     - POSIX_WRITES: 0.2095
+2025-08-13 21:45:52,061 - INFO -     - POSIX_BYTES_WRITTEN: 0.1277
+2025-08-13 21:45:52,061 - INFO - Running GNNExplainer...
+2025-08-13 21:45:53,943 - INFO -   Top GNNExplainer features:
+2025-08-13 21:45:53,943 - INFO -     - POSIX_CONSEC_WRITES: 0.5564
+2025-08-13 21:45:53,943 - INFO -     - POSIX_ACCESS2_COUNT: 0.5349
+2025-08-13 21:45:53,943 - INFO -     - POSIX_FILE_NOT_ALIGNED: 0.5144
+2025-08-13 21:45:53,943 - INFO - Running gradient analysis...
+2025-08-13 21:45:54,282 - INFO -   Top gradient features:
+2025-08-13 21:45:54,282 - INFO -     - nprocs: 0.0293
+2025-08-13 21:45:54,282 - INFO -     - POSIX_OPENS: 0.0748
+2025-08-13 21:45:54,282 - INFO -     - LUSTRE_STRIPE_SIZE: 0.1005
+2025-08-13 21:45:54,282 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0026
+2025-08-13 21:45:54,282 - INFO -     - POSIX_FILENOS: 0.0098
+2025-08-13 21:45:54,282 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:45:54,282 - INFO -   Consensus bottlenecks:
+2025-08-13 21:45:54,282 - INFO -     - POSIX_ACCESS2_COUNT: 0.2691 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:54,282 - INFO -     - POSIX_CONSEC_WRITES: 0.2563 (agreed by: attention, gnn_explainer, gradients)
+2025-08-13 21:45:54,282 - INFO -     - POSIX_FILE_NOT_ALIGNED: 0.1928 (agreed by: attention, gnn_explainer, gradients)
+2025-08-13 21:45:54,282 - INFO -     - POSIX_WRITES: 0.1349 (agreed by: attention, gradients)
+2025-08-13 21:45:54,282 - INFO -     - POSIX_SIZE_WRITE_0_100: 0.1237 (agreed by: attention, gradients)
+2025-08-13 21:45:54,282 - INFO - 
+============================================================
+2025-08-13 21:45:54,282 - INFO - Analyzing node 12
+2025-08-13 21:45:54,285 - INFO - DEBUG - Node 12 has 50 outgoing edges and 50 incoming edges in full graph
+2025-08-13 21:45:54,285 - INFO - Performance: 2.3622
+2025-08-13 21:45:54,291 - INFO - Extracted subgraph: 112 nodes, 5335 edges
+2025-08-13 21:45:54,291 - INFO - Running attention analysis...
+2025-08-13 21:45:54,303 - INFO -   Top attention features:
+2025-08-13 21:45:54,303 - INFO -     - POSIX_ACCESS3_COUNT: 0.2491
+2025-08-13 21:45:54,303 - INFO -     - POSIX_STRIDE2_STRIDE: 0.2223
+2025-08-13 21:45:54,303 - INFO -     - POSIX_BYTES_WRITTEN: 0.2217
+2025-08-13 21:45:54,303 - INFO -     - POSIX_ACCESS2_COUNT: 0.1522
+2025-08-13 21:45:54,303 - INFO -     - POSIX_SIZE_WRITE_100_1K: 0.0354
+2025-08-13 21:45:54,303 - INFO - Running GNNExplainer...
+2025-08-13 21:45:56,674 - INFO -   Top GNNExplainer features:
+2025-08-13 21:45:56,674 - INFO -     - POSIX_CONSEC_WRITES: 0.5229
+2025-08-13 21:45:56,674 - INFO -     - POSIX_BYTES_WRITTEN: 0.5211
+2025-08-13 21:45:56,674 - INFO -     - POSIX_BYTES_READ: 0.5032
+2025-08-13 21:45:56,674 - INFO - Running gradient analysis...
+2025-08-13 21:45:57,101 - INFO -   Top gradient features:
+2025-08-13 21:45:57,101 - INFO -     - nprocs: 0.0058
+2025-08-13 21:45:57,101 - INFO -     - POSIX_OPENS: 0.0403
+2025-08-13 21:45:57,101 - INFO -     - LUSTRE_STRIPE_SIZE: 0.1123
+2025-08-13 21:45:57,101 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0091
+2025-08-13 21:45:57,101 - INFO -     - POSIX_FILENOS: 0.0061
+2025-08-13 21:45:57,101 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:45:57,101 - INFO -   Consensus bottlenecks:
+2025-08-13 21:45:57,101 - INFO -     - POSIX_BYTES_READ: 0.3192 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:57,101 - INFO -     - POSIX_BYTES_WRITTEN: 0.3170 (agreed by: attention, gnn_explainer, gradients)
+2025-08-13 21:45:57,101 - INFO -     - POSIX_CONSEC_WRITES: 0.2649 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:45:57,102 - INFO -     - POSIX_STRIDE2_STRIDE: 0.1273 (agreed by: attention, gradients)
+2025-08-13 21:45:57,102 - INFO -     - POSIX_ACCESS3_COUNT: 0.1255 (agreed by: attention, gradients)
+2025-08-13 21:45:57,102 - INFO - 
+============================================================
+2025-08-13 21:45:57,102 - INFO - Analyzing node 13
+2025-08-13 21:45:57,104 - INFO - DEBUG - Node 13 has 50 outgoing edges and 84 incoming edges in full graph
+2025-08-13 21:45:57,104 - INFO - Performance: 1.4532
+2025-08-13 21:45:57,110 - INFO - Extracted subgraph: 185 nodes, 8041 edges
+2025-08-13 21:45:57,110 - INFO - Running attention analysis...
+2025-08-13 21:45:57,124 - INFO -   Top attention features:
+2025-08-13 21:45:57,124 - INFO -     - POSIX_ACCESS3_COUNT: 0.4038
+2025-08-13 21:45:57,124 - INFO -     - POSIX_ACCESS4_COUNT: 0.2974
+2025-08-13 21:45:57,124 - INFO -     - POSIX_ACCESS2_COUNT: 0.0929
+2025-08-13 21:45:57,124 - INFO -     - POSIX_MEM_NOT_ALIGNED: 0.0642
+2025-08-13 21:45:57,124 - INFO -     - POSIX_ACCESS1_COUNT: 0.0376
+2025-08-13 21:45:57,124 - INFO - Running GNNExplainer...
+2025-08-13 21:46:00,041 - INFO -   Top GNNExplainer features:
+2025-08-13 21:46:00,041 - INFO -     - POSIX_FILENOS: 0.5814
+2025-08-13 21:46:00,041 - INFO -     - POSIX_SIZE_WRITE_1K_10K: 0.5628
+2025-08-13 21:46:00,041 - INFO -     - POSIX_BYTES_WRITTEN: 0.5602
+2025-08-13 21:46:00,041 - INFO -     - POSIX_ACCESS4_ACCESS: 0.5560
+2025-08-13 21:46:00,041 - INFO -     - POSIX_BYTES_READ: 0.5314
+2025-08-13 21:46:00,041 - INFO - Running gradient analysis...
+2025-08-13 21:46:00,581 - INFO -   Top gradient features:
+2025-08-13 21:46:00,581 - INFO -     - nprocs: 0.0027
+2025-08-13 21:46:00,581 - INFO -     - POSIX_OPENS: 0.1138
+2025-08-13 21:46:00,581 - INFO -     - LUSTRE_STRIPE_SIZE: 0.1120
+2025-08-13 21:46:00,581 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0055
+2025-08-13 21:46:00,581 - INFO -     - POSIX_FILENOS: 0.0462
+2025-08-13 21:46:00,581 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:46:00,581 - INFO -   Consensus bottlenecks:
+2025-08-13 21:46:00,581 - INFO -     - POSIX_BYTES_WRITTEN: 0.3839 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:00,581 - INFO -     - POSIX_BYTES_READ: 0.3253 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:00,581 - INFO -     - POSIX_FILENOS: 0.3138 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:00,581 - INFO -     - LUSTRE_STRIPE_SIZE: 0.3124 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:00,581 - INFO -     - POSIX_ACCESS4_ACCESS: 0.2861 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:00,581 - INFO - 
+============================================================
+2025-08-13 21:46:00,581 - INFO - Analyzing node 30
+2025-08-13 21:46:00,584 - INFO - DEBUG - Node 30 has 50 outgoing edges and 54 incoming edges in full graph
+2025-08-13 21:46:00,584 - INFO - Performance: 2.0893
+2025-08-13 21:46:00,589 - INFO - Extracted subgraph: 101 nodes, 4292 edges
+2025-08-13 21:46:00,590 - INFO - Running attention analysis...
+2025-08-13 21:46:00,600 - INFO -   Top attention features:
+2025-08-13 21:46:00,600 - INFO -     - POSIX_BYTES_WRITTEN: 1.0000
+2025-08-13 21:46:00,600 - INFO - Running GNNExplainer...
+2025-08-13 21:46:02,828 - INFO -   Top GNNExplainer features:
+2025-08-13 21:46:02,828 - INFO -     - POSIX_SIZE_READ_1K_10K: 0.5994
+2025-08-13 21:46:02,828 - INFO -     - POSIX_ACCESS4_COUNT: 0.5743
+2025-08-13 21:46:02,828 - INFO -     - POSIX_READS: 0.5487
+2025-08-13 21:46:02,828 - INFO -     - POSIX_ACCESS4_ACCESS: 0.5465
+2025-08-13 21:46:02,828 - INFO -     - POSIX_STATS: 0.5389
+2025-08-13 21:46:02,828 - INFO - Running gradient analysis...
+2025-08-13 21:46:03,227 - INFO -   Top gradient features:
+2025-08-13 21:46:03,227 - INFO -     - nprocs: 0.0297
+2025-08-13 21:46:03,227 - INFO -     - POSIX_OPENS: 0.0758
+2025-08-13 21:46:03,227 - INFO -     - LUSTRE_STRIPE_SIZE: 0.0973
+2025-08-13 21:46:03,227 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0025
+2025-08-13 21:46:03,227 - INFO -     - POSIX_FILENOS: 0.0097
+2025-08-13 21:46:03,227 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:46:03,227 - INFO -   Consensus bottlenecks:
+2025-08-13 21:46:03,227 - INFO -     - POSIX_BYTES_WRITTEN: 0.5318 (agreed by: attention, gradients)
+2025-08-13 21:46:03,227 - INFO -     - POSIX_STATS: 0.3092 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:03,228 - INFO -     - POSIX_SIZE_READ_1K_10K: 0.3088 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:03,228 - INFO -     - POSIX_ACCESS4_COUNT: 0.2951 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:03,228 - INFO -     - POSIX_OPENS: 0.2931 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:03,228 - INFO - 
+============================================================
+2025-08-13 21:46:03,228 - INFO - Analyzing node 46
+2025-08-13 21:46:03,230 - INFO - DEBUG - Node 46 has 50 outgoing edges and 0 incoming edges in full graph
+2025-08-13 21:46:03,230 - INFO - Performance: 1.4780
+2025-08-13 21:46:03,236 - INFO - Extracted subgraph: 1 nodes, 0 edges
+2025-08-13 21:46:03,236 - INFO - Running attention analysis...
+2025-08-13 21:46:03,245 - INFO - Running GNNExplainer...
+2025-08-13 21:46:04,907 - INFO -   Top GNNExplainer features:
+2025-08-13 21:46:04,907 - INFO -     - POSIX_WRITES: 0.5577
+2025-08-13 21:46:04,907 - INFO -     - POSIX_MEM_ALIGNMENT: 0.5541
+2025-08-13 21:46:04,907 - INFO -     - POSIX_SIZE_WRITE_10K_100K: 0.5517
+2025-08-13 21:46:04,907 - INFO -     - POSIX_ACCESS1_ACCESS: 0.5409
+2025-08-13 21:46:04,907 - INFO -     - POSIX_SIZE_WRITE_100_1K: 0.5273
+2025-08-13 21:46:04,907 - INFO - Running gradient analysis...
+2025-08-13 21:46:05,224 - INFO -   Top gradient features:
+2025-08-13 21:46:05,224 - INFO -     - nprocs: 0.0270
+2025-08-13 21:46:05,224 - INFO -     - POSIX_OPENS: 0.0038
+2025-08-13 21:46:05,224 - INFO -     - LUSTRE_STRIPE_SIZE: 0.1679
+2025-08-13 21:46:05,224 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0008
+2025-08-13 21:46:05,224 - INFO -     - POSIX_FILENOS: 0.0000
+2025-08-13 21:46:05,224 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:46:05,224 - INFO -   Consensus bottlenecks:
+2025-08-13 21:46:05,224 - INFO -     - POSIX_MEM_ALIGNMENT: 0.2974 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:05,225 - INFO -     - POSIX_BYTES_READ: 0.2957 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:05,225 - INFO -     - POSIX_ACCESS1_ACCESS: 0.2954 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:05,225 - INFO -     - POSIX_WRITES: 0.2936 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:05,225 - INFO -     - POSIX_FILE_ALIGNMENT: 0.2892 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:05,225 - INFO - 
+============================================================
+2025-08-13 21:46:05,225 - INFO - Analyzing GOOD performers
+2025-08-13 21:46:05,225 - INFO - ============================================================
+2025-08-13 21:46:05,225 - INFO - 
+============================================================
+2025-08-13 21:46:05,225 - INFO - Analyzing node 15
+2025-08-13 21:46:05,227 - INFO - DEBUG - Node 15 has 50 outgoing edges and 52 incoming edges in full graph
+2025-08-13 21:46:05,228 - INFO - Performance: 3.5475
+2025-08-13 21:46:05,234 - INFO - Extracted subgraph: 112 nodes, 5582 edges
+2025-08-13 21:46:05,234 - INFO - Running attention analysis...
+2025-08-13 21:46:05,247 - INFO -   Top attention features:
+2025-08-13 21:46:05,247 - INFO -     - POSIX_ACCESS3_COUNT: 0.2619
+2025-08-13 21:46:05,247 - INFO -     - POSIX_ACCESS2_COUNT: 0.2463
+2025-08-13 21:46:05,247 - INFO -     - POSIX_SIZE_WRITE_100_1K: 0.1709
+2025-08-13 21:46:05,247 - INFO -     - POSIX_SIZE_WRITE_100K_1M: 0.0832
+2025-08-13 21:46:05,247 - INFO -     - POSIX_ACCESS1_COUNT: 0.0530
+2025-08-13 21:46:05,247 - INFO - Running GNNExplainer...
+2025-08-13 21:46:07,676 - INFO - Running gradient analysis...
+2025-08-13 21:46:08,110 - INFO -   Top gradient features:
+2025-08-13 21:46:08,110 - INFO -     - nprocs: 0.0172
+2025-08-13 21:46:08,110 - INFO -     - POSIX_OPENS: 0.0550
+2025-08-13 21:46:08,110 - INFO -     - LUSTRE_STRIPE_SIZE: 0.1085
+2025-08-13 21:46:08,110 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0130
+2025-08-13 21:46:08,110 - INFO -     - POSIX_FILENOS: 0.0042
+2025-08-13 21:46:08,110 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:46:08,110 - INFO -   Consensus bottlenecks:
+2025-08-13 21:46:08,110 - INFO -     - POSIX_ACCESS3_COUNT: 0.1311 (agreed by: attention, gradients)
+2025-08-13 21:46:08,110 - INFO -     - POSIX_ACCESS2_COUNT: 0.1239 (agreed by: attention, gradients)
+2025-08-13 21:46:08,110 - INFO -     - POSIX_BYTES_WRITTEN: 0.0986 (agreed by: attention, gradients)
+2025-08-13 21:46:08,110 - INFO -     - POSIX_SIZE_WRITE_100_1K: 0.0866 (agreed by: attention, gradients)
+2025-08-13 21:46:08,110 - INFO -     - POSIX_SIZE_WRITE_100K_1M: 0.0590 (agreed by: attention, gradients)
+2025-08-13 21:46:08,110 - INFO - 
+============================================================
+2025-08-13 21:46:08,110 - INFO - Analyzing node 19
+2025-08-13 21:46:08,113 - INFO - DEBUG - Node 19 has 50 outgoing edges and 47 incoming edges in full graph
+2025-08-13 21:46:08,113 - INFO - Performance: 2.5808
+2025-08-13 21:46:08,118 - INFO - Extracted subgraph: 141 nodes, 4911 edges
+2025-08-13 21:46:08,119 - INFO - Running attention analysis...
+2025-08-13 21:46:08,130 - INFO -   Top attention features:
+2025-08-13 21:46:08,130 - INFO -     - POSIX_ACCESS1_COUNT: 0.0683
+2025-08-13 21:46:08,130 - INFO -     - POSIX_BYTES_WRITTEN: 0.0518
+2025-08-13 21:46:08,130 - INFO -     - POSIX_SIZE_WRITE_100_1K: 0.0494
+2025-08-13 21:46:08,130 - INFO -     - POSIX_SIZE_WRITE_0_100: 0.0477
+2025-08-13 21:46:08,130 - INFO -     - POSIX_CONSEC_WRITES: 0.0466
+2025-08-13 21:46:08,130 - INFO - Running GNNExplainer...
+2025-08-13 21:46:10,507 - INFO -   Top GNNExplainer features:
+2025-08-13 21:46:10,507 - INFO -     - POSIX_ACCESS1_ACCESS: 0.5467
+2025-08-13 21:46:10,507 - INFO -     - POSIX_ACCESS1_COUNT: 0.5410
+2025-08-13 21:46:10,507 - INFO -     - POSIX_CONSEC_READS: 0.5353
+2025-08-13 21:46:10,507 - INFO -     - POSIX_ACCESS3_COUNT: 0.5296
+2025-08-13 21:46:10,508 - INFO -     - POSIX_ACCESS4_COUNT: 0.5280
+2025-08-13 21:46:10,508 - INFO - Running gradient analysis...
+2025-08-13 21:46:10,939 - INFO -   Top gradient features:
+2025-08-13 21:46:10,939 - INFO -     - nprocs: 0.0487
+2025-08-13 21:46:10,939 - INFO -     - POSIX_OPENS: 0.0904
+2025-08-13 21:46:10,939 - INFO -     - LUSTRE_STRIPE_SIZE: 0.0909
+2025-08-13 21:46:10,939 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0007
+2025-08-13 21:46:10,939 - INFO -     - POSIX_FILENOS: 0.0273
+2025-08-13 21:46:10,939 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:46:10,939 - INFO -   Consensus bottlenecks:
+2025-08-13 21:46:10,939 - INFO -     - LUSTRE_STRIPE_SIZE: 0.3071 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:10,939 - INFO -     - POSIX_ACCESS1_ACCESS: 0.2738 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:10,939 - INFO -     - POSIX_MEM_ALIGNMENT: 0.2631 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:10,939 - INFO -     - POSIX_ACCESS3_ACCESS: 0.2526 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:10,939 - INFO -     - POSIX_ACCESS1_COUNT: 0.2094 (agreed by: attention, gnn_explainer, gradients)
+2025-08-13 21:46:10,939 - INFO - 
+============================================================
+2025-08-13 21:46:10,939 - INFO - Analyzing node 43
+2025-08-13 21:46:10,942 - INFO - DEBUG - Node 43 has 50 outgoing edges and 0 incoming edges in full graph
+2025-08-13 21:46:10,942 - INFO - Performance: 2.8307
+2025-08-13 21:46:10,947 - INFO - Extracted subgraph: 1 nodes, 0 edges
+2025-08-13 21:46:10,948 - INFO - Running attention analysis...
+2025-08-13 21:46:10,955 - INFO - Running GNNExplainer...
+2025-08-13 21:46:12,634 - INFO -   Top GNNExplainer features:
+2025-08-13 21:46:12,635 - INFO -     - POSIX_ACCESS1_ACCESS: 0.5766
+2025-08-13 21:46:12,635 - INFO -     - POSIX_STRIDE2_COUNT: 0.5562
+2025-08-13 21:46:12,635 - INFO -     - POSIX_READS: 0.5499
+2025-08-13 21:46:12,635 - INFO -     - POSIX_BYTES_READ: 0.5380
+2025-08-13 21:46:12,635 - INFO -     - POSIX_CONSEC_READS: 0.5341
+2025-08-13 21:46:12,635 - INFO - Running gradient analysis...
+2025-08-13 21:46:12,954 - INFO -   Top gradient features:
+2025-08-13 21:46:12,955 - INFO -     - nprocs: 0.0049
+2025-08-13 21:46:12,955 - INFO -     - POSIX_OPENS: 0.0270
+2025-08-13 21:46:12,955 - INFO -     - LUSTRE_STRIPE_SIZE: 0.1035
+2025-08-13 21:46:12,955 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0169
+2025-08-13 21:46:12,955 - INFO -     - POSIX_FILENOS: 0.0339
+2025-08-13 21:46:12,955 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:46:12,955 - INFO -   Consensus bottlenecks:
+2025-08-13 21:46:12,955 - INFO -     - POSIX_BYTES_READ: 0.3466 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:12,955 - INFO -     - LUSTRE_STRIPE_SIZE: 0.3060 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:12,955 - INFO -     - POSIX_ACCESS1_ACCESS: 0.2914 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:12,955 - INFO -     - POSIX_STRIDE2_COUNT: 0.2840 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:12,955 - INFO -     - POSIX_READS: 0.2837 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:12,955 - INFO - 
+============================================================
+2025-08-13 21:46:12,955 - INFO - Analyzing node 56
+2025-08-13 21:46:12,958 - INFO - DEBUG - Node 56 has 50 outgoing edges and 0 incoming edges in full graph
+2025-08-13 21:46:12,958 - INFO - Performance: 3.1380
+2025-08-13 21:46:12,964 - INFO - Extracted subgraph: 1 nodes, 0 edges
+2025-08-13 21:46:12,964 - INFO - Running attention analysis...
+2025-08-13 21:46:12,971 - INFO - Running GNNExplainer...
+2025-08-13 21:46:14,651 - INFO -   Top GNNExplainer features:
+2025-08-13 21:46:14,651 - INFO -     - POSIX_STRIDE3_COUNT: 0.5359
+2025-08-13 21:46:14,651 - INFO -     - POSIX_ACCESS1_COUNT: 0.5333
+2025-08-13 21:46:14,651 - INFO -     - POSIX_SIZE_WRITE_100K_1M: 0.5332
+2025-08-13 21:46:14,651 - INFO -     - POSIX_SIZE_WRITE_10K_100K: 0.5315
+2025-08-13 21:46:14,651 - INFO -     - POSIX_MEM_ALIGNMENT: 0.5298
+2025-08-13 21:46:14,651 - INFO - Running gradient analysis...
+2025-08-13 21:46:14,972 - INFO -   Top gradient features:
+2025-08-13 21:46:14,972 - INFO -     - nprocs: 0.0086
+2025-08-13 21:46:14,972 - INFO -     - POSIX_OPENS: 0.0444
+2025-08-13 21:46:14,972 - INFO -     - LUSTRE_STRIPE_SIZE: 0.0854
+2025-08-13 21:46:14,972 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0175
+2025-08-13 21:46:14,972 - INFO -     - POSIX_FILENOS: 0.0198
+2025-08-13 21:46:14,972 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:46:14,972 - INFO -   Consensus bottlenecks:
+2025-08-13 21:46:14,972 - INFO -     - LUSTRE_STRIPE_SIZE: 0.3020 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:14,972 - INFO -     - POSIX_STRIDE2_STRIDE: 0.2870 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:14,972 - INFO -     - POSIX_STRIDE3_COUNT: 0.2822 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:14,972 - INFO -     - POSIX_SIZE_WRITE_0_100: 0.2799 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:14,972 - INFO -     - POSIX_MEM_ALIGNMENT: 0.2765 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:14,973 - INFO - 
+============================================================
+2025-08-13 21:46:14,973 - INFO - Analyzing node 86
+2025-08-13 21:46:14,975 - INFO - DEBUG - Node 86 has 50 outgoing edges and 30 incoming edges in full graph
+2025-08-13 21:46:14,975 - INFO - Performance: 2.8873
+2025-08-13 21:46:14,981 - INFO - Extracted subgraph: 96 nodes, 4242 edges
+2025-08-13 21:46:14,982 - INFO - Running attention analysis...
+2025-08-13 21:46:14,993 - INFO - Running GNNExplainer...
+2025-08-13 21:46:17,218 - INFO -   Top GNNExplainer features:
+2025-08-13 21:46:17,219 - INFO -     - POSIX_FILE_NOT_ALIGNED: 0.6063
+2025-08-13 21:46:17,219 - INFO -     - POSIX_SEQ_READS: 0.5988
+2025-08-13 21:46:17,219 - INFO -     - POSIX_STRIDE2_COUNT: 0.5828
+2025-08-13 21:46:17,219 - INFO -     - POSIX_SEEKS: 0.5711
+2025-08-13 21:46:17,219 - INFO -     - POSIX_SIZE_WRITE_0_100: 0.5671
+2025-08-13 21:46:17,219 - INFO - Running gradient analysis...
+2025-08-13 21:46:17,609 - INFO -   Top gradient features:
+2025-08-13 21:46:17,609 - INFO -     - nprocs: 0.0029
+2025-08-13 21:46:17,609 - INFO -     - POSIX_OPENS: 0.0413
+2025-08-13 21:46:17,609 - INFO -     - LUSTRE_STRIPE_SIZE: 0.0977
+2025-08-13 21:46:17,609 - INFO -     - LUSTRE_STRIPE_WIDTH: 0.0112
+2025-08-13 21:46:17,609 - INFO -     - POSIX_FILENOS: 0.0068
+2025-08-13 21:46:17,609 - INFO - Finding consensus (min 2 methods)...
+2025-08-13 21:46:17,609 - INFO -   Consensus bottlenecks:
+2025-08-13 21:46:17,609 - INFO -     - POSIX_FILE_NOT_ALIGNED: 0.3170 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:17,609 - INFO -     - LUSTRE_STRIPE_SIZE: 0.3064 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:17,609 - INFO -     - POSIX_SEQ_READS: 0.3022 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:17,609 - INFO -     - POSIX_STRIDE2_STRIDE: 0.2990 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:17,609 - INFO -     - POSIX_STRIDE2_COUNT: 0.2965 (agreed by: gnn_explainer, gradients)
+2025-08-13 21:46:17,638 - INFO - 
+Results saved to analysis/results/interpretability_test_results.json
+2025-08-13 21:46:17,638 - INFO - 
+============================================================
+2025-08-13 21:46:17,638 - INFO - ANALYSIS SUMMARY
+2025-08-13 21:46:17,638 - INFO - ============================================================
+2025-08-13 21:46:17,638 - INFO - 
+POOR Performers:
+2025-08-13 21:46:17,638 - INFO -   Node 25: POSIX_SIZE_READ_0_100 (0.307)
+2025-08-13 21:46:17,638 - INFO -   Node 25: POSIX_OPENS (0.303)
+2025-08-13 21:46:17,638 - INFO -   Node 25: POSIX_FILE_NOT_ALIGNED (0.299)
+2025-08-13 21:46:17,638 - INFO -   Node 38: POSIX_BYTES_READ (0.234)
+2025-08-13 21:46:17,638 - INFO -   Node 38: POSIX_BYTES_WRITTEN (0.103)
+2025-08-13 21:46:17,638 - INFO -   Node 38: POSIX_SIZE_WRITE_100_1K (0.081)
+2025-08-13 21:46:17,638 - INFO -   Node 61: POSIX_MEM_ALIGNMENT (0.258)
+2025-08-13 21:46:17,638 - INFO -   Node 61: POSIX_BYTES_WRITTEN (0.240)
+2025-08-13 21:46:17,638 - INFO -   Node 61: POSIX_SIZE_READ_1K_10K (0.201)
+2025-08-13 21:46:17,638 - INFO -   Node 62: POSIX_MEM_ALIGNMENT (0.265)
+2025-08-13 21:46:17,638 - INFO -   Node 62: POSIX_ACCESS2_ACCESS (0.257)
+2025-08-13 21:46:17,638 - INFO -   Node 62: POSIX_WRITES (0.214)
+2025-08-13 21:46:17,638 - INFO -   Node 70: POSIX_STATS (0.325)
+2025-08-13 21:46:17,638 - INFO -   Node 70: POSIX_SIZE_READ_0_100 (0.295)
+2025-08-13 21:46:17,638 - INFO -   Node 70: POSIX_SEEKS (0.295)
+2025-08-13 21:46:17,638 - INFO - 
+MEDIUM Performers:
+2025-08-13 21:46:17,638 - INFO -   Node 0: POSIX_ACCESS2_COUNT (0.269)
+2025-08-13 21:46:17,638 - INFO -   Node 0: POSIX_CONSEC_WRITES (0.256)
+2025-08-13 21:46:17,638 - INFO -   Node 0: POSIX_FILE_NOT_ALIGNED (0.193)
+2025-08-13 21:46:17,638 - INFO -   Node 12: POSIX_BYTES_READ (0.319)
+2025-08-13 21:46:17,638 - INFO -   Node 12: POSIX_BYTES_WRITTEN (0.317)
+2025-08-13 21:46:17,638 - INFO -   Node 12: POSIX_CONSEC_WRITES (0.265)
+2025-08-13 21:46:17,639 - INFO -   Node 13: POSIX_BYTES_WRITTEN (0.384)
+2025-08-13 21:46:17,639 - INFO -   Node 13: POSIX_BYTES_READ (0.325)
+2025-08-13 21:46:17,639 - INFO -   Node 13: POSIX_FILENOS (0.314)
+2025-08-13 21:46:17,639 - INFO -   Node 30: POSIX_BYTES_WRITTEN (0.532)
+2025-08-13 21:46:17,639 - INFO -   Node 30: POSIX_STATS (0.309)
+2025-08-13 21:46:17,639 - INFO -   Node 30: POSIX_SIZE_READ_1K_10K (0.309)
+2025-08-13 21:46:17,639 - INFO -   Node 46: POSIX_MEM_ALIGNMENT (0.297)
+2025-08-13 21:46:17,639 - INFO -   Node 46: POSIX_BYTES_READ (0.296)
+2025-08-13 21:46:17,639 - INFO -   Node 46: POSIX_ACCESS1_ACCESS (0.295)
+2025-08-13 21:46:17,639 - INFO - 
+GOOD Performers:
+2025-08-13 21:46:17,639 - INFO -   Node 15: POSIX_ACCESS3_COUNT (0.131)
+2025-08-13 21:46:17,639 - INFO -   Node 15: POSIX_ACCESS2_COUNT (0.124)
+2025-08-13 21:46:17,639 - INFO -   Node 15: POSIX_BYTES_WRITTEN (0.099)
+2025-08-13 21:46:17,639 - INFO -   Node 19: LUSTRE_STRIPE_SIZE (0.307)
+2025-08-13 21:46:17,639 - INFO -   Node 19: POSIX_ACCESS1_ACCESS (0.274)
+2025-08-13 21:46:17,639 - INFO -   Node 19: POSIX_MEM_ALIGNMENT (0.263)
+2025-08-13 21:46:17,639 - INFO -   Node 43: POSIX_BYTES_READ (0.347)
+2025-08-13 21:46:17,639 - INFO -   Node 43: LUSTRE_STRIPE_SIZE (0.306)
+2025-08-13 21:46:17,639 - INFO -   Node 43: POSIX_ACCESS1_ACCESS (0.291)
+2025-08-13 21:46:17,639 - INFO -   Node 56: LUSTRE_STRIPE_SIZE (0.302)
+2025-08-13 21:46:17,639 - INFO -   Node 56: POSIX_STRIDE2_STRIDE (0.287)
+2025-08-13 21:46:17,639 - INFO -   Node 56: POSIX_STRIDE3_COUNT (0.282)
+2025-08-13 21:46:17,639 - INFO -   Node 86: POSIX_FILE_NOT_ALIGNED (0.317)
+2025-08-13 21:46:17,639 - INFO -   Node 86: LUSTRE_STRIPE_SIZE (0.306)
+2025-08-13 21:46:17,639 - INFO -   Node 86: POSIX_SEQ_READS (0.302)
+2025-08-13 21:46:17,639 - INFO - 
+============================================================
+2025-08-13 21:46:17,639 - INFO - COMMON PATTERNS
+2025-08-13 21:46:17,639 - INFO - ============================================================
+2025-08-13 21:46:17,639 - INFO -   POSIX_SIZE_READ_0_100: Appears in 2 nodes (avg score: 0.301)
+2025-08-13 21:46:17,639 - INFO -   POSIX_OPENS: Appears in 1 nodes (avg score: 0.303)
+2025-08-13 21:46:17,639 - INFO -   POSIX_FILE_NOT_ALIGNED: Appears in 3 nodes (avg score: 0.270)
+2025-08-13 21:46:17,639 - INFO -   POSIX_BYTES_READ: Appears in 5 nodes (avg score: 0.304)
+2025-08-13 21:46:17,639 - INFO -   POSIX_BYTES_WRITTEN: Appears in 6 nodes (avg score: 0.279)
+2025-08-13 21:46:17,639 - INFO -   POSIX_SIZE_WRITE_100_1K: Appears in 1 nodes (avg score: 0.081)
+2025-08-13 21:46:17,639 - INFO -   POSIX_MEM_ALIGNMENT: Appears in 4 nodes (avg score: 0.271)
+2025-08-13 21:46:17,639 - INFO -   POSIX_SIZE_READ_1K_10K: Appears in 2 nodes (avg score: 0.255)
+2025-08-13 21:46:17,639 - INFO -   POSIX_ACCESS2_ACCESS: Appears in 1 nodes (avg score: 0.257)
+2025-08-13 21:46:17,639 - INFO -   POSIX_WRITES: Appears in 1 nodes (avg score: 0.214)
+2025-08-13 21:46:17,639 - INFO -   POSIX_STATS: Appears in 2 nodes (avg score: 0.317)
+2025-08-13 21:46:17,639 - INFO -   POSIX_SEEKS: Appears in 1 nodes (avg score: 0.295)
+2025-08-13 21:46:17,640 - INFO - 
+Test complete!
