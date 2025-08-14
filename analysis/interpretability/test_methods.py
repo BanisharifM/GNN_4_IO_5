@@ -26,6 +26,7 @@ from src.interpretability.attention_analyzer import AttentionAnalyzer
 from src.interpretability.gnn_explainer import IOGNNExplainer
 from src.interpretability.gradient_methods import GradientAnalyzer, BottleneckIdentifier
 from torch_geometric.utils import k_hop_subgraph
+from src.utils.visualization import visualize_node_results
 
 # Setup logging
 logging.basicConfig(
@@ -502,6 +503,43 @@ class InterpretabilityTester:
         
         return results
     
+    def visualize_node(self, node_idx: int, output_dir: str = './figures'):
+        """
+        Analyze and visualize a single node
+        
+        Args:
+            node_idx: Node index to analyze
+            output_dir: Directory to save figures
+        """
+        # Analyze the node
+        results = self.analyze_node(node_idx)
+        
+        # Generate visualizations
+        visualize_node_results(results, output_dir)
+        
+        return results
+
+    def visualize_specific_nodes(self, node_indices: List[int], output_dir: str = './figures'):
+        """
+        Analyze and visualize multiple specific nodes
+        
+        Args:
+            node_indices: List of node indices to analyze
+            output_dir: Directory to save figures
+        """
+        import os
+        os.makedirs(output_dir, exist_ok=True)
+        
+        all_results = []
+        for node_idx in node_indices:
+            logger.info(f"Visualizing node {node_idx}...")
+            try:
+                results = self.visualize_node(node_idx, output_dir)
+                all_results.append(results)
+            except Exception as e:
+                logger.error(f"Failed to visualize node {node_idx}: {e}")
+        
+        return all_results
     def find_consensus(self, methods_results: Dict, min_methods: int = 2) -> List[Tuple[str, float, List[str]]]:
         """Find features that multiple methods agree on"""
         from collections import defaultdict
@@ -647,6 +685,13 @@ def main():
                        help='Specific node indices to analyze')
     parser.add_argument('--no-save', action='store_true',
                        help='Do not save results')
+            
+    parser.add_argument('--visualize-node', type=int,
+                       help='Specific node to analyze and visualize')
+    parser.add_argument('--visualize-nodes', type=int, nargs='+',
+                       help='Multiple nodes to analyze and visualize')
+    parser.add_argument('--output-dir', type=str, default='./figures',
+                       help='Directory to save visualization figures')
     
     args = parser.parse_args()
     
@@ -670,13 +715,33 @@ def main():
     )
     
     # Run analysis
-    results = tester.run_analysis(
-        save_results=not args.no_save,
-        specific_nodes=args.specific_nodes
-    )
+    # Handle visualization requests
+    if args.visualize_node:
+        # Single node visualization
+        logger.info(f"Visualizing single node {args.visualize_node}")
+        results = tester.visualize_node(
+            node_idx=args.visualize_node,
+            output_dir=args.output_dir
+        )
+        logger.info(f"Visualization saved to {args.output_dir}")
+    
+    elif args.visualize_nodes:
+        # Multiple nodes visualization
+        logger.info(f"Visualizing {len(args.visualize_nodes)} nodes")
+        results = tester.visualize_specific_nodes(
+            node_indices=args.visualize_nodes,
+            output_dir=args.output_dir
+        )
+        logger.info(f"All visualizations saved to {args.output_dir}")
+    
+    else:
+        # Regular analysis (existing code)
+        results = tester.run_analysis(
+            save_results=not args.no_save,
+            specific_nodes=args.specific_nodes
+        )
     
     logger.info("\nTest complete!")
-
 
 if __name__ == "__main__":
     main()

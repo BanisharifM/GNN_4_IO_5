@@ -1,0 +1,11 @@
+usage: test_methods.py [-h] --checkpoint CHECKPOINT --config CONFIG
+                       --similarity-pt SIMILARITY_PT --similarity-npz
+                       SIMILARITY_NPZ --features-csv FEATURES_CSV
+                       [--device DEVICE] [--max-subgraph MAX_SUBGRAPH]
+                       [--splits-path SPLITS_PATH]
+                       [--specific-nodes SPECIFIC_NODES [SPECIFIC_NODES ...]]
+                       [--no-save] [--visualize-node VISUALIZE_NODE]
+                       [--visualize-nodes VISUALIZE_NODES [VISUALIZE_NODES ...]]
+                       [--output-dir OUTPUT_DIR]
+test_methods.py: error: unrecognized arguments: 38 30 229 56 86 19
+srun: error: gpua030: task 0: Exited with exit code 2
