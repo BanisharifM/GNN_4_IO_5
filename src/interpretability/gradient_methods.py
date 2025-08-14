@@ -80,23 +80,19 @@ class GradientAnalyzer:
         # Get gradients for target node
         gradients = x.grad[node_idx].abs().cpu().numpy()
         
+        if gradients.ndim > 1:
+            gradients = gradients.flatten()
+
         # Normalize
         gradients = gradients / (np.sum(gradients) + 1e-10)
         
         # Create importance dictionary
-        # importance = {
-        #     self.feature_names[i]: float(gradients[i])
-        #     for i in range(min(len(gradients), len(self.feature_names)))
-        # }
-
-        # Create importance dictionary - ensure scalar conversion
-        importance = {
-            self.feature_names[i]: float(importance_scores[i].item() if hasattr(importance_scores[i], 'item') else importance_scores[i])
-            for i in range(min(len(importance_scores), len(self.feature_names)))
-        }
+        importance = {}
+        for i in range(min(len(gradients), len(self.feature_names))):
+            importance[self.feature_names[i]] = float(gradients[i].item() if hasattr(gradients[i], 'item') else gradients[i])
         
         return importance
-    
+
     def integrated_gradients(
         self,
         data,
@@ -158,14 +154,16 @@ class GradientAnalyzer:
         
         # Take absolute value and normalize
         importance_scores = integrated_grads.abs().cpu().numpy()
+
+        if importance_scores.ndim > 1:
+            importance_scores = importance_scores.flatten()
+
         importance_scores = importance_scores / (np.sum(importance_scores) + 1e-10)
         
         # Create importance dictionary
-        # Create importance dictionary - ensure scalar conversion
-        importance = {
-            self.feature_names[i]: float(importance_scores[i].item() if hasattr(importance_scores[i], 'item') else importance_scores[i])
-            for i in range(min(len(importance_scores), len(self.feature_names)))
-        }
+        importance = {}
+        for i in range(min(len(importance_scores), len(self.feature_names))):
+            importance[self.feature_names[i]] = float(importance_scores[i].item() if hasattr(importance_scores[i], 'item') else importance_scores[i])
         
         return importance
     
@@ -224,19 +222,16 @@ class GradientAnalyzer:
         
         # Normalize
         importance_scores = avg_grads.cpu().numpy()
+
+        if importance_scores.ndim > 1:
+            importance_scores = importance_scores.flatten()
+
         importance_scores = importance_scores / (np.sum(importance_scores) + 1e-10)
         
         # Create importance dictionary
-        # importance = {
-        #     self.feature_names[i]: float(importance_scores[i])
-        #     for i in range(min(len(importance_scores), len(self.feature_names)))
-        # }
-
-        # Create importance dictionary - ensure scalar conversion
-        importance = {
-            self.feature_names[i]: float(importance_scores[i].item() if hasattr(importance_scores[i], 'item') else importance_scores[i])
-            for i in range(min(len(importance_scores), len(self.feature_names)))
-        }
+        importance = {}
+        for i in range(min(len(importance_scores), len(self.feature_names))):
+            importance[self.feature_names[i]] = float(importance_scores[i].item() if hasattr(importance_scores[i], 'item') else importance_scores[i])
 
         return importance
     
