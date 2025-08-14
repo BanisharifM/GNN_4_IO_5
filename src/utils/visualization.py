@@ -588,41 +588,44 @@ def integrate_with_test_methods():
 
 
 if __name__ == "__main__":
-    # Example usage with mock data
-    example_results = {
-        'node_idx': 25,
-        'performance': 0.3631,
-        'methods': {
-            'attention': {
-                'POSIX_MEM_NOT_ALIGNED': 0.2950,
-                'POSIX_ACCESS4_COUNT': 0.2833,
-                'POSIX_SIZE_READ_1K_10K': 0.1536,
-                'POSIX_BYTES_READ': 0.1430,
-                'POSIX_SIZE_READ_100_1K': 0.0428
-            },
-            'gnn_explainer': {
-                'POSIX_SIZE_READ_0_100': 0.5871,
-                'POSIX_ACCESS2_COUNT': 0.5588,
-                'POSIX_FILE_NOT_ALIGNED': 0.5547,
-                'POSIX_OPENS': 0.5536,
-                'POSIX_SEQ_READS': 0.5437
-            },
-            'gradients': {
-                'nprocs': 0.0129,
-                'POSIX_OPENS': 0.0515,
-                'LUSTRE_STRIPE_SIZE': 0.0733,
-                'LUSTRE_STRIPE_WIDTH': 0.0065,
-                'POSIX_FILENOS': 0.0000
-            }
-        },
-        'consensus': [
-            ('POSIX_SIZE_READ_0_100', 0.3074, ['gnn_explainer', 'gradients']),
-            ('POSIX_OPENS', 0.3026, ['gnn_explainer', 'gradients']),
-            ('POSIX_FILE_NOT_ALIGNED', 0.2995, ['gnn_explainer', 'gradients']),
-            ('POSIX_MEM_NOT_ALIGNED', 0.2795, ['attention', 'gnn_explainer', 'gradients']),
-            ('nprocs', 0.2670, ['gnn_explainer', 'gradients'])
-        ]
-    }
-    
+
     # Generate visualizations
     visualize_node_results(example_results)
+
+
+
+    # Example usage with mock data
+    # example_results = {
+    #     'node_idx': 25,
+    #     'performance': 0.3631,
+    #     'methods': {
+    #         'attention': {
+    #             'POSIX_MEM_NOT_ALIGNED': 0.2950,
+    #             'POSIX_ACCESS4_COUNT': 0.2833,
+    #             'POSIX_SIZE_READ_1K_10K': 0.1536,
+    #             'POSIX_BYTES_READ': 0.1430,
+    #             'POSIX_SIZE_READ_100_1K': 0.0428
+    #         },
+    #         'gnn_explainer': {
+    #             'POSIX_SIZE_READ_0_100': 0.5871,
+    #             'POSIX_ACCESS2_COUNT': 0.5588,
+    #             'POSIX_FILE_NOT_ALIGNED': 0.5547,
+    #             'POSIX_OPENS': 0.5536,
+    #             'POSIX_SEQ_READS': 0.5437
+    #         },
+    #         'gradients': {
+    #             'nprocs': 0.0129,
+    #             'POSIX_OPENS': 0.0515,
+    #             'LUSTRE_STRIPE_SIZE': 0.0733,
+    #             'LUSTRE_STRIPE_WIDTH': 0.0065,
+    #             'POSIX_FILENOS': 0.0000
+    #         }
+    #     },
+    #     'consensus': [
+    #         ('POSIX_SIZE_READ_0_100', 0.3074, ['gnn_explainer', 'gradients']),
+    #         ('POSIX_OPENS', 0.3026, ['gnn_explainer', 'gradients']),
+    #         ('POSIX_FILE_NOT_ALIGNED', 0.2995, ['gnn_explainer', 'gradients']),
+    #         ('POSIX_MEM_NOT_ALIGNED', 0.2795, ['attention', 'gnn_explainer', 'gradients']),
+    #         ('nprocs', 0.2670, ['gnn_explainer', 'gradients'])
+    #     ]
+    # }
