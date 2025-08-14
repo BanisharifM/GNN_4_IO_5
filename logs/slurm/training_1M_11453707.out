@@ -1,0 +1,73 @@
+2025-08-14 01:58:02,126 - INFO - ================================================================================
+2025-08-14 01:58:02,126 - INFO - GAT TRAINING FOR I/O PERFORMANCE PREDICTION
+2025-08-14 01:58:02,126 - INFO - ================================================================================
+2025-08-14 01:58:02,132 - INFO - Random seed: 7
+2025-08-14 01:58:02,132 - INFO - Using device: cuda
+2025-08-14 01:58:02,145 - INFO - Configuration saved to experiments/gat_exp_20250814_015745/config.yaml
+2025-08-14 01:58:02,145 - INFO - 
+========================================
+2025-08-14 01:58:02,145 - INFO - LOADING DATASET
+2025-08-14 01:58:02,145 - INFO - ========================================
+2025-08-14 01:58:04,018 - INFO - Dataset loaded: 1,000,000 nodes, 50,000,000 edges
+2025-08-14 01:58:04,018 - INFO - Features: torch.Size([1000000, 45]), Targets: torch.Size([1000000, 1])
+2025-08-14 01:58:04,730 - INFO - Data splits - Train: 600,000, Val: 200,000, Test: 200,000
+2025-08-14 01:58:04,739 - INFO - 
+========================================
+2025-08-14 01:58:04,739 - INFO - SETTING UP DATA LOADER
+2025-08-14 01:58:04,739 - INFO - ========================================
+2025-08-14 01:58:04,739 - INFO - Using mini-batch data loading
+2025-08-14 01:58:09,405 - INFO - Train loader: 600,000 nodes, 293 batches
+2025-08-14 01:58:14,024 - INFO - Val loader: 200,000 nodes, 49 batches
+2025-08-14 01:58:18,573 - INFO - Test loader: 200,000 nodes, 49 batches
+2025-08-14 01:58:18,855 - INFO - Memory stats: {'gpu_allocated': 0.0, 'gpu_reserved': 0.0, 'gpu_total': 40.96, 'gpu_free': 39.903, 'gpu_used': 0.425, 'ram_available': 237.798629376, 'ram_used': 12.730478592, 'ram_total': 270.17486336}
+2025-08-14 01:58:18,855 - INFO - Memory stats: {'gpu_allocated': 0.0, 'gpu_reserved': 0.0, 'gpu_total': 40.96, 'gpu_free': 39.903, 'gpu_used': 0.425, 'ram_available': 237.798629376, 'ram_used': 12.730478592, 'ram_total': 270.17486336}
+2025-08-14 01:58:18,855 - INFO - 
+========================================
+2025-08-14 01:58:18,855 - INFO - CREATING MODEL
+2025-08-14 01:58:18,855 - INFO - ========================================
+2025-08-14 01:58:18,991 - INFO - Model: IOPerformanceGAT
+2025-08-14 01:58:18,992 - INFO - Total parameters: 6,435,841
+2025-08-14 01:58:18,992 - INFO - Trainable parameters: 6,435,841
+2025-08-14 01:58:18,992 - INFO - 
+========================================
+2025-08-14 01:58:18,992 - INFO - SETTING UP TRAINER
+2025-08-14 01:58:18,992 - INFO - ========================================
+2025-08-14 01:58:19,028 - INFO - 
+========================================
+2025-08-14 01:58:19,028 - INFO - STARTING TRAINING
+2025-08-14 01:58:19,028 - INFO - ========================================
+2025-08-14 01:58:19,028 - INFO - Training for 200 epochs
+2025-08-14 01:58:19,028 - INFO - Early stopping patience: 30
+2025-08-14 01:58:19,028 - INFO - AIIO Best Baseline: 0.186
+2025-08-14 01:58:19,028 - INFO - AIIO LightGBM: 0.2632
+2025-08-14 01:58:19,028 - INFO - Starting training for 200 epochs on cuda
+2025-08-14 01:58:19,028 - INFO - AIIO baselines - Best: 0.186, LightGBM: 0.2632
+Training:   0%|          | 0/293 [00:00<?, ?it/s]Training:   0%|          | 0/293 [00:02<?, ?it/s]
+2025-08-14 01:58:21,568 - ERROR - Training failed: CUDA out of memory. Tried to allocate 5.22 GiB (GPU 0; 39.38 GiB total capacity; 31.63 GiB already allocated; 5.21 GiB free; 33.67 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/train_gat.py", line 512, in <module>
+    final_rmse = main(args)
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/train_gat.py", line 318, in main
+    history = trainer.train(
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/src/training/trainer.py", line 349, in train
+    train_metrics = self.train_epoch_mini_batch(train_data['train'])
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/src/training/trainer.py", line 216, in train_epoch_mini_batch
+    out = self.model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/src/models/gat.py", line 282, in forward
+    x, att = self.gat_layers[i](
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/src/models/gat.py", line 77, in forward
+    out, attention = self.gat_conv(
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/torch_geometric/nn/conv/gat_conv.py", line 366, in forward
+    out = self.propagate(edge_index, x=x, alpha=alpha, size=size)
+  File "/tmp/torch_geometric.nn.conv.gat_conv_GATConv_propagate_voqugky1.py", line 176, in propagate
+    out = self.message(
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/torch_geometric/nn/conv/gat_conv.py", line 414, in message
+    return alpha.unsqueeze(-1) * x_j
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 5.22 GiB (GPU 0; 39.38 GiB total capacity; 31.63 GiB already allocated; 5.21 GiB free; 33.67 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+Training complete! Results saved to ./experiments/gat_exp_20250814_015745

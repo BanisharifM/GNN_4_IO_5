@@ -1,0 +1,69 @@
+aiio_baselines:
+  Average_Method: 0.2405
+  CatBoost: 0.2686
+  Closest_Method: 0.186
+  LightGBM: 0.2632
+  MLP: 0.5416
+  TabNet: 0.3078
+  XGBoost: 0.5634
+data:
+  features_csv_path: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/100K/aiio_sample_100000_normalized.csv
+  root: ./data/processed
+  similarity_npz_path: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/100K/similarity_output_0.75/similarity_graph_20250812_002240.npz
+  similarity_pt_path: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/100K/similarity_output_0.75/similarity_graph_20250812_002240.pt
+  stratify: true
+  test_ratio: 0.2
+  train_ratio: 0.6
+  val_ratio: 0.2
+experiment:
+  project_name: io_performance_gnn
+  run_name: gat_100k_20250814_013555
+  save_dir: ./experiments/gat_exp_20250814_013555
+  seed: 123
+  use_wandb: false
+interpretability:
+  max_subgraph_size: 500
+  methods:
+    attention: true
+    gnn_explainer: true
+    gradients: true
+  min_consensus_methods: 2
+  n_per_category: 5
+  num_hops: 2
+  output_dir: ./analysis/results
+  percentiles:
+  - 0.25
+  - 0.75
+  top_k_consensus: 5
+  top_k_features: 5
+model:
+  dropout: 0.2
+  dtype: float32
+  edge_dim: 1
+  feature_augmentation: true
+  heads:
+  - 10
+  - 6
+  - 1
+  hidden_channels: 384
+  layer_norm: true
+  num_layers: 3
+  pool_type: max
+  residual: true
+  type: standard
+training:
+  accumulation_steps: 2
+  batch_size: 1536
+  dtype: float32
+  early_stopping_patience: 45
+  epochs: 350
+  gradient_clip: 1.5
+  learning_rate: 0.0008
+  mixed_precision: false
+  num_neighbors:
+  - 20
+  - 12
+  optimizer: adamw
+  scheduler: cosine
+  scheduler_warmup: 20
+  weight_decay: 8.0e-05

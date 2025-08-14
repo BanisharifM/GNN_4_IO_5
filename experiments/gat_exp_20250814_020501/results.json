@@ -1,0 +1,73 @@
+{
+  "test_metrics": {
+    "rmse": 1.6877374720631504,
+    "mae": 1.4011686350422232,
+    "r2": -1.967974066622819
+  },
+  "comparison_with_aiio": {
+    "XGBoost": {
+      "aiio_rmse": 0.5634,
+      "our_rmse": 1.6877374720631504,
+      "improvement_percent": -199.5629165891286,
+      "is_better": false
+    },
+    "LightGBM": {
+      "aiio_rmse": 0.2632,
+      "our_rmse": 1.6877374720631504,
+      "improvement_percent": -541.2376413613794,
+      "is_better": false
+    },
+    "CatBoost": {
+      "aiio_rmse": 0.2686,
+      "our_rmse": 1.6877374720631504,
+      "improvement_percent": -528.346043210406,
+      "is_better": false
+    },
+    "MLP": {
+      "aiio_rmse": 0.5416,
+      "our_rmse": 1.6877374720631504,
+      "improvement_percent": -211.62065584622422,
+      "is_better": false
+    },
+    "TabNet": {
+      "aiio_rmse": 0.3078,
+      "our_rmse": 1.6877374720631504,
+      "improvement_percent": -448.32276545261544,
+      "is_better": false
+    },
+    "Closest_Method": {
+      "aiio_rmse": 0.186,
+      "our_rmse": 1.6877374720631504,
+      "improvement_percent": -807.3857376683605,
+      "is_better": false
+    },
+    "Average_Method": {
+      "aiio_rmse": 0.2405,
+      "our_rmse": 1.6877374720631504,
+      "improvement_percent": -601.7619426458007,
+      "is_better": false
+    }
+  },
+  "best_val_rmse": 1.690017861627413,
+  "best_epoch": 0,
+  "training_history": {
+    "train_loss": [
+      6.94766211745356
+    ],
+    "train_rmse": [
+      6.94766211745356
+    ],
+    "train_mae": [
+      6.064833756417589
+    ],
+    "val_rmse": [
+      1.690017861627413
+    ],
+    "val_mae": [
+      1.4032441090466088
+    ],
+    "val_r2": [
+      -1.9594767803037911
+    ]
+  }
+}

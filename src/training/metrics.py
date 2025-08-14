@@ -278,9 +278,16 @@ class MetricTracker:
         ax.legend()
         ax.grid(True, alpha=0.3)
         
-        # Learning rate plot (if available)
+        # Loss plot
         ax = axes[1, 1]
-        if 'lr' in self.metrics:
+        if 'train_loss' in self.metrics:
+            ax.plot(epochs, self.metrics['train_loss'], label='Train Loss', linewidth=2, color='orange')
+            ax.set_xlabel('Epoch')
+            ax.set_ylabel('Loss')
+            ax.set_title('Training Loss')
+            ax.legend()
+            ax.grid(True, alpha=0.3)
+        elif 'lr' in self.metrics:
             ax.plot(epochs, self.metrics['lr'], label='Learning Rate', linewidth=2, color='orange')
             ax.set_xlabel('Epoch')
             ax.set_ylabel('Learning Rate')

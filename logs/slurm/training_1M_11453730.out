@@ -1,0 +1,98 @@
+2025-08-14 02:05:08,136 - INFO - ================================================================================
+2025-08-14 02:05:08,136 - INFO - GAT TRAINING FOR I/O PERFORMANCE PREDICTION
+2025-08-14 02:05:08,136 - INFO - ================================================================================
+2025-08-14 02:05:08,139 - INFO - Random seed: 42
+2025-08-14 02:05:08,139 - INFO - Using device: cuda
+2025-08-14 02:05:08,144 - INFO - Configuration saved to experiments/gat_exp_20250814_020501/config.yaml
+2025-08-14 02:05:08,144 - INFO - 
+========================================
+2025-08-14 02:05:08,144 - INFO - LOADING DATASET
+2025-08-14 02:05:08,144 - INFO - ========================================
+2025-08-14 02:05:08,923 - INFO - Dataset loaded: 100,000 nodes, 5,000,000 edges
+2025-08-14 02:05:08,923 - INFO - Features: torch.Size([100000, 45]), Targets: torch.Size([100000, 1])
+2025-08-14 02:05:09,161 - INFO - Data splits - Train: 60,000, Val: 20,000, Test: 20,000
+2025-08-14 02:05:09,162 - INFO - 
+========================================
+2025-08-14 02:05:09,162 - INFO - SETTING UP DATA LOADER
+2025-08-14 02:05:09,162 - INFO - ========================================
+2025-08-14 02:05:09,162 - INFO - Using mini-batch data loading
+2025-08-14 02:05:09,596 - INFO - Train loader: 60,000 nodes, 59 batches
+2025-08-14 02:05:10,024 - INFO - Val loader: 20,000 nodes, 10 batches
+2025-08-14 02:05:10,407 - INFO - Test loader: 20,000 nodes, 10 batches
+2025-08-14 02:05:10,661 - INFO - Memory stats: {'gpu_allocated': 0.0, 'gpu_reserved': 0.0, 'gpu_total': 143.771, 'gpu_free': 142.547, 'gpu_used': 0.526, 'ram_available': 2115.237789696, 'ram_used': 18.24434176, 'ram_total': 2164.173811712}
+2025-08-14 02:05:10,662 - INFO - Memory stats: {'gpu_allocated': 0.0, 'gpu_reserved': 0.0, 'gpu_total': 143.771, 'gpu_free': 142.547, 'gpu_used': 0.526, 'ram_available': 2115.237789696, 'ram_used': 18.24434176, 'ram_total': 2164.173811712}
+2025-08-14 02:05:10,662 - INFO - 
+========================================
+2025-08-14 02:05:10,662 - INFO - CREATING MODEL
+2025-08-14 02:05:10,662 - INFO - ========================================
+2025-08-14 02:05:10,760 - INFO - Model: IOPerformanceGAT
+2025-08-14 02:05:10,760 - INFO - Total parameters: 5,904,385
+2025-08-14 02:05:10,760 - INFO - Trainable parameters: 5,904,385
+2025-08-14 02:05:10,760 - INFO - 
+========================================
+2025-08-14 02:05:10,760 - INFO - SETTING UP TRAINER
+2025-08-14 02:05:10,760 - INFO - ========================================
+2025-08-14 02:05:10,778 - INFO - 
+========================================
+2025-08-14 02:05:10,779 - INFO - STARTING TRAINING
+2025-08-14 02:05:10,779 - INFO - ========================================
+2025-08-14 02:05:10,779 - INFO - Training for 1 epochs
+2025-08-14 02:05:10,779 - INFO - Early stopping patience: 40
+2025-08-14 02:05:10,779 - INFO - AIIO Best Baseline: 0.186
+2025-08-14 02:05:10,779 - INFO - AIIO LightGBM: 0.2632
+2025-08-14 02:05:10,779 - INFO - Starting training for 1 epochs on cuda
+2025-08-14 02:05:10,779 - INFO - AIIO baselines - Best: 0.186, LightGBM: 0.2632
+Training:   0%|          | 0/59 [00:00<?, ?it/s]Training:   2%|▏         | 1/59 [00:00<00:44,  1.30it/s]Training:   3%|▎         | 2/59 [00:00<00:22,  2.57it/s]Training:   7%|▋         | 4/59 [00:01<00:11,  4.96it/s]Training:  10%|█         | 6/59 [00:01<00:07,  6.71it/s]Training:  14%|█▎        | 8/59 [00:01<00:06,  7.98it/s]Training:  17%|█▋        | 10/59 [00:01<00:05,  8.89it/s]Training:  20%|██        | 12/59 [00:01<00:04,  9.52it/s]Training:  24%|██▎       | 14/59 [00:01<00:04,  9.91it/s]Training:  27%|██▋       | 16/59 [00:02<00:04,  9.87it/s]Training:  31%|███       | 18/59 [00:02<00:04, 10.15it/s]Training:  34%|███▍      | 20/59 [00:02<00:03, 10.36it/s]Training:  37%|███▋      | 22/59 [00:02<00:03, 10.54it/s]Training:  41%|████      | 24/59 [00:02<00:03, 10.64it/s]Training:  44%|████▍     | 26/59 [00:03<00:03, 10.69it/s]Training:  47%|████▋     | 28/59 [00:03<00:02, 10.81it/s]Training:  51%|█████     | 30/59 [00:03<00:02, 10.91it/s]Training:  54%|█████▍    | 32/59 [00:03<00:02, 10.93it/s]Training:  58%|█████▊    | 34/59 [00:03<00:02, 10.98it/s]Training:  61%|██████    | 36/59 [00:04<00:02, 10.99it/s]Training:  64%|██████▍   | 38/59 [00:04<00:01, 11.00it/s]Training:  68%|██████▊   | 40/59 [00:04<00:01, 11.00it/s]Training:  71%|███████   | 42/59 [00:04<00:01, 11.00it/s]Training:  75%|███████▍  | 44/59 [00:04<00:01, 10.98it/s]Training:  78%|███████▊  | 46/59 [00:04<00:01, 11.00it/s]Training:  81%|████████▏ | 48/59 [00:05<00:00, 11.04it/s]Training:  85%|████████▍ | 50/59 [00:05<00:00, 11.07it/s]Training:  88%|████████▊ | 52/59 [00:05<00:00, 10.93it/s]Training:  92%|█████████▏| 54/59 [00:05<00:00, 11.01it/s]Training:  95%|█████████▍| 56/59 [00:05<00:00, 11.09it/s]Training:  98%|█████████▊| 58/59 [00:05<00:00, 11.12it/s]Training: 100%|██████████| 59/59 [00:06<00:00,  9.69it/s]
+Evaluating:   0%|          | 0/10 [00:00<?, ?it/s]Evaluating:  10%|█         | 1/10 [00:00<00:03,  2.69it/s]Evaluating:  30%|███       | 3/10 [00:00<00:00,  7.49it/s]Evaluating:  50%|█████     | 5/10 [00:00<00:00, 10.47it/s]Evaluating:  80%|████████  | 8/10 [00:00<00:00, 14.05it/s]Evaluating: 100%|██████████| 10/10 [00:00<00:00, 15.41it/s]Evaluating: 100%|██████████| 10/10 [00:00<00:00, 11.50it/s]
+2025-08-14 02:05:17,936 - INFO - Saved checkpoint: experiments/gat_exp_20250814_020501/checkpoints/best_model.pt
+2025-08-14 02:05:17,936 - INFO - Epoch   0 | Train RMSE: 6.9477 | Val RMSE: 1.6900 | Best: 1.6900 | vs AIIO: -808.6% | Time: 7.2s
+2025-08-14 02:05:17,991 - INFO - Loaded checkpoint from epoch 0 with val RMSE 1.6900
+Evaluating:   0%|          | 0/10 [00:00<?, ?it/s]Evaluating:  10%|█         | 1/10 [00:00<00:02,  3.03it/s]Evaluating:  40%|████      | 4/10 [00:00<00:00,  9.76it/s]Evaluating:  60%|██████    | 6/10 [00:00<00:00, 11.42it/s]Evaluating:  90%|█████████ | 9/10 [00:00<00:00, 14.14it/s]Evaluating: 100%|██████████| 10/10 [00:00<00:00, 11.86it/s]
+2025-08-14 02:05:18,836 - INFO - 
+Final Test Results:
+2025-08-14 02:05:18,836 - INFO -   RMSE: 1.6879
+2025-08-14 02:05:18,836 - INFO -   MAE: 1.4012
+2025-08-14 02:05:18,836 - INFO -   R²: -1.9691
+2025-08-14 02:05:18,836 - INFO - 
+Comparison with AIIO:
+2025-08-14 02:05:18,836 - INFO -   vs XGBoost: -199.6% (AIIO: 0.5634, Ours: 1.6879)
+2025-08-14 02:05:18,836 - INFO -   vs LightGBM: -541.3% (AIIO: 0.2632, Ours: 1.6879)
+2025-08-14 02:05:18,836 - INFO -   vs CatBoost: -528.4% (AIIO: 0.2686, Ours: 1.6879)
+2025-08-14 02:05:18,836 - INFO -   vs MLP: -211.6% (AIIO: 0.5416, Ours: 1.6879)
+2025-08-14 02:05:18,836 - INFO -   vs TabNet: -448.4% (AIIO: 0.3078, Ours: 1.6879)
+2025-08-14 02:05:18,836 - INFO -   vs Best: -807.5% (AIIO: 0.1860, Ours: 1.6879)
+2025-08-14 02:05:18,836 - INFO - 
+========================================
+2025-08-14 02:05:18,836 - INFO - FINAL EVALUATION
+2025-08-14 02:05:18,836 - INFO - ========================================
+2025-08-14 02:05:18,872 - INFO - Loaded checkpoint from epoch 0 with val RMSE 1.6900
+Evaluating:   0%|          | 0/10 [00:00<?, ?it/s]Evaluating:  10%|█         | 1/10 [00:00<00:03,  2.89it/s]Evaluating:  40%|████      | 4/10 [00:00<00:00,  9.46it/s]Evaluating:  60%|██████    | 6/10 [00:00<00:00, 11.27it/s]Evaluating:  90%|█████████ | 9/10 [00:00<00:00, 14.32it/s]Evaluating: 100%|██████████| 10/10 [00:00<00:00, 11.87it/s]
+2025-08-14 02:05:19,734 - INFO - Results saved to experiments/gat_exp_20250814_020501/results.json
+2025-08-14 02:05:19,734 - INFO - 
+========================================
+2025-08-14 02:05:19,734 - INFO - PLOTTING RESULTS
+2025-08-14 02:05:19,734 - INFO - ========================================
+2025-08-14 02:05:20,298 - INFO - Saved training curves to experiments/gat_exp_20250814_020501/training_curves.png
+2025-08-14 02:05:20,298 - INFO - Training curves saved to experiments/gat_exp_20250814_020501/training_curves.png
+2025-08-14 02:05:20,298 - INFO - 
+================================================================================
+2025-08-14 02:05:20,298 - INFO - TRAINING COMPLETE!
+2025-08-14 02:05:20,298 - INFO - ================================================================================
+2025-08-14 02:05:20,298 - INFO - Best validation RMSE: 1.6900
+2025-08-14 02:05:20,298 - INFO - Test RMSE: 1.6877
+2025-08-14 02:05:20,298 - INFO - Within 807.4% of AIIO's best method
+
+============================================================
+COMPARISON WITH AIIO METHODS
+============================================================
+❌ XGBoost         | AIIO: 0.5634 | Ours: 1.6877 | Improvement: -199.6%
+❌ LightGBM        | AIIO: 0.2632 | Ours: 1.6877 | Improvement: -541.2%
+❌ CatBoost        | AIIO: 0.2686 | Ours: 1.6877 | Improvement: -528.3%
+❌ MLP             | AIIO: 0.5416 | Ours: 1.6877 | Improvement: -211.6%
+❌ TabNet          | AIIO: 0.3078 | Ours: 1.6877 | Improvement: -448.3%
+❌ Closest_Method  | AIIO: 0.1860 | Ours: 1.6877 | Improvement: -807.4%
+❌ Average_Method  | AIIO: 0.2405 | Ours: 1.6877 | Improvement: -601.8%
+============================================================
+
+Summary: Better than 0/7 AIIO methods
+Training complete! Results saved to ./experiments/gat_exp_20250814_020501

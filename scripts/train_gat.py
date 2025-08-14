@@ -432,7 +432,7 @@ def main(args):
         metric_tracker = MetricTracker()
         for epoch in range(len(history.get('train_rmse', []))):
             train_metrics = {k.replace('train_', ''): history[f'train_{k}'][epoch] 
-                           for k in ['rmse', 'mae'] if f'train_{k}' in history}
+                           for k in ['rmse', 'mae', 'loss'] if f'train_{k}' in history}
             val_metrics = {k.replace('val_', ''): history[f'val_{k}'][epoch] 
                           for k in ['rmse', 'mae', 'r2'] if f'val_{k}' in history}
             metric_tracker.update(epoch, train_metrics, val_metrics)
