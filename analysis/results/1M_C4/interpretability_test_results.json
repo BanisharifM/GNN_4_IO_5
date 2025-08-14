@@ -1,0 +1,3723 @@
+{
+  "poor": [
+    {
+      "node_idx": 25,
+      "performance": 0.36309146881103516,
+      "methods": {
+        "attention": {
+          "POSIX_MEM_NOT_ALIGNED": 0.2949686951195779,
+          "POSIX_ACCESS4_COUNT": 0.2833367371933593,
+          "POSIX_SIZE_READ_1K_10K": 0.1536319873521563,
+          "POSIX_BYTES_READ": 0.1430096250947868,
+          "POSIX_SIZE_READ_100_1K": 0.042805313396964736,
+          "POSIX_CONSEC_READS": 0.02053790219206297,
+          "POSIX_SEQ_READS": 0.02053790219206297,
+          "POSIX_READS": 0.014717926860571856,
+          "POSIX_ACCESS2_COUNT": 0.012250958564817884
+        },
+        "gnn_explainer": {
+          "POSIX_SIZE_READ_0_100": 0.5871343612670898,
+          "POSIX_ACCESS2_COUNT": 0.5588011145591736,
+          "POSIX_FILE_NOT_ALIGNED": 0.5547237396240234,
+          "POSIX_OPENS": 0.5536296963691711,
+          "POSIX_SEQ_READS": 0.5436967015266418,
+          "POSIX_MEM_NOT_ALIGNED": 0.5317196249961853,
+          "POSIX_ACCESS4_ACCESS": 0.5238023996353149,
+          "nprocs": 0.5210350751876831,
+          "POSIX_SEEKS": 0.5094994306564331,
+          "POSIX_CONSEC_WRITES": 0.5071553587913513,
+          "POSIX_MEM_ALIGNMENT": 0.501920759677887,
+          "POSIX_ACCESS3_COUNT": 0.5004329085350037
+        },
+        "gradients": {
+          "nprocs": 0.012891074642539024,
+          "POSIX_OPENS": 0.051533740013837814,
+          "LUSTRE_STRIPE_SIZE": 0.07325766235589981,
+          "LUSTRE_STRIPE_WIDTH": 0.00654390687122941,
+          "POSIX_FILENOS": 0.0,
+          "POSIX_MEM_ALIGNMENT": 0.018605677410960197,
+          "POSIX_FILE_ALIGNMENT": 0.04964401200413704,
+          "POSIX_READS": 0.020564531907439232,
+          "POSIX_WRITES": 0.08623387664556503,
+          "POSIX_SEEKS": 0.015794245526194572,
+          "POSIX_STATS": 0.07738368213176727,
+          "POSIX_BYTES_READ": 0.16453535854816437,
+          "POSIX_BYTES_WRITTEN": 0.15351226925849915,
+          "POSIX_CONSEC_READS": 0.009536664001643658,
+          "POSIX_CONSEC_WRITES": 0.016900617629289627,
+          "POSIX_SEQ_READS": 0.013869252055883408,
+          "POSIX_SEQ_WRITES": 0.04345543682575226,
+          "POSIX_RW_SWITCHES": 0.0,
+          "POSIX_MEM_NOT_ALIGNED": 0.01178964227437973,
+          "POSIX_FILE_NOT_ALIGNED": 0.04421655088663101,
+          "POSIX_SIZE_READ_0_100": 0.027711909264326096,
+          "POSIX_SIZE_READ_100_1K": 0.0030470306519418955,
+          "POSIX_SIZE_READ_1K_10K": 0.01707828789949417,
+          "POSIX_SIZE_READ_100K_1M": 0.0,
+          "POSIX_SIZE_WRITE_0_100": 0.020858868956565857,
+          "POSIX_SIZE_WRITE_100_1K": 0.0016360926674678922,
+          "POSIX_SIZE_WRITE_1K_10K": 0.0,
+          "POSIX_SIZE_WRITE_10K_100K": 0.0,
+          "POSIX_SIZE_WRITE_100K_1M": 0.0,
+          "POSIX_STRIDE1_STRIDE": 0.0,
+          "POSIX_STRIDE2_STRIDE": 0.0,
+          "POSIX_STRIDE3_STRIDE": 0.0,
+          "POSIX_STRIDE4_STRIDE": 0.0,
+          "POSIX_STRIDE1_COUNT": 0.0,
+          "POSIX_STRIDE2_COUNT": 0.0,
+          "POSIX_STRIDE3_COUNT": 0.0,
+          "POSIX_STRIDE4_COUNT": 0.0,
+          "POSIX_ACCESS1_ACCESS": 0.0092209717258811,
+          "POSIX_ACCESS2_ACCESS": 0.0012563010677695274,
+          "POSIX_ACCESS3_ACCESS": 0.0040492108091712,
+          "POSIX_ACCESS4_ACCESS": 0.000991710345260799,
+          "POSIX_ACCESS1_COUNT": 0.013446844182908535,
+          "POSIX_ACCESS2_COUNT": 0.000799539324361831,
+          "POSIX_ACCESS3_COUNT": 0.010065914131700993,
+          "POSIX_ACCESS4_COUNT": 0.019569143652915955,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "POSIX_SIZE_READ_0_100",
+          0.30742313526570797,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_OPENS",
+          0.3025817181915045,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILE_NOT_ALIGNED",
+          0.2994701452553272,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_NOT_ALIGNED",
+          0.27949265413004765,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "nprocs",
+          0.26696307491511106,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEEKS",
+          0.26264683809131384,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_ACCESS",
+          0.26239705499028787,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_WRITES",
+          0.2620279882103205,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_ALIGNMENT",
+          0.2602632185444236,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_COUNT",
+          0.2552494113333523,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_READS",
+          0.19270128525819608,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS2_COUNT",
+          0.19061720414945107,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_READ",
+          0.15377249182147557,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_COUNT",
+          0.15145294042313762,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_1K_10K",
+          0.08535513762582524,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_100_1K",
+          0.022926172024453316,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_READS",
+          0.017641229384005544,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_READS",
+          0.015037283096853314,
+          [
+            "attention",
+            "gradients"
+          ]
+        ]
+      ]
+    },
+    {
+      "node_idx": 38,
+      "performance": 0.8760018944740295,
+      "methods": {
+        "attention": {
+          "POSIX_SIZE_WRITE_100_1K": 0.1473118655269342,
+          "POSIX_BYTES_WRITTEN": 0.09151556135755923,
+          "POSIX_CONSEC_WRITES": 0.0910729678169339,
+          "POSIX_SEQ_WRITES": 0.0907999675860378,
+          "POSIX_WRITES": 0.0907691450564351,
+          "POSIX_SIZE_WRITE_0_100": 0.09068654561146693,
+          "POSIX_OPENS": 0.04783778748327013,
+          "POSIX_STATS": 0.04783778748327013,
+          "POSIX_ACCESS4_COUNT": 0.047023734094839204,
+          "POSIX_MEM_NOT_ALIGNED": 0.034571308481058154,
+          "POSIX_ACCESS4_ACCESS": 0.03169260450611917,
+          "POSIX_FILE_NOT_ALIGNED": 0.028863372238346757,
+          "POSIX_SIZE_READ_0_100": 0.023454387466804387,
+          "POSIX_READS": 0.021502775952633182,
+          "POSIX_CONSEC_READS": 0.021120703622639406,
+          "POSIX_SEQ_READS": 0.021120703622639406,
+          "POSIX_SEEKS": 0.0201732920906208,
+          "POSIX_SIZE_READ_1K_10K": 0.018105599280172156,
+          "POSIX_BYTES_READ": 0.01439296190775119
+        },
+        "gnn_explainer": {
+          "POSIX_BYTES_READ": 0.5358795523643494
+        },
+        "gradients": {
+          "nprocs": 0.0015776059590280056,
+          "POSIX_OPENS": 0.061190828680992126,
+          "LUSTRE_STRIPE_SIZE": 0.056097909808158875,
+          "LUSTRE_STRIPE_WIDTH": 0.010103504173457623,
+          "POSIX_FILENOS": 0.0,
+          "POSIX_MEM_ALIGNMENT": 0.019591372460126877,
+          "POSIX_FILE_ALIGNMENT": 0.08658547699451447,
+          "POSIX_READS": 0.0522596575319767,
+          "POSIX_WRITES": 0.04421091079711914,
+          "POSIX_SEEKS": 0.011012508533895016,
+          "POSIX_STATS": 0.0886472538113594,
+          "POSIX_BYTES_READ": 0.1515864133834839,
+          "POSIX_BYTES_WRITTEN": 0.11506439745426178,
+          "POSIX_CONSEC_READS": 0.018783878535032272,
+          "POSIX_CONSEC_WRITES": 0.010793806053698063,
+          "POSIX_SEQ_READS": 0.024179046973586082,
+          "POSIX_SEQ_WRITES": 0.015950709581375122,
+          "POSIX_RW_SWITCHES": 0.0,
+          "POSIX_MEM_NOT_ALIGNED": 0.0029335403814911842,
+          "POSIX_FILE_NOT_ALIGNED": 0.03648962453007698,
+          "POSIX_SIZE_READ_0_100": 0.023483071476221085,
+          "POSIX_SIZE_READ_100_1K": 0.022353949025273323,
+          "POSIX_SIZE_READ_1K_10K": 0.01458460371941328,
+          "POSIX_SIZE_READ_100K_1M": 0.0,
+          "POSIX_SIZE_WRITE_0_100": 0.031132737174630165,
+          "POSIX_SIZE_WRITE_100_1K": 0.014408295042812824,
+          "POSIX_SIZE_WRITE_1K_10K": 0.0,
+          "POSIX_SIZE_WRITE_10K_100K": 0.0,
+          "POSIX_SIZE_WRITE_100K_1M": 0.0,
+          "POSIX_STRIDE1_STRIDE": 0.0,
+          "POSIX_STRIDE2_STRIDE": 0.0,
+          "POSIX_STRIDE3_STRIDE": 0.0,
+          "POSIX_STRIDE4_STRIDE": 0.0,
+          "POSIX_STRIDE1_COUNT": 0.0,
+          "POSIX_STRIDE2_COUNT": 0.0,
+          "POSIX_STRIDE3_COUNT": 0.0,
+          "POSIX_STRIDE4_COUNT": 0.0,
+          "POSIX_ACCESS1_ACCESS": 0.014407518319785595,
+          "POSIX_ACCESS2_ACCESS": 0.003958943299949169,
+          "POSIX_ACCESS3_ACCESS": 0.014141037128865719,
+          "POSIX_ACCESS4_ACCESS": 0.0035451671574264765,
+          "POSIX_ACCESS1_COUNT": 0.022897614166140556,
+          "POSIX_ACCESS2_COUNT": 0.012486875988543034,
+          "POSIX_ACCESS3_COUNT": 0.002458777977153659,
+          "POSIX_ACCESS4_COUNT": 0.013082996010780334,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "POSIX_BYTES_READ",
+          0.2339529758851948,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_WRITTEN",
+          0.1032899794059105,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100_1K",
+          0.08086008028487351,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STATS",
+          0.06824252064731477,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_WRITES",
+          0.06749002792677712,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_0_100",
+          0.060909641393048546,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_OPENS",
+          0.05451430808213113,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_WRITES",
+          0.05337533858370646,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_WRITES",
+          0.05093338693531598,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_READS",
+          0.03688121674230494,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILE_NOT_ALIGNED",
+          0.03267649838421187,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_COUNT",
+          0.03005336505280977,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_0_100",
+          0.023468729471512736,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_READS",
+          0.022649875298112743,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_READS",
+          0.019952291078835838,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_NOT_ALIGNED",
+          0.01875242443127467,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_ACCESS",
+          0.01761888583177282,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_1K_10K",
+          0.01634510149979272,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEEKS",
+          0.015592900312257909,
+          [
+            "attention",
+            "gradients"
+          ]
+        ]
+      ]
+    },
+    {
+      "node_idx": 61,
+      "performance": 0.6282689571380615,
+      "methods": {
+        "attention": {
+          "POSIX_SIZE_WRITE_100_1K": 0.10644124555199429,
+          "POSIX_BYTES_WRITTEN": 0.07329240219335667,
+          "POSIX_SIZE_READ_1K_10K": 0.07162891926784336,
+          "POSIX_SEQ_WRITES": 0.0681749028716109,
+          "POSIX_WRITES": 0.06817088498334124,
+          "POSIX_CONSEC_WRITES": 0.06816666775141644,
+          "POSIX_SIZE_WRITE_0_100": 0.06746053666595661,
+          "POSIX_BYTES_READ": 0.06382295202029023,
+          "POSIX_ACCESS4_COUNT": 0.06062072556685919,
+          "POSIX_ACCESS3_COUNT": 0.05814470062848791,
+          "POSIX_ACCESS2_COUNT": 0.05713773492583705,
+          "POSIX_FILE_NOT_ALIGNED": 0.04581592468323463,
+          "POSIX_MEM_NOT_ALIGNED": 0.025582097502136185,
+          "POSIX_CONSEC_READS": 0.02425562281596807,
+          "POSIX_SEQ_READS": 0.023845997859618884,
+          "POSIX_READS": 0.019977666146085888,
+          "POSIX_OPENS": 0.019557625340968096,
+          "POSIX_ACCESS1_ACCESS": 0.01676429968059911,
+          "POSIX_STATS": 0.016009680143732573,
+          "POSIX_SIZE_READ_0_100": 0.012696303619945698,
+          "POSIX_ACCESS1_COUNT": 0.011216109451323435,
+          "POSIX_SIZE_READ_100_1K": 0.011190190019045579,
+          "POSIX_SEEKS": 0.010026810310347948
+        },
+        "gnn_explainer": {
+          "POSIX_SEEKS": 0.5502915978431702,
+          "POSIX_ACCESS2_COUNT": 0.5336182713508606,
+          "POSIX_SIZE_READ_100_1K": 0.5277945399284363,
+          "POSIX_MEM_NOT_ALIGNED": 0.5220680236816406,
+          "POSIX_BYTES_WRITTEN": 0.5217065215110779,
+          "POSIX_SIZE_READ_1K_10K": 0.5174385905265808,
+          "POSIX_ACCESS1_ACCESS": 0.5111455917358398,
+          "POSIX_READS": 0.5110886693000793,
+          "POSIX_FILE_NOT_ALIGNED": 0.5110638737678528,
+          "POSIX_ACCESS3_COUNT": 0.5012762546539307,
+          "POSIX_MEM_ALIGNMENT": 0.5005263686180115
+        },
+        "gradients": {
+          "nprocs": 0.021603714674711227,
+          "POSIX_OPENS": 0.04896751418709755,
+          "LUSTRE_STRIPE_SIZE": 0.07604414224624634,
+          "LUSTRE_STRIPE_WIDTH": 0.00973115861415863,
+          "POSIX_FILENOS": 0.0,
+          "POSIX_MEM_ALIGNMENT": 0.016037873923778534,
+          "POSIX_FILE_ALIGNMENT": 0.059264227747917175,
+          "POSIX_READS": 0.029453899711370468,
+          "POSIX_WRITES": 0.06445528566837311,
+          "POSIX_SEEKS": 0.025607237592339516,
+          "POSIX_STATS": 0.0758621022105217,
+          "POSIX_BYTES_READ": 0.1666846126317978,
+          "POSIX_BYTES_WRITTEN": 0.12553304433822632,
+          "POSIX_CONSEC_READS": 0.012290683574974537,
+          "POSIX_CONSEC_WRITES": 0.00430666096508503,
+          "POSIX_SEQ_READS": 0.01070439349859953,
+          "POSIX_SEQ_WRITES": 0.03623015806078911,
+          "POSIX_RW_SWITCHES": 0.0,
+          "POSIX_MEM_NOT_ALIGNED": 0.009302543476223946,
+          "POSIX_FILE_NOT_ALIGNED": 0.02784380130469799,
+          "POSIX_SIZE_READ_0_100": 0.025949601083993912,
+          "POSIX_SIZE_READ_100_1K": 0.005164597649127245,
+          "POSIX_SIZE_READ_1K_10K": 0.015200644731521606,
+          "POSIX_SIZE_READ_100K_1M": 0.0,
+          "POSIX_SIZE_WRITE_0_100": 0.021962573751807213,
+          "POSIX_SIZE_WRITE_100_1K": 0.02640180103480816,
+          "POSIX_SIZE_WRITE_1K_10K": 0.0,
+          "POSIX_SIZE_WRITE_10K_100K": 0.0,
+          "POSIX_SIZE_WRITE_100K_1M": 0.0,
+          "POSIX_STRIDE1_STRIDE": 0.0,
+          "POSIX_STRIDE2_STRIDE": 0.0,
+          "POSIX_STRIDE3_STRIDE": 0.0,
+          "POSIX_STRIDE4_STRIDE": 0.0,
+          "POSIX_STRIDE1_COUNT": 0.0,
+          "POSIX_STRIDE2_COUNT": 0.0,
+          "POSIX_STRIDE3_COUNT": 0.0,
+          "POSIX_STRIDE4_COUNT": 0.0,
+          "POSIX_ACCESS1_ACCESS": 0.016390277072787285,
+          "POSIX_ACCESS2_ACCESS": 0.00080737320240587,
+          "POSIX_ACCESS3_ACCESS": 0.0016321961302310228,
+          "POSIX_ACCESS4_ACCESS": 0.00188332365360111,
+          "POSIX_ACCESS1_COUNT": 0.022295359522104263,
+          "POSIX_ACCESS2_COUNT": 0.0039840503595769405,
+          "POSIX_ACCESS3_COUNT": 0.01674695871770382,
+          "POSIX_ACCESS4_COUNT": 0.021658116951584816,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "POSIX_MEM_ALIGNMENT",
+          0.258282121270895,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_WRITTEN",
+          0.24017732268088696,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_1K_10K",
+          0.20142271817531524,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS2_COUNT",
+          0.19824668554542488,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEEKS",
+          0.19530854858195254,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILE_NOT_ALIGNED",
+          0.1949078665852618,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_COUNT",
+          0.19205597133337413,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_READS",
+          0.18684007838584524,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_NOT_ALIGNED",
+          0.18565088822000023,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_ACCESS",
+          0.18143338949640875,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_100_1K",
+          0.18138310919886969,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_READ",
+          0.11525378232604401,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100_1K",
+          0.06642152329340123,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_WRITES",
+          0.06631308532585717,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_WRITES",
+          0.052202530466200006,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STATS",
+          0.04593589117712714,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_0_100",
+          0.04471155520888191,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_COUNT",
+          0.041139421259222,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_WRITES",
+          0.036236664358250736,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_OPENS",
+          0.03426256976403282,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_0_100",
+          0.019322952351969805,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_READS",
+          0.018273153195471303,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_READS",
+          0.017275195679109207,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_COUNT",
+          0.01675573448671385,
+          [
+            "attention",
+            "gradients"
+          ]
+        ]
+      ]
+    },
+    {
+      "node_idx": 62,
+      "performance": 0.8624668121337891,
+      "methods": {
+        "attention": {
+          "POSIX_ACCESS4_COUNT": 0.06835013089148322,
+          "nprocs": 0.05793338065506428,
+          "POSIX_SEEKS": 0.05051849812477566,
+          "POSIX_SIZE_READ_0_100": 0.05046588606736342,
+          "POSIX_ACCESS1_COUNT": 0.05046093848393003,
+          "POSIX_SIZE_READ_100_1K": 0.050297271367156574,
+          "POSIX_READS": 0.04922213448421192,
+          "POSIX_SEQ_READS": 0.04855746304526566,
+          "POSIX_STATS": 0.04854326935384363,
+          "POSIX_CONSEC_READS": 0.048538388586727245,
+          "POSIX_MEM_NOT_ALIGNED": 0.048373273764158904,
+          "POSIX_OPENS": 0.042412866429765245,
+          "POSIX_FILENOS": 0.04212071667726041,
+          "POSIX_SIZE_WRITE_0_100": 0.04099841658518277,
+          "POSIX_BYTES_READ": 0.03404533940527924,
+          "POSIX_SIZE_READ_1K_10K": 0.03160058391412828,
+          "POSIX_FILE_NOT_ALIGNED": 0.030662851959368662,
+          "POSIX_CONSEC_WRITES": 0.03039642653423198,
+          "POSIX_SEQ_WRITES": 0.03039534202928664,
+          "POSIX_WRITES": 0.030394994967201203,
+          "POSIX_ACCESS3_COUNT": 0.029720458740728515,
+          "POSIX_BYTES_WRITTEN": 0.029082155457593763,
+          "POSIX_ACCESS2_COUNT": 0.01589640373769999,
+          "POSIX_SIZE_WRITE_100_1K": 0.013764374313832081,
+          "POSIX_ACCESS1_ACCESS": 0.010749360273730227
+        },
+        "gnn_explainer": {
+          "POSIX_CONSEC_WRITES": 0.5475610494613647,
+          "POSIX_CONSEC_READS": 0.5454790592193604,
+          "POSIX_SIZE_WRITE_0_100": 0.5335724353790283,
+          "POSIX_SEEKS": 0.5327914953231812,
+          "POSIX_ACCESS1_ACCESS": 0.5321562886238098,
+          "POSIX_ACCESS2_COUNT": 0.527399480342865,
+          "POSIX_SEQ_WRITES": 0.526942789554596,
+          "POSIX_FILE_NOT_ALIGNED": 0.5252841114997864,
+          "POSIX_WRITES": 0.5160223245620728,
+          "POSIX_ACCESS1_COUNT": 0.5154552459716797,
+          "POSIX_ACCESS2_ACCESS": 0.5120968818664551,
+          "POSIX_SEQ_READS": 0.5107820630073547,
+          "POSIX_MEM_ALIGNMENT": 0.5066777467727661,
+          "POSIX_MEM_NOT_ALIGNED": 0.5056267976760864
+        },
+        "gradients": {
+          "nprocs": 0.010918221436440945,
+          "POSIX_OPENS": 0.05637090280652046,
+          "LUSTRE_STRIPE_SIZE": 0.06969290226697922,
+          "LUSTRE_STRIPE_WIDTH": 0.0039626918733119965,
+          "POSIX_FILENOS": 0.011307723820209503,
+          "POSIX_MEM_ALIGNMENT": 0.02271343767642975,
+          "POSIX_FILE_ALIGNMENT": 0.0,
+          "POSIX_READS": 0.010541131719946861,
+          "POSIX_WRITES": 0.09535946696996689,
+          "POSIX_SEEKS": 0.01515635009855032,
+          "POSIX_STATS": 0.08470509201288223,
+          "POSIX_BYTES_READ": 0.13209640979766846,
+          "POSIX_BYTES_WRITTEN": 0.15415464341640472,
+          "POSIX_CONSEC_READS": 0.01058005541563034,
+          "POSIX_CONSEC_WRITES": 0.01986629143357277,
+          "POSIX_SEQ_READS": 0.023987241089344025,
+          "POSIX_SEQ_WRITES": 0.044931214302778244,
+          "POSIX_RW_SWITCHES": 0.0,
+          "POSIX_MEM_NOT_ALIGNED": 0.02333809994161129,
+          "POSIX_FILE_NOT_ALIGNED": 0.056645289063453674,
+          "POSIX_SIZE_READ_0_100": 0.04113759845495224,
+          "POSIX_SIZE_READ_100_1K": 0.006171493325382471,
+          "POSIX_SIZE_READ_1K_10K": 0.008069590665400028,
+          "POSIX_SIZE_READ_100K_1M": 0.0,
+          "POSIX_SIZE_WRITE_0_100": 0.027016062289476395,
+          "POSIX_SIZE_WRITE_100_1K": 0.013220484368503094,
+          "POSIX_SIZE_WRITE_1K_10K": 0.0,
+          "POSIX_SIZE_WRITE_10K_100K": 0.0,
+          "POSIX_SIZE_WRITE_100K_1M": 0.0,
+          "POSIX_STRIDE1_STRIDE": 0.0,
+          "POSIX_STRIDE2_STRIDE": 0.0,
+          "POSIX_STRIDE3_STRIDE": 0.0,
+          "POSIX_STRIDE4_STRIDE": 0.0,
+          "POSIX_STRIDE1_COUNT": 0.0,
+          "POSIX_STRIDE2_COUNT": 0.0,
+          "POSIX_STRIDE3_COUNT": 0.0,
+          "POSIX_STRIDE4_COUNT": 0.0,
+          "POSIX_ACCESS1_ACCESS": 0.00799226202070713,
+          "POSIX_ACCESS2_ACCESS": 0.002615664154291153,
+          "POSIX_ACCESS3_ACCESS": 0.003915012814104557,
+          "POSIX_ACCESS4_ACCESS": 0.0003576186136342585,
+          "POSIX_ACCESS1_COUNT": 0.01353120245039463,
+          "POSIX_ACCESS2_COUNT": 0.006563541945070028,
+          "POSIX_ACCESS3_COUNT": 0.005880966782569885,
+          "POSIX_ACCESS4_COUNT": 0.01720135472714901,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "POSIX_MEM_ALIGNMENT",
+          0.26469559222459793,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS2_ACCESS",
+          0.2573562730103731,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_WRITES",
+          0.21392559549974696,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILE_NOT_ALIGNED",
+          0.20419741750753626,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_READS",
+          0.20153250107390597,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_WRITES",
+          0.20075644862888695,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_0_100",
+          0.20052897141789583,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEEKS",
+          0.19948878118216906,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_WRITES",
+          0.1992745891430565,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_READS",
+          0.19444225571398813,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_COUNT",
+          0.19314912896866812,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_NOT_ALIGNED",
+          0.19244605712728555,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_ACCESS",
+          0.18363263697274904,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS2_COUNT",
+          0.18328647534187834,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_WRITTEN",
+          0.09161839943699925,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_READ",
+          0.08307087460147385,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STATS",
+          0.06662418068336293,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_OPENS",
+          0.04939188461814285,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_0_100",
+          0.04580174226115783,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_COUNT",
+          0.04277574280931611,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "nprocs",
+          0.034425801045752616,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_READS",
+          0.02988163310207939,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_100_1K",
+          0.028234382346269522,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILENOS",
+          0.026714220248734957,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_1K_10K",
+          0.019835087289764155,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_COUNT",
+          0.0178007127616492,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100_1K",
+          0.013492429341167587,
+          [
+            "attention",
+            "gradients"
+          ]
+        ]
+      ]
+    },
+    {
+      "node_idx": 70,
+      "performance": 0.5201804041862488,
+      "methods": {
+        "attention": {
+          "POSIX_SIZE_READ_1K_10K": 0.10149436195727321,
+          "POSIX_BYTES_READ": 0.0964763980557197,
+          "POSIX_BYTES_WRITTEN": 0.07226149837159072,
+          "POSIX_ACCESS1_ACCESS": 0.07198201363886898,
+          "POSIX_SIZE_WRITE_0_100": 0.07144071955122525,
+          "POSIX_SIZE_WRITE_100_1K": 0.07141115868595292,
+          "POSIX_CONSEC_WRITES": 0.07129101656283711,
+          "POSIX_SEQ_WRITES": 0.07129099264410949,
+          "POSIX_WRITES": 0.07129055017430974,
+          "POSIX_FILE_NOT_ALIGNED": 0.07001968820820936,
+          "POSIX_ACCESS2_COUNT": 0.06038315700236125,
+          "POSIX_ACCESS3_COUNT": 0.04297529669823602,
+          "POSIX_ACCESS4_COUNT": 0.04258287180400541,
+          "POSIX_MEM_NOT_ALIGNED": 0.03443471769695744,
+          "POSIX_CONSEC_READS": 0.01717571471287893,
+          "POSIX_SEQ_READS": 0.017146777530689928,
+          "POSIX_READS": 0.011931930484652372
+        },
+        "gnn_explainer": {
+          "POSIX_SEQ_READS": 0.5896445512771606,
+          "POSIX_ACCESS2_COUNT": 0.5860838890075684,
+          "POSIX_STATS": 0.5790677070617676,
+          "POSIX_SEEKS": 0.5703765153884888,
+          "POSIX_SIZE_READ_0_100": 0.5646427869796753,
+          "nprocs": 0.5443481802940369,
+          "POSIX_MEM_ALIGNMENT": 0.5223807692527771,
+          "POSIX_FILE_NOT_ALIGNED": 0.522322952747345,
+          "POSIX_CONSEC_READS": 0.5196797251701355,
+          "POSIX_SIZE_READ_1K_10K": 0.5176233649253845,
+          "POSIX_SIZE_READ_100_1K": 0.5146082639694214,
+          "POSIX_ACCESS4_ACCESS": 0.5125775933265686,
+          "POSIX_CONSEC_WRITES": 0.5071035623550415,
+          "POSIX_SIZE_WRITE_0_100": 0.5062211751937866,
+          "POSIX_BYTES_WRITTEN": 0.504291296005249,
+          "POSIX_OPENS": 0.5040420889854431,
+          "LUSTRE_STRIPE_SIZE": 0.5031604170799255,
+          "POSIX_MEM_NOT_ALIGNED": 0.5011590123176575
+        },
+        "gradients": {
+          "nprocs": 0.014315018430352211,
+          "POSIX_OPENS": 0.04382265731692314,
+          "LUSTRE_STRIPE_SIZE": 0.06973371654748917,
+          "LUSTRE_STRIPE_WIDTH": 0.0076256790198385715,
+          "POSIX_FILENOS": 0.0,
+          "POSIX_MEM_ALIGNMENT": 0.01601901836693287,
+          "POSIX_FILE_ALIGNMENT": 0.04944578558206558,
+          "POSIX_READS": 0.020748088136315346,
+          "POSIX_WRITES": 0.0807560607790947,
+          "POSIX_SEEKS": 0.020104100927710533,
+          "POSIX_STATS": 0.07078082859516144,
+          "POSIX_BYTES_READ": 0.14991866052150726,
+          "POSIX_BYTES_WRITTEN": 0.1555592119693756,
+          "POSIX_CONSEC_READS": 0.006236413028091192,
+          "POSIX_CONSEC_WRITES": 0.027853582054376602,
+          "POSIX_SEQ_READS": 0.016844801604747772,
+          "POSIX_SEQ_WRITES": 0.04179694503545761,
+          "POSIX_RW_SWITCHES": 0.0,
+          "POSIX_MEM_NOT_ALIGNED": 0.008781683631241322,
+          "POSIX_FILE_NOT_ALIGNED": 0.04509860277175903,
+          "POSIX_SIZE_READ_0_100": 0.0262466873973608,
+          "POSIX_SIZE_READ_100_1K": 0.0075339400209486485,
+          "POSIX_SIZE_READ_1K_10K": 0.014859343878924847,
+          "POSIX_SIZE_READ_100K_1M": 0.0,
+          "POSIX_SIZE_WRITE_0_100": 0.022967491298913956,
+          "POSIX_SIZE_WRITE_100_1K": 0.006383789237588644,
+          "POSIX_SIZE_WRITE_1K_10K": 0.0,
+          "POSIX_SIZE_WRITE_10K_100K": 0.0,
+          "POSIX_SIZE_WRITE_100K_1M": 0.0,
+          "POSIX_STRIDE1_STRIDE": 0.0,
+          "POSIX_STRIDE2_STRIDE": 0.0,
+          "POSIX_STRIDE3_STRIDE": 0.0,
+          "POSIX_STRIDE4_STRIDE": 0.0,
+          "POSIX_STRIDE1_COUNT": 0.0,
+          "POSIX_STRIDE2_COUNT": 0.0,
+          "POSIX_STRIDE3_COUNT": 0.0,
+          "POSIX_STRIDE4_COUNT": 0.0,
+          "POSIX_ACCESS1_ACCESS": 0.011527854017913342,
+          "POSIX_ACCESS2_ACCESS": 0.0010234354995191097,
+          "POSIX_ACCESS3_ACCESS": 0.0048301382921636105,
+          "POSIX_ACCESS4_ACCESS": 0.002824914874508977,
+          "POSIX_ACCESS1_COUNT": 0.017338134348392487,
+          "POSIX_ACCESS2_COUNT": 0.0037808711640536785,
+          "POSIX_ACCESS3_COUNT": 0.013128697872161865,
+          "POSIX_ACCESS4_COUNT": 0.02211391180753708,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "POSIX_STATS",
+          0.3249242678284645,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_0_100",
+          0.29544473718851805,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEEKS",
+          0.29524030815809965,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "LUSTRE_STRIPE_SIZE",
+          0.28644706681370735,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "nprocs",
+          0.27933159936219454,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_OPENS",
+          0.27393237315118313,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_ALIGNMENT",
+          0.269199893809855,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_100_1K",
+          0.261071101995185,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_ACCESS",
+          0.2577012541005388,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_WRITTEN",
+          0.24403733544873843,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS2_COUNT",
+          0.2167493057246611,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILE_NOT_ALIGNED",
+          0.21248041457577113,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_1K_10K",
+          0.21132569025386086,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_READS",
+          0.20787871013753279,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_WRITES",
+          0.20208272032408506,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_0_100",
+          0.20020979534797526,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_NOT_ALIGNED",
+          0.18145847121528544,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_READS",
+          0.1810306176370352,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_READ",
+          0.12319752928861348,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_WRITES",
+          0.07602330547670222,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_WRITES",
+          0.05654396883978355,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_ACCESS",
+          0.04175493382839116,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100_1K",
+          0.03889747396177078,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_COUNT",
+          0.032348391805771246,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_COUNT",
+          0.028051997285198943,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_READS",
+          0.01634000931048386,
+          [
+            "attention",
+            "gradients"
+          ]
+        ]
+      ]
+    }
+  ],
+  "medium": [
+    {
+      "node_idx": 0,
+      "performance": 2.3416192531585693,
+      "methods": {
+        "attention": {
+          "POSIX_SIZE_WRITE_0_100": 0.2146488474480169,
+          "POSIX_SEQ_WRITES": 0.21010753427284512,
+          "POSIX_CONSEC_WRITES": 0.2099686320573005,
+          "POSIX_WRITES": 0.20954145486946513,
+          "POSIX_BYTES_WRITTEN": 0.12767577891930557,
+          "POSIX_FILE_NOT_ALIGNED": 0.028057752433066775
+        },
+        "gnn_explainer": {
+          "POSIX_CONSEC_WRITES": 0.5563663244247437,
+          "POSIX_ACCESS2_COUNT": 0.534919798374176,
+          "POSIX_FILE_NOT_ALIGNED": 0.5144414901733398
+        },
+        "gradients": {
+          "nprocs": 0.029263490810990334,
+          "POSIX_OPENS": 0.07484487444162369,
+          "LUSTRE_STRIPE_SIZE": 0.1005357950925827,
+          "LUSTRE_STRIPE_WIDTH": 0.0026034293696284294,
+          "POSIX_FILENOS": 0.009846285916864872,
+          "POSIX_MEM_ALIGNMENT": 0.024736784398555756,
+          "POSIX_FILE_ALIGNMENT": 0.0,
+          "POSIX_READS": 0.009627320803701878,
+          "POSIX_WRITES": 0.06026049330830574,
+          "POSIX_SEEKS": 0.024684427306056023,
+          "POSIX_STATS": 0.07950840890407562,
+          "POSIX_BYTES_READ": 0.1887853443622589,
+          "POSIX_BYTES_WRITTEN": 0.06284729391336441,
+          "POSIX_CONSEC_READS": 0.030106686055660248,
+          "POSIX_CONSEC_WRITES": 0.002505596959963441,
+          "POSIX_SEQ_READS": 0.009557412005960941,
+          "POSIX_SEQ_WRITES": 0.03252974897623062,
+          "POSIX_RW_SWITCHES": 0.0,
+          "POSIX_MEM_NOT_ALIGNED": 0.020095854997634888,
+          "POSIX_FILE_NOT_ALIGNED": 0.035994239151477814,
+          "POSIX_SIZE_READ_0_100": 0.037210676819086075,
+          "POSIX_SIZE_READ_100_1K": 0.01282928790897131,
+          "POSIX_SIZE_READ_1K_10K": 0.01563173532485962,
+          "POSIX_SIZE_READ_100K_1M": 0.0,
+          "POSIX_SIZE_WRITE_0_100": 0.032740846276283264,
+          "POSIX_SIZE_WRITE_100_1K": 0.0001845450169639662,
+          "POSIX_SIZE_WRITE_1K_10K": 0.0,
+          "POSIX_SIZE_WRITE_10K_100K": 0.0,
+          "POSIX_SIZE_WRITE_100K_1M": 0.0,
+          "POSIX_STRIDE1_STRIDE": 0.0,
+          "POSIX_STRIDE2_STRIDE": 0.0,
+          "POSIX_STRIDE3_STRIDE": 0.0,
+          "POSIX_STRIDE4_STRIDE": 0.0,
+          "POSIX_STRIDE1_COUNT": 0.0,
+          "POSIX_STRIDE2_COUNT": 0.0,
+          "POSIX_STRIDE3_COUNT": 0.0,
+          "POSIX_STRIDE4_COUNT": 0.0,
+          "POSIX_ACCESS1_ACCESS": 0.021486913785338402,
+          "POSIX_ACCESS2_ACCESS": 0.013545716181397438,
+          "POSIX_ACCESS3_ACCESS": 0.00705221202224493,
+          "POSIX_ACCESS4_ACCESS": 0.001454221666790545,
+          "POSIX_ACCESS1_COUNT": 0.03431094065308571,
+          "POSIX_ACCESS2_COUNT": 0.0032949529122561216,
+          "POSIX_ACCESS3_COUNT": 0.0030445025768131018,
+          "POSIX_ACCESS4_COUNT": 0.01887989044189453,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "POSIX_ACCESS2_COUNT",
+          0.2691073756432161,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_WRITES",
+          0.2562801844806692,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILE_NOT_ALIGNED",
+          0.19283116058596148,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_WRITES",
+          0.13490097408888543,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_0_100",
+          0.12369484686215008,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_WRITES",
+          0.12131864162453787,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_WRITTEN",
+          0.09526153641633499,
+          [
+            "attention",
+            "gradients"
+          ]
+        ]
+      ]
+    },
+    {
+      "node_idx": 12,
+      "performance": 2.3622066974639893,
+      "methods": {
+        "attention": {
+          "POSIX_ACCESS3_COUNT": 0.24913615166191985,
+          "POSIX_STRIDE2_STRIDE": 0.222300879044957,
+          "POSIX_BYTES_WRITTEN": 0.22173585763134776,
+          "POSIX_ACCESS2_COUNT": 0.15216964415852743,
+          "POSIX_SIZE_WRITE_100_1K": 0.03541042331361252,
+          "POSIX_MEM_NOT_ALIGNED": 0.019709472987153906,
+          "POSIX_SIZE_READ_0_100": 0.019051340358124676,
+          "POSIX_CONSEC_READS": 0.018609476261535078,
+          "POSIX_SEQ_READS": 0.018609476261535078,
+          "POSIX_READS": 0.018559851431383896
+        },
+        "gnn_explainer": {
+          "POSIX_CONSEC_WRITES": 0.5229045152664185,
+          "POSIX_BYTES_WRITTEN": 0.521091639995575,
+          "POSIX_BYTES_READ": 0.5032097101211548
+        },
+        "gradients": {
+          "nprocs": 0.005826540291309357,
+          "POSIX_OPENS": 0.04030134528875351,
+          "LUSTRE_STRIPE_SIZE": 0.11234316229820251,
+          "LUSTRE_STRIPE_WIDTH": 0.009070007130503654,
+          "POSIX_FILENOS": 0.006142931990325451,
+          "POSIX_MEM_ALIGNMENT": 0.02951071411371231,
+          "POSIX_FILE_ALIGNMENT": 0.06894181668758392,
+          "POSIX_READS": 0.021005304530262947,
+          "POSIX_WRITES": 0.048036713153123856,
+          "POSIX_SEEKS": 0.0098818214610219,
+          "POSIX_STATS": 0.05388597398996353,
+          "POSIX_BYTES_READ": 0.13524392247200012,
+          "POSIX_BYTES_WRITTEN": 0.20813146233558655,
+          "POSIX_CONSEC_READS": 0.015101338736712933,
+          "POSIX_CONSEC_WRITES": 0.006864408031105995,
+          "POSIX_SEQ_READS": 0.007038346491754055,
+          "POSIX_SEQ_WRITES": 0.021886775270104408,
+          "POSIX_RW_SWITCHES": 0.0067705195397138596,
+          "POSIX_MEM_NOT_ALIGNED": 0.0008415497140958905,
+          "POSIX_FILE_NOT_ALIGNED": 0.04486321657896042,
+          "POSIX_SIZE_READ_0_100": 0.02654086984694004,
+          "POSIX_SIZE_READ_100_1K": 0.002543001202866435,
+          "POSIX_SIZE_READ_1K_10K": 0.0029488031286746264,
+          "POSIX_SIZE_READ_100K_1M": 0.0,
+          "POSIX_SIZE_WRITE_0_100": 0.009681366384029388,
+          "POSIX_SIZE_WRITE_100_1K": 0.004622030071914196,
+          "POSIX_SIZE_WRITE_1K_10K": 0.0022864576894789934,
+          "POSIX_SIZE_WRITE_10K_100K": 0.0,
+          "POSIX_SIZE_WRITE_100K_1M": 0.0,
+          "POSIX_STRIDE1_STRIDE": 0.020062927156686783,
+          "POSIX_STRIDE2_STRIDE": 0.03229696303606033,
+          "POSIX_STRIDE3_STRIDE": 0.0004487067344598472,
+          "POSIX_STRIDE4_STRIDE": 0.0016941260546445847,
+          "POSIX_STRIDE1_COUNT": 0.005678556393831968,
+          "POSIX_STRIDE2_COUNT": 0.0008815735345706344,
+          "POSIX_STRIDE3_COUNT": 3.068982914555818e-05,
+          "POSIX_STRIDE4_COUNT": 0.0003768090100493282,
+          "POSIX_ACCESS1_ACCESS": 0.005533361341804266,
+          "POSIX_ACCESS2_ACCESS": 0.00015561410691589117,
+          "POSIX_ACCESS3_ACCESS": 0.002372202230617404,
+          "POSIX_ACCESS4_ACCESS": 0.0017750445986166596,
+          "POSIX_ACCESS1_COUNT": 0.012222392484545708,
+          "POSIX_ACCESS2_COUNT": 0.0020190791692584753,
+          "POSIX_ACCESS3_COUNT": 0.0018126072827726603,
+          "POSIX_ACCESS4_COUNT": 0.012328927405178547,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "POSIX_BYTES_READ",
+          0.31922681629657745,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_WRITTEN",
+          0.3169863199875031,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_WRITES",
+          0.2648844616487622,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE2_STRIDE",
+          0.12729892104050866,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_COUNT",
+          0.12547437947234624,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS2_COUNT",
+          0.07709436166389295,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_0_100",
+          0.022796105102532358,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100_1K",
+          0.02001622669276336,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_READS",
+          0.01978257798082342,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_READS",
+          0.016855407499124005,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_READS",
+          0.012823911376644567,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_NOT_ALIGNED",
+          0.010275511350624898,
+          [
+            "attention",
+            "gradients"
+          ]
+        ]
+      ]
+    },
+    {
+      "node_idx": 13,
+      "performance": 1.453207015991211,
+      "methods": {
+        "attention": {
+          "POSIX_ACCESS3_COUNT": 0.4038336517599144,
+          "POSIX_ACCESS4_COUNT": 0.2974416094164148,
+          "POSIX_ACCESS2_COUNT": 0.09286566746291332,
+          "POSIX_MEM_NOT_ALIGNED": 0.06417221929361239,
+          "POSIX_ACCESS1_COUNT": 0.037597745987240125,
+          "POSIX_SIZE_WRITE_100_1K": 0.024681890479424047
+        },
+        "gnn_explainer": {
+          "POSIX_FILENOS": 0.5814163088798523,
+          "POSIX_SIZE_WRITE_1K_10K": 0.5628389120101929,
+          "POSIX_BYTES_WRITTEN": 0.5602335929870605,
+          "POSIX_ACCESS4_ACCESS": 0.5559619665145874,
+          "POSIX_BYTES_READ": 0.5314269661903381,
+          "POSIX_ACCESS4_COUNT": 0.5184403657913208,
+          "LUSTRE_STRIPE_SIZE": 0.5127788186073303,
+          "POSIX_FILE_ALIGNMENT": 0.5081848502159119,
+          "POSIX_WRITES": 0.5062100291252136
+        },
+        "gradients": {
+          "nprocs": 0.0027207108214497566,
+          "POSIX_OPENS": 0.11375794559717178,
+          "LUSTRE_STRIPE_SIZE": 0.11204199492931366,
+          "LUSTRE_STRIPE_WIDTH": 0.005491882562637329,
+          "POSIX_FILENOS": 0.046211615204811096,
+          "POSIX_MEM_ALIGNMENT": 0.03288053348660469,
+          "POSIX_FILE_ALIGNMENT": 0.0578429289162159,
+          "POSIX_READS": 0.007695997133851051,
+          "POSIX_WRITES": 0.06291249394416809,
+          "POSIX_SEEKS": 0.0,
+          "POSIX_STATS": 0.0,
+          "POSIX_BYTES_READ": 0.11921893060207367,
+          "POSIX_BYTES_WRITTEN": 0.20756065845489502,
+          "POSIX_CONSEC_READS": 0.010661260224878788,
+          "POSIX_CONSEC_WRITES": 0.004521451890468597,
+          "POSIX_SEQ_READS": 0.011684680357575417,
+          "POSIX_SEQ_WRITES": 0.00977906584739685,
+          "POSIX_RW_SWITCHES": 0.0,
+          "POSIX_MEM_NOT_ALIGNED": 0.01617569848895073,
+          "POSIX_FILE_NOT_ALIGNED": 0.06270506232976913,
+          "POSIX_SIZE_READ_0_100": 0.004588056355714798,
+          "POSIX_SIZE_READ_100_1K": 0.0,
+          "POSIX_SIZE_READ_1K_10K": 0.010451463982462883,
+          "POSIX_SIZE_READ_100K_1M": 0.0,
+          "POSIX_SIZE_WRITE_0_100": 0.008425803855061531,
+          "POSIX_SIZE_WRITE_100_1K": 0.00407008221372962,
+          "POSIX_SIZE_WRITE_1K_10K": 0.0031733501236885786,
+          "POSIX_SIZE_WRITE_10K_100K": 0.00403481675311923,
+          "POSIX_SIZE_WRITE_100K_1M": 0.0,
+          "POSIX_STRIDE1_STRIDE": 0.0,
+          "POSIX_STRIDE2_STRIDE": 0.0,
+          "POSIX_STRIDE3_STRIDE": 0.0,
+          "POSIX_STRIDE4_STRIDE": 0.0,
+          "POSIX_STRIDE1_COUNT": 0.0,
+          "POSIX_STRIDE2_COUNT": 0.0,
+          "POSIX_STRIDE3_COUNT": 0.0,
+          "POSIX_STRIDE4_COUNT": 0.0,
+          "POSIX_ACCESS1_ACCESS": 0.0156713854521513,
+          "POSIX_ACCESS2_ACCESS": 0.009784957394003868,
+          "POSIX_ACCESS3_ACCESS": 0.0048935506492853165,
+          "POSIX_ACCESS4_ACCESS": 0.016195135191082954,
+          "POSIX_ACCESS1_COUNT": 0.001250021392479539,
+          "POSIX_ACCESS2_COUNT": 0.024064896628260612,
+          "POSIX_ACCESS3_COUNT": 0.0018048119964078069,
+          "POSIX_ACCESS4_COUNT": 0.00772872194647789,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "POSIX_BYTES_WRITTEN",
+          0.3838971257209778,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_READ",
+          0.3253229483962059,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILENOS",
+          0.3138139620423317,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "LUSTRE_STRIPE_SIZE",
+          0.312410406768322,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_ACCESS",
+          0.2860785508528352,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_WRITES",
+          0.28456126153469086,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILE_ALIGNMENT",
+          0.2830138895660639,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_1K_10K",
+          0.2830061310669407,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_COUNT",
+          0.2745368990514045,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_COUNT",
+          0.20281923187816112,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS2_COUNT",
+          0.058465282045586965,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_NOT_ALIGNED",
+          0.04017395889128156,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_COUNT",
+          0.019423883689859832,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100_1K",
+          0.014375986346576834,
+          [
+            "attention",
+            "gradients"
+          ]
+        ]
+      ]
+    },
+    {
+      "node_idx": 30,
+      "performance": 2.0892975330352783,
+      "methods": {
+        "attention": {
+          "POSIX_BYTES_WRITTEN": 1.0
+        },
+        "gnn_explainer": {
+          "POSIX_SIZE_READ_1K_10K": 0.5994197130203247,
+          "POSIX_ACCESS4_COUNT": 0.5742653012275696,
+          "POSIX_READS": 0.548740804195404,
+          "POSIX_ACCESS4_ACCESS": 0.5465196967124939,
+          "POSIX_STATS": 0.5388581156730652,
+          "POSIX_SEQ_WRITES": 0.5384349226951599,
+          "POSIX_CONSEC_READS": 0.5359542369842529,
+          "POSIX_ACCESS3_ACCESS": 0.5318527817726135,
+          "POSIX_ACCESS2_ACCESS": 0.5312513709068298,
+          "POSIX_SIZE_READ_100_1K": 0.5193033814430237,
+          "POSIX_ACCESS1_ACCESS": 0.5132396817207336,
+          "POSIX_WRITES": 0.5111812353134155,
+          "POSIX_OPENS": 0.5104886293411255,
+          "POSIX_CONSEC_WRITES": 0.5099629759788513,
+          "POSIX_ACCESS3_COUNT": 0.5017583966255188
+        },
+        "gradients": {
+          "nprocs": 0.029746757820248604,
+          "POSIX_OPENS": 0.07579029351472855,
+          "LUSTRE_STRIPE_SIZE": 0.09731250256299973,
+          "LUSTRE_STRIPE_WIDTH": 0.0024502871092408895,
+          "POSIX_FILENOS": 0.009709516540169716,
+          "POSIX_MEM_ALIGNMENT": 0.02436109073460102,
+          "POSIX_FILE_ALIGNMENT": 0.0,
+          "POSIX_READS": 0.006141132675111294,
+          "POSIX_WRITES": 0.0594235360622406,
+          "POSIX_SEEKS": 0.024013500660657883,
+          "POSIX_STATS": 0.07962171733379364,
+          "POSIX_BYTES_READ": 0.19378823041915894,
+          "POSIX_BYTES_WRITTEN": 0.06359906494617462,
+          "POSIX_CONSEC_READS": 0.03365001827478409,
+          "POSIX_CONSEC_WRITES": 0.0009271702147088945,
+          "POSIX_SEQ_READS": 0.009153984487056732,
+          "POSIX_SEQ_WRITES": 0.032766494899988174,
+          "POSIX_RW_SWITCHES": 0.0,
+          "POSIX_MEM_NOT_ALIGNED": 0.022870177403092384,
+          "POSIX_FILE_NOT_ALIGNED": 0.03569043055176735,
+          "POSIX_SIZE_READ_0_100": 0.03517451137304306,
+          "POSIX_SIZE_READ_100_1K": 0.012081170454621315,
+          "POSIX_SIZE_READ_1K_10K": 0.018107596784830093,
+          "POSIX_SIZE_READ_100K_1M": 0.0,
+          "POSIX_SIZE_WRITE_0_100": 0.03126122057437897,
+          "POSIX_SIZE_WRITE_100_1K": 0.0006844269810244441,
+          "POSIX_SIZE_WRITE_1K_10K": 0.0,
+          "POSIX_SIZE_WRITE_10K_100K": 0.0,
+          "POSIX_SIZE_WRITE_100K_1M": 0.0,
+          "POSIX_STRIDE1_STRIDE": 0.0,
+          "POSIX_STRIDE2_STRIDE": 0.0,
+          "POSIX_STRIDE3_STRIDE": 0.0,
+          "POSIX_STRIDE4_STRIDE": 0.0,
+          "POSIX_STRIDE1_COUNT": 0.0,
+          "POSIX_STRIDE2_COUNT": 0.0,
+          "POSIX_STRIDE3_COUNT": 0.0,
+          "POSIX_STRIDE4_COUNT": 0.0,
+          "POSIX_ACCESS1_ACCESS": 0.01970640942454338,
+          "POSIX_ACCESS2_ACCESS": 0.015975454822182655,
+          "POSIX_ACCESS3_ACCESS": 0.010189858265221119,
+          "POSIX_ACCESS4_ACCESS": 0.0010781690943986177,
+          "POSIX_ACCESS1_COUNT": 0.03405878692865372,
+          "POSIX_ACCESS2_COUNT": 0.002737012691795826,
+          "POSIX_ACCESS3_COUNT": 0.0020901476964354515,
+          "POSIX_ACCESS4_COUNT": 0.015839263796806335,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "POSIX_BYTES_WRITTEN",
+          0.5317995324730873,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STATS",
+          0.3092399165034294,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_1K_10K",
+          0.3087636549025774,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_COUNT",
+          0.29505228251218796,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_OPENS",
+          0.293139461427927,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_WRITES",
+          0.28560070879757404,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_WRITES",
+          0.28530238568782806,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_READS",
+          0.2848021276295185,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_READS",
+          0.2774409684352577,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_ACCESS",
+          0.27379893290344626,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS2_ACCESS",
+          0.27361341286450624,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_ACCESS",
+          0.2710213200189173,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_ACCESS",
+          0.2664730455726385,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_100_1K",
+          0.2656922759488225,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_WRITES",
+          0.2554450730967801,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_COUNT",
+          0.2519242721609771,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ]
+      ]
+    },
+    {
+      "node_idx": 46,
+      "performance": 1.477980613708496,
+      "methods": {
+        "attention": {},
+        "gnn_explainer": {
+          "POSIX_WRITES": 0.5576651096343994,
+          "POSIX_MEM_ALIGNMENT": 0.5541472434997559,
+          "POSIX_SIZE_WRITE_10K_100K": 0.551694929599762,
+          "POSIX_ACCESS1_ACCESS": 0.540855884552002,
+          "POSIX_SIZE_WRITE_100_1K": 0.527250349521637,
+          "POSIX_ACCESS4_ACCESS": 0.525915801525116,
+          "POSIX_STATS": 0.525521457195282,
+          "POSIX_FILE_ALIGNMENT": 0.5241636037826538,
+          "POSIX_ACCESS4_COUNT": 0.5219882130622864,
+          "POSIX_FILE_NOT_ALIGNED": 0.5216282606124878,
+          "POSIX_ACCESS3_ACCESS": 0.5195285677909851,
+          "POSIX_ACCESS3_COUNT": 0.5187677145004272,
+          "POSIX_CONSEC_WRITES": 0.516353964805603,
+          "POSIX_OPENS": 0.5152575969696045,
+          "POSIX_STRIDE1_COUNT": 0.5147233009338379,
+          "LUSTRE_STRIPE_WIDTH": 0.5124692320823669,
+          "POSIX_BYTES_READ": 0.5078656673431396,
+          "POSIX_SEQ_WRITES": 0.5067799091339111,
+          "POSIX_STRIDE1_STRIDE": 0.5060757994651794,
+          "POSIX_READS": 0.5047100186347961
+        },
+        "gradients": {
+          "nprocs": 0.027049360796809196,
+          "POSIX_OPENS": 0.0038061237428337336,
+          "LUSTRE_STRIPE_SIZE": 0.16791777312755585,
+          "LUSTRE_STRIPE_WIDTH": 0.0008164297905750573,
+          "POSIX_FILENOS": 0.0,
+          "POSIX_MEM_ALIGNMENT": 0.04067997634410858,
+          "POSIX_FILE_ALIGNMENT": 0.05415501073002815,
+          "POSIX_READS": 0.049662694334983826,
+          "POSIX_WRITES": 0.02959541045129299,
+          "POSIX_SEEKS": 0.000479768292279914,
+          "POSIX_STATS": 0.020191049203276634,
+          "POSIX_BYTES_READ": 0.08357705920934677,
+          "POSIX_BYTES_WRITTEN": 0.15287575125694275,
+          "POSIX_CONSEC_READS": 0.013594865798950195,
+          "POSIX_CONSEC_WRITES": 0.019799822941422462,
+          "POSIX_SEQ_READS": 0.03315327689051628,
+          "POSIX_SEQ_WRITES": 0.014970365911722183,
+          "POSIX_RW_SWITCHES": 0.009213526733219624,
+          "POSIX_MEM_NOT_ALIGNED": 0.0,
+          "POSIX_FILE_NOT_ALIGNED": 0.010926811024546623,
+          "POSIX_SIZE_READ_0_100": 0.009076463989913464,
+          "POSIX_SIZE_READ_100_1K": 0.01457456685602665,
+          "POSIX_SIZE_READ_1K_10K": 0.02768073044717312,
+          "POSIX_SIZE_READ_100K_1M": 0.0,
+          "POSIX_SIZE_WRITE_0_100": 0.010253186337649822,
+          "POSIX_SIZE_WRITE_100_1K": 0.008749304339289665,
+          "POSIX_SIZE_WRITE_1K_10K": 0.001947457785718143,
+          "POSIX_SIZE_WRITE_10K_100K": 0.009330538101494312,
+          "POSIX_SIZE_WRITE_100K_1M": 0.0,
+          "POSIX_STRIDE1_STRIDE": 0.008973630145192146,
+          "POSIX_STRIDE2_STRIDE": 0.0220502782613039,
+          "POSIX_STRIDE3_STRIDE": 0.0,
+          "POSIX_STRIDE4_STRIDE": 0.0,
+          "POSIX_STRIDE1_COUNT": 0.03265593573451042,
+          "POSIX_STRIDE2_COUNT": 0.003804743755608797,
+          "POSIX_STRIDE3_COUNT": 0.0,
+          "POSIX_STRIDE4_COUNT": 0.0,
+          "POSIX_ACCESS1_ACCESS": 0.04994795098900795,
+          "POSIX_ACCESS2_ACCESS": 0.004084831569343805,
+          "POSIX_ACCESS3_ACCESS": 0.005288297776132822,
+          "POSIX_ACCESS4_ACCESS": 0.007720581721514463,
+          "POSIX_ACCESS1_COUNT": 0.0009662735974416137,
+          "POSIX_ACCESS2_COUNT": 0.027813587337732315,
+          "POSIX_ACCESS3_COUNT": 0.017959197983145714,
+          "POSIX_ACCESS4_COUNT": 0.004657410550862551,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "POSIX_MEM_ALIGNMENT",
+          0.2974136099219322,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_READ",
+          0.2957213632762432,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_ACCESS",
+          0.29540191777050495,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_WRITES",
+          0.2936302600428462,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILE_ALIGNMENT",
+          0.289159307256341,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_10K_100K",
+          0.28051273385062814,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_READS",
+          0.27718635648489,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE1_COUNT",
+          0.27368961833417416,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STATS",
+          0.2728562531992793,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_COUNT",
+          0.2683634562417865,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_WRITES",
+          0.26807689387351274,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100_1K",
+          0.2679998269304633,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_ACCESS",
+          0.2668181916233152,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILE_NOT_ALIGNED",
+          0.2662775358185172,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_COUNT",
+          0.26332281180657446,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_ACCESS",
+          0.26240843278355896,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_WRITES",
+          0.26087513752281666,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_OPENS",
+          0.2595318603562191,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE1_STRIDE",
+          0.2575247148051858,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "LUSTRE_STRIPE_WIDTH",
+          0.256642830936471,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ]
+      ]
+    }
+  ],
+  "good": [
+    {
+      "node_idx": 15,
+      "performance": 3.54752254486084,
+      "methods": {
+        "attention": {
+          "POSIX_ACCESS3_COUNT": 0.26186156312551084,
+          "POSIX_ACCESS2_COUNT": 0.2463082679375521,
+          "POSIX_SIZE_WRITE_100_1K": 0.17092840254964348,
+          "POSIX_SIZE_WRITE_100K_1M": 0.08315036128413203,
+          "POSIX_ACCESS1_COUNT": 0.052980220343810405,
+          "POSIX_BYTES_WRITTEN": 0.026600446175659993,
+          "POSIX_SIZE_WRITE_0_100": 0.023740375227325666,
+          "POSIX_FILE_NOT_ALIGNED": 0.021618864721991492,
+          "POSIX_CONSEC_WRITES": 0.020741858759178985,
+          "POSIX_SEQ_WRITES": 0.020741737846262615,
+          "POSIX_WRITES": 0.020631221474200236,
+          "POSIX_MEM_NOT_ALIGNED": 0.018929782122627505,
+          "POSIX_STATS": 0.010710959579162984
+        },
+        "gnn_explainer": {},
+        "gradients": {
+          "nprocs": 0.017248475924134254,
+          "POSIX_OPENS": 0.05504178628325462,
+          "LUSTRE_STRIPE_SIZE": 0.10850316286087036,
+          "LUSTRE_STRIPE_WIDTH": 0.013049110770225525,
+          "POSIX_FILENOS": 0.004222606774419546,
+          "POSIX_MEM_ALIGNMENT": 0.027455339208245277,
+          "POSIX_FILE_ALIGNMENT": 0.04694109782576561,
+          "POSIX_READS": 0.018385229632258415,
+          "POSIX_WRITES": 0.09154176712036133,
+          "POSIX_SEEKS": 0.028543194755911827,
+          "POSIX_STATS": 0.07553380727767944,
+          "POSIX_BYTES_READ": 0.13543477654457092,
+          "POSIX_BYTES_WRITTEN": 0.17055962979793549,
+          "POSIX_CONSEC_READS": 0.007893222384154797,
+          "POSIX_CONSEC_WRITES": 0.03246546536684036,
+          "POSIX_SEQ_READS": 0.0008041250403039157,
+          "POSIX_SEQ_WRITES": 0.009125567972660065,
+          "POSIX_RW_SWITCHES": 0.005812011659145355,
+          "POSIX_MEM_NOT_ALIGNED": 0.010671570897102356,
+          "POSIX_FILE_NOT_ALIGNED": 0.008885513991117477,
+          "POSIX_SIZE_READ_0_100": 0.016569845378398895,
+          "POSIX_SIZE_READ_100_1K": 0.0023272389080375433,
+          "POSIX_SIZE_READ_1K_10K": 0.008031238801777363,
+          "POSIX_SIZE_READ_100K_1M": 0.0,
+          "POSIX_SIZE_WRITE_0_100": 0.025997016578912735,
+          "POSIX_SIZE_WRITE_100_1K": 0.0023182739969342947,
+          "POSIX_SIZE_WRITE_1K_10K": 0.0003069364174734801,
+          "POSIX_SIZE_WRITE_10K_100K": 0.0,
+          "POSIX_SIZE_WRITE_100K_1M": 0.03493231534957886,
+          "POSIX_STRIDE1_STRIDE": 0.011194831691682339,
+          "POSIX_STRIDE2_STRIDE": 0.0,
+          "POSIX_STRIDE3_STRIDE": 0.0,
+          "POSIX_STRIDE4_STRIDE": 0.0,
+          "POSIX_STRIDE1_COUNT": 0.002967948094010353,
+          "POSIX_STRIDE2_COUNT": 0.0,
+          "POSIX_STRIDE3_COUNT": 0.0,
+          "POSIX_STRIDE4_COUNT": 0.0,
+          "POSIX_ACCESS1_ACCESS": 0.008138931356370449,
+          "POSIX_ACCESS2_ACCESS": 0.00026337377494201064,
+          "POSIX_ACCESS3_ACCESS": 0.0061142658814787865,
+          "POSIX_ACCESS4_ACCESS": 0.0049397507682442665,
+          "POSIX_ACCESS1_COUNT": 0.0034348228946328163,
+          "POSIX_ACCESS2_COUNT": 0.0015730583108961582,
+          "POSIX_ACCESS3_COUNT": 0.0003579037729650736,
+          "POSIX_ACCESS4_COUNT": 0.0024147401563823223,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "POSIX_ACCESS3_COUNT",
+          0.13110973344923796,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS2_COUNT",
+          0.12394066312422412,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_WRITTEN",
+          0.09858003798679774,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100_1K",
+          0.08662333827328889,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100K_1M",
+          0.05904133831685544,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_WRITES",
+          0.056086494297280784,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STATS",
+          0.043122383428421215,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_COUNT",
+          0.02820752161922161,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_WRITES",
+          0.026603662063009674,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_0_100",
+          0.0248686959031192,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILE_NOT_ALIGNED",
+          0.015252189356554485,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_WRITES",
+          0.01493365290946134,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_NOT_ALIGNED",
+          0.01480067650986493,
+          [
+            "attention",
+            "gradients"
+          ]
+        ]
+      ]
+    },
+    {
+      "node_idx": 19,
+      "performance": 2.58078932762146,
+      "methods": {
+        "attention": {
+          "POSIX_ACCESS1_COUNT": 0.06831935248475887,
+          "POSIX_BYTES_WRITTEN": 0.051842446750971306,
+          "POSIX_SIZE_WRITE_100_1K": 0.04937860972877036,
+          "POSIX_SIZE_WRITE_0_100": 0.04767584448599479,
+          "POSIX_CONSEC_WRITES": 0.0465575637359782,
+          "POSIX_SEQ_WRITES": 0.04655615802390938,
+          "POSIX_WRITES": 0.0465560144996436,
+          "POSIX_FILE_NOT_ALIGNED": 0.04621831144816327,
+          "nprocs": 0.04481855980378464,
+          "POSIX_SIZE_READ_1K_10K": 0.041976200725116736,
+          "POSIX_BYTES_READ": 0.04099241969190058,
+          "POSIX_SEEKS": 0.03974717638541163,
+          "POSIX_MEM_NOT_ALIGNED": 0.03929511979690307,
+          "POSIX_SEQ_READS": 0.03891258575064444,
+          "POSIX_CONSEC_READS": 0.038892142454296716,
+          "POSIX_READS": 0.03870666446300772,
+          "POSIX_SIZE_READ_0_100": 0.0384702470473205,
+          "POSIX_SIZE_READ_100_1K": 0.03822281588733205,
+          "POSIX_STATS": 0.03160643568790036,
+          "POSIX_OPENS": 0.02841533561172957,
+          "POSIX_FILENOS": 0.028393004081009508,
+          "POSIX_ACCESS4_COUNT": 0.028149864193298922,
+          "POSIX_ACCESS3_COUNT": 0.02656738318662089,
+          "POSIX_ACCESS2_COUNT": 0.022001574493765726,
+          "POSIX_ACCESS4_ACCESS": 0.015671035725687964
+        },
+        "gnn_explainer": {
+          "POSIX_ACCESS1_ACCESS": 0.5466511845588684,
+          "POSIX_ACCESS1_COUNT": 0.5409972667694092,
+          "POSIX_CONSEC_READS": 0.5353140830993652,
+          "POSIX_ACCESS3_COUNT": 0.529640257358551,
+          "POSIX_ACCESS4_COUNT": 0.5280080437660217,
+          "nprocs": 0.5239023566246033,
+          "LUSTRE_STRIPE_SIZE": 0.5233035087585449,
+          "POSIX_SIZE_READ_0_100": 0.5188418030738831,
+          "POSIX_ACCESS2_COUNT": 0.5168508291244507,
+          "POSIX_FILENOS": 0.5150887370109558,
+          "POSIX_READS": 0.5104954838752747,
+          "POSIX_STATS": 0.5101814866065979,
+          "POSIX_MEM_ALIGNMENT": 0.5067702531814575,
+          "POSIX_SIZE_READ_100_1K": 0.5066593885421753,
+          "POSIX_SIZE_WRITE_0_100": 0.5058879256248474,
+          "POSIX_ACCESS3_ACCESS": 0.5004101395606995
+        },
+        "gradients": {
+          "nprocs": 0.04868318513035774,
+          "POSIX_OPENS": 0.0904257595539093,
+          "LUSTRE_STRIPE_SIZE": 0.09090819954872131,
+          "LUSTRE_STRIPE_WIDTH": 0.0006689802976325154,
+          "POSIX_FILENOS": 0.0273132361471653,
+          "POSIX_MEM_ALIGNMENT": 0.019501876085996628,
+          "POSIX_FILE_ALIGNMENT": 0.01334399078041315,
+          "POSIX_READS": 0.010819426737725735,
+          "POSIX_WRITES": 0.07804330438375473,
+          "POSIX_SEEKS": 0.040168773382902145,
+          "POSIX_STATS": 0.073869988322258,
+          "POSIX_BYTES_READ": 0.07080890983343124,
+          "POSIX_BYTES_WRITTEN": 0.12764768302440643,
+          "POSIX_CONSEC_READS": 0.006349311210215092,
+          "POSIX_CONSEC_WRITES": 0.019717136397957802,
+          "POSIX_SEQ_READS": 0.013578588142991066,
+          "POSIX_SEQ_WRITES": 0.05030994117259979,
+          "POSIX_RW_SWITCHES": 0.0,
+          "POSIX_MEM_NOT_ALIGNED": 0.004940676968544722,
+          "POSIX_FILE_NOT_ALIGNED": 0.03819951415061951,
+          "POSIX_SIZE_READ_0_100": 0.00019412599795032293,
+          "POSIX_SIZE_READ_100_1K": 0.03334797918796539,
+          "POSIX_SIZE_READ_1K_10K": 0.016273021697998047,
+          "POSIX_SIZE_READ_100K_1M": 0.0,
+          "POSIX_SIZE_WRITE_0_100": 0.011922983452677727,
+          "POSIX_SIZE_WRITE_100_1K": 0.00014662696048617363,
+          "POSIX_SIZE_WRITE_1K_10K": 0.0,
+          "POSIX_SIZE_WRITE_10K_100K": 0.0,
+          "POSIX_SIZE_WRITE_100K_1M": 0.0,
+          "POSIX_STRIDE1_STRIDE": 0.0,
+          "POSIX_STRIDE2_STRIDE": 0.0,
+          "POSIX_STRIDE3_STRIDE": 0.0,
+          "POSIX_STRIDE4_STRIDE": 0.0,
+          "POSIX_STRIDE1_COUNT": 0.0,
+          "POSIX_STRIDE2_COUNT": 0.0,
+          "POSIX_STRIDE3_COUNT": 0.0,
+          "POSIX_STRIDE4_COUNT": 0.0,
+          "POSIX_ACCESS1_ACCESS": 0.0009322520927526057,
+          "POSIX_ACCESS2_ACCESS": 0.0019206928554922342,
+          "POSIX_ACCESS3_ACCESS": 0.004776063375174999,
+          "POSIX_ACCESS4_ACCESS": 0.0010154461488127708,
+          "POSIX_ACCESS1_COUNT": 0.018769552931189537,
+          "POSIX_ACCESS2_COUNT": 0.03539690747857094,
+          "POSIX_ACCESS3_COUNT": 0.00839281640946865,
+          "POSIX_ACCESS4_COUNT": 0.04161306843161583,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "LUSTRE_STRIPE_SIZE",
+          0.3071058541536331,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_ACCESS",
+          0.2737917183258105,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_ALIGNMENT",
+          0.2631360646337271,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_ACCESS",
+          0.25259310146793723,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_COUNT",
+          0.20936205739511918,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "nprocs",
+          0.20580136718624856,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STATS",
+          0.20521930353891873,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_COUNT",
+          0.19925699213031214,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_READS",
+          0.19351851225462569,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_100_1K",
+          0.19274339453915756,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS2_COUNT",
+          0.19141643703226244,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILENOS",
+          0.19026499241304354,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_0_100",
+          0.18849558452117332,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_COUNT",
+          0.18820015231821352,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_READS",
+          0.18667385835866937,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_0_100",
+          0.18583539203971797,
+          [
+            "attention",
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_WRITTEN",
+          0.08974506488768887,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_WRITES",
+          0.062299659441699164,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_OPENS",
+          0.059420547582819436,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_READ",
+          0.05590066476266591,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_WRITES",
+          0.04843304959825459,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILE_NOT_ALIGNED",
+          0.04220891279939139,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEEKS",
+          0.03995797488415689,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_WRITES",
+          0.033137350066968,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_1K_10K",
+          0.02912461121155739,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_READS",
+          0.026245586946817754,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100_1K",
+          0.024762618344628267,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_NOT_ALIGNED",
+          0.022117898382723895,
+          [
+            "attention",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_ACCESS",
+          0.008343240937250368,
+          [
+            "attention",
+            "gradients"
+          ]
+        ]
+      ]
+    },
+    {
+      "node_idx": 43,
+      "performance": 2.830700635910034,
+      "methods": {
+        "attention": {},
+        "gnn_explainer": {
+          "POSIX_ACCESS1_ACCESS": 0.5765832662582397,
+          "POSIX_STRIDE2_COUNT": 0.556178867816925,
+          "POSIX_READS": 0.549902081489563,
+          "POSIX_BYTES_READ": 0.5380356907844543,
+          "POSIX_CONSEC_READS": 0.534076452255249,
+          "POSIX_SEQ_READS": 0.5315107107162476,
+          "POSIX_SEQ_WRITES": 0.5269476771354675,
+          "POSIX_ACCESS4_COUNT": 0.5264387130737305,
+          "POSIX_SEEKS": 0.5253518223762512,
+          "POSIX_ACCESS4_ACCESS": 0.5225088000297546,
+          "POSIX_FILE_NOT_ALIGNED": 0.5204477906227112,
+          "POSIX_ACCESS2_ACCESS": 0.5203425288200378,
+          "POSIX_ACCESS1_COUNT": 0.5160320401191711,
+          "POSIX_SIZE_WRITE_100K_1M": 0.5129067301750183,
+          "POSIX_STRIDE1_COUNT": 0.510627806186676,
+          "POSIX_SIZE_WRITE_100_1K": 0.5098780393600464,
+          "LUSTRE_STRIPE_SIZE": 0.5085106492042542,
+          "POSIX_OPENS": 0.5039945244789124,
+          "POSIX_MEM_ALIGNMENT": 0.503879725933075,
+          "POSIX_ACCESS2_COUNT": 0.5036821961402893,
+          "POSIX_CONSEC_WRITES": 0.5034695267677307
+        },
+        "gradients": {
+          "nprocs": 0.004852975718677044,
+          "POSIX_OPENS": 0.02699434757232666,
+          "LUSTRE_STRIPE_SIZE": 0.10346636176109314,
+          "LUSTRE_STRIPE_WIDTH": 0.016890769824385643,
+          "POSIX_FILENOS": 0.03385348618030548,
+          "POSIX_MEM_ALIGNMENT": 0.026510151103138924,
+          "POSIX_FILE_ALIGNMENT": 0.004174682777374983,
+          "POSIX_READS": 0.017515502870082855,
+          "POSIX_WRITES": 0.03970649093389511,
+          "POSIX_SEEKS": 0.0213816799223423,
+          "POSIX_STATS": 0.0178785752505064,
+          "POSIX_BYTES_READ": 0.15509378910064697,
+          "POSIX_BYTES_WRITTEN": 0.04971008002758026,
+          "POSIX_CONSEC_READS": 0.008234997279942036,
+          "POSIX_CONSEC_WRITES": 0.03099765069782734,
+          "POSIX_SEQ_READS": 0.009445827454328537,
+          "POSIX_SEQ_WRITES": 0.03438664600253105,
+          "POSIX_RW_SWITCHES": 0.0,
+          "POSIX_MEM_NOT_ALIGNED": 0.024569008499383926,
+          "POSIX_FILE_NOT_ALIGNED": 0.02681085467338562,
+          "POSIX_SIZE_READ_0_100": 0.0442865714430809,
+          "POSIX_SIZE_READ_100_1K": 0.009239026345312595,
+          "POSIX_SIZE_READ_1K_10K": 0.028043488040566444,
+          "POSIX_SIZE_READ_100K_1M": 0.01674870029091835,
+          "POSIX_SIZE_WRITE_0_100": 0.027237288653850555,
+          "POSIX_SIZE_WRITE_100_1K": 0.021650686860084534,
+          "POSIX_SIZE_WRITE_1K_10K": 0.010034091770648956,
+          "POSIX_SIZE_WRITE_10K_100K": 0.0015213717706501484,
+          "POSIX_SIZE_WRITE_100K_1M": 0.006802581716328859,
+          "POSIX_STRIDE1_STRIDE": 0.0014951404882594943,
+          "POSIX_STRIDE2_STRIDE": 0.04946635290980339,
+          "POSIX_STRIDE3_STRIDE": 0.031951285898685455,
+          "POSIX_STRIDE4_STRIDE": 0.0028859679587185383,
+          "POSIX_STRIDE1_COUNT": 0.0006039458676241338,
+          "POSIX_STRIDE2_COUNT": 0.01183001697063446,
+          "POSIX_STRIDE3_COUNT": 0.01405404694378376,
+          "POSIX_STRIDE4_COUNT": 0.0035476600751280785,
+          "POSIX_ACCESS1_ACCESS": 0.006206747610121965,
+          "POSIX_ACCESS2_ACCESS": 0.03386349603533745,
+          "POSIX_ACCESS3_ACCESS": 0.002519364468753338,
+          "POSIX_ACCESS4_ACCESS": 0.0024863379076123238,
+          "POSIX_ACCESS1_COUNT": 0.004972133785486221,
+          "POSIX_ACCESS2_COUNT": 0.004359574057161808,
+          "POSIX_ACCESS3_COUNT": 0.0008217499707825482,
+          "POSIX_ACCESS4_COUNT": 0.010898454114794731,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "POSIX_BYTES_READ",
+          0.34656473994255066,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "LUSTRE_STRIPE_SIZE",
+          0.30598850548267365,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_ACCESS",
+          0.29139500693418086,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE2_COUNT",
+          0.28400444239377975,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_READS",
+          0.2837087921798229,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_WRITES",
+          0.2806671615689993,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS2_ACCESS",
+          0.27710301242768764,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILE_NOT_ALIGNED",
+          0.2736293226480484,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEEKS",
+          0.27336675114929676,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_READS",
+          0.27115572476759553,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_READS",
+          0.27047826908528805,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_COUNT",
+          0.2686685835942626,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_WRITES",
+          0.267233588732779,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100_1K",
+          0.26576436311006546,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_OPENS",
+          0.2654944360256195,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_ALIGNMENT",
+          0.26519493851810694,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS4_ACCESS",
+          0.2624975689686835,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_COUNT",
+          0.2605020869523287,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100K_1M",
+          0.2598546559456736,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE1_COUNT",
+          0.2556158760271501,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS2_COUNT",
+          0.25402088509872556,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ]
+      ]
+    },
+    {
+      "node_idx": 56,
+      "performance": 3.1380016803741455,
+      "methods": {
+        "attention": {},
+        "gnn_explainer": {
+          "POSIX_STRIDE3_COUNT": 0.5359126925468445,
+          "POSIX_ACCESS1_COUNT": 0.5333018898963928,
+          "POSIX_SIZE_WRITE_100K_1M": 0.5331743359565735,
+          "POSIX_SIZE_WRITE_10K_100K": 0.5315266847610474,
+          "POSIX_MEM_ALIGNMENT": 0.5297940969467163,
+          "POSIX_SIZE_WRITE_1K_10K": 0.5252689123153687,
+          "POSIX_READS": 0.5226510167121887,
+          "POSIX_SEQ_READS": 0.5220255255699158,
+          "POSIX_SIZE_WRITE_0_100": 0.5210599303245544,
+          "POSIX_STRIDE2_STRIDE": 0.5201110243797302,
+          "LUSTRE_STRIPE_SIZE": 0.518585205078125,
+          "POSIX_FILENOS": 0.518312931060791,
+          "POSIX_ACCESS3_ACCESS": 0.5180588960647583,
+          "POSIX_FILE_NOT_ALIGNED": 0.517786979675293,
+          "POSIX_STRIDE2_COUNT": 0.5177721381187439,
+          "POSIX_STRIDE1_COUNT": 0.5171891450881958,
+          "POSIX_ACCESS2_COUNT": 0.5170714259147644,
+          "POSIX_SEEKS": 0.5168930888175964,
+          "POSIX_MEM_NOT_ALIGNED": 0.5158777832984924,
+          "POSIX_SEQ_WRITES": 0.5110350847244263,
+          "POSIX_BYTES_WRITTEN": 0.5099514722824097,
+          "POSIX_SIZE_READ_100K_1M": 0.5098432898521423,
+          "POSIX_STRIDE3_STRIDE": 0.5090211629867554,
+          "POSIX_WRITES": 0.5066287517547607,
+          "POSIX_STRIDE1_STRIDE": 0.5047677755355835,
+          "POSIX_STRIDE4_STRIDE": 0.5040963888168335,
+          "POSIX_SIZE_READ_0_100": 0.5010491013526917,
+          "POSIX_SIZE_WRITE_100_1K": 0.5008094906806946
+        },
+        "gradients": {
+          "nprocs": 0.008638784289360046,
+          "POSIX_OPENS": 0.04441697522997856,
+          "LUSTRE_STRIPE_SIZE": 0.08540689945220947,
+          "LUSTRE_STRIPE_WIDTH": 0.01754740998148918,
+          "POSIX_FILENOS": 0.019759653136134148,
+          "POSIX_MEM_ALIGNMENT": 0.023279042914509773,
+          "POSIX_FILE_ALIGNMENT": 0.023128224536776543,
+          "POSIX_READS": 0.009235365316271782,
+          "POSIX_WRITES": 0.043594203889369965,
+          "POSIX_SEEKS": 0.02027657814323902,
+          "POSIX_STATS": 0.014533502981066704,
+          "POSIX_BYTES_READ": 0.14122959971427917,
+          "POSIX_BYTES_WRITTEN": 0.02506861835718155,
+          "POSIX_CONSEC_READS": 0.0033548776991665363,
+          "POSIX_CONSEC_WRITES": 0.0391826406121254,
+          "POSIX_SEQ_READS": 0.02075936645269394,
+          "POSIX_SEQ_WRITES": 0.03671977296471596,
+          "POSIX_RW_SWITCHES": 0.0,
+          "POSIX_MEM_NOT_ALIGNED": 0.030521564185619354,
+          "POSIX_FILE_NOT_ALIGNED": 0.0212725717574358,
+          "POSIX_SIZE_READ_0_100": 0.05103909224271774,
+          "POSIX_SIZE_READ_100_1K": 0.003376239910721779,
+          "POSIX_SIZE_READ_1K_10K": 0.03431101143360138,
+          "POSIX_SIZE_READ_100K_1M": 0.014444799162447453,
+          "POSIX_SIZE_WRITE_0_100": 0.038772325962781906,
+          "POSIX_SIZE_WRITE_100_1K": 0.026585092768073082,
+          "POSIX_SIZE_WRITE_1K_10K": 0.00985148549079895,
+          "POSIX_SIZE_WRITE_10K_100K": 0.00011222597095184028,
+          "POSIX_SIZE_WRITE_100K_1M": 0.009978956542909145,
+          "POSIX_STRIDE1_STRIDE": 0.01170386653393507,
+          "POSIX_STRIDE2_STRIDE": 0.05387381836771965,
+          "POSIX_STRIDE3_STRIDE": 0.02609517052769661,
+          "POSIX_STRIDE4_STRIDE": 0.0006858264678157866,
+          "POSIX_STRIDE1_COUNT": 0.0013076799223199487,
+          "POSIX_STRIDE2_COUNT": 0.0008863605908118188,
+          "POSIX_STRIDE3_COUNT": 0.028412064537405968,
+          "POSIX_STRIDE4_COUNT": 0.004663174506276846,
+          "POSIX_ACCESS1_ACCESS": 0.006100944709032774,
+          "POSIX_ACCESS2_ACCESS": 0.026968196034431458,
+          "POSIX_ACCESS3_ACCESS": 0.0022191063035279512,
+          "POSIX_ACCESS4_ACCESS": 0.0004589889431372285,
+          "POSIX_ACCESS1_COUNT": 0.00767842773348093,
+          "POSIX_ACCESS2_COUNT": 0.0009630177519284189,
+          "POSIX_ACCESS3_COUNT": 0.002559331012889743,
+          "POSIX_ACCESS4_COUNT": 0.009027154184877872,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "LUSTRE_STRIPE_SIZE",
+          0.30199605226516724,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE2_STRIDE",
+          0.28699242137372494,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE3_COUNT",
+          0.2821623785421252,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_0_100",
+          0.2799161281436682,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_ALIGNMENT",
+          0.27653656993061304,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_0_100",
+          0.2760440967977047,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_WRITES",
+          0.27511147782206535,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_WRITES",
+          0.2738774288445711,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_NOT_ALIGNED",
+          0.2731996737420559,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100K_1M",
+          0.2715766462497413,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_READS",
+          0.27139244601130486,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_COUNT",
+          0.2704901588149369,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILE_NOT_ALIGNED",
+          0.2695297757163644,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILENOS",
+          0.2690362920984626,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEEKS",
+          0.26858483348041773,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_1K_10K",
+          0.2675601989030838,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE3_STRIDE",
+          0.267558166757226,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_BYTES_WRITTEN",
+          0.2675100453197956,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_READS",
+          0.26594319101423025,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_10K_100K",
+          0.2658194553659996,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100_1K",
+          0.26369729172438383,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_100K_1M",
+          0.2621440445072949,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_ACCESS",
+          0.2601390011841431,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE2_COUNT",
+          0.25932924935477786,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE1_COUNT",
+          0.2592484125052579,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS2_COUNT",
+          0.2590172218333464,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE1_STRIDE",
+          0.2582358210347593,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE4_STRIDE",
+          0.25239110764232464,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ]
+      ]
+    },
+    {
+      "node_idx": 86,
+      "performance": 2.887253522872925,
+      "methods": {
+        "attention": {},
+        "gnn_explainer": {
+          "POSIX_FILE_NOT_ALIGNED": 0.6063171029090881,
+          "POSIX_SEQ_READS": 0.5987859964370728,
+          "POSIX_STRIDE2_COUNT": 0.5827928185462952,
+          "POSIX_SEEKS": 0.5710849761962891,
+          "POSIX_SIZE_WRITE_0_100": 0.5670838356018066,
+          "POSIX_CONSEC_READS": 0.5537539124488831,
+          "POSIX_CONSEC_WRITES": 0.55254065990448,
+          "POSIX_STRIDE4_STRIDE": 0.5428985357284546,
+          "POSIX_STRIDE2_STRIDE": 0.5404214262962341,
+          "nprocs": 0.5256833434104919,
+          "POSIX_ACCESS1_COUNT": 0.5256406664848328,
+          "POSIX_SIZE_WRITE_100K_1M": 0.5256124138832092,
+          "POSIX_ACCESS3_ACCESS": 0.5244724750518799,
+          "POSIX_SIZE_READ_1K_10K": 0.5215219855308533,
+          "POSIX_MEM_ALIGNMENT": 0.5194142460823059,
+          "LUSTRE_STRIPE_SIZE": 0.515185534954071,
+          "POSIX_FILE_ALIGNMENT": 0.5134865045547485,
+          "POSIX_ACCESS3_COUNT": 0.510004997253418,
+          "POSIX_OPENS": 0.5091501474380493,
+          "POSIX_ACCESS2_ACCESS": 0.5087725520133972,
+          "POSIX_STRIDE4_COUNT": 0.5085922479629517,
+          "POSIX_STATS": 0.5073944330215454,
+          "POSIX_STRIDE1_STRIDE": 0.5010661482810974
+        },
+        "gradients": {
+          "nprocs": 0.002907959744334221,
+          "POSIX_OPENS": 0.04131273552775383,
+          "LUSTRE_STRIPE_SIZE": 0.09771288186311722,
+          "LUSTRE_STRIPE_WIDTH": 0.011178085580468178,
+          "POSIX_FILENOS": 0.006750196684151888,
+          "POSIX_MEM_ALIGNMENT": 0.0346745029091835,
+          "POSIX_FILE_ALIGNMENT": 0.026805175468325615,
+          "POSIX_READS": 0.018330948427319527,
+          "POSIX_WRITES": 0.03814832866191864,
+          "POSIX_SEEKS": 0.01581212691962719,
+          "POSIX_STATS": 0.03209223225712776,
+          "POSIX_BYTES_READ": 0.2555229365825653,
+          "POSIX_BYTES_WRITTEN": 0.059707608073949814,
+          "POSIX_CONSEC_READS": 0.022318536415696144,
+          "POSIX_CONSEC_WRITES": 0.00386948324739933,
+          "POSIX_SEQ_READS": 0.005522539839148521,
+          "POSIX_SEQ_WRITES": 0.019245576113462448,
+          "POSIX_RW_SWITCHES": 0.0,
+          "POSIX_MEM_NOT_ALIGNED": 0.01150740496814251,
+          "POSIX_FILE_NOT_ALIGNED": 0.02774924971163273,
+          "POSIX_SIZE_READ_0_100": 0.022387782111763954,
+          "POSIX_SIZE_READ_100_1K": 0.0013322359882295132,
+          "POSIX_SIZE_READ_1K_10K": 0.0063804322853684425,
+          "POSIX_SIZE_READ_100K_1M": 0.016718586906790733,
+          "POSIX_SIZE_WRITE_0_100": 0.0005649078520946205,
+          "POSIX_SIZE_WRITE_100_1K": 0.019071048125624657,
+          "POSIX_SIZE_WRITE_1K_10K": 0.019742676988244057,
+          "POSIX_SIZE_WRITE_10K_100K": 0.0001135377970058471,
+          "POSIX_SIZE_WRITE_100K_1M": 0.009549643844366074,
+          "POSIX_STRIDE1_STRIDE": 0.017274005338549614,
+          "POSIX_STRIDE2_STRIDE": 0.05752449855208397,
+          "POSIX_STRIDE3_STRIDE": 0.00012580420298036188,
+          "POSIX_STRIDE4_STRIDE": 0.026105141267180443,
+          "POSIX_STRIDE1_COUNT": 0.00020644257892854512,
+          "POSIX_STRIDE2_COUNT": 0.010179785080254078,
+          "POSIX_STRIDE3_COUNT": 0.00954158790409565,
+          "POSIX_STRIDE4_COUNT": 0.003927291836589575,
+          "POSIX_ACCESS1_ACCESS": 0.008753340691328049,
+          "POSIX_ACCESS2_ACCESS": 0.017352024093270302,
+          "POSIX_ACCESS3_ACCESS": 0.0023132723290473223,
+          "POSIX_ACCESS4_ACCESS": 0.002105979947373271,
+          "POSIX_ACCESS1_COUNT": 0.0065972162410616875,
+          "POSIX_ACCESS2_COUNT": 0.0016612580511718988,
+          "POSIX_ACCESS3_COUNT": 0.0006085213390178978,
+          "POSIX_ACCESS4_COUNT": 0.008694492280483246,
+          "feature_45": 0.0,
+          "feature_46": 0.0,
+          "feature_47": 0.0,
+          "feature_48": 0.0
+        }
+      },
+      "consensus": [
+        [
+          "POSIX_FILE_NOT_ALIGNED",
+          0.31703317631036043,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "LUSTRE_STRIPE_SIZE",
+          0.30644920840859413,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEQ_READS",
+          0.30215426813811064,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE2_STRIDE",
+          0.29897296242415905,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE2_COUNT",
+          0.2964863018132746,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SEEKS",
+          0.2934485515579581,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_READS",
+          0.2880362244322896,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE4_STRIDE",
+          0.2845018384978175,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_0_100",
+          0.28382437172695063,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_CONSEC_WRITES",
+          0.27820507157593966,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_MEM_ALIGNMENT",
+          0.2770443744957447,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_OPENS",
+          0.2752314414829016,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_FILE_ALIGNMENT",
+          0.2701458400115371,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STATS",
+          0.2697433326393366,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_WRITE_100K_1M",
+          0.26758102886378765,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS1_COUNT",
+          0.2661189413629472,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "nprocs",
+          0.2642956515774131,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_SIZE_READ_1K_10K",
+          0.26395120890811086,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_ACCESS",
+          0.2633928736904636,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS2_ACCESS",
+          0.26306228805333376,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE1_STRIDE",
+          0.2591700768098235,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_STRIDE4_COUNT",
+          0.2562597698997706,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ],
+        [
+          "POSIX_ACCESS3_COUNT",
+          0.25530675929621793,
+          [
+            "gnn_explainer",
+            "gradients"
+          ]
+        ]
+      ]
+    }
+  ]
+}

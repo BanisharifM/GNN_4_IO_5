@@ -57,7 +57,7 @@ interpretability:
   top_k_features: 5
   top_k_consensus: 5
   min_consensus_methods: 2
-  output_dir: "./analysis/results"
+  output_dir: "./analysis/results/1M_C6"
   methods:
     attention: true
     gnn_explainer: true

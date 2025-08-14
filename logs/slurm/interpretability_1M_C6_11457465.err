@@ -1,0 +1,50 @@
+2025-08-14 13:30:28,885 - INFO - Loading config from /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/configs/gat_config6.yaml
+2025-08-14 13:30:28,896 - INFO - Using device: cuda
+2025-08-14 13:30:28,896 - INFO - Using dtype: torch.float32
+2025-08-14 13:30:28,896 - INFO - Loading model...
+2025-08-14 13:30:34,874 - INFO - Checkpoint keys: dict_keys(['epoch', 'model_state_dict', 'optimizer_state_dict', 'val_rmse', 'history'])
+2025-08-14 13:30:34,874 - INFO - Using model config from config file
+2025-08-14 13:30:34,874 - INFO - Detected 49 input features from checkpoint
+2025-08-14 13:30:34,874 - INFO - Detected pre-augmented features in checkpoint (49), disabling feature_augmentation for model creation
+2025-08-14 13:30:34,875 - INFO - Creating model with config: {'num_features': 49, 'model_type': 'standard', 'hidden_channels': 512, 'num_layers': 2, 'heads': [8, 1], 'dropout': 0.05, 'residual': True, 'layer_norm': True, 'feature_augmentation': False, 'dtype': torch.float32, 'edge_dim': 1, 'pool_type': 'mean'}
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/analysis/interpretability/test_methods.py", line 747, in <module>
+    main()
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/analysis/interpretability/test_methods.py", line 709, in main
+    tester = InterpretabilityTester(
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/analysis/interpretability/test_methods.py", line 88, in __init__
+    self.model = self._load_model(checkpoint_path)
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/analysis/interpretability/test_methods.py", line 199, in _load_model
+    model.load_state_dict(checkpoint['model_state_dict'])
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2041, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for IOPerformanceGAT:
+	Unexpected key(s) in state_dict: "gat_layers.2.gat_conv.att_src", "gat_layers.2.gat_conv.att_dst", "gat_layers.2.gat_conv.att_edge", "gat_layers.2.gat_conv.bias", "gat_layers.2.gat_conv.lin.weight", "gat_layers.2.gat_conv.lin_edge.weight", "layer_norms.2.weight", "layer_norms.2.bias", "residual_projs.2.weight", "residual_projs.2.bias". 
+	size mismatch for input_proj.weight: copying a param with shape torch.Size([320, 49]) from checkpoint, the shape in current model is torch.Size([512, 49]).
+	size mismatch for input_proj.bias: copying a param with shape torch.Size([320]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for gat_layers.0.gat_conv.att_src: copying a param with shape torch.Size([1, 12, 320]) from checkpoint, the shape in current model is torch.Size([1, 8, 512]).
+	size mismatch for gat_layers.0.gat_conv.att_dst: copying a param with shape torch.Size([1, 12, 320]) from checkpoint, the shape in current model is torch.Size([1, 8, 512]).
+	size mismatch for gat_layers.0.gat_conv.att_edge: copying a param with shape torch.Size([1, 12, 320]) from checkpoint, the shape in current model is torch.Size([1, 8, 512]).
+	size mismatch for gat_layers.0.gat_conv.bias: copying a param with shape torch.Size([3840]) from checkpoint, the shape in current model is torch.Size([4096]).
+	size mismatch for gat_layers.0.gat_conv.lin.weight: copying a param with shape torch.Size([3840, 320]) from checkpoint, the shape in current model is torch.Size([4096, 512]).
+	size mismatch for gat_layers.0.gat_conv.lin_edge.weight: copying a param with shape torch.Size([3840, 1]) from checkpoint, the shape in current model is torch.Size([4096, 1]).
+	size mismatch for gat_layers.1.gat_conv.att_src: copying a param with shape torch.Size([1, 8, 320]) from checkpoint, the shape in current model is torch.Size([1, 1, 512]).
+	size mismatch for gat_layers.1.gat_conv.att_dst: copying a param with shape torch.Size([1, 8, 320]) from checkpoint, the shape in current model is torch.Size([1, 1, 512]).
+	size mismatch for gat_layers.1.gat_conv.att_edge: copying a param with shape torch.Size([1, 8, 320]) from checkpoint, the shape in current model is torch.Size([1, 1, 512]).
+	size mismatch for gat_layers.1.gat_conv.bias: copying a param with shape torch.Size([2560]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for gat_layers.1.gat_conv.lin.weight: copying a param with shape torch.Size([2560, 3840]) from checkpoint, the shape in current model is torch.Size([512, 4096]).
+	size mismatch for gat_layers.1.gat_conv.lin_edge.weight: copying a param with shape torch.Size([2560, 1]) from checkpoint, the shape in current model is torch.Size([512, 1]).
+	size mismatch for layer_norms.0.weight: copying a param with shape torch.Size([3840]) from checkpoint, the shape in current model is torch.Size([4096]).
+	size mismatch for layer_norms.0.bias: copying a param with shape torch.Size([3840]) from checkpoint, the shape in current model is torch.Size([4096]).
+	size mismatch for layer_norms.1.weight: copying a param with shape torch.Size([2560]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for layer_norms.1.bias: copying a param with shape torch.Size([2560]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for residual_projs.0.weight: copying a param with shape torch.Size([3840, 320]) from checkpoint, the shape in current model is torch.Size([4096, 512]).
+	size mismatch for residual_projs.0.bias: copying a param with shape torch.Size([3840]) from checkpoint, the shape in current model is torch.Size([4096]).
+	size mismatch for residual_projs.1.weight: copying a param with shape torch.Size([2560, 3840]) from checkpoint, the shape in current model is torch.Size([512, 4096]).
+	size mismatch for residual_projs.1.bias: copying a param with shape torch.Size([2560]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for predictor.0.weight: copying a param with shape torch.Size([320, 640]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for predictor.0.bias: copying a param with shape torch.Size([320]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for predictor.3.weight: copying a param with shape torch.Size([160, 320]) from checkpoint, the shape in current model is torch.Size([256, 512]).
+	size mismatch for predictor.3.bias: copying a param with shape torch.Size([160]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for predictor.6.weight: copying a param with shape torch.Size([1, 160]) from checkpoint, the shape in current model is torch.Size([1, 256]).
+srun: error: gpua001: task 0: Exited with exit code 1
