@@ -373,7 +373,7 @@ def main():
         print("Warning: Training features not found")
     
     # New IOR sample
-    test_features = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/darshan_features_ior_normalized.csv'
+    test_features = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/darshan_features_ior_normalized_gnn_optimized.csv'
     
     # Initialize predictor (force CPU to avoid memory issues)
     predictor = IORPredictor(
