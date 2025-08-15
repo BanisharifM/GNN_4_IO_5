@@ -1,0 +1,64 @@
+2025-08-15 05:30:09,989 - INFO - 
+======================================================================
+2025-08-15 05:30:09,989 - INFO - INITIALIZING IOR INTERPRETABILITY ANALYZER
+2025-08-15 05:30:09,989 - INFO - ======================================================================
+2025-08-15 05:30:10,031 - INFO - Model configuration: hidden=512, layers=2, heads=[8, 1]
+2025-08-15 05:30:13,999 - INFO - Loaded 1000000 training samples
+2025-08-15 05:30:14,000 - INFO - 
+======================================================================
+2025-08-15 05:30:14,000 - INFO - RUNNING INTERPRETABILITY ANALYSIS
+2025-08-15 05:30:14,000 - INFO - ======================================================================
+2025-08-15 05:30:14,004 - INFO - 
+=== Creating subgraph for interpretability analysis ===
+2025-08-15 05:30:14,296 - INFO - Selected 100 neighbors for analysis
+2025-08-15 05:30:14,298 - INFO - Created subgraph with 101 nodes and 200 edges
+2025-08-15 05:30:14,473 - INFO - 
+=== Performance Prediction ===
+2025-08-15 05:30:14,473 - INFO - Predicted: 7.14 MB/s
+2025-08-15 05:30:14,473 - INFO - Actual: 5.17 MB/s
+2025-08-15 05:30:14,473 - INFO - Error: 1.97 MB/s
+2025-08-15 05:30:14,473 - INFO - 
+=== Running Attention Analysis ===
+2025-08-15 05:30:14,892 - INFO - Found 0 important features via attention
+2025-08-15 05:30:14,892 - INFO - 
+=== Running GNNExplainer ===
+2025-08-15 05:30:50,546 - INFO - Found 31 important features via GNNExplainer
+2025-08-15 05:30:50,546 - INFO - 
+=== Running Gradient Analysis ===
+2025-08-15 05:30:56,836 - INFO - Found 45 important features via gradients
+2025-08-15 05:30:56,836 - INFO - 
+=== Calculating Z-Score Normalized Consensus ===
+2025-08-15 05:30:56,837 - INFO - Consensus found 45 features
+2025-08-15 05:30:56,837 - INFO - Top 5 consensus features:
+2025-08-15 05:30:56,837 - INFO -   1. POSIX_BYTES_WRITTEN: 3.408
+2025-08-15 05:30:56,837 - INFO -   2. POSIX_CONSEC_WRITES: 0.932
+2025-08-15 05:30:56,837 - INFO -   3. POSIX_SIZE_WRITE_100_1K: 0.886
+2025-08-15 05:30:56,837 - INFO -   4. POSIX_FILE_ALIGNMENT: 0.845
+2025-08-15 05:30:56,837 - INFO -   5. POSIX_MEM_ALIGNMENT: 0.806
+2025-08-15 05:30:56,837 - INFO - 
+======================================================================
+2025-08-15 05:30:56,837 - INFO - GENERATING VISUALIZATIONS
+2025-08-15 05:30:56,837 - INFO - ======================================================================
+2025-08-15 05:30:57,141 - INFO - Saved GNNExplainer - Feature Importance to ./interpretability_figures/gnn_explainer_analysis.png
+2025-08-15 05:30:57,406 - INFO - Saved Integrated Gradients - Feature Importance to ./interpretability_figures/gradient_analysis.png
+2025-08-15 05:30:57,684 - INFO - Saved Z-Score Normalized Consensus to ./interpretability_figures/consensus_analysis.png
+2025-08-15 05:30:57,684 - INFO - All visualizations saved to ./interpretability_figures
+2025-08-15 05:30:57,684 - INFO - 
+======================================================================
+2025-08-15 05:30:57,684 - INFO - GENERATING BOTTLENECK REPORT
+2025-08-15 05:30:57,684 - INFO - ======================================================================
+2025-08-15 05:30:57,714 - INFO - Bottleneck report saved to bottleneck_report.json
+2025-08-15 05:30:57,714 - INFO - 
+======================================================================
+2025-08-15 05:30:57,714 - INFO - ANALYSIS SUMMARY
+2025-08-15 05:30:57,714 - INFO - ======================================================================
+2025-08-15 05:30:57,714 - INFO - Performance: 7.14 MB/s (predicted) vs 5.17 MB/s (actual)
+2025-08-15 05:30:57,714 - INFO - Primary Bottleneck: POSIX_BYTES_WRITTEN
+2025-08-15 05:30:57,714 - INFO - Recommendation: Optimize I/O pattern for better performance
+2025-08-15 05:30:57,714 - INFO - 
+======================================================================
+2025-08-15 05:30:57,714 - INFO - ANALYSIS COMPLETE!
+2025-08-15 05:30:57,714 - INFO - ======================================================================
+2025-08-15 05:30:57,714 - INFO - Outputs:
+2025-08-15 05:30:57,714 - INFO -   - Visualizations: ./interpretability_figures/
+2025-08-15 05:30:57,714 - INFO -   - Report: bottleneck_report.json

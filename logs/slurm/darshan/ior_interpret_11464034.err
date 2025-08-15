@@ -1,0 +1,56 @@
+2025-08-15 05:11:52,001 - INFO - 
+======================================================================
+2025-08-15 05:11:52,001 - INFO - INITIALIZING IOR INTERPRETABILITY ANALYZER
+2025-08-15 05:11:52,001 - INFO - ======================================================================
+2025-08-15 05:11:52,046 - INFO - Model configuration: hidden=512, layers=2, heads=[8, 1]
+2025-08-15 05:11:56,157 - INFO - Loaded 1000000 training samples
+2025-08-15 05:11:56,158 - INFO - 
+======================================================================
+2025-08-15 05:11:56,158 - INFO - RUNNING INTERPRETABILITY ANALYSIS
+2025-08-15 05:11:56,158 - INFO - ======================================================================
+2025-08-15 05:11:56,162 - INFO - 
+=== Creating subgraph for interpretability analysis ===
+2025-08-15 05:11:56,457 - INFO - Selected 100 neighbors for analysis
+2025-08-15 05:11:56,458 - INFO - Created subgraph with 101 nodes and 200 edges
+2025-08-15 05:11:56,650 - INFO - 
+=== Performance Prediction ===
+2025-08-15 05:11:56,650 - INFO - Predicted: 7.14 MB/s
+2025-08-15 05:11:56,650 - INFO - Actual: 5.17 MB/s
+2025-08-15 05:11:56,650 - INFO - Error: 1.97 MB/s
+2025-08-15 05:11:56,650 - INFO - 
+=== Running Attention Analysis ===
+2025-08-15 05:11:56,682 - ERROR - Attention analysis failed: mat1 and mat2 shapes cannot be multiplied (101x53 and 49x512)
+2025-08-15 05:11:56,683 - INFO - 
+=== Running GNNExplainer ===
+2025-08-15 05:11:56,692 - ERROR - GNNExplainer failed: mat1 and mat2 shapes cannot be multiplied (101x53 and 49x512)
+2025-08-15 05:11:56,692 - INFO - 
+=== Running Gradient Analysis ===
+2025-08-15 05:11:56,699 - ERROR - Gradient analysis failed: mat1 and mat2 shapes cannot be multiplied (101x53 and 49x512)
+2025-08-15 05:11:56,700 - INFO - 
+=== Calculating Z-Score Normalized Consensus ===
+2025-08-15 05:11:56,700 - INFO - Consensus found 0 features
+2025-08-15 05:11:56,700 - INFO - Top 5 consensus features:
+2025-08-15 05:11:56,700 - INFO - 
+======================================================================
+2025-08-15 05:11:56,700 - INFO - GENERATING VISUALIZATIONS
+2025-08-15 05:11:56,700 - INFO - ======================================================================
+2025-08-15 05:11:56,704 - INFO - All visualizations saved to ./interpretability_figures
+2025-08-15 05:11:56,704 - INFO - 
+======================================================================
+2025-08-15 05:11:56,704 - INFO - GENERATING BOTTLENECK REPORT
+2025-08-15 05:11:56,704 - INFO - ======================================================================
+2025-08-15 05:11:56,715 - INFO - Bottleneck report saved to bottleneck_report.json
+2025-08-15 05:11:56,715 - INFO - 
+======================================================================
+2025-08-15 05:11:56,716 - INFO - ANALYSIS SUMMARY
+2025-08-15 05:11:56,716 - INFO - ======================================================================
+2025-08-15 05:11:56,716 - INFO - Performance: 7.14 MB/s (predicted) vs 5.17 MB/s (actual)
+2025-08-15 05:11:56,716 - INFO - Primary Bottleneck: Unknown
+2025-08-15 05:11:56,716 - INFO - Recommendation: N/A
+2025-08-15 05:11:56,716 - INFO - 
+======================================================================
+2025-08-15 05:11:56,716 - INFO - ANALYSIS COMPLETE!
+2025-08-15 05:11:56,716 - INFO - ======================================================================
+2025-08-15 05:11:56,716 - INFO - Outputs:
+2025-08-15 05:11:56,716 - INFO -   - Visualizations: ./interpretability_figures/
+2025-08-15 05:11:56,716 - INFO -   - Report: bottleneck_report.json
