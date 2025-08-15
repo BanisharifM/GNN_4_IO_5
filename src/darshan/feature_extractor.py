@@ -241,8 +241,8 @@ def process_multiple_logs(log_paths: List[str],
         rows = []
         for result in results:
             row = dict(zip(result['feature_names'], result['features']))
-            row['performance'] = result.get('performance', np.nan)
-            row['jobid'] = result['metadata']['jobid']
+            row['tag'] = result.get('performance', np.nan)
+            # row['jobid'] = result['metadata']['jobid']
             rows.append(row)
         
         df = pd.DataFrame(rows)
