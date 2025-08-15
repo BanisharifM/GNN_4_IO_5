@@ -1,0 +1,1927 @@
+======================================================================
+Simplified Phase 3 Test - Focus on Predictions
+======================================================================
+
+Loading model...
+Initializing components...
+Loading IOR features...
+
+==================================================
+Rank 0
+==================================================
+Actual performance: 1.2044
+Predicted (raw): 53.0776
+Predicted (log10): 1.7249
+Predicted (direct): 53.0776
+-> Using log10 scale, error: 0.5205
+Neighbor mean: 0.8047
+
+==================================================
+Rank 1
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 68.4492
+Predicted (log10): 1.8354
+Predicted (direct): 68.4492
+-> Using log10 scale, error: 0.6310
+Neighbor mean: 3.7300
+
+==================================================
+Rank 2
+==================================================
+Actual performance: 1.2044
+Predicted (raw): 35.1161
+Predicted (log10): 1.5455
+Predicted (direct): 35.1161
+-> Using log10 scale, error: 0.3411
+Neighbor mean: 3.0574
+
+==================================================
+Rank 3
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 48.6310
+Predicted (log10): 1.6869
+Predicted (direct): 48.6310
+-> Using log10 scale, error: 0.4826
+Neighbor mean: 3.0561
+
+==================================================
+Rank 4
+==================================================
+Actual performance: 1.6813
+Predicted (raw): 51.9441
+Predicted (log10): 1.7155
+Predicted (direct): 51.9441
+-> Using log10 scale, error: 0.0342
+Neighbor mean: 3.9831
+
+==================================================
+Rank 5
+==================================================
+Actual performance: 1.6813
+Predicted (raw): 67.1483
+Predicted (log10): 1.8270
+Predicted (direct): 67.1483
+-> Using log10 scale, error: 0.1457
+Neighbor mean: 4.1160
+
+==================================================
+Rank 6
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 52.3786
+Predicted (log10): 1.7192
+Predicted (direct): 52.3786
+-> Using log10 scale, error: 0.2138
+Neighbor mean: 2.4697
+
+==================================================
+Rank 7
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 67.6257
+Predicted (log10): 1.8301
+Predicted (direct): 67.6257
+-> Using log10 scale, error: 0.3249
+Neighbor mean: 4.1167
+
+==================================================
+Rank 8
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 34.1402
+Predicted (log10): 1.5333
+Predicted (direct): 34.1402
+-> Using log10 scale, error: 0.0280
+Neighbor mean: 3.0561
+
+==================================================
+Rank 9
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 47.6987
+Predicted (log10): 1.6785
+Predicted (direct): 47.6987
+-> Using log10 scale, error: 0.1732
+Neighbor mean: 3.0574
+
+==================================================
+Rank 10
+==================================================
+Actual performance: 1.9823
+Predicted (raw): 51.1996
+Predicted (log10): 1.7093
+Predicted (direct): 51.1996
+-> Using log10 scale, error: 0.2731
+Neighbor mean: 4.1193
+
+==================================================
+Rank 11
+==================================================
+Actual performance: 1.9823
+Predicted (raw): 66.3438
+Predicted (log10): 1.8218
+Predicted (direct): 66.3438
+-> Using log10 scale, error: 0.1605
+Neighbor mean: 4.1145
+
+==================================================
+Rank 12
+==================================================
+Actual performance: 1.8063
+Predicted (raw): 51.6349
+Predicted (log10): 1.7129
+Predicted (direct): 51.6349
+-> Using log10 scale, error: 0.0933
+Neighbor mean: 4.1145
+
+==================================================
+Rank 13
+==================================================
+Actual performance: 1.8062
+Predicted (raw): 66.8135
+Predicted (log10): 1.8249
+Predicted (direct): 66.8135
+-> Using log10 scale, error: 0.0186
+Neighbor mean: 4.1145
+
+==================================================
+Rank 14
+==================================================
+Actual performance: 1.8063
+Predicted (raw): 33.8130
+Predicted (log10): 1.5291
+Predicted (direct): 33.8130
+-> Using log10 scale, error: 0.2772
+Neighbor mean: 3.0561
+
+==================================================
+Rank 15
+==================================================
+Actual performance: 1.8062
+Predicted (raw): 48.5216
+Predicted (log10): 1.6859
+Predicted (direct): 48.5216
+-> Using log10 scale, error: 0.1203
+Neighbor mean: 3.2102
+
+==================================================
+Rank 16
+==================================================
+Actual performance: 2.2833
+Predicted (raw): 50.4084
+Predicted (log10): 1.7025
+Predicted (direct): 50.4084
+-> Using log10 scale, error: 0.5808
+Neighbor mean: 4.1304
+
+==================================================
+Rank 17
+==================================================
+Actual performance: 2.2833
+Predicted (raw): 65.5223
+Predicted (log10): 1.8164
+Predicted (direct): 65.5223
+-> Using log10 scale, error: 0.4669
+Neighbor mean: 4.1304
+
+==================================================
+Rank 18
+==================================================
+Actual performance: 2.1073
+Predicted (raw): 50.8764
+Predicted (log10): 1.7065
+Predicted (direct): 50.8764
+-> Using log10 scale, error: 0.4007
+Neighbor mean: 4.1145
+
+==================================================
+Rank 19
+==================================================
+Actual performance: 2.1072
+Predicted (raw): 66.0032
+Predicted (log10): 1.8196
+Predicted (direct): 66.0032
+-> Using log10 scale, error: 0.2877
+Neighbor mean: 4.1145
+
+==================================================
+Rank 20
+==================================================
+Actual performance: 2.1073
+Predicted (raw): 32.6309
+Predicted (log10): 1.5136
+Predicted (direct): 32.6309
+-> Using log10 scale, error: 0.5936
+Neighbor mean: 3.2102
+
+==================================================
+Rank 21
+==================================================
+Actual performance: 2.1072
+Predicted (raw): 45.4410
+Predicted (log10): 1.6574
+Predicted (direct): 45.4410
+-> Using log10 scale, error: 0.4498
+Neighbor mean: 3.2878
+
+==================================================
+Rank 22
+==================================================
+Actual performance: 2.5843
+Predicted (raw): 49.6387
+Predicted (log10): 1.6958
+Predicted (direct): 49.6387
+-> Using log10 scale, error: 0.8885
+Neighbor mean: 4.2424
+
+==================================================
+Rank 23
+==================================================
+Actual performance: 2.5843
+Predicted (raw): 64.6334
+Predicted (log10): 1.8105
+Predicted (direct): 64.6334
+-> Using log10 scale, error: 0.7739
+Neighbor mean: 4.2424
+
+==================================================
+Rank 24
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 50.0779
+Predicted (log10): 1.6996
+Predicted (direct): 50.0779
+-> Using log10 scale, error: 0.7086
+Neighbor mean: 4.2424
+
+==================================================
+Rank 25
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 65.1581
+Predicted (log10): 1.8140
+Predicted (direct): 65.1581
+-> Using log10 scale, error: 0.5943
+Neighbor mean: 4.2424
+
+==================================================
+Rank 26
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 31.9803
+Predicted (log10): 1.5049
+Predicted (direct): 31.9803
+-> Using log10 scale, error: 0.9034
+Neighbor mean: 3.0281
+
+==================================================
+Rank 27
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 44.3632
+Predicted (log10): 1.6470
+Predicted (direct): 44.3632
+-> Using log10 scale, error: 0.7612
+Neighbor mean: 3.2102
+
+==================================================
+Rank 28
+==================================================
+Actual performance: 2.8854
+Predicted (raw): 48.8675
+Predicted (log10): 1.6890
+Predicted (direct): 48.8675
+-> Using log10 scale, error: 1.1963
+Neighbor mean: 4.2525
+
+==================================================
+Rank 29
+==================================================
+Actual performance: 2.8854
+Predicted (raw): 63.7469
+Predicted (log10): 1.8045
+Predicted (direct): 63.7469
+-> Using log10 scale, error: 1.0809
+Neighbor mean: 4.2525
+
+==================================================
+Rank 30
+==================================================
+Actual performance: 1.2044
+Predicted (raw): 71.7342
+Predicted (log10): 1.8557
+Predicted (direct): 71.7342
+-> Using log10 scale, error: 0.6513
+Neighbor mean: 1.4598
+
+==================================================
+Rank 31
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 73.5734
+Predicted (log10): 1.8667
+Predicted (direct): 73.5734
+-> Using log10 scale, error: 0.6624
+Neighbor mean: 2.6994
+
+==================================================
+Rank 32
+==================================================
+Actual performance: 1.2044
+Predicted (raw): 45.0022
+Predicted (log10): 1.6532
+Predicted (direct): 45.0022
+-> Using log10 scale, error: 0.4488
+Neighbor mean: 3.5581
+
+==================================================
+Rank 33
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 45.6895
+Predicted (log10): 1.6598
+Predicted (direct): 45.6895
+-> Using log10 scale, error: 0.4555
+Neighbor mean: 3.5555
+
+==================================================
+Rank 34
+==================================================
+Actual performance: 1.6813
+Predicted (raw): 70.9911
+Predicted (log10): 1.8512
+Predicted (direct): 70.9911
+-> Using log10 scale, error: 0.1699
+Neighbor mean: 2.7012
+
+==================================================
+Rank 35
+==================================================
+Actual performance: 1.6813
+Predicted (raw): 72.5058
+Predicted (log10): 1.8604
+Predicted (direct): 72.5058
+-> Using log10 scale, error: 0.1791
+Neighbor mean: 2.7524
+
+==================================================
+Rank 36
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 71.2577
+Predicted (log10): 1.8528
+Predicted (direct): 71.2577
+-> Using log10 scale, error: 0.3475
+Neighbor mean: 1.3598
+
+==================================================
+Rank 37
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 72.9060
+Predicted (log10): 1.8628
+Predicted (direct): 72.9060
+-> Using log10 scale, error: 0.3575
+Neighbor mean: 2.6069
+
+==================================================
+Rank 38
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 44.2820
+Predicted (log10): 1.6462
+Predicted (direct): 44.2820
+-> Using log10 scale, error: 0.1409
+Neighbor mean: 3.5549
+
+==================================================
+Rank 39
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 44.5001
+Predicted (log10): 1.6484
+Predicted (direct): 44.5001
+-> Using log10 scale, error: 0.1431
+Neighbor mean: 3.5574
+
+==================================================
+Rank 40
+==================================================
+Actual performance: 1.9823
+Predicted (raw): 70.5208
+Predicted (log10): 1.8483
+Predicted (direct): 70.5208
+-> Using log10 scale, error: 0.1340
+Neighbor mean: 3.4818
+
+==================================================
+Rank 41
+==================================================
+Actual performance: 1.9823
+Predicted (raw): 71.7548
+Predicted (log10): 1.8559
+Predicted (direct): 71.7548
+-> Using log10 scale, error: 0.1265
+Neighbor mean: 3.4834
+
+==================================================
+Rank 42
+==================================================
+Actual performance: 1.8063
+Predicted (raw): 70.7984
+Predicted (log10): 1.8500
+Predicted (direct): 70.7984
+-> Using log10 scale, error: 0.0438
+Neighbor mean: 2.6282
+
+==================================================
+Rank 43
+==================================================
+Actual performance: 1.8062
+Predicted (raw): 72.1909
+Predicted (log10): 1.8585
+Predicted (direct): 72.1909
+-> Using log10 scale, error: 0.0522
+Neighbor mean: 2.6705
+
+==================================================
+Rank 44
+==================================================
+Actual performance: 1.8063
+Predicted (raw): 42.9608
+Predicted (log10): 1.6331
+Predicted (direct): 42.9608
+-> Using log10 scale, error: 0.1732
+Neighbor mean: 3.5580
+
+==================================================
+Rank 45
+==================================================
+Actual performance: 1.8062
+Predicted (raw): 43.4277
+Predicted (log10): 1.6378
+Predicted (direct): 43.4277
+-> Using log10 scale, error: 0.1685
+Neighbor mean: 3.5581
+
+==================================================
+Rank 46
+==================================================
+Actual performance: 2.2833
+Predicted (raw): 69.9597
+Predicted (log10): 1.8448
+Predicted (direct): 69.9597
+-> Using log10 scale, error: 0.4385
+Neighbor mean: 3.4684
+
+==================================================
+Rank 47
+==================================================
+Actual performance: 2.2833
+Predicted (raw): 71.1485
+Predicted (log10): 1.8522
+Predicted (direct): 71.1485
+-> Using log10 scale, error: 0.4312
+Neighbor mean: 3.4682
+
+==================================================
+Rank 48
+==================================================
+Actual performance: 2.1073
+Predicted (raw): 70.3206
+Predicted (log10): 1.8471
+Predicted (direct): 70.3206
+-> Using log10 scale, error: 0.2602
+Neighbor mean: 3.4568
+
+==================================================
+Rank 49
+==================================================
+Actual performance: 2.1072
+Predicted (raw): 71.4944
+Predicted (log10): 1.8543
+Predicted (direct): 71.4944
+-> Using log10 scale, error: 0.2530
+Neighbor mean: 3.4352
+
+==================================================
+Rank 50
+==================================================
+Actual performance: 2.1073
+Predicted (raw): 42.3250
+Predicted (log10): 1.6266
+Predicted (direct): 42.3250
+-> Using log10 scale, error: 0.4807
+Neighbor mean: 3.5549
+
+==================================================
+Rank 51
+==================================================
+Actual performance: 2.1072
+Predicted (raw): 48.7466
+Predicted (log10): 1.6879
+Predicted (direct): 48.7466
+-> Using log10 scale, error: 0.4193
+Neighbor mean: 3.5580
+
+==================================================
+Rank 52
+==================================================
+Actual performance: 2.5843
+Predicted (raw): 69.1792
+Predicted (log10): 1.8400
+Predicted (direct): 69.1792
+-> Using log10 scale, error: 0.7444
+Neighbor mean: 3.4727
+
+==================================================
+Rank 53
+==================================================
+Actual performance: 2.5843
+Predicted (raw): 70.4338
+Predicted (log10): 1.8478
+Predicted (direct): 70.4338
+-> Using log10 scale, error: 0.7366
+Neighbor mean: 3.4938
+
+==================================================
+Rank 54
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 69.6705
+Predicted (log10): 1.8430
+Predicted (direct): 69.6705
+-> Using log10 scale, error: 0.5652
+Neighbor mean: 3.4575
+
+==================================================
+Rank 55
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 70.9030
+Predicted (log10): 1.8507
+Predicted (direct): 70.9030
+-> Using log10 scale, error: 0.5576
+Neighbor mean: 3.4586
+
+==================================================
+Rank 56
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 41.1472
+Predicted (log10): 1.6143
+Predicted (direct): 41.1472
+-> Using log10 scale, error: 0.7939
+Neighbor mean: 3.4809
+
+==================================================
+Rank 57
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 41.4448
+Predicted (log10): 1.6175
+Predicted (direct): 41.4448
+-> Using log10 scale, error: 0.7908
+Neighbor mean: 3.5581
+
+==================================================
+Rank 58
+==================================================
+Actual performance: 2.8854
+Predicted (raw): 68.1250
+Predicted (log10): 1.8333
+Predicted (direct): 68.1250
+-> Using log10 scale, error: 1.0521
+Neighbor mean: 3.4776
+
+==================================================
+Rank 59
+==================================================
+Actual performance: 2.8854
+Predicted (raw): 69.5308
+Predicted (log10): 1.8422
+Predicted (direct): 69.5308
+-> Using log10 scale, error: 1.0432
+Neighbor mean: 3.4823
+
+==================================================
+Rank 60
+==================================================
+Actual performance: 1.2044
+Predicted (raw): 73.2647
+Predicted (log10): 1.8649
+Predicted (direct): 73.2647
+-> Using log10 scale, error: 0.6605
+Neighbor mean: 2.0716
+
+==================================================
+Rank 61
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 75.1303
+Predicted (log10): 1.8758
+Predicted (direct): 75.1303
+-> Using log10 scale, error: 0.6715
+Neighbor mean: 2.7720
+
+==================================================
+Rank 62
+==================================================
+Actual performance: 1.2044
+Predicted (raw): 62.3885
+Predicted (log10): 1.7951
+Predicted (direct): 62.3885
+-> Using log10 scale, error: 0.5907
+Neighbor mean: 2.2736
+
+==================================================
+Rank 63
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 53.4147
+Predicted (log10): 1.7277
+Predicted (direct): 53.4147
+-> Using log10 scale, error: 0.5233
+Neighbor mean: 3.1431
+
+==================================================
+Rank 64
+==================================================
+Actual performance: 1.6813
+Predicted (raw): 72.6541
+Predicted (log10): 1.8613
+Predicted (direct): 72.6541
+-> Using log10 scale, error: 0.1799
+Neighbor mean: 2.4346
+
+==================================================
+Rank 65
+==================================================
+Actual performance: 1.6813
+Predicted (raw): 74.3538
+Predicted (log10): 1.8713
+Predicted (direct): 74.3538
+-> Using log10 scale, error: 0.1900
+Neighbor mean: 2.8454
+
+==================================================
+Rank 66
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 72.9072
+Predicted (log10): 1.8628
+Predicted (direct): 72.9072
+-> Using log10 scale, error: 0.3575
+Neighbor mean: 2.1179
+
+==================================================
+Rank 67
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 74.6393
+Predicted (log10): 1.8730
+Predicted (direct): 74.6393
+-> Using log10 scale, error: 0.3677
+Neighbor mean: 2.8879
+
+==================================================
+Rank 68
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 46.3436
+Predicted (log10): 1.6660
+Predicted (direct): 46.3436
+-> Using log10 scale, error: 0.1607
+Neighbor mean: 3.5555
+
+==================================================
+Rank 69
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 46.8139
+Predicted (log10): 1.6704
+Predicted (direct): 46.8139
+-> Using log10 scale, error: 0.1651
+Neighbor mean: 3.5720
+
+==================================================
+Rank 70
+==================================================
+Actual performance: 1.9823
+Predicted (raw): 72.1937
+Predicted (log10): 1.8585
+Predicted (direct): 72.1937
+-> Using log10 scale, error: 0.1238
+Neighbor mean: 2.8898
+
+==================================================
+Rank 71
+==================================================
+Actual performance: 1.9823
+Predicted (raw): 73.8615
+Predicted (log10): 1.8684
+Predicted (direct): 73.8615
+-> Using log10 scale, error: 0.1139
+Neighbor mean: 2.8479
+
+==================================================
+Rank 72
+==================================================
+Actual performance: 1.8063
+Predicted (raw): 72.4428
+Predicted (log10): 1.8600
+Predicted (direct): 72.4428
+-> Using log10 scale, error: 0.0537
+Neighbor mean: 2.8136
+
+==================================================
+Rank 73
+==================================================
+Actual performance: 1.8062
+Predicted (raw): 74.1508
+Predicted (log10): 1.8701
+Predicted (direct): 74.1508
+-> Using log10 scale, error: 0.0639
+Neighbor mean: 2.8581
+
+==================================================
+Rank 74
+==================================================
+Actual performance: 1.8063
+Predicted (raw): 45.3932
+Predicted (log10): 1.6570
+Predicted (direct): 45.3932
+-> Using log10 scale, error: 0.1493
+Neighbor mean: 3.5726
+
+==================================================
+Rank 75
+==================================================
+Actual performance: 1.8062
+Predicted (raw): 45.9560
+Predicted (log10): 1.6623
+Predicted (direct): 45.9560
+-> Using log10 scale, error: 0.1439
+Neighbor mean: 3.5743
+
+==================================================
+Rank 76
+==================================================
+Actual performance: 2.2833
+Predicted (raw): 71.8515
+Predicted (log10): 1.8564
+Predicted (direct): 71.8515
+-> Using log10 scale, error: 0.4269
+Neighbor mean: 2.9162
+
+==================================================
+Rank 77
+==================================================
+Actual performance: 2.2833
+Predicted (raw): 73.2969
+Predicted (log10): 1.8651
+Predicted (direct): 73.2969
+-> Using log10 scale, error: 0.4182
+Neighbor mean: 2.9162
+
+==================================================
+Rank 78
+==================================================
+Actual performance: 2.1073
+Predicted (raw): 72.0451
+Predicted (log10): 1.8576
+Predicted (direct): 72.0451
+-> Using log10 scale, error: 0.2496
+Neighbor mean: 2.8003
+
+==================================================
+Rank 79
+==================================================
+Actual performance: 2.1072
+Predicted (raw): 73.6438
+Predicted (log10): 1.8671
+Predicted (direct): 73.6438
+-> Using log10 scale, error: 0.2401
+Neighbor mean: 2.8581
+
+==================================================
+Rank 80
+==================================================
+Actual performance: 2.1073
+Predicted (raw): 44.4465
+Predicted (log10): 1.6478
+Predicted (direct): 44.4465
+-> Using log10 scale, error: 0.4594
+Neighbor mean: 3.5555
+
+==================================================
+Rank 81
+==================================================
+Actual performance: 2.1072
+Predicted (raw): 50.9807
+Predicted (log10): 1.7074
+Predicted (direct): 50.9807
+-> Using log10 scale, error: 0.3998
+Neighbor mean: 3.5720
+
+==================================================
+Rank 82
+==================================================
+Actual performance: 2.5843
+Predicted (raw): 71.4956
+Predicted (log10): 1.8543
+Predicted (direct): 71.4956
+-> Using log10 scale, error: 0.7301
+Neighbor mean: 3.1898
+
+==================================================
+Rank 83
+==================================================
+Actual performance: 2.5843
+Predicted (raw): 72.6501
+Predicted (log10): 1.8612
+Predicted (direct): 72.6501
+-> Using log10 scale, error: 0.7231
+Neighbor mean: 3.3813
+
+==================================================
+Rank 84
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 71.7020
+Predicted (log10): 1.8555
+Predicted (direct): 71.7020
+-> Using log10 scale, error: 0.5527
+Neighbor mean: 2.8963
+
+==================================================
+Rank 85
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 73.0289
+Predicted (log10): 1.8635
+Predicted (direct): 73.0289
+-> Using log10 scale, error: 0.5448
+Neighbor mean: 2.8883
+
+==================================================
+Rank 86
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 43.8725
+Predicted (log10): 1.6422
+Predicted (direct): 43.8725
+-> Using log10 scale, error: 0.7661
+Neighbor mean: 3.5741
+
+==================================================
+Rank 87
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 50.1507
+Predicted (log10): 1.7003
+Predicted (direct): 50.1507
+-> Using log10 scale, error: 0.7080
+Neighbor mean: 3.5740
+
+==================================================
+Rank 88
+==================================================
+Actual performance: 2.8854
+Predicted (raw): 71.1371
+Predicted (log10): 1.8521
+Predicted (direct): 71.1371
+-> Using log10 scale, error: 1.0333
+Neighbor mean: 3.4513
+
+==================================================
+Rank 89
+==================================================
+Actual performance: 2.8854
+Predicted (raw): 72.0668
+Predicted (log10): 1.8577
+Predicted (direct): 72.0668
+-> Using log10 scale, error: 1.0276
+Neighbor mean: 3.4637
+
+==================================================
+Rank 90
+==================================================
+Actual performance: 1.2044
+Predicted (raw): 76.5156
+Predicted (log10): 1.8838
+Predicted (direct): 76.5156
+-> Using log10 scale, error: 0.6793
+Neighbor mean: 1.3176
+
+==================================================
+Rank 91
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 81.5649
+Predicted (log10): 1.9115
+Predicted (direct): 81.5649
+-> Using log10 scale, error: 0.7072
+Neighbor mean: 1.7744
+
+==================================================
+Rank 92
+==================================================
+Actual performance: 1.2044
+Predicted (raw): 76.5156
+Predicted (log10): 1.8838
+Predicted (direct): 76.5156
+-> Using log10 scale, error: 0.6793
+Neighbor mean: 1.3176
+
+==================================================
+Rank 93
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 81.5649
+Predicted (log10): 1.9115
+Predicted (direct): 81.5649
+-> Using log10 scale, error: 0.7072
+Neighbor mean: 1.7744
+
+==================================================
+Rank 94
+==================================================
+Actual performance: 1.6813
+Predicted (raw): 75.9383
+Predicted (log10): 1.8805
+Predicted (direct): 75.9383
+-> Using log10 scale, error: 0.1991
+Neighbor mean: 1.7763
+
+==================================================
+Rank 95
+==================================================
+Actual performance: 1.6813
+Predicted (raw): 80.1706
+Predicted (log10): 1.9040
+Predicted (direct): 80.1706
+-> Using log10 scale, error: 0.2227
+Neighbor mean: 3.0317
+
+==================================================
+Rank 96
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 76.1638
+Predicted (log10): 1.8817
+Predicted (direct): 76.1638
+-> Using log10 scale, error: 0.3764
+Neighbor mean: 1.7805
+
+==================================================
+Rank 97
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 80.6599
+Predicted (log10): 1.9067
+Predicted (direct): 80.6599
+-> Using log10 scale, error: 0.4014
+Neighbor mean: 2.9049
+
+==================================================
+Rank 98
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 76.2048
+Predicted (log10): 1.8820
+Predicted (direct): 76.2048
+-> Using log10 scale, error: 0.3767
+Neighbor mean: 1.7899
+
+==================================================
+Rank 99
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 73.7201
+Predicted (log10): 1.8676
+Predicted (direct): 73.7201
+-> Using log10 scale, error: 0.3623
+Neighbor mean: 2.6656
+
+==================================================
+Rank 100
+==================================================
+Actual performance: 1.9823
+Predicted (raw): 75.5277
+Predicted (log10): 1.8781
+Predicted (direct): 75.5277
+-> Using log10 scale, error: 0.1042
+Neighbor mean: 1.7858
+
+==================================================
+Rank 101
+==================================================
+Actual performance: 1.9823
+Predicted (raw): 79.3588
+Predicted (log10): 1.8996
+Predicted (direct): 79.3588
+-> Using log10 scale, error: 0.0827
+Neighbor mean: 3.1776
+
+==================================================
+Rank 102
+==================================================
+Actual performance: 1.8063
+Predicted (raw): 75.7722
+Predicted (log10): 1.8795
+Predicted (direct): 75.7722
+-> Using log10 scale, error: 0.0732
+Neighbor mean: 1.7706
+
+==================================================
+Rank 103
+==================================================
+Actual performance: 1.8062
+Predicted (raw): 79.8323
+Predicted (log10): 1.9022
+Predicted (direct): 79.8323
+-> Using log10 scale, error: 0.0959
+Neighbor mean: 3.1776
+
+==================================================
+Rank 104
+==================================================
+Actual performance: 1.8063
+Predicted (raw): 57.3795
+Predicted (log10): 1.7588
+Predicted (direct): 57.3795
+-> Using log10 scale, error: 0.0475
+Neighbor mean: 2.8817
+
+==================================================
+Rank 105
+==================================================
+Actual performance: 1.8062
+Predicted (raw): 58.1101
+Predicted (log10): 1.7643
+Predicted (direct): 58.1101
+-> Using log10 scale, error: 0.0420
+Neighbor mean: 3.1184
+
+==================================================
+Rank 106
+==================================================
+Actual performance: 2.2833
+Predicted (raw): 75.0836
+Predicted (log10): 1.8755
+Predicted (direct): 75.0836
+-> Using log10 scale, error: 0.4078
+Neighbor mean: 1.7852
+
+==================================================
+Rank 107
+==================================================
+Actual performance: 2.2833
+Predicted (raw): 78.5273
+Predicted (log10): 1.8950
+Predicted (direct): 78.5273
+-> Using log10 scale, error: 0.3883
+Neighbor mean: 3.1776
+
+==================================================
+Rank 108
+==================================================
+Actual performance: 2.1073
+Predicted (raw): 75.3531
+Predicted (log10): 1.8771
+Predicted (direct): 75.3531
+-> Using log10 scale, error: 0.2301
+Neighbor mean: 1.8026
+
+==================================================
+Rank 109
+==================================================
+Actual performance: 2.1072
+Predicted (raw): 79.0236
+Predicted (log10): 1.8978
+Predicted (direct): 79.0236
+-> Using log10 scale, error: 0.2095
+Neighbor mean: 3.1776
+
+==================================================
+Rank 110
+==================================================
+Actual performance: 2.1073
+Predicted (raw): 52.9748
+Predicted (log10): 1.7241
+Predicted (direct): 52.9748
+-> Using log10 scale, error: 0.3832
+Neighbor mean: 3.1184
+
+==================================================
+Rank 111
+==================================================
+Actual performance: 2.1072
+Predicted (raw): 57.1847
+Predicted (log10): 1.7573
+Predicted (direct): 57.1847
+-> Using log10 scale, error: 0.3500
+Neighbor mean: 3.1184
+
+==================================================
+Rank 112
+==================================================
+Actual performance: 2.5843
+Predicted (raw): 74.6338
+Predicted (log10): 1.8729
+Predicted (direct): 74.6338
+-> Using log10 scale, error: 0.7114
+Neighbor mean: 3.1090
+
+==================================================
+Rank 113
+==================================================
+Actual performance: 2.5843
+Predicted (raw): 77.7102
+Predicted (log10): 1.8905
+Predicted (direct): 77.7102
+-> Using log10 scale, error: 0.6939
+Neighbor mean: 3.1776
+
+==================================================
+Rank 114
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 74.8934
+Predicted (log10): 1.8744
+Predicted (direct): 74.8934
+-> Using log10 scale, error: 0.5338
+Neighbor mean: 1.7783
+
+==================================================
+Rank 115
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 78.1822
+Predicted (log10): 1.8931
+Predicted (direct): 78.1822
+-> Using log10 scale, error: 0.5151
+Neighbor mean: 3.1776
+
+==================================================
+Rank 116
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 52.3684
+Predicted (log10): 1.7191
+Predicted (direct): 52.3684
+-> Using log10 scale, error: 0.6892
+Neighbor mean: 3.1184
+
+==================================================
+Rank 117
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 59.7583
+Predicted (log10): 1.7764
+Predicted (direct): 59.7583
+-> Using log10 scale, error: 0.6319
+Neighbor mean: 3.1184
+
+==================================================
+Rank 118
+==================================================
+Actual performance: 2.8854
+Predicted (raw): 74.1913
+Predicted (log10): 1.8704
+Predicted (direct): 74.1913
+-> Using log10 scale, error: 1.0150
+Neighbor mean: 3.5940
+
+==================================================
+Rank 119
+==================================================
+Actual performance: 2.8854
+Predicted (raw): 77.0468
+Predicted (log10): 1.8868
+Predicted (direct): 77.0468
+-> Using log10 scale, error: 0.9986
+Neighbor mean: 3.6943
+
+==================================================
+Rank 120
+==================================================
+Actual performance: 1.2044
+Predicted (raw): 53.0776
+Predicted (log10): 1.7249
+Predicted (direct): 53.0776
+-> Using log10 scale, error: 0.5205
+Neighbor mean: 0.8047
+
+==================================================
+Rank 121
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 68.4492
+Predicted (log10): 1.8354
+Predicted (direct): 68.4492
+-> Using log10 scale, error: 0.6310
+Neighbor mean: 3.7300
+
+==================================================
+Rank 122
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 68.4492
+Predicted (log10): 1.8354
+Predicted (direct): 68.4492
+-> Using log10 scale, error: 0.6310
+Neighbor mean: 3.7300
+
+==================================================
+Rank 123
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 68.4492
+Predicted (log10): 1.8354
+Predicted (direct): 68.4492
+-> Using log10 scale, error: 0.6310
+Neighbor mean: 3.7300
+
+==================================================
+Rank 124
+==================================================
+Actual performance: 1.2044
+Predicted (raw): 35.2392
+Predicted (log10): 1.5470
+Predicted (direct): 35.2392
+-> Using log10 scale, error: 0.3426
+Neighbor mean: 3.0574
+
+==================================================
+Rank 125
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 50.4710
+Predicted (log10): 1.7030
+Predicted (direct): 50.4710
+-> Using log10 scale, error: 0.4987
+Neighbor mean: 3.0561
+
+==================================================
+Rank 126
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 50.6820
+Predicted (log10): 1.7049
+Predicted (direct): 50.6820
+-> Using log10 scale, error: 0.5005
+Neighbor mean: 3.0574
+
+==================================================
+Rank 127
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 50.5325
+Predicted (log10): 1.7036
+Predicted (direct): 50.5325
+-> Using log10 scale, error: 0.4992
+Neighbor mean: 3.0561
+
+==================================================
+Rank 128
+==================================================
+Actual performance: 1.6813
+Predicted (raw): 51.9441
+Predicted (log10): 1.7155
+Predicted (direct): 51.9441
+-> Using log10 scale, error: 0.0342
+Neighbor mean: 3.9831
+
+==================================================
+Rank 129
+==================================================
+Actual performance: 1.6813
+Predicted (raw): 67.1483
+Predicted (log10): 1.8270
+Predicted (direct): 67.1483
+-> Using log10 scale, error: 0.1457
+Neighbor mean: 4.1160
+
+==================================================
+Rank 130
+==================================================
+Actual performance: 1.6813
+Predicted (raw): 67.1483
+Predicted (log10): 1.8270
+Predicted (direct): 67.1483
+-> Using log10 scale, error: 0.1457
+Neighbor mean: 4.1160
+
+==================================================
+Rank 131
+==================================================
+Actual performance: 1.6813
+Predicted (raw): 67.1483
+Predicted (log10): 1.8270
+Predicted (direct): 67.1483
+-> Using log10 scale, error: 0.1457
+Neighbor mean: 4.1160
+
+==================================================
+Rank 132
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 52.3786
+Predicted (log10): 1.7192
+Predicted (direct): 52.3786
+-> Using log10 scale, error: 0.2138
+Neighbor mean: 2.4697
+
+==================================================
+Rank 133
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 67.6257
+Predicted (log10): 1.8301
+Predicted (direct): 67.6257
+-> Using log10 scale, error: 0.3249
+Neighbor mean: 4.1167
+
+==================================================
+Rank 134
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 67.6257
+Predicted (log10): 1.8301
+Predicted (direct): 67.6257
+-> Using log10 scale, error: 0.3249
+Neighbor mean: 4.1167
+
+==================================================
+Rank 135
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 67.6257
+Predicted (log10): 1.8301
+Predicted (direct): 67.6257
+-> Using log10 scale, error: 0.3249
+Neighbor mean: 4.1167
+
+==================================================
+Rank 136
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 34.4624
+Predicted (log10): 1.5373
+Predicted (direct): 34.4624
+-> Using log10 scale, error: 0.0320
+Neighbor mean: 3.0561
+
+==================================================
+Rank 137
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 47.7306
+Predicted (log10): 1.6788
+Predicted (direct): 47.7306
+-> Using log10 scale, error: 0.1735
+Neighbor mean: 3.0561
+
+==================================================
+Rank 138
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 47.5551
+Predicted (log10): 1.6772
+Predicted (direct): 47.5551
+-> Using log10 scale, error: 0.1719
+Neighbor mean: 3.0574
+
+==================================================
+Rank 139
+==================================================
+Actual performance: 1.5053
+Predicted (raw): 47.3894
+Predicted (log10): 1.6757
+Predicted (direct): 47.3894
+-> Using log10 scale, error: 0.1704
+Neighbor mean: 3.0574
+
+==================================================
+Rank 140
+==================================================
+Actual performance: 1.9823
+Predicted (raw): 51.1996
+Predicted (log10): 1.7093
+Predicted (direct): 51.1996
+-> Using log10 scale, error: 0.2731
+Neighbor mean: 4.1193
+
+==================================================
+Rank 141
+==================================================
+Actual performance: 1.9823
+Predicted (raw): 66.3438
+Predicted (log10): 1.8218
+Predicted (direct): 66.3438
+-> Using log10 scale, error: 0.1605
+Neighbor mean: 4.1145
+
+==================================================
+Rank 142
+==================================================
+Actual performance: 1.9823
+Predicted (raw): 66.3438
+Predicted (log10): 1.8218
+Predicted (direct): 66.3438
+-> Using log10 scale, error: 0.1605
+Neighbor mean: 4.1145
+
+==================================================
+Rank 143
+==================================================
+Actual performance: 1.9823
+Predicted (raw): 66.3438
+Predicted (log10): 1.8218
+Predicted (direct): 66.3438
+-> Using log10 scale, error: 0.1605
+Neighbor mean: 4.1145
+
+==================================================
+Rank 144
+==================================================
+Actual performance: 1.8063
+Predicted (raw): 51.6349
+Predicted (log10): 1.7129
+Predicted (direct): 51.6349
+-> Using log10 scale, error: 0.0933
+Neighbor mean: 4.1145
+
+==================================================
+Rank 145
+==================================================
+Actual performance: 1.8062
+Predicted (raw): 66.8135
+Predicted (log10): 1.8249
+Predicted (direct): 66.8135
+-> Using log10 scale, error: 0.0186
+Neighbor mean: 4.1145
+
+==================================================
+Rank 146
+==================================================
+Actual performance: 1.8062
+Predicted (raw): 66.8135
+Predicted (log10): 1.8249
+Predicted (direct): 66.8135
+-> Using log10 scale, error: 0.0186
+Neighbor mean: 4.1145
+
+==================================================
+Rank 147
+==================================================
+Actual performance: 1.8062
+Predicted (raw): 66.8135
+Predicted (log10): 1.8249
+Predicted (direct): 66.8135
+-> Using log10 scale, error: 0.0186
+Neighbor mean: 4.1145
+
+==================================================
+Rank 148
+==================================================
+Actual performance: 1.8063
+Predicted (raw): 33.6412
+Predicted (log10): 1.5269
+Predicted (direct): 33.6412
+-> Using log10 scale, error: 0.2794
+Neighbor mean: 3.1267
+
+==================================================
+Rank 149
+==================================================
+Actual performance: 1.8062
+Predicted (raw): 48.5460
+Predicted (log10): 1.6862
+Predicted (direct): 48.5460
+-> Using log10 scale, error: 0.1201
+Neighbor mean: 3.1267
+
+==================================================
+Rank 150
+==================================================
+Actual performance: 1.8062
+Predicted (raw): 48.7098
+Predicted (log10): 1.6876
+Predicted (direct): 48.7098
+-> Using log10 scale, error: 0.1186
+Neighbor mean: 3.2128
+
+==================================================
+Rank 151
+==================================================
+Actual performance: 1.8062
+Predicted (raw): 48.4190
+Predicted (log10): 1.6850
+Predicted (direct): 48.4190
+-> Using log10 scale, error: 0.1212
+Neighbor mean: 3.2872
+
+==================================================
+Rank 152
+==================================================
+Actual performance: 2.2833
+Predicted (raw): 50.4084
+Predicted (log10): 1.7025
+Predicted (direct): 50.4084
+-> Using log10 scale, error: 0.5808
+Neighbor mean: 4.1304
+
+==================================================
+Rank 153
+==================================================
+Actual performance: 2.2833
+Predicted (raw): 65.5223
+Predicted (log10): 1.8164
+Predicted (direct): 65.5223
+-> Using log10 scale, error: 0.4669
+Neighbor mean: 4.1304
+
+==================================================
+Rank 154
+==================================================
+Actual performance: 2.2833
+Predicted (raw): 65.5223
+Predicted (log10): 1.8164
+Predicted (direct): 65.5223
+-> Using log10 scale, error: 0.4669
+Neighbor mean: 4.1304
+
+==================================================
+Rank 155
+==================================================
+Actual performance: 2.2833
+Predicted (raw): 65.5223
+Predicted (log10): 1.8164
+Predicted (direct): 65.5223
+-> Using log10 scale, error: 0.4669
+Neighbor mean: 4.1304
+
+==================================================
+Rank 156
+==================================================
+Actual performance: 2.1073
+Predicted (raw): 50.8764
+Predicted (log10): 1.7065
+Predicted (direct): 50.8764
+-> Using log10 scale, error: 0.4007
+Neighbor mean: 4.1145
+
+==================================================
+Rank 157
+==================================================
+Actual performance: 2.1072
+Predicted (raw): 66.0032
+Predicted (log10): 1.8196
+Predicted (direct): 66.0032
+-> Using log10 scale, error: 0.2877
+Neighbor mean: 4.1145
+
+==================================================
+Rank 158
+==================================================
+Actual performance: 2.1072
+Predicted (raw): 66.0032
+Predicted (log10): 1.8196
+Predicted (direct): 66.0032
+-> Using log10 scale, error: 0.2877
+Neighbor mean: 4.1145
+
+==================================================
+Rank 159
+==================================================
+Actual performance: 2.1072
+Predicted (raw): 66.0032
+Predicted (log10): 1.8196
+Predicted (direct): 66.0032
+-> Using log10 scale, error: 0.2877
+Neighbor mean: 4.1145
+
+==================================================
+Rank 160
+==================================================
+Actual performance: 2.1073
+Predicted (raw): 32.5231
+Predicted (log10): 1.5122
+Predicted (direct): 32.5231
+-> Using log10 scale, error: 0.5951
+Neighbor mean: 3.2105
+
+==================================================
+Rank 161
+==================================================
+Actual performance: 2.1072
+Predicted (raw): 45.7246
+Predicted (log10): 1.6602
+Predicted (direct): 45.7246
+-> Using log10 scale, error: 0.4471
+Neighbor mean: 3.2102
+
+==================================================
+Rank 162
+==================================================
+Actual performance: 2.1072
+Predicted (raw): 45.8172
+Predicted (log10): 1.6610
+Predicted (direct): 45.8172
+-> Using log10 scale, error: 0.4462
+Neighbor mean: 3.2117
+
+==================================================
+Rank 163
+==================================================
+Actual performance: 2.1072
+Predicted (raw): 45.2819
+Predicted (log10): 1.6559
+Predicted (direct): 45.2819
+-> Using log10 scale, error: 0.4513
+Neighbor mean: 3.2102
+
+==================================================
+Rank 164
+==================================================
+Actual performance: 2.5843
+Predicted (raw): 49.6387
+Predicted (log10): 1.6958
+Predicted (direct): 49.6387
+-> Using log10 scale, error: 0.8885
+Neighbor mean: 4.2424
+
+==================================================
+Rank 165
+==================================================
+Actual performance: 2.5843
+Predicted (raw): 64.6334
+Predicted (log10): 1.8105
+Predicted (direct): 64.6334
+-> Using log10 scale, error: 0.7739
+Neighbor mean: 4.2424
+
+==================================================
+Rank 166
+==================================================
+Actual performance: 2.5843
+Predicted (raw): 64.6334
+Predicted (log10): 1.8105
+Predicted (direct): 64.6334
+-> Using log10 scale, error: 0.7739
+Neighbor mean: 4.2424
+
+==================================================
+Rank 167
+==================================================
+Actual performance: 2.5843
+Predicted (raw): 64.6334
+Predicted (log10): 1.8105
+Predicted (direct): 64.6334
+-> Using log10 scale, error: 0.7739
+Neighbor mean: 4.2424
+
+==================================================
+Rank 168
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 50.0779
+Predicted (log10): 1.6996
+Predicted (direct): 50.0779
+-> Using log10 scale, error: 0.7086
+Neighbor mean: 4.2424
+
+==================================================
+Rank 169
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 65.1581
+Predicted (log10): 1.8140
+Predicted (direct): 65.1581
+-> Using log10 scale, error: 0.5943
+Neighbor mean: 4.2424
+
+==================================================
+Rank 170
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 65.1581
+Predicted (log10): 1.8140
+Predicted (direct): 65.1581
+-> Using log10 scale, error: 0.5943
+Neighbor mean: 4.2424
+
+==================================================
+Rank 171
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 65.1581
+Predicted (log10): 1.8140
+Predicted (direct): 65.1581
+-> Using log10 scale, error: 0.5943
+Neighbor mean: 4.2424
+
+==================================================
+Rank 172
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 32.0979
+Predicted (log10): 1.5065
+Predicted (direct): 32.0979
+-> Using log10 scale, error: 0.9018
+Neighbor mean: 2.9425
+
+==================================================
+Rank 173
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 46.3825
+Predicted (log10): 1.6664
+Predicted (direct): 46.3825
+-> Using log10 scale, error: 0.7419
+Neighbor mean: 3.2123
+
+==================================================
+Rank 174
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 46.4819
+Predicted (log10): 1.6673
+Predicted (direct): 46.4819
+-> Using log10 scale, error: 0.7410
+Neighbor mean: 3.2872
+
+==================================================
+Rank 175
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 46.5007
+Predicted (log10): 1.6675
+Predicted (direct): 46.5007
+-> Using log10 scale, error: 0.7408
+Neighbor mean: 3.2102
+
+==================================================
+Rank 176
+==================================================
+Actual performance: 2.8854
+Predicted (raw): 48.8675
+Predicted (log10): 1.6890
+Predicted (direct): 48.8675
+-> Using log10 scale, error: 1.1963
+Neighbor mean: 4.2525
+
+==================================================
+Rank 177
+==================================================
+Actual performance: 2.8854
+Predicted (raw): 63.7469
+Predicted (log10): 1.8045
+Predicted (direct): 63.7469
+-> Using log10 scale, error: 1.0809
+Neighbor mean: 4.2525
+
+==================================================
+Rank 178
+==================================================
+Actual performance: 2.8854
+Predicted (raw): 63.7469
+Predicted (log10): 1.8045
+Predicted (direct): 63.7469
+-> Using log10 scale, error: 1.0809
+Neighbor mean: 4.2525
+
+==================================================
+Rank 179
+==================================================
+Actual performance: 2.8854
+Predicted (raw): 63.7469
+Predicted (log10): 1.8045
+Predicted (direct): 63.7469
+-> Using log10 scale, error: 1.0809
+Neighbor mean: 4.2525
+
+==================================================
+Rank 180
+==================================================
+Actual performance: 1.2044
+Predicted (raw): 71.7342
+Predicted (log10): 1.8557
+Predicted (direct): 71.7342
+-> Using log10 scale, error: 0.6513
+Neighbor mean: 1.4598
+
+==================================================
+Rank 181
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 73.5734
+Predicted (log10): 1.8667
+Predicted (direct): 73.5734
+-> Using log10 scale, error: 0.6624
+Neighbor mean: 2.6994
+
+==================================================
+Rank 182
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 73.5734
+Predicted (log10): 1.8667
+Predicted (direct): 73.5734
+-> Using log10 scale, error: 0.6624
+Neighbor mean: 2.6994
+
+==================================================
+Rank 183
+==================================================
+Actual performance: 1.2043
+Predicted (raw): 73.5734
+Predicted (log10): 1.8667
+Predicted (direct): 73.5734
+-> Using log10 scale, error: 0.6624
+Neighbor mean: 2.6994
+
+==================================================
+Rank 184
+==================================================
+Actual performance: 0.3036
+Predicted (raw): 55.2293
+Predicted (log10): 1.7422
+Predicted (direct): 55.2293
+-> Using log10 scale, error: 1.4386
+Neighbor mean: 0.7752
+
+==================================================
+Rank 185
+==================================================
+Actual performance: 0.3027
+Predicted (raw): 70.7238
+Predicted (log10): 1.8496
+Predicted (direct): 70.7238
+-> Using log10 scale, error: 1.5468
+Neighbor mean: 1.5041
+
+==================================================
+Rank 186
+==================================================
+Actual performance: 0.3027
+Predicted (raw): 70.7238
+Predicted (log10): 1.8496
+Predicted (direct): 70.7238
+-> Using log10 scale, error: 1.5468
+Neighbor mean: 1.5041
+
+==================================================
+Rank 187
+==================================================
+Actual performance: 0.3027
+Predicted (raw): 70.7238
+Predicted (log10): 1.8496
+Predicted (direct): 70.7238
+-> Using log10 scale, error: 1.5468
+Neighbor mean: 1.5041
+
+==================================================
+Rank 188
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 38.0799
+Predicted (log10): 1.5807
+Predicted (direct): 38.0799
+-> Using log10 scale, error: 0.8276
+Neighbor mean: 2.6451
+
+==================================================
+Rank 189
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 39.2657
+Predicted (log10): 1.5940
+Predicted (direct): 39.2657
+-> Using log10 scale, error: 0.8142
+Neighbor mean: 2.6464
+
+==================================================
+Rank 190
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 39.7876
+Predicted (log10): 1.5997
+Predicted (direct): 39.7876
+-> Using log10 scale, error: 0.8085
+Neighbor mean: 2.7214
+
+==================================================
+Rank 191
+==================================================
+Actual performance: 2.4083
+Predicted (raw): 38.8849
+Predicted (log10): 1.5898
+Predicted (direct): 38.8849
+-> Using log10 scale, error: 0.8185
+Neighbor mean: 2.5922

@@ -157,7 +157,7 @@ def main():
     )
     
     # Load IOR features
-    ior_df = pd.read_csv('ior_all_ranks_features.csv')
+    ior_df = pd.read_csv('h5_all_ranks_features.csv')
     
     all_results = []
     

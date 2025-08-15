@@ -1,0 +1,4 @@
+INFO:src.inference.neighbor_finder:Loading similarity data from data/1M/similarity_output_0.75/similarity_graph_20250812_043913.pt
+INFO:src.inference.neighbor_finder:Loaded PyTorch edge list with 50000000 edges
+INFO:src.inference.neighbor_finder:Loading features from data/1M/aiio_sample_1000000_normalized.csv
+INFO:src.inference.neighbor_finder:Loaded 1000000 feature vectors

@@ -44,7 +44,7 @@ def test_job_processor():
     
     # Load IOR job features
     print("\nLoading IOR job features...")
-    ior_df = pd.read_csv('ior_all_ranks_features.csv')
+    ior_df = pd.read_csv('test.csv')
     
     # Process each rank
     results_all = []
