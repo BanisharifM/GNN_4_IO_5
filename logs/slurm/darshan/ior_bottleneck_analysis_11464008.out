@@ -1,0 +1,43 @@
+Model configuration: hidden=512, layers=2, heads=[8, 1]
+Loaded 1000000 training samples
+
+=== Creating subgraph for prediction ===
+Selected 50 neighbors for subgraph
+Created subgraph with 51 nodes and 100 edges
+
+=== Making prediction ===
+Predicted: 7.12 MB/s
+Actual: 5.17 MB/s
+Error: 1.95 MB/s
+Relative error: 37.7%
+
+=== Identifying I/O bottlenecks ===
+
+Identified Bottlenecks:
+----------------------------------------------------------------------
+1. POSIX_SIZE_WRITE_100_1K        | Importance: 0.90
+   Issue: Small write size (100B-1KB) causing overhead
+   Value: 3.01 (Original: 1024)
+
+2. Average Write Size             | Importance: 0.85
+   Issue: Very small average write size: 1024 bytes
+   Value: 3.01 (Original: 1024)
+
+3. POSIX_SEEKS                    | Importance: 0.80
+   Issue: High number of seeks (fsync forcing seeks)
+   Value: 3.01 (Original: 1024)
+
+4. POSIX_FILE_NOT_ALIGNED         | Importance: 0.70
+   Issue: File alignment issues
+   Value: 2.89 (Original: 768)
+
+
+======================================================================
+SUMMARY
+======================================================================
+Predicted Performance: 7.12 MB/s
+
+Main Performance Bottlenecks:
+  1. Small write size (100B-1KB) causing overhead
+  2. Very small average write size: 1024 bytes
+  3. High number of seeks (fsync forcing seeks)

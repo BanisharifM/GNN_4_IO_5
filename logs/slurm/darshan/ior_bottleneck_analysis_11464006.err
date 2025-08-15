@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_bottleneck_analysis.py", line 476, in <module>
+    main()
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_bottleneck_analysis.py", line 464, in main
+    predicted_bandwidth, bottlenecks = predictor.predict_with_interpretation(test_features)
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_bottleneck_analysis.py", line 323, in predict_with_interpretation
+    bottlenecks = self._identify_bottlenecks(
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_bottleneck_analysis.py", line 366, in _identify_bottlenecks
+    x = self.model.layer_norms[i](x)
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/torch_geometric/nn/norm/layer_norm.py", line 82, in forward
+    out = x / (x.std(unbiased=False) + self.eps)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.26 GiB (GPU 0; 139.72 GiB total capacity; 113.10 GiB already allocated; 14.34 GiB free; 124.53 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+srun: error: gpue01: task 0: Exited with exit code 1

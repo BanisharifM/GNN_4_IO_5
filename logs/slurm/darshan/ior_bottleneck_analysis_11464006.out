@@ -1,0 +1,15 @@
+Checking for files in /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M
+Found training features: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/aiio_sample_1000000_normalized.csv
+Warning: No similarity graph found, will work with features only
+Model configuration: hidden=512, layers=2, heads=[8, 1]
+
+=== Adding sample to graph ===
+Connecting new sample to 50 neighbors (threshold=0.75)
+
+=== Making prediction ===
+Predicted: 6.18 MB/s
+Actual: 5.17 MB/s
+Error: 1.01 MB/s
+Relative error: 19.5%
+
+=== Identifying I/O bottlenecks ===
