@@ -25,8 +25,8 @@ class IOGNNExplainer:
         model: nn.Module,
         epochs: int = 200,
         lr: float = 0.01,
-        edge_mask_threshold: float = 0.5,
-        feature_mask_threshold: float = 0.5,
+        edge_mask_threshold: float = 0.3,
+        feature_mask_threshold: float = 0.1,
         device: torch.device = None
     ):
         """

@@ -1,0 +1,8 @@
+2025-08-15 05:18:10,670 - INFO - 
+======================================================================
+2025-08-15 05:18:10,670 - INFO - INITIALIZING IOR INTERPRETABILITY ANALYZER
+2025-08-15 05:18:10,670 - INFO - ======================================================================
+2025-08-15 05:18:12,033 - INFO - Model configuration: hidden=512, layers=2, heads=[8, 1]
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 11464042.0 ON gpue03 CANCELLED AT 2025-08-15T05:18:12 ***
+slurmstepd: error: *** JOB 11464042 ON gpue03 CANCELLED AT 2025-08-15T05:18:12 ***

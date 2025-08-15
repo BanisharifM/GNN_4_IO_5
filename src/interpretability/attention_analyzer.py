@@ -264,6 +264,7 @@ class AttentionAnalyzer:
             
             # If neighbor has worse performance, its different features might be bottlenecks
             if neighbor_performance < target_performance:
+                performance_diff = abs(target_performance - neighbor_performance) + 0.1  # Add small constant to avoid zero
                 feature_diff = np.abs(target_features - neighbor_features)
                 # Ensure all are 1D arrays
                 feature_diff = feature_diff.flatten() if feature_diff.ndim > 1 else feature_diff
