@@ -1,0 +1,190 @@
+07:06:34 - 
+======================================================================
+07:06:34 - 🚀 INITIALIZING IOR INTERPRETABILITY ANALYZER
+07:06:34 - ======================================================================
+07:06:35 - Model configuration: hidden=512, layers=2, heads=[8, 1]
+07:06:39 - ✓ Loaded 1,000,000 training samples
+07:06:39 - 
+======================================================================
+07:06:39 - 🔬 RUNNING INTERPRETABILITY ANALYSIS
+07:06:39 - ======================================================================
+07:06:39 - 
+======================================================================
+07:06:39 - 🔍 CREATING SUBGRAPH FOR ANALYSIS
+07:06:39 - ======================================================================
+07:06:39 - Selected 100 neighbors for analysis
+07:06:39 - Created subgraph with 101 nodes and 200 edges
+07:06:40 - 
+======================================================================
+07:06:40 - 📈 PERFORMANCE PREDICTION
+07:06:40 - ======================================================================
+07:06:40 - Predicted: 7.14 MB/s
+07:06:40 - Actual: 5.17 MB/s
+07:06:40 - Error: 1.97 MB/s
+07:06:40 - Relative Error: 38.2%
+07:06:40 - 
+======================================================================
+07:06:40 - 📊 ATTENTION ANALYSIS
+07:06:40 - ======================================================================
+07:06:40 -   Using fallback: extracting raw attention weights
+07:06:41 -   Extracted 10 features from raw attention
+07:06:41 - Raw Attention Scores (Top 10):
+07:06:41 -    1. POSIX_ACCESS1_COUNT           :   0.0318
+07:06:41 -    2. POSIX_SIZE_WRITE_1K_10K       :   0.0315
+07:06:41 -    3. POSIX_SIZE_WRITE_100_1K       :   0.0313
+07:06:41 -    4. POSIX_ACCESS4_COUNT           :   0.0271
+07:06:41 -    5. POSIX_CONSEC_WRITES           :   0.0270
+07:06:41 -    6. POSIX_ACCESS2_ACCESS          :   0.0264
+07:06:41 -    7. POSIX_ACCESS1_ACCESS          :   0.0264
+07:06:41 -    8. POSIX_SEQ_READS               :   0.0258
+07:06:41 -    9. POSIX_SIZE_WRITE_10K_100K     :   0.0257
+07:06:41 -   10. POSIX_STRIDE2_COUNT           :   0.0256
+07:06:41 - 
+======================================================================
+07:06:41 - 📊 GNNEXPLAINER ANALYSIS
+07:06:41 - ======================================================================
+07:09:27 - Raw GNNExplainer Scores (Top 10):
+07:09:27 -    1. POSIX_FILE_NOT_ALIGNED        :   0.5601
+07:09:27 -    2. POSIX_MEM_NOT_ALIGNED         :   0.5477
+07:09:27 -    3. LUSTRE_STRIPE_WIDTH           :   0.5446
+07:09:27 -    4. POSIX_ACCESS1_COUNT           :   0.5331
+07:09:27 -    5. POSIX_SEQ_WRITES              :   0.5300
+07:09:27 -    6. POSIX_WRITES                  :   0.5260
+07:09:27 -    7. POSIX_OPENS                   :   0.5252
+07:09:27 -    8. POSIX_BYTES_READ              :   0.5244
+07:09:27 -    9. POSIX_FILE_ALIGNMENT          :   0.5235
+07:09:27 -   10. POSIX_ACCESS2_COUNT           :   0.5197
+07:09:27 - 
+======================================================================
+07:09:27 - 📊 GRADIENT ANALYSIS (INTEGRATED GRADIENTS)
+07:09:27 - ======================================================================
+07:10:01 - Raw Gradient Scores (Top 10):
+07:10:01 -    1. POSIX_BYTES_WRITTEN           :   0.2339
+07:10:01 -    2. POSIX_MEM_ALIGNMENT           :   0.0955
+07:10:01 -    3. POSIX_CONSEC_WRITES           :   0.0738
+07:10:01 -    4. POSIX_SIZE_WRITE_100_1K       :   0.0675
+07:10:01 -    5. POSIX_SEEKS                   :   0.0635
+07:10:01 -    6. POSIX_WRITES                  :   0.0579
+07:10:01 -    7. POSIX_FILE_ALIGNMENT          :   0.0523
+07:10:01 -    8. POSIX_ACCESS1_ACCESS          :   0.0453
+07:10:01 -    9. POSIX_SEQ_WRITES              :   0.0381
+07:10:01 -   10. POSIX_OPENS                   :   0.0213
+07:10:01 - 
+======================================================================
+07:10:01 - 🔬 Z-SCORE NORMALIZATION AND CONSENSUS CALCULATION
+07:10:01 - ======================================================================
+07:10:01 - 
+📊 Step 1: Raw Scores from Each Method
+07:10:01 - --------------------------------------------------
+07:10:01 - 
+ATTENTION:
+07:10:01 -   - POSIX_ACCESS1_COUNT           :   0.0318
+07:10:01 -   - POSIX_SIZE_WRITE_1K_10K       :   0.0315
+07:10:01 -   - POSIX_SIZE_WRITE_100_1K       :   0.0313
+07:10:01 -   - POSIX_ACCESS4_COUNT           :   0.0271
+07:10:01 -   - POSIX_CONSEC_WRITES           :   0.0270
+07:10:01 - 
+GNN EXPLAINER:
+07:10:01 -   - POSIX_FILE_NOT_ALIGNED        :   0.5601
+07:10:01 -   - POSIX_MEM_NOT_ALIGNED         :   0.5477
+07:10:01 -   - LUSTRE_STRIPE_WIDTH           :   0.5446
+07:10:01 -   - POSIX_ACCESS1_COUNT           :   0.5331
+07:10:01 -   - POSIX_SEQ_WRITES              :   0.5300
+07:10:01 - 
+GRADIENTS:
+07:10:01 -   - POSIX_BYTES_WRITTEN           :   0.2339
+07:10:01 -   - POSIX_MEM_ALIGNMENT           :   0.0955
+07:10:01 -   - POSIX_CONSEC_WRITES           :   0.0738
+07:10:01 -   - POSIX_SIZE_WRITE_100_1K       :   0.0675
+07:10:01 -   - POSIX_SEEKS                   :   0.0635
+07:10:01 - 
+📊 Step 2: Z-Score Normalization
+07:10:01 - --------------------------------------------------
+07:10:01 - Formula: z = (x - mean) / std
+07:10:01 - 
+ATTENTION:
+07:10:01 -   Mean = 0.0279, Std = 0.0025
+07:10:01 -   Z-normalized scores (Top 5):
+07:10:01 -     - POSIX_ACCESS1_COUNT           :  +1.610 (very high importance)
+07:10:01 -     - POSIX_SIZE_WRITE_1K_10K       :  +1.491 (high importance)
+07:10:01 -     - POSIX_SIZE_WRITE_100_1K       :  +1.392 (high importance)
+07:10:01 -     - POSIX_ACCESS4_COUNT           :  -0.327 (low importance)
+07:10:01 -     - POSIX_CONSEC_WRITES           :  -0.343 (low importance)
+07:10:01 - 
+GNN EXPLAINER:
+07:10:01 -   Mean = 0.4899, Std = 0.0443
+07:10:01 -   Z-normalized scores (Top 5):
+07:10:01 -     - POSIX_FILE_NOT_ALIGNED        :  +1.582 (very high importance)
+07:10:01 -     - POSIX_MEM_NOT_ALIGNED         :  +1.303 (high importance)
+07:10:01 -     - LUSTRE_STRIPE_WIDTH           :  +1.234 (high importance)
+07:10:01 -     - POSIX_ACCESS1_COUNT           :  +0.974 (high importance)
+07:10:01 -     - POSIX_SEQ_WRITES              :  +0.905 (high importance)
+07:10:01 - 
+GRADIENTS:
+07:10:01 -   Mean = 0.0173, Std = 0.0408
+07:10:01 -   Z-normalized scores (Top 5):
+07:10:01 -     - POSIX_BYTES_WRITTEN           :  +5.312 (very high importance)
+07:10:01 -     - POSIX_MEM_ALIGNMENT           :  +1.918 (very high importance)
+07:10:01 -     - POSIX_CONSEC_WRITES           :  +1.385 (high importance)
+07:10:01 -     - POSIX_SIZE_WRITE_100_1K       :  +1.230 (high importance)
+07:10:01 -     - POSIX_SEEKS                   :  +1.133 (high importance)
+07:10:01 - 
+📊 Step 3: Equal Weight Consensus (1/3 each method)
+07:10:01 - --------------------------------------------------
+07:10:01 - Formula: Consensus = (1/3 × Attention_Z) + (1/3 × GNN_Z) + (1/3 × Gradient_Z)
+07:10:01 - 
+🏆 Final Consensus Rankings:
+07:10:01 - Rank  1: POSIX_BYTES_WRITTEN            →  +2.637
+07:10:01 -          Contributing methods: GNN(-0.04) + Grad(+5.31)
+07:10:01 -          Consensus strength: STRONG (multiple methods agree)
+07:10:01 - 
+07:10:01 - Rank  2: POSIX_MEM_ALIGNMENT            →  +1.276
+07:10:01 -          Contributing methods: GNN(+0.63) + Grad(+1.92)
+07:10:01 -          Consensus strength: STRONG (multiple methods agree)
+07:10:01 - 
+07:10:01 - Rank  3: POSIX_WRITES                   →  +0.905
+07:10:01 -          Contributing methods: GNN(+0.81) + Grad(+1.00)
+07:10:01 -          Consensus strength: STRONG (multiple methods agree)
+07:10:01 - 
+07:10:01 - Rank  4: POSIX_SIZE_WRITE_100_1K        →  +0.849
+07:10:01 -          Contributing methods: Att(+1.39) + GNN(-0.07) + Grad(+1.23)
+07:10:01 -          Consensus strength: STRONG (multiple methods agree)
+07:10:01 - 
+07:10:01 - Rank  5: POSIX_FILE_ALIGNMENT           →  +0.807
+07:10:01 -          Contributing methods: GNN(+0.76) + Grad(+0.86)
+07:10:01 -          Consensus strength: STRONG (multiple methods agree)
+07:10:01 - 
+07:10:01 - Rank  6: POSIX_ACCESS1_COUNT            →  +0.762
+07:10:01 -          Contributing methods: Att(+1.61) + GNN(+0.97) + Grad(-0.30)
+07:10:01 -          Consensus strength: STRONG (multiple methods agree)
+07:10:01 - 
+07:10:01 - Rank  7: POSIX_SEQ_WRITES               →  +0.708
+07:10:01 -          Contributing methods: GNN(+0.90) + Grad(+0.51)
+07:10:01 -          Consensus strength: STRONG (multiple methods agree)
+07:10:01 - 
+07:10:01 - Rank  8: POSIX_FILE_NOT_ALIGNED         →  +0.641
+07:10:01 -          Contributing methods: GNN(+1.58) + Grad(-0.30)
+07:10:01 -          Consensus strength: STRONG (multiple methods agree)
+07:10:01 - 
+07:10:01 - Rank  9: POSIX_SEEKS                    →  +0.537
+07:10:01 -          Contributing methods: GNN(-0.06) + Grad(+1.13)
+07:10:01 -          Consensus strength: STRONG (multiple methods agree)
+07:10:01 - 
+07:10:01 - Rank 10: POSIX_SIZE_WRITE_1K_10K        →  +0.534
+07:10:01 -          Contributing methods: Att(+1.49) + Grad(-0.42)
+07:10:01 -          Consensus strength: STRONG (multiple methods agree)
+07:10:01 - 
+======================================================================
+07:10:01 - 📊 GENERATING PROFESSIONAL VISUALIZATIONS
+07:10:01 - ======================================================================
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_interpret.py", line 1352, in <module>
+    main()
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_interpret.py", line 1317, in main
+    analyzer.create_professional_visualizations(results)
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_interpret.py", line 602, in create_professional_visualizations
+    self._create_consensus_stacked_contribution(
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_interpret.py", line 1041, in _create_consensus_stacked_contribution
+    ax1.legend(loc='upper right', framealpha=0.9)
+UnboundLocalError: local variable 'ax1' referenced before assignment
+srun: error: gpue04: task 0: Exited with exit code 1
