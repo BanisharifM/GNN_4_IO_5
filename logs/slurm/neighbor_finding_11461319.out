@@ -1,0 +1,95 @@
+Testing Phase 2: Neighbor Finding & Subgraph Construction
+============================================================
+Dataset: 1M samples
+Model expects: 49 features (45 base + 4 augmented)
+============================================================
+Loaded 4 IOR job features
+Number of features: 45
+Query job performance: 2.4083
+
+Initializing neighbor finder with 1M dataset...
+Loading precomputed similarity graph and features...
+Loaded 1,000,000 nodes from similarity graph
+
+Finding 50 nearest neighbors for new IOR job...
+
+Top 10 neighbor indices: [574809 458634 991077 677238 612302 720689 435059 400476  46331 922322]
+Top 10 similarities: [0.62708859 0.62708567 0.62125362 0.59845593 0.59654503 0.59640767
+ 0.59605481 0.59180746 0.59177026 0.59165967]
+
+Neighbor performance values (top 10):
+Rank   Index      Similarity   Performance  Diff from Query
+-----------------------------------------------------------------
+0      574809     0.6271       3.4748       +1.0665
+1      458634     0.6271       2.8857       +0.4774
+2      991077     0.6213       3.5414       +1.1332
+3      677238     0.5985       2.2019       -0.2064
+4      612302     0.5965       2.7151       +0.3069
+5      720689     0.5964       2.1741       -0.2342
+6      435059     0.5961       2.4613       +0.0530
+7      400476     0.5918       2.5442       +0.1359
+8      46331      0.5918       2.5355       +0.1272
+9      922322     0.5917       2.6944       +0.2862
+
+Neighbor performance statistics (all 50):
+  Mean: 3.0039
+  Std:  0.5777
+  Min:  2.1520
+  Max:  3.7296
+  Query: 2.4083
+
+============================================================
+Testing Subgraph Construction
+============================================================
+Neighbor features shape: (10, 45)
+
+Subgraph created:
+  Nodes: 11
+  Edges: 60
+  Node features shape: torch.Size([11, 45])
+  Query node mask: tensor([ True, False, False, False, False, False, False, False, False, False,
+        False])
+
+Augmenting node features for model (45 -> 49)...
+
+Augmenting features from 45 to 49
+  Augmented features shape: torch.Size([11, 49])
+
+Adding global context node...
+  Nodes after global: 12
+  Edges after global: 82
+
+============================================================
+Optional: Testing with existing training node
+============================================================
+
+============================================================
+Testing with Existing Node from Training Data
+============================================================
+
+Finding neighbors for existing node 1000
+Neighbors: [795282 445398 600751 638352 257142 214918 465292 748035 317118 814177]
+Similarities: [0.99987855 0.99988087 0.99988726 0.99989004 0.99989937 0.99990444
+ 0.99992529 0.99993595 0.99996005 0.99996274]
+
+Node 1000 performance: 0.7428
+Neighbor performances:
+  795282: 0.8555 (sim=0.9999)
+  445398: 0.9594 (sim=0.9999)
+  600751: 0.9068 (sim=0.9999)
+  638352: 0.9147 (sim=0.9999)
+  257142: 0.8799 (sim=0.9999)
+  214918: 0.9783 (sim=0.9999)
+  465292: 0.7754 (sim=0.9999)
+  748035: 0.6963 (sim=0.9999)
+  317118: 0.9789 (sim=1.0000)
+  814177: 0.8688 (sim=1.0000)
+
+============================================================
+✓ Phase 2 testing complete!
+============================================================
+
+Next steps:
+1. The subgraph is ready for GAT model inference
+2. Features need augmentation from 45 to 49 before model input
+3. Use your trained model checkpoint from experiments/

@@ -210,7 +210,35 @@ class NeighborFinder:
         else:  # approximate using LSH or random projection
             # Implement approximate method if needed
             raise NotImplementedError("Approximate method not yet implemented")
-    
+
+    def augment_features_for_model(self, features: np.ndarray) -> np.ndarray:
+            """
+            Add 4 augmented features to match model's expected input (49 features)
+            
+            Args:
+                features: Original 45 features
+                
+            Returns:
+                Augmented features with 49 dimensions
+            """
+            if features.shape[-1] == 45:
+                # Add 4 augmented features (degree, clustering, etc.)
+                # For now, use placeholder values - you should compute actual graph features
+                augmented = np.zeros((features.shape[0], 4)) if features.ndim == 2 else np.zeros(4)
+                
+                # These would be computed from the graph structure
+                # augmented[0] = node_degree (normalized)
+                # augmented[1] = clustering_coefficient  
+                # augmented[2] = betweenness_centrality
+                # augmented[3] = closeness_centrality
+                
+                if features.ndim == 1:
+                    return np.concatenate([features, augmented])
+                else:
+                    return np.concatenate([features, augmented], axis=1)
+            
+            return features  # Already augmented
+
     def get_subgraph_edges(
         self,
         center_nodes: Union[int, List[int]],

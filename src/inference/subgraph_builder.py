@@ -72,14 +72,18 @@ class SubgraphBuilder:
         query_mask = torch.zeros(n_neighbors + 1, dtype=torch.bool)
         query_mask[0] = True  # First node is the query
         
+        
         # Create Data object
+        # Make a copy of neighbor_indices to avoid negative stride issue
+        neighbor_indices_copy = np.array(neighbor_indices).copy() if isinstance(neighbor_indices, np.ndarray) else neighbor_indices
+        
         data = Data(
             x=x,
             edge_index=edge_index,
             edge_attr=edge_weight.unsqueeze(-1) if edge_weight is not None else None,
             query_mask=query_mask,
             num_nodes=n_neighbors + 1,
-            neighbor_indices=torch.tensor(neighbor_indices, dtype=torch.long)
+            neighbor_indices=torch.tensor(neighbor_indices_copy, dtype=torch.long)
         )
         
         return data
