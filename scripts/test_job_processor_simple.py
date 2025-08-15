@@ -83,7 +83,7 @@ def test_simple_inference():
     
     # Load IOR features
     print("Loading IOR features...")
-    ior_df = pd.read_csv('ior_all_ranks_features.csv')
+    ior_df = pd.read_csv('h5_all_ranks_features.csv')
     
     for rank in range(len(ior_df)):
         print(f"\n{'='*50}")

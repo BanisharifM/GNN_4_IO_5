@@ -5,11 +5,11 @@
 #SBATCH --nodes=1                     
 #SBATCH --ntasks=1                   
 #SBATCH --gres=gpu:1                
-#SBATCH --cpus-per-task=2
-#SBATCH --mem=8G
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=128G
 #SBATCH --time=01:00:00
-#SBATCH --output=logs/slurm/neighbor_finding_%j.out
-#SBATCH --error=logs/slurm/neighbor_finding_%j.err
+#SBATCH --output=logs/slurm/darshan/job_processor_simple_%j.out
+#SBATCH --error=logs/slurm/darshan/job_processor_simple_%j.err
 
 
-srun python scripts/test_neighbor_finding.py
+srun python /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/test_job_processor_simple.py

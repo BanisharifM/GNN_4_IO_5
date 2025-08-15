@@ -1,0 +1,44 @@
+2025-08-15 02:34:00,302 - INFO - Loading config from /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/configs/gat_config6.yaml
+2025-08-15 02:34:00,306 - INFO - Using device: cpu
+2025-08-15 02:34:00,306 - INFO - Using dtype: torch.float32
+2025-08-15 02:34:00,306 - INFO - Loading model...
+2025-08-15 02:34:00,365 - INFO - Checkpoint keys: dict_keys(['epoch', 'model_state_dict', 'optimizer_state_dict', 'val_rmse', 'history'])
+2025-08-15 02:34:00,365 - INFO - Using model config from config file
+2025-08-15 02:34:00,365 - INFO - Detected 49 input features from checkpoint
+2025-08-15 02:34:00,365 - INFO - Detected pre-augmented features in checkpoint (49), disabling feature_augmentation for model creation
+2025-08-15 02:34:00,365 - INFO - Creating model with config: {'num_features': 49, 'model_type': 'standard', 'hidden_channels': 512, 'num_layers': 2, 'heads': [8, 1], 'dropout': 0.05, 'residual': True, 'layer_norm': True, 'feature_augmentation': False, 'dtype': torch.float32, 'edge_dim': 1, 'pool_type': 'mean'}
+2025-08-15 02:34:00,510 - INFO - Model loaded successfully from /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/best_model.pt
+2025-08-15 02:34:00,512 - INFO - Loading data...
+2025-08-15 02:34:00,512 - INFO - Loading dataset with args: {'root': './data/processed', 'similarity_pt_path': 'data/1M/similarity_output_0.75/similarity_graph_20250812_043913.pt', 'similarity_npz_path': 'data/1M/similarity_output_0.75/similarity_graph.npz', 'features_csv_path': 'data/1M/aiio_sample_1000000_normalized.csv', 'use_edge_weights': True, 'dtype': torch.float32, 'lazy_load': True}
+2025-08-15 02:34:02,590 - INFO - Data loaded: 1,000,000 nodes, 50,000,000 edges
+2025-08-15 02:34:02,591 - INFO - Feature shape: torch.Size([1000000, 45])
+2025-08-15 02:34:02,591 - INFO - Target shape: torch.Size([1000000, 1])
+2025-08-15 02:34:02,591 - WARNING - Feature mismatch: Model expects 49, but data has 45
+2025-08-15 02:34:02,591 - INFO - Creating data splits from config
+2025-08-15 02:34:02,926 - INFO - Data splits - Train: 600,000, Val: 200,000, Test: 200,000
+2025-08-15 02:34:02,934 - INFO - Adding placeholder features from 45 to 49
+2025-08-15 02:34:02,943 - INFO - Features augmented to shape: torch.Size([1000000, 49])
+2025-08-15 02:34:02,945 - INFO - Using 49 feature names
+2025-08-15 02:34:02,945 - INFO - Initializing analyzers...
+2025-08-15 02:34:02,945 - INFO - Running IOR job analysis
+2025-08-15 02:34:02,945 - INFO - 
+============================================================
+2025-08-15 02:34:02,945 - INFO - Analyzing IOR Job from test.csv
+2025-08-15 02:34:02,945 - INFO - ============================================================
+2025-08-15 02:34:02,945 - INFO - Loading IOR job from test.csv
+2025-08-15 02:34:02,990 - INFO - Padding IOR features from 45 to 49
+2025-08-15 02:34:02,990 - INFO - Loaded IOR job with 49 features
+2025-08-15 02:34:02,990 - INFO - Actual performance: 1.8062
+2025-08-15 02:34:03,137 - INFO - Finding 50 nearest neighbors for IOR job...
+2025-08-15 02:34:03,349 - INFO - Similarity range: 0.3565 - 0.3670
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/analysis/interpretability/test_methods_ior.py", line 982, in <module>
+    main()
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/analysis/interpretability/test_methods_ior.py", line 952, in main
+    results = tester.analyze_ior_job(
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/analysis/interpretability/test_methods_ior.py", line 621, in analyze_ior_job
+    subgraph, mapping = self.create_ior_subgraph(ior_features, k_neighbors)
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/analysis/interpretability/test_methods_ior.py", line 388, in create_ior_subgraph
+    self.data.x[top_k_indices]
+ValueError: At least one stride in the given numpy array is negative, and tensors with negative strides are not currently supported. (You can probably work around this by making a copy of your array  with array.copy().) 
+srun: error: gpue03: task 0: Exited with exit code 1
