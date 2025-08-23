@@ -12,7 +12,7 @@ sys.path.append('/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5')
 from src.models.gat import IOPerformanceGAT, create_gat_model
 
 # Load the normalized features
-test_data = pd.read_csv('/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/darshan_features_ior_normalized_baseline_read.csv')
+test_data = pd.read_csv('/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/darshan_features_ior_normalized_gnn_optimized_read.csv')
 
 # Extract features (excluding tag for prediction)
 features = test_data.iloc[:, :-1].values  # All columns except 'tag' (45 features)
