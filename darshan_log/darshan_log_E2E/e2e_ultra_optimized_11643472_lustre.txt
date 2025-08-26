@@ -1,0 +1,93 @@
+=== LUSTRE Configuration BEFORE Run ===
+Directory stripe settings:
+.
+stripe_count:  32 stripe_size:   33554432 pattern:       raid0 stripe_offset: -1 pool:          ddn_hdd
+
+./optimized_4_4_4_64_64_64.nc4
+lmm_stripe_count:  12
+lmm_stripe_size:   33554432
+lmm_pattern:       raid0
+lmm_layout_gen:    0
+lmm_stripe_offset: 107
+lmm_pool:          ddn_hdd
+	obdidx		 objid		 objid		 group
+	   107	      23685583	    0x16969cf	  0x28c0000411
+	   104	      23521091	    0x166e743	  0x284000041d
+	   105	      23680483	    0x16955e3	  0x2940000429
+	   100	      24846679	    0x17b2157	  0x2900000411
+	    98	      29178475	    0x1bd3a6b	  0x26c0000407
+	   101	      23427132	    0x165783c	  0x298000041f
+	    96	       2893085	     0x2c251d	  0x2740001b71
+	   102	      24566055	    0x176d927	  0x2a40000420
+	    99	      27826123	    0x1a897cb	  0x264000040a
+	   103	      24462848	    0x1754600	  0x2a00000418
+	    97	      28854105	    0x1b84759	  0x2700000400
+	   106	      23616546	    0x1685c22	  0x288000041b
+
+./lustre_info_11643472.txt
+lmm_stripe_count:  12
+lmm_stripe_size:   33554432
+lmm_pattern:       raid0
+lmm_layout_gen:    0
+lmm_stripe_offset: 107
+lmm_pool:          ddn_hdd
+	obdidx		 objid		 objid		 group
+	   107	      23691248	    0x1697ff0	  0x28c0000411
+	   104	      23526765	    0x166fd6d	  0x284000041d
+	   105	      23686138	    0x1696bfa	  0x2940000429
+	   100	      24852212	    0x17b36f4	  0x2900000411
+	    98	      29184121	    0x1bd5079	  0x26c0000407
+	   101	      23432723	    0x1658e13	  0x298000041f
+	    96	       2903774	     0x2c4ede	  0x2740001b71
+	   102	      24571645	    0x176eefd	  0x2a40000420
+	    99	      27831767	    0x1a8add7	  0x264000040a
+	   103	      24468372	    0x1755b94	  0x2a00000418
+	    97	      28859694	    0x1b85d2e	  0x2700000400
+	   106	      23622214	    0x1687246	  0x288000041b
+
+./ultra_opt_4_4_4_128_128_128.nc4
+lmm_stripe_count:  12
+lmm_stripe_size:   33554432
+lmm_pattern:       raid0
+lmm_layout_gen:    0
+lmm_stripe_offset: 104
+lmm_pool:          ddn_hdd
+	obdidx		 objid		 objid		 group
+	   104	      23520944	    0x166e6b0	  0x284000041d
+	   105	      23680335	    0x169554f	  0x2940000429
+	   100	      24846533	    0x17b20c5	  0x2900000411
+	    98	      29178329	    0x1bd39d9	  0x26c0000407
+	   101	      23426989	    0x16577ad	  0x298000041f
+	    96	       2892867	     0x2c2443	  0x2740001b71
+	   102	      24565907	    0x176d893	  0x2a40000420
+	    99	      27825975	    0x1a89737	  0x264000040a
+	   103	      24462702	    0x175456e	  0x2a00000418
+	    97	      28853959	    0x1b846c7	  0x2700000400
+	   106	      23616400	    0x1685b90	  0x288000041b
+	   107	      23685437	    0x169693d	  0x28c0000411
+
+
+=== LUSTRE Configuration for Data File ===
+optimized_4_4_4_64_64_64.nc4
+lmm_stripe_count:  12
+lmm_stripe_size:   33554432
+lmm_pattern:       raid0
+lmm_layout_gen:    0
+lmm_stripe_offset: 107
+lmm_pool:          ddn_hdd
+	obdidx		 objid		 objid		 group
+	   107	      23685583	    0x16969cf	  0x28c0000411
+	   104	      23521091	    0x166e743	  0x284000041d
+	   105	      23680483	    0x16955e3	  0x2940000429
+	   100	      24846679	    0x17b2157	  0x2900000411
+	    98	      29178475	    0x1bd3a6b	  0x26c0000407
+	   101	      23427132	    0x165783c	  0x298000041f
+	    96	       2893085	     0x2c251d	  0x2740001b71
+	   102	      24566055	    0x176d927	  0x2a40000420
+	    99	      27826123	    0x1a897cb	  0x264000040a
+	   103	      24462848	    0x1754600	  0x2a00000418
+	    97	      28854105	    0x1b84759	  0x2700000400
+	   106	      23616546	    0x1685c22	  0x288000041b
+
+
+Summary: stripe_count=12, stripe_size=33554432

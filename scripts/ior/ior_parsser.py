@@ -115,7 +115,7 @@ def normalize_and_save(raw_features, bandwidth_mbps, output_path):
     return df, normalized
 
 if __name__ == "__main__":
-    darshan_log = "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/darshan_log/darshan_log_E2E/e2e_pathological_11642213_64procs_1stripe_64kb.darshan"
+    darshan_log = "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/darshan_log/darshan_log_E2E/e2e_ultra_optimized_11643472_64procs_32stripes_32mb.darshan"
     
     # Extract features
     raw_features = extract_darshan_features_for_ior(darshan_log)
@@ -131,7 +131,7 @@ if __name__ == "__main__":
         bandwidth_mbps = 5.17
         
         # Normalize and save
-        output_csv = "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/darshan_features_e2e_pathological_11642213_64procs_1stripe_64kb.csv"
+        output_csv = "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/darshan_features_e2e_ultra_optimized_11643472_64procs_32stripes_32mb.csv"
         df, normalized = normalize_and_save(raw_features, bandwidth_mbps, output_csv)
         
         print("\n=== Normalized Features (log10(x+1)) ===")
