@@ -1,0 +1,56 @@
+=== JOB METADATA ===
+JobID: 11642889
+Nodes: 2
+Tasks: 64
+Stripe Count: 1
+Stripe Size: 65536
+
+=== LUSTRE Configuration BEFORE Run ===
+Directory stripe settings:
+.
+stripe_count:  1 stripe_size:   65536 pattern:       raid0 stripe_offset: -1 pool:          ddn_hdd
+
+./pathological_64_1_1_2_2_2048.nc4
+lmm_stripe_count:  1
+lmm_stripe_size:   65536
+lmm_pattern:       raid0
+lmm_layout_gen:    0
+lmm_stripe_offset: 96
+lmm_pool:          ddn_hdd
+	obdidx		 objid		 objid		 group
+	    96	      27603294	    0x1a5315e	  0x2740000be5
+
+./pathological_64_1_1_16_16_16.nc4
+lmm_stripe_count:  1
+lmm_stripe_size:   65536
+lmm_pattern:       raid0
+lmm_layout_gen:    0
+lmm_stripe_offset: 106
+lmm_pool:          ddn_hdd
+	obdidx		 objid		 objid		 group
+	   106	      19197995	    0x124f02b	  0x2880000404
+
+./lustre_info_11642889.txt
+lmm_stripe_count:  1
+lmm_stripe_size:   65536
+lmm_pattern:       raid0
+lmm_layout_gen:    0
+lmm_stripe_offset: 99
+lmm_pool:          ddn_hdd
+	obdidx		 objid		 objid		 group
+	    99	      21696847	    0x14b114f	  0x2640000bd3
+
+
+=== LUSTRE Configuration for Data File ===
+pathological_64_1_1_16_16_16.nc4
+lmm_stripe_count:  1
+lmm_stripe_size:   65536
+lmm_pattern:       raid0
+lmm_layout_gen:    0
+lmm_stripe_offset: 106
+lmm_pool:          ddn_hdd
+	obdidx		 objid		 objid		 group
+	   106	      19197995	    0x124f02b	  0x2880000404
+
+
+Summary: stripe_count=1, stripe_size=65536
