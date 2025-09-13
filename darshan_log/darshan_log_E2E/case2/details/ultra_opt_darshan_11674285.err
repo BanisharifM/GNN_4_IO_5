@@ -1,0 +1,25 @@
+[cn093.delta.ncsa.illinois.edu:770646] mca: base: components_register: registering framework ras components
+[cn093.delta.ncsa.illinois.edu:770646] mca: base: components_register: found loaded component simulator
+[cn093.delta.ncsa.illinois.edu:770646] mca: base: components_register: component simulator register function successful
+[cn093.delta.ncsa.illinois.edu:770646] mca: base: components_register: found loaded component slurm
+[cn093.delta.ncsa.illinois.edu:770646] mca: base: components_register: component slurm register function successful
+[cn093.delta.ncsa.illinois.edu:770646] mca: base: components_open: opening ras components
+[cn093.delta.ncsa.illinois.edu:770646] mca: base: components_open: found loaded component simulator
+[cn093.delta.ncsa.illinois.edu:770646] mca: base: components_open: found loaded component slurm
+[cn093.delta.ncsa.illinois.edu:770646] mca: base: components_open: component slurm open function successful
+[cn093.delta.ncsa.illinois.edu:770646] mca:base:select: Auto-selecting ras components
+[cn093.delta.ncsa.illinois.edu:770646] mca:base:select:(  ras) Querying component [simulator]
+[cn093.delta.ncsa.illinois.edu:770646] mca:base:select:(  ras) Querying component [slurm]
+[cn093.delta.ncsa.illinois.edu:770646] mca:base:select:(  ras) Query of component [slurm] set priority to 50
+[cn093.delta.ncsa.illinois.edu:770646] mca:base:select:(  ras) Selected component [slurm]
+[cn093.delta.ncsa.illinois.edu:770646] mca: base: close: unloading component simulator
+[cn093.delta.ncsa.illinois.edu:770646] mca: base: close: component slurm closed
+[cn093.delta.ncsa.illinois.edu:770646] mca: base: close: unloading component slurm
+45.71user 28.13system 0:07.08elapsed 1042%CPU (0avgtext+0avgdata 53396maxresident)k
+4584inputs+1232664outputs (790major+210741minor)pagefaults 0swaps
+Error: failed to parse LUSTRE module record.
+Error: failed to parse LUSTRE module record.
+Error: failed to parse LUSTRE module record.
+Error: failed to parse LUSTRE module record.
+Error: failed to parse LUSTRE module record.
+Error: failed to parse LUSTRE module record.

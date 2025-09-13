@@ -1,0 +1,22 @@
+[cn106.delta.ncsa.illinois.edu:1676755] mca: base: components_register: registering framework ras components
+[cn106.delta.ncsa.illinois.edu:1676755] mca: base: components_register: found loaded component simulator
+[cn106.delta.ncsa.illinois.edu:1676755] mca: base: components_register: component simulator register function successful
+[cn106.delta.ncsa.illinois.edu:1676755] mca: base: components_register: found loaded component slurm
+[cn106.delta.ncsa.illinois.edu:1676755] mca: base: components_register: component slurm register function successful
+[cn106.delta.ncsa.illinois.edu:1676755] mca: base: components_open: opening ras components
+[cn106.delta.ncsa.illinois.edu:1676755] mca: base: components_open: found loaded component simulator
+[cn106.delta.ncsa.illinois.edu:1676755] mca: base: components_open: found loaded component slurm
+[cn106.delta.ncsa.illinois.edu:1676755] mca: base: components_open: component slurm open function successful
+[cn106.delta.ncsa.illinois.edu:1676755] mca:base:select: Auto-selecting ras components
+[cn106.delta.ncsa.illinois.edu:1676755] mca:base:select:(  ras) Querying component [simulator]
+[cn106.delta.ncsa.illinois.edu:1676755] mca:base:select:(  ras) Querying component [slurm]
+[cn106.delta.ncsa.illinois.edu:1676755] mca:base:select:(  ras) Query of component [slurm] set priority to 50
+[cn106.delta.ncsa.illinois.edu:1676755] mca:base:select:(  ras) Selected component [slurm]
+[cn106.delta.ncsa.illinois.edu:1676755] mca: base: close: unloading component simulator
+[cn106.delta.ncsa.illinois.edu:1676755] mca: base: close: component slurm closed
+[cn106.delta.ncsa.illinois.edu:1676755] mca: base: close: unloading component slurm
+127.92user 43.96system 0:08.11elapsed 2117%CPU (0avgtext+0avgdata 55772maxresident)k
+96inputs+83688outputs (2993major+329419minor)pagefaults 0swaps
+Error: failed to parse LUSTRE module record.
+Error: failed to parse LUSTRE module record.
+Error: failed to parse LUSTRE module record.
