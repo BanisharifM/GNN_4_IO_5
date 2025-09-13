@@ -12,7 +12,7 @@ def get_sample_headers(sample_file):
         headers = next(reader)
     return headers
 
-def parse_darshan_file(darshan_file, temp_dir):
+def parse_darshan_file(darshan_file, temp_dir, verbose=True):
     """Parse a single Darshan file and extract all counters"""
     counters = {}
     
@@ -23,6 +23,9 @@ def parse_darshan_file(darshan_file, temp_dir):
     if ret != 0:
         return None
     
+    if verbose:
+        print(f"  Parsing POSIX counters:")
+    
     with open(total_file, 'r') as f:
         for line in f:
             if line.startswith('total'):
@@ -30,6 +33,23 @@ def parse_darshan_file(darshan_file, temp_dir):
                 if len(parts) == 2:
                     key = parts[0].strip()
                     value = parts[1].strip()
+                    
+                    # Log raw values for inspection
+                    if verbose and 'POSIX' in key:
+                        print(f"    RAW: {key} = {value}")
+                    
+                    # Check for invalid values
+                    try:
+                        float_val = float(value)
+                        if np.isnan(float_val) or np.isinf(float_val):
+                            print(f"    WARNING: Invalid value for {key}: {value}")
+                            value = '0'
+                        elif float_val < 0:
+                            print(f"    WARNING: Negative value for {key}: {value}")
+                    except ValueError:
+                        print(f"    WARNING: Non-numeric value for {key}: {value}")
+                        value = '0'
+                    
                     # Remove 'total_' prefix for POSIX counters
                     if key.startswith('total_POSIX_'):
                         key = key.replace('total_', '', 1)
@@ -39,6 +59,9 @@ def parse_darshan_file(darshan_file, temp_dir):
     perf_file = os.path.join(temp_dir, 'parsed_perf.txt')
     cmd = f"darshan-parser --perf {darshan_file} > {perf_file} 2>/dev/null"
     subprocess.call(cmd, shell=True)
+    
+    if verbose:
+        print(f"  Parsing performance data:")
     
     current_module = None
     with open(perf_file, 'r') as f:
@@ -57,49 +80,104 @@ def parse_darshan_file(darshan_file, temp_dir):
                     perf_str = parts[1].strip()
                     # Extract just the number (before "# MiB/s")
                     perf_value = perf_str.split('#')[0].strip()
+                    if verbose:
+                        print(f"    POSIX_PERF_MIBS = {perf_value}")
                     counters['POSIX_PERF_MIBS'] = perf_value
     
     # Parse Lustre data
     lustre_file = os.path.join(temp_dir, 'parsed_lustre.txt')
     cmd = f"darshan-parser {darshan_file} 2>/dev/null | grep '^LUSTRE' | cut -d$'\\t' -f 4-5 > {lustre_file}"
     subprocess.call(cmd, shell=True)
-    
+
     lustre_stripe_widths = []
     lustre_stripe_sizes = []
     
+    if verbose:
+        print(f"  Parsing Lustre data:")
+
     with open(lustre_file, 'r') as f:
-        for line in f:
+        lines = f.readlines()
+        if not lines and verbose:
+            print(f"    No Lustre data found in trace")
+        
+        for line in lines:
+            if verbose:
+                print(f"    RAW: {line.strip()}")
+            
             parts = line.strip().split('\t')
             if len(parts) >= 2:
-                if parts[0] == 'LUSTRE_STRIPE_WIDTH':
-                    lustre_stripe_widths.append(int(parts[1]))
-                elif parts[0] == 'LUSTRE_STRIPE_SIZE':
-                    lustre_stripe_sizes.append(int(parts[1]))
-    
+                try:
+                    if parts[0] == 'LUSTRE_STRIPE_WIDTH':
+                        val = int(parts[1])
+                        if verbose:
+                            print(f"      -> Found LUSTRE_STRIPE_WIDTH = {val}")
+                        if val > 0:
+                            lustre_stripe_widths.append(val)
+                        else:
+                            print(f"      -> WARNING: Invalid stripe width: {val}")
+                    elif parts[0] == 'LUSTRE_STRIPE_SIZE':
+                        val = int(parts[1])
+                        if verbose:
+                            print(f"      -> Found LUSTRE_STRIPE_SIZE = {val}")
+                        if val > 0:
+                            lustre_stripe_sizes.append(val)
+                        else:
+                            print(f"      -> WARNING: Invalid stripe size: {val}")
+                except (ValueError, TypeError) as e:
+                    print(f"      -> ERROR parsing Lustre value: {e}")
+                    continue
+
+    # Only set if we have valid data, otherwise leave unset (will become 0)
     if lustre_stripe_widths:
-        counters['LUSTRE_STRIPE_WIDTH'] = str(int(np.mean(lustre_stripe_widths)))
+        avg_width = int(np.mean(lustre_stripe_widths))
+        counters['LUSTRE_STRIPE_WIDTH'] = str(avg_width)
+        if verbose:
+            print(f"    Final LUSTRE_STRIPE_WIDTH: {avg_width} (from values: {lustre_stripe_widths})")
+    else:
+        if verbose:
+            print(f"    No valid LUSTRE_STRIPE_WIDTH found (will be set to 0)")
+    
     if lustre_stripe_sizes:
-        counters['LUSTRE_STRIPE_SIZE'] = str(int(np.mean(lustre_stripe_sizes)))
+        avg_size = int(np.mean(lustre_stripe_sizes))
+        counters['LUSTRE_STRIPE_SIZE'] = str(avg_size)
+        if verbose:
+            print(f"    Final LUSTRE_STRIPE_SIZE: {avg_size} (from values: {lustre_stripe_sizes})")
+    else:
+        if verbose:
+            print(f"    No valid LUSTRE_STRIPE_SIZE found (will be set to 0)")
     
     # Get nprocs from the file
     with open(total_file, 'r') as f:
         for line in f:
             if line.startswith('# nprocs:'):
-                counters['nprocs'] = line.split(':')[1].strip()
+                nprocs = line.split(':')[1].strip()
+                counters['nprocs'] = nprocs
+                if verbose:
+                    print(f"  Found nprocs: {nprocs}")
                 break
     
     return counters
 
-def normalize_value(value):
+def normalize_value(value, header_name=""):
     """Apply log10(x+1) normalization"""
     try:
         numeric_val = float(value)
+        if numeric_val < 0:
+            print(f"    WARNING: Negative value for {header_name}: {numeric_val}, setting to 0")
+            return 0.0
+        if np.isnan(numeric_val):
+            print(f"    WARNING: NaN value for {header_name}, setting to 0")
+            return 0.0
+        if np.isinf(numeric_val):
+            print(f"    WARNING: Inf value for {header_name}, setting to 0")
+            return 0.0
         normalized = np.log10(numeric_val + 1)
         return normalized
-    except (ValueError, TypeError):
+    except (ValueError, TypeError) as e:
+        print(f"    WARNING: Cannot normalize {header_name}={value}: {e}, setting to 0")
         return 0.0
 
-def process_darshan_logs(input_dir, output_csv, sample_csv, temp_dir, log_missing=True):
+def process_darshan_logs(input_dir, output_csv, sample_csv, temp_dir, log_missing=True, verbose=True):
     """Process all Darshan logs and create output CSV matching sample format"""
     
     # Get headers from sample file
@@ -133,7 +211,7 @@ def process_darshan_logs(input_dir, output_csv, sample_csv, temp_dir, log_missin
             print(f"\nProcessing {idx+1}/{len(darshan_files)}: {os.path.basename(darshan_file)}")
             
             # Parse the Darshan file
-            counters = parse_darshan_file(darshan_file, temp_dir)
+            counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
             if counters is None:
                 print(f"  Skipping due to parse error")
                 continue
@@ -151,16 +229,19 @@ def process_darshan_logs(input_dir, output_csv, sample_csv, temp_dir, log_missin
                     if 'POSIX_PERF_MIBS' not in counters:
                         missing_counters.append('POSIX_PERF_MIBS (for tag)')
                     else:
-                        found_counters.append(f"tag={normalize_value(value):.4f}")
-                    row.append(normalize_value(value))
+                        normalized_val = normalize_value(value, "tag/POSIX_PERF_MIBS")
+                        found_counters.append(f"tag={normalized_val:.4f}")
+                    row.append(normalize_value(value, "tag"))
                 elif header in counters:
                     # Direct match
-                    found_counters.append(f"{header}={normalize_value(counters[header]):.4f}")
-                    row.append(normalize_value(counters[header]))
+                    normalized_val = normalize_value(counters[header], header)
+                    found_counters.append(f"{header}={normalized_val:.4f}")
+                    row.append(normalized_val)
                 elif f"total_{header}" in counters:
                     # Try with total_ prefix
-                    found_counters.append(f"{header}={normalize_value(counters[f'total_{header}']):.4f}")
-                    row.append(normalize_value(counters[f"total_{header}"]))
+                    normalized_val = normalize_value(counters[f"total_{header}"], header)
+                    found_counters.append(f"{header}={normalized_val:.4f}")
+                    row.append(normalized_val)
                 else:
                     # Missing value, use 0
                     missing_counters.append(header)
@@ -209,7 +290,8 @@ def main():
     sample_csv = sys.argv[3]
     temp_dir = sys.argv[4] if len(sys.argv) > 4 else f"/tmp/darshan_parse_{os.getpid()}"
     
-    process_darshan_logs(input_dir, output_csv, sample_csv, temp_dir, log_missing=True)
+    # Set verbose=False if you want less output
+    process_darshan_logs(input_dir, output_csv, sample_csv, temp_dir, log_missing=True, verbose=True)
 
 if __name__ == "__main__":
     main()
