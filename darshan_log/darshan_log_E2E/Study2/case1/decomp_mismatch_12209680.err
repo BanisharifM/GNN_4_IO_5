@@ -1,0 +1,26 @@
+[cn064.delta.ncsa.illinois.edu:2888068] mca: base: components_register: registering framework ras components
+[cn064.delta.ncsa.illinois.edu:2888068] mca: base: components_register: found loaded component simulator
+[cn064.delta.ncsa.illinois.edu:2888068] mca: base: components_register: component simulator register function successful
+[cn064.delta.ncsa.illinois.edu:2888068] mca: base: components_register: found loaded component slurm
+[cn064.delta.ncsa.illinois.edu:2888068] mca: base: components_register: component slurm register function successful
+[cn064.delta.ncsa.illinois.edu:2888068] mca: base: components_open: opening ras components
+[cn064.delta.ncsa.illinois.edu:2888068] mca: base: components_open: found loaded component simulator
+[cn064.delta.ncsa.illinois.edu:2888068] mca: base: components_open: found loaded component slurm
+[cn064.delta.ncsa.illinois.edu:2888068] mca: base: components_open: component slurm open function successful
+[cn064.delta.ncsa.illinois.edu:2888068] mca:base:select: Auto-selecting ras components
+[cn064.delta.ncsa.illinois.edu:2888068] mca:base:select:(  ras) Querying component [simulator]
+[cn064.delta.ncsa.illinois.edu:2888068] mca:base:select:(  ras) Querying component [slurm]
+[cn064.delta.ncsa.illinois.edu:2888068] mca:base:select:(  ras) Query of component [slurm] set priority to 50
+[cn064.delta.ncsa.illinois.edu:2888068] mca:base:select:(  ras) Selected component [slurm]
+[cn064.delta.ncsa.illinois.edu:2888068] mca: base: close: unloading component simulator
+[cn064.delta.ncsa.illinois.edu:2888068] mca: base: close: component slurm closed
+[cn064.delta.ncsa.illinois.edu:2888068] mca: base: close: unloading component slurm
+3208.64user 155.32system 1:16.24elapsed 4412%CPU (0avgtext+0avgdata 86376maxresident)k
+3032256inputs+89132184outputs (1217major+645598minor)pagefaults 0swaps
+Error: failed to parse LUSTRE module record.
+darshan-parser: darshan-logutils-accumulator.c:145: darshan_accumulator_inject: Assertion `rank < acc->job_nprocs' failed.
+Error: failed to parse LUSTRE module record.
+darshan-parser: darshan-logutils-accumulator.c:145: darshan_accumulator_inject: Assertion `rank < acc->job_nprocs' failed.
+Error: failed to parse LUSTRE module record.
+darshan-parser: darshan-logutils-accumulator.c:145: darshan_accumulator_inject: Assertion `rank < acc->job_nprocs' failed.
+/var/spool/slurmd/job12209680/slurm_script: line 91: 2888930 Aborted                 $HOME/darshan-fresh/bin/darshan-parser "$FINAL_LOG" > "${FINAL_LOG%.darshan}_parsed.txt"

@@ -1286,7 +1286,7 @@ def main():
         logger.warning("⚠ Training features not found")
     
     # IOR test sample
-    test_features = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/darshan_features_e2e_pathological_11642213_64procs_1stripe_64kb.csv'
+    test_features = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/darshan_log/darshan_log_E2E/case1/parsed_log/e2e_pathological_11673694_64procs_1stripe_64kb_parsed.csv'
     
     # Initialize analyzer
     logger.info("\n" + "="*70)
