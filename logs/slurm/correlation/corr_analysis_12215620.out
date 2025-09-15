@@ -3,3 +3,350 @@ Python version: Python 3.9.21
 Starting correlation analysis at Mon Sep 15 01:13:14 CDT 2025
 Job ID: 12215620
 Running on node: gpua027
+================================================================================
+CORRELATION ANALYSIS FOR I/O BOTTLENECK DETECTION
+================================================================================
+[01:13:19] Loading data from: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/aiio_sample_1000000_normalized.csv
+[01:13:24] Loaded 1000000 samples with 45 features
+
+[01:13:24] Starting correlation calculations...
+[01:13:24] Calculating Pearson correlation...
+[01:13:27] Calculating Spearman correlation...
+[01:13:37] Calculating Kendall Tau correlation...
+  Dataset large (1000000 samples), using sample of 10000 for Kendall
+[01:13:39] Calculating Mutual Information...
+  Processing feature 1/45
+  Processing feature 11/45
+  Processing feature 21/45
+  Processing feature 31/45
+  Processing feature 41/45
+
+[02:59:41] Saving correlation matrices...
+[02:59:41] Saved pearson correlation matrix to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/results/correlation_analysis/correlation_pearson.csv
+[02:59:41] Saved spearman correlation matrix to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/results/correlation_analysis/correlation_spearman.csv
+[02:59:41] Saved kendall correlation matrix to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/results/correlation_analysis/correlation_kendall.csv
+[02:59:41] Saved mutual_information correlation matrix to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/results/correlation_analysis/correlation_mutual_information.csv
+
+[02:59:41] Generating heatmaps...
+[02:59:43] Heatmap saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/results/correlation_analysis/heatmap_pearson.png
+[02:59:45] Heatmap saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/results/correlation_analysis/heatmap_spearman.png
+[02:59:47] Heatmap saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/results/correlation_analysis/heatmap_kendall.png
+[02:59:49] Heatmap saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/results/correlation_analysis/heatmap_mutual_information.png
+
+[02:59:49] Generating comparison plot...
+[02:59:51] Comparison saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/results/correlation_analysis/correlation_comparison.png
+
+[02:59:51] Analyzing root cause candidates...
+
+============================================================
+Independence Analysis for: LUSTRE_STRIPE_SIZE
+Method: SPEARMAN
+============================================================
+
+Independent Features (|corr| < 0.3):
+  nprocs                        : +0.121
+  POSIX_FILENOS                 : -0.279
+  POSIX_FILE_ALIGNMENT          : +0.118
+  POSIX_BYTES_READ              : -0.253
+  POSIX_BYTES_WRITTEN           : -0.245
+  POSIX_RW_SWITCHES             : -0.207
+  POSIX_SIZE_READ_100_1K        : -0.270
+  POSIX_SIZE_READ_100K_1M       : -0.131
+  POSIX_SIZE_WRITE_1K_10K       : -0.065
+  POSIX_SIZE_WRITE_10K_100K     : -0.179
+  POSIX_SIZE_WRITE_100K_1M      : -0.173
+  POSIX_STRIDE1_STRIDE          : +0.236
+  POSIX_STRIDE2_STRIDE          : +0.103
+  POSIX_STRIDE3_STRIDE          : +0.046
+  POSIX_STRIDE4_STRIDE          : -0.064
+  POSIX_STRIDE1_COUNT           : +0.079
+  POSIX_STRIDE2_COUNT           : +0.078
+  POSIX_STRIDE3_COUNT           : +0.045
+  POSIX_STRIDE4_COUNT           : -0.068
+  POSIX_ACCESS1_ACCESS          : +0.178
+  POSIX_ACCESS2_ACCESS          : +0.227
+  POSIX_ACCESS3_ACCESS          : +0.101
+  POSIX_ACCESS4_ACCESS          : -0.044
+
+Moderately Correlated (0.3 <= |corr| < 0.7):
+  POSIX_OPENS                   : -0.355
+  POSIX_READS                   : -0.438
+  POSIX_WRITES                  : -0.447
+  POSIX_SEEKS                   : -0.314
+  POSIX_STATS                   : -0.449
+  POSIX_CONSEC_READS            : -0.455
+  POSIX_CONSEC_WRITES           : -0.463
+  POSIX_SEQ_READS               : -0.436
+  POSIX_SEQ_WRITES              : -0.446
+  POSIX_MEM_NOT_ALIGNED         : -0.437
+  POSIX_FILE_NOT_ALIGNED        : -0.462
+  POSIX_SIZE_READ_0_100         : -0.437
+  POSIX_SIZE_READ_1K_10K        : -0.461
+  POSIX_SIZE_WRITE_0_100        : -0.459
+  POSIX_SIZE_WRITE_100_1K       : -0.424
+  POSIX_ACCESS1_COUNT           : -0.407
+  POSIX_ACCESS2_COUNT           : -0.433
+  POSIX_ACCESS3_COUNT           : -0.452
+  POSIX_ACCESS4_COUNT           : -0.445
+
+Highly Correlated (|corr| >= 0.7):
+  LUSTRE_STRIPE_WIDTH           : +0.891
+
+Independence Score: 0.711
+  (1.0 = completely independent, 0.0 = highly dependent)
+
+============================================================
+Independence Analysis for: LUSTRE_STRIPE_WIDTH
+Method: SPEARMAN
+============================================================
+
+Independent Features (|corr| < 0.3):
+  nprocs                        : +0.142
+  POSIX_FILENOS                 : -0.287
+  POSIX_FILE_ALIGNMENT          : +0.130
+  POSIX_BYTES_READ              : -0.237
+  POSIX_BYTES_WRITTEN           : -0.239
+  POSIX_RW_SWITCHES             : -0.200
+  POSIX_SIZE_READ_100_1K        : -0.283
+  POSIX_SIZE_READ_100K_1M       : -0.066
+  POSIX_SIZE_WRITE_1K_10K       : -0.054
+  POSIX_SIZE_WRITE_10K_100K     : -0.178
+  POSIX_SIZE_WRITE_100K_1M      : -0.134
+  POSIX_STRIDE1_STRIDE          : +0.262
+  POSIX_STRIDE2_STRIDE          : +0.130
+  POSIX_STRIDE3_STRIDE          : +0.068
+  POSIX_STRIDE4_STRIDE          : -0.031
+  POSIX_STRIDE1_COUNT           : +0.124
+  POSIX_STRIDE2_COUNT           : +0.104
+  POSIX_STRIDE3_COUNT           : +0.071
+  POSIX_STRIDE4_COUNT           : -0.029
+  POSIX_ACCESS1_ACCESS          : +0.205
+  POSIX_ACCESS2_ACCESS          : +0.226
+  POSIX_ACCESS3_ACCESS          : +0.102
+  POSIX_ACCESS4_ACCESS          : -0.050
+
+Moderately Correlated (0.3 <= |corr| < 0.7):
+  POSIX_OPENS                   : -0.370
+  POSIX_READS                   : -0.449
+  POSIX_WRITES                  : -0.460
+  POSIX_SEEKS                   : -0.311
+  POSIX_STATS                   : -0.470
+  POSIX_CONSEC_READS            : -0.477
+  POSIX_CONSEC_WRITES           : -0.485
+  POSIX_SEQ_READS               : -0.446
+  POSIX_SEQ_WRITES              : -0.459
+  POSIX_MEM_NOT_ALIGNED         : -0.468
+  POSIX_FILE_NOT_ALIGNED        : -0.485
+  POSIX_SIZE_READ_0_100         : -0.464
+  POSIX_SIZE_READ_1K_10K        : -0.491
+  POSIX_SIZE_WRITE_0_100        : -0.484
+  POSIX_SIZE_WRITE_100_1K       : -0.447
+  POSIX_ACCESS1_COUNT           : -0.406
+  POSIX_ACCESS2_COUNT           : -0.447
+  POSIX_ACCESS3_COUNT           : -0.477
+  POSIX_ACCESS4_COUNT           : -0.470
+
+Highly Correlated (|corr| >= 0.7):
+  LUSTRE_STRIPE_SIZE            : +0.891
+
+Independence Score: 0.702
+  (1.0 = completely independent, 0.0 = highly dependent)
+
+============================================================
+Independence Analysis for: POSIX_FILE_NOT_ALIGNED
+Method: SPEARMAN
+============================================================
+
+Independent Features (|corr| < 0.3):
+  nprocs                        : +0.295
+  POSIX_FILENOS                 : +0.174
+  POSIX_FILE_ALIGNMENT          : +0.125
+  POSIX_BYTES_READ              : +0.246
+  POSIX_RW_SWITCHES             : +0.166
+  POSIX_SIZE_READ_100K_1M       : -0.115
+  POSIX_SIZE_WRITE_1K_10K       : -0.219
+  POSIX_SIZE_WRITE_10K_100K     : -0.129
+  POSIX_SIZE_WRITE_100K_1M      : +0.013
+  POSIX_STRIDE4_COUNT           : -0.299
+  POSIX_ACCESS2_ACCESS          : -0.210
+  POSIX_ACCESS3_ACCESS          : +0.065
+  POSIX_ACCESS4_ACCESS          : +0.046
+
+Moderately Correlated (0.3 <= |corr| < 0.7):
+  POSIX_OPENS                   : +0.699
+  LUSTRE_STRIPE_SIZE            : -0.462
+  LUSTRE_STRIPE_WIDTH           : -0.485
+  POSIX_BYTES_WRITTEN           : +0.399
+  POSIX_SIZE_READ_100_1K        : +0.566
+  POSIX_STRIDE1_STRIDE          : -0.468
+  POSIX_STRIDE2_STRIDE          : -0.423
+  POSIX_STRIDE3_STRIDE          : -0.394
+  POSIX_STRIDE4_STRIDE          : -0.349
+  POSIX_STRIDE1_COUNT           : -0.358
+  POSIX_STRIDE2_COUNT           : -0.370
+  POSIX_STRIDE3_COUNT           : -0.362
+  POSIX_ACCESS1_ACCESS          : -0.316
+
+Highly Correlated (|corr| >= 0.7):
+  POSIX_READS                   : +0.805
+  POSIX_WRITES                  : +0.905
+  POSIX_SEEKS                   : +0.719
+  POSIX_STATS                   : +0.710
+  POSIX_CONSEC_READS            : +0.812
+  POSIX_CONSEC_WRITES           : +0.913
+  POSIX_SEQ_READS               : +0.804
+  POSIX_SEQ_WRITES              : +0.906
+  POSIX_MEM_NOT_ALIGNED         : +0.778
+  POSIX_SIZE_READ_0_100         : +0.743
+  POSIX_SIZE_READ_1K_10K        : +0.747
+  POSIX_SIZE_WRITE_0_100        : +0.878
+  POSIX_SIZE_WRITE_100_1K       : +0.750
+  POSIX_ACCESS1_COUNT           : +0.832
+  POSIX_ACCESS2_COUNT           : +0.861
+  POSIX_ACCESS3_COUNT           : +0.873
+  POSIX_ACCESS4_COUNT           : +0.880
+
+Independence Score: 0.496
+  (1.0 = completely independent, 0.0 = highly dependent)
+
+============================================================
+Independence Analysis for: POSIX_MEM_NOT_ALIGNED
+Method: SPEARMAN
+============================================================
+
+Independent Features (|corr| < 0.3):
+  POSIX_FILENOS                 : +0.181
+  POSIX_FILE_ALIGNMENT          : +0.028
+  POSIX_BYTES_READ              : +0.295
+  POSIX_BYTES_WRITTEN           : +0.204
+  POSIX_RW_SWITCHES             : +0.073
+  POSIX_SIZE_READ_100K_1M       : -0.168
+  POSIX_SIZE_WRITE_10K_100K     : -0.196
+  POSIX_SIZE_WRITE_100K_1M      : -0.037
+  POSIX_ACCESS1_ACCESS          : -0.129
+  POSIX_ACCESS2_ACCESS          : -0.102
+  POSIX_ACCESS3_ACCESS          : +0.209
+  POSIX_ACCESS4_ACCESS          : +0.194
+
+Moderately Correlated (0.3 <= |corr| < 0.7):
+  nprocs                        : +0.340
+  LUSTRE_STRIPE_SIZE            : -0.437
+  LUSTRE_STRIPE_WIDTH           : -0.468
+  POSIX_WRITES                  : +0.683
+  POSIX_SEEKS                   : +0.689
+  POSIX_SEQ_WRITES              : +0.689
+  POSIX_SIZE_READ_100_1K        : +0.570
+  POSIX_SIZE_WRITE_0_100        : +0.685
+  POSIX_SIZE_WRITE_100_1K       : +0.617
+  POSIX_SIZE_WRITE_1K_10K       : -0.332
+  POSIX_STRIDE1_STRIDE          : -0.486
+  POSIX_STRIDE2_STRIDE          : -0.409
+  POSIX_STRIDE3_STRIDE          : -0.383
+  POSIX_STRIDE4_STRIDE          : -0.320
+  POSIX_STRIDE1_COUNT           : -0.477
+  POSIX_STRIDE2_COUNT           : -0.401
+  POSIX_STRIDE3_COUNT           : -0.381
+  POSIX_STRIDE4_COUNT           : -0.303
+
+Highly Correlated (|corr| >= 0.7):
+  POSIX_OPENS                   : +0.756
+  POSIX_READS                   : +0.840
+  POSIX_STATS                   : +0.760
+  POSIX_CONSEC_READS            : +0.863
+  POSIX_CONSEC_WRITES           : +0.708
+  POSIX_SEQ_READS               : +0.840
+  POSIX_FILE_NOT_ALIGNED        : +0.778
+  POSIX_SIZE_READ_0_100         : +0.822
+  POSIX_SIZE_READ_1K_10K        : +0.829
+  POSIX_ACCESS1_COUNT           : +0.701
+  POSIX_ACCESS2_COUNT           : +0.746
+  POSIX_ACCESS3_COUNT           : +0.763
+  POSIX_ACCESS4_COUNT           : +0.806
+
+Independence Score: 0.519
+  (1.0 = completely independent, 0.0 = highly dependent)
+
+============================================================
+Independence Analysis for: POSIX_FILE_ALIGNMENT
+Method: SPEARMAN
+============================================================
+
+Independent Features (|corr| < 0.3):
+  nprocs                        : +0.264
+  POSIX_OPENS                   : -0.069
+  LUSTRE_STRIPE_SIZE            : +0.118
+  LUSTRE_STRIPE_WIDTH           : +0.130
+  POSIX_READS                   : +0.008
+  POSIX_WRITES                  : +0.121
+  POSIX_SEEKS                   : -0.019
+  POSIX_STATS                   : -0.089
+  POSIX_BYTES_READ              : -0.288
+  POSIX_BYTES_WRITTEN           : +0.066
+  POSIX_CONSEC_READS            : +0.011
+  POSIX_CONSEC_WRITES           : +0.110
+  POSIX_SEQ_READS               : +0.013
+  POSIX_SEQ_WRITES              : +0.117
+  POSIX_RW_SWITCHES             : +0.170
+  POSIX_MEM_NOT_ALIGNED         : +0.028
+  POSIX_FILE_NOT_ALIGNED        : +0.125
+  POSIX_SIZE_READ_0_100         : -0.016
+  POSIX_SIZE_READ_100_1K        : -0.042
+  POSIX_SIZE_READ_1K_10K        : +0.019
+  POSIX_SIZE_READ_100K_1M       : -0.218
+  POSIX_SIZE_WRITE_0_100        : +0.084
+  POSIX_SIZE_WRITE_100_1K       : +0.043
+  POSIX_SIZE_WRITE_1K_10K       : -0.254
+  POSIX_SIZE_WRITE_10K_100K     : -0.167
+  POSIX_SIZE_WRITE_100K_1M      : -0.164
+  POSIX_STRIDE1_STRIDE          : -0.188
+  POSIX_STRIDE2_STRIDE          : -0.266
+  POSIX_STRIDE3_STRIDE          : -0.283
+  POSIX_STRIDE1_COUNT           : -0.127
+  POSIX_STRIDE2_COUNT           : -0.222
+  POSIX_STRIDE3_COUNT           : -0.239
+  POSIX_STRIDE4_COUNT           : -0.267
+  POSIX_ACCESS1_ACCESS          : -0.197
+  POSIX_ACCESS2_ACCESS          : -0.080
+  POSIX_ACCESS3_ACCESS          : +0.161
+  POSIX_ACCESS4_ACCESS          : -0.003
+  POSIX_ACCESS1_COUNT           : +0.102
+  POSIX_ACCESS2_COUNT           : +0.139
+  POSIX_ACCESS3_COUNT           : +0.118
+  POSIX_ACCESS4_COUNT           : +0.111
+
+Moderately Correlated (0.3 <= |corr| < 0.7):
+  POSIX_FILENOS                 : -0.304
+  POSIX_STRIDE4_STRIDE          : -0.339
+
+Highly Correlated (|corr| >= 0.7):
+
+Independence Score: 0.863
+  (1.0 = completely independent, 0.0 = highly dependent)
+
+============================================================
+Independence Analysis for: POSIX_MEM_ALIGNMENT
+Method: SPEARMAN
+============================================================
+
+Independent Features (|corr| < 0.3):
+
+Moderately Correlated (0.3 <= |corr| < 0.7):
+
+Highly Correlated (|corr| >= 0.7):
+
+Independence Score: nan
+  (1.0 = completely independent, 0.0 = highly dependent)
+
+================================================================================
+INDEPENDENCE SCORES SUMMARY (Spearman)
+================================================================================
+POSIX_FILE_ALIGNMENT          : 0.863 (HIGH independence - likely root cause)
+LUSTRE_STRIPE_SIZE            : 0.711 (HIGH independence - likely root cause)
+LUSTRE_STRIPE_WIDTH           : 0.702 (HIGH independence - likely root cause)
+POSIX_MEM_NOT_ALIGNED         : 0.519 
+POSIX_FILE_NOT_ALIGNED        : 0.496 
+POSIX_MEM_ALIGNMENT           : nan 
+
+[02:59:51] Analysis complete!
+Results saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/results/correlation_analysis
+Correlation analysis completed at Mon Sep 15 02:59:51 CDT 2025

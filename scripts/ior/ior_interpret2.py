@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-IOR Performance Bottleneck Analysis using Integrated Gradients
-With detailed logging and actual feature values in report
+Enhanced IOR Performance Bottleneck Analysis using GNN Interpretability Methods
+With detailed logging (visualization removed)
 """
 
 import pandas as pd
@@ -23,6 +23,8 @@ from src.models.gat import create_gat_model
 from torch_geometric.data import Data
 from sklearn.metrics.pairwise import cosine_similarity
 import scipy.sparse as sp
+from src.interpretability.attention_analyzer import AttentionAnalyzer
+from src.interpretability.gnn_explainer import IOGNNExplainer
 from src.interpretability.gradient_methods import GradientAnalyzer, BottleneckIdentifier
 
 # Setup enhanced logging
@@ -36,7 +38,7 @@ logger = logging.getLogger(__name__)
 
 class IORInterpretabilityAnalyzer:
     """
-    Interpretability analysis using Integrated Gradients
+    Enhanced interpretability analysis with detailed logging
     """
     
     def __init__(self, 
@@ -89,12 +91,13 @@ class IORInterpretabilityAnalyzer:
             'POSIX_ACCESS4_COUNT'
         ]
         
-        # Initialize gradient analyzer only
+        # Initialize interpretability analyzers
+        self.attention_analyzer = AttentionAnalyzer(self.model, self.feature_names, self.device)
+        self.gnn_explainer = IOGNNExplainer(self.model, device=self.device)
         self.gradient_analyzer = GradientAnalyzer(self.model, self.feature_names, self.device)
         
         # Store for analysis
         self.normalized_scores = {}
-        self.actual_feature_values = {}
     
     def _load_model(self, checkpoint_path):
         """Load trained GAT model"""
@@ -213,19 +216,14 @@ class IORInterpretabilityAnalyzer:
         
         return subgraph_features, edge_index, edge_attr, new_node_idx
     
-    def analyze_with_gradient_method(self, features_path):
+    def analyze_with_all_methods(self, features_path):
         """
-        Analyze IOR job using Integrated Gradients with enhanced logging
+        Analyze IOR job using all three interpretability methods with enhanced logging
         """
         # Load new sample
         new_data = pd.read_csv(features_path)
         new_features = new_data.iloc[0, :-1].values
         actual_tag = new_data.iloc[0, -1]
-        
-        # Store actual feature values
-        for i, feature_name in enumerate(self.feature_names):
-            if i < len(new_features):
-                self.actual_feature_values[feature_name] = float(new_features[i])
         
         # Create subgraph
         logger.info("\n" + "="*70)
@@ -287,14 +285,94 @@ class IORInterpretabilityAnalyzer:
         logger.info(f"Error: {abs(predicted_bandwidth - actual_bandwidth):.2f} MB/s")
         logger.info(f"Relative Error: {abs(predicted_bandwidth - actual_bandwidth) / actual_bandwidth * 100:.1f}%")
         
-        # Run Gradient Analysis
+        # Run all three interpretability methods
         results = {
             'prediction': predicted_bandwidth,
             'actual': actual_bandwidth,
-            'gradient_scores': {}
+            'methods': {}
         }
         
-        # Gradient Methods (Integrated Gradients)
+        # 1. Attention Analysis
+        logger.info("\n" + "="*70)
+        logger.info("📊 ATTENTION ANALYSIS")
+        logger.info("="*70)
+        try:
+            attention_scores = self.attention_analyzer.attention_based_bottleneck_detection(
+                data, new_node_idx, threshold=0.001
+            )
+            
+            # If no scores, try with even lower threshold
+            # If still no scores, extract raw attention weights as fallback
+            if not attention_scores:
+                logger.info("  Using fallback: extracting raw attention weights")
+                try:
+                    att_info = self.attention_analyzer.extract_attention_weights(data, new_node_idx)
+                    if len(att_info['outgoing_attention']) > 0:
+                        attention = att_info['outgoing_attention'].cpu()
+                        if attention.dim() > 1:
+                            attention = attention.mean(dim=1)
+                        attention = attention.numpy()
+                        
+                        # Use top 10 attention weights as feature importance
+                        attention_scores = {}
+                        num_features = min(len(attention), len(self.feature_names))
+                        
+                        # Normalize attention weights
+                        attention_normalized = attention[:num_features] / (attention[:num_features].sum() + 1e-10)
+                        
+                        # Assign to features based on attention strength
+                        sorted_indices = np.argsort(attention_normalized)[::-1][:10]
+                        for idx in sorted_indices:
+                            if idx < len(self.feature_names):
+                                attention_scores[self.feature_names[idx]] = float(attention_normalized[idx])
+                        
+                        logger.info(f"  Extracted {len(attention_scores)} features from raw attention")
+                except Exception as e:
+                    logger.warning(f"  Fallback attention extraction failed: {e}")
+                    attention_scores = {}
+            
+            results['methods']['attention'] = attention_scores
+            
+            # Log raw scores
+            if attention_scores:
+                logger.info("Raw Attention Scores (Top 10):")
+                sorted_att = sorted(attention_scores.items(), key=lambda x: x[1], reverse=True)[:10]
+                for i, (feat, score) in enumerate(sorted_att, 1):
+                    logger.info(f"  {i:2d}. {feat:30s}: {score:8.4f}")
+            else:
+                logger.info("  No features detected via attention")
+                
+        except Exception as e:
+            logger.error(f"Attention analysis failed: {e}")
+            results['methods']['attention'] = {}
+        
+        # 2. GNNExplainer
+        logger.info("\n" + "="*70)
+        logger.info("📊 GNNEXPLAINER ANALYSIS")
+        logger.info("="*70)
+        try:
+            # Try with lower threshold if needed
+            self.gnn_explainer.feature_mask_threshold = 0.01
+            gnn_scores = self.gnn_explainer.explain_bottleneck_pattern(
+                data, new_node_idx, self.feature_names
+            )
+            
+            results['methods']['gnn_explainer'] = gnn_scores
+            
+            # Log raw scores
+            if gnn_scores:
+                logger.info("Raw GNNExplainer Scores (Top 10):")
+                sorted_gnn = sorted(gnn_scores.items(), key=lambda x: x[1], reverse=True)[:10]
+                for i, (feat, score) in enumerate(sorted_gnn, 1):
+                    logger.info(f"  {i:2d}. {feat:30s}: {score:8.4f}")
+            else:
+                logger.info("  No features detected via GNNExplainer")
+                
+        except Exception as e:
+            logger.error(f"GNNExplainer failed: {e}")
+            results['methods']['gnn_explainer'] = {}
+        
+        # 3. Gradient Methods
         logger.info("\n" + "="*70)
         logger.info("📊 GRADIENT ANALYSIS (INTEGRATED GRADIENTS)")
         logger.info("="*70)
@@ -302,84 +380,148 @@ class IORInterpretabilityAnalyzer:
             gradient_scores = self.gradient_analyzer.integrated_gradients(
                 data, new_node_idx
             )
-            results['gradient_scores'] = gradient_scores
+            results['methods']['gradients'] = gradient_scores
             
-            # Log raw scores (top 10 positive)
+            # Log raw scores
             if gradient_scores:
-                logger.info("\nRaw Gradient Scores (Top 10 Positive - Most Important for High Performance):")
-                sorted_grad_pos = sorted(gradient_scores.items(), key=lambda x: x[1], reverse=True)[:10]
-                for i, (feat, score) in enumerate(sorted_grad_pos, 1):
-                    actual_val = self.actual_feature_values.get(feat, 0)
-                    logger.info(f"  {i:2d}. {feat:30s}: Score={score:8.4f}, Actual Value={actual_val:8.2f}")
-                
-                # Log top 10 negative scores
-                logger.info("\nRaw Gradient Scores (Top 10 Negative - Most Detrimental to Performance):")
-                sorted_grad_neg = sorted(gradient_scores.items(), key=lambda x: x[1])[:10]
-                for i, (feat, score) in enumerate(sorted_grad_neg, 1):
-                    actual_val = self.actual_feature_values.get(feat, 0)
-                    logger.info(f"  {i:2d}. {feat:30s}: Score={score:8.4f}, Actual Value={actual_val:8.2f}")
+                logger.info("Raw Gradient Scores (Top 10):")
+                sorted_grad = sorted(gradient_scores.items(), key=lambda x: x[1], reverse=True)[:10]
+                for i, (feat, score) in enumerate(sorted_grad, 1):
+                    logger.info(f"  {i:2d}. {feat:30s}: {score:8.4f}")
             else:
                 logger.info("  No features detected via gradients")
                 
         except Exception as e:
             logger.error(f"Gradient analysis failed: {e}")
-            results['gradient_scores'] = {}
+            results['methods']['gradients'] = {}
         
-        # Calculate z-score normalization
-        self.calculate_zscore_normalization(results['gradient_scores'])
+        # Calculate z-score normalized consensus
+        consensus_scores = self.calculate_zscore_consensus(results['methods'])
+        results['consensus'] = consensus_scores
         
         return results
     
-    def calculate_zscore_normalization(self, gradient_scores):
+    def calculate_zscore_consensus(self, methods_results):
         """
-        Calculate z-score normalization for gradient scores
+        Calculate consensus using z-score normalization with detailed step-by-step logging
         """
-        if not gradient_scores:
-            return {}
-        
         logger.info("\n" + "="*70)
-        logger.info("🔬 Z-SCORE NORMALIZATION")
+        logger.info("🔬 Z-SCORE NORMALIZATION AND CONSENSUS CALCULATION")
         logger.info("="*70)
         
-        method_scores = list(gradient_scores.values())
+        # Step 1: Log raw scores
+        logger.info("\n📊 Step 1: Raw Scores from Each Method")
+        logger.info("-" * 50)
         
-        if len(method_scores) > 1:
-            mean_score = np.mean(method_scores)
-            std_score = np.std(method_scores)
+        for method_name, scores in methods_results.items():
+            if scores:
+                logger.info(f"\n{method_name.upper().replace('_', ' ')}:")
+                sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)[:5]
+                for feat, score in sorted_scores:
+                    logger.info(f"  - {feat:30s}: {score:8.4f}")
+        
+        # Step 2: Z-normalize each method
+        logger.info("\n📊 Step 2: Z-Score Normalization")
+        logger.info("-" * 50)
+        logger.info("Formula: z = (x - mean) / std")
+        
+        normalized_scores = {}
+        self.normalized_scores = {}  # Store for report
+        
+        for method_name, scores in methods_results.items():
+            if not scores:
+                continue
             
-            logger.info(f"Mean = {mean_score:.4f}, Std = {std_score:.4f}")
+            method_scores = list(scores.values())
             
-            if std_score > 0:
-                self.normalized_scores = {}
+            if len(method_scores) > 1:
+                mean_score = np.mean(method_scores)
+                std_score = np.std(method_scores)
                 
-                logger.info(f"\nZ-normalized scores (Top 10):")
-                sorted_items = sorted(gradient_scores.items(), key=lambda x: x[1], reverse=True)
+                logger.info(f"\n{method_name.upper().replace('_', ' ')}:")
+                logger.info(f"  Mean = {mean_score:.4f}, Std = {std_score:.4f}")
                 
-                for feature, score in sorted_items:
-                    z_score = (score - mean_score) / std_score
-                    self.normalized_scores[feature] = z_score
-                
-                # Log top 10 with interpretation
-                for feature, score in sorted_items[:10]:
-                    z_score = self.normalized_scores[feature]
-                    actual_val = self.actual_feature_values.get(feature, 0)
-                    if z_score > 1.5:
-                        interpretation = "very high importance"
-                    elif z_score > 0.5:
-                        interpretation = "high importance"
-                    elif z_score > 0:
-                        interpretation = "medium importance"
-                    elif z_score > -0.5:
-                        interpretation = "low importance"
-                    else:
-                        interpretation = "very low importance"
-                    logger.info(f"  {feature:30s}: Z={z_score:+7.3f} ({interpretation}), Actual={actual_val:8.2f}")
+                if std_score > 0:
+                    normalized_scores[method_name] = {}
+                    self.normalized_scores[method_name] = {}
+                    
+                    # Show top features with z-scores
+                    logger.info(f"  Z-normalized scores (Top 5):")
+                    sorted_items = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+                    
+                    for feature, score in sorted_items:
+                        z_score = (score - mean_score) / std_score
+                        normalized_scores[method_name][feature] = z_score
+                        self.normalized_scores[method_name][feature] = z_score
+                    
+                    # Log top 5 with interpretation
+                    for feature, score in sorted_items[:5]:
+                        z_score = normalized_scores[method_name][feature]
+                        if z_score > 1.5:
+                            interpretation = "very high importance"
+                        elif z_score > 0.5:
+                            interpretation = "high importance"
+                        elif z_score > 0:
+                            interpretation = "medium importance"
+                        elif z_score > -0.5:
+                            interpretation = "low importance"
+                        else:
+                            interpretation = "very low importance"
+                        logger.info(f"    - {feature:30s}: {z_score:+7.3f} ({interpretation})")
+                else:
+                    normalized_scores[method_name] = {feature: 0 for feature in scores}
+                    self.normalized_scores[method_name] = {feature: 0 for feature in scores}
             else:
-                self.normalized_scores = {feature: 0 for feature in gradient_scores}
-        else:
-            self.normalized_scores = {feature: 0 for feature in gradient_scores}
+                normalized_scores[method_name] = {feature: 0 for feature in scores}
+                self.normalized_scores[method_name] = {feature: 0 for feature in scores}
         
-        return self.normalized_scores
+        # Step 3: Calculate consensus
+        logger.info("\n📊 Step 3: Equal Weight Consensus (1/3 each method)")
+        logger.info("-" * 50)
+        logger.info("Formula: Consensus = (1/3 × Attention_Z) + (1/3 × GNN_Z) + (1/3 × Gradient_Z)")
+        
+        all_features = set()
+        for method_scores in normalized_scores.values():
+            all_features.update(method_scores.keys())
+        
+        consensus = {}
+        feature_contributions = {}
+        
+        for feature in all_features:
+            z_scores = []
+            contributors = []
+            
+            for method_name, method_scores in normalized_scores.items():
+                if feature in method_scores:
+                    z_score = method_scores[feature]
+                    z_scores.append(z_score)
+                    method_short = method_name.replace('gnn_explainer', 'GNN').replace('gradients', 'Grad').replace('attention', 'Att')
+                    contributors.append(f"{method_short}({z_score:+.2f})")
+            
+            if z_scores:
+                consensus[feature] = np.mean(z_scores)
+                feature_contributions[feature] = contributors
+        
+        # Sort by consensus score
+        consensus = dict(sorted(consensus.items(), key=lambda x: x[1], reverse=True))
+        
+        # Log final consensus rankings
+        logger.info("\n🏆 Final Consensus Rankings:")
+        for i, (feature, score) in enumerate(list(consensus.items())[:10], 1):
+            contributors = " + ".join(feature_contributions[feature])
+            num_methods = len(feature_contributions[feature])
+            if num_methods > 1:
+                consensus_strength = "STRONG (multiple methods agree)"
+            else:
+                consensus_strength = "WEAK (single method)"
+            
+            logger.info(f"Rank {i:2d}: {feature:30s} → {score:+7.3f}")
+            logger.info(f"         Contributing methods: {contributors}")
+            logger.info(f"         Consensus strength: {consensus_strength}")
+            if i < 10:
+                logger.info("")
+        
+        return consensus
     
     def generate_bottleneck_report(self, results, save_path='bottleneck_report.json'):
         """Generate comprehensive bottleneck report"""
@@ -390,79 +532,52 @@ class IORInterpretabilityAnalyzer:
                 'error_mbps': abs(results['prediction'] - results['actual']),
                 'relative_error_percent': abs(results['prediction'] - results['actual']) / results['actual'] * 100
             },
-            'gradient_analysis': {
-                'raw_scores': {},
-                'normalized_scores': {},
-                'top_10_positive': {},
-                'top_10_negative': {},
-                'actual_feature_values': self.actual_feature_values
+            'bottlenecks': {
+                'attention': {},
+                'gnn_explainer': {},
+                'gradients': {},
+                'consensus': {}
+            },
+            'normalized_scores': {
+                'attention': {},
+                'gnn_explainer': {},
+                'gradients': {}
             }
         }
         
-        # Add all gradient scores
-        if results['gradient_scores']:
-            # Raw scores
-            report['gradient_analysis']['raw_scores'] = results['gradient_scores']
+        # Add top features from each method
+        for method in ['attention', 'gnn_explainer', 'gradients']:
+            if method in results['methods'] and results['methods'][method]:
+                sorted_features = sorted(results['methods'][method].items(), 
+                                       key=lambda x: x[1], reverse=True)[:10]
+                report['bottlenecks'][method] = dict(sorted_features)
             
-            # Normalized scores
-            report['gradient_analysis']['normalized_scores'] = self.normalized_scores
-            
-            # Top 10 positive (most important for high performance)
-            sorted_positive = sorted(results['gradient_scores'].items(), 
-                                   key=lambda x: x[1], reverse=True)[:10]
-            for feat, score in sorted_positive:
-                report['gradient_analysis']['top_10_positive'][feat] = {
-                    'score': score,
-                    'normalized_score': self.normalized_scores.get(feat, 0),
-                    'actual_value': self.actual_feature_values.get(feat, 0)
-                }
-            
-            # Top 10 negative (most detrimental to performance)
-            sorted_negative = sorted(results['gradient_scores'].items(), 
-                                   key=lambda x: x[1])[:10]
-            for feat, score in sorted_negative:
-                report['gradient_analysis']['top_10_negative'][feat] = {
-                    'score': score,
-                    'normalized_score': self.normalized_scores.get(feat, 0),
-                    'actual_value': self.actual_feature_values.get(feat, 0)
-                }
+            # Add normalized scores
+            if method in self.normalized_scores:
+                sorted_normalized = sorted(self.normalized_scores[method].items(),
+                                         key=lambda x: x[1], reverse=True)[:10]
+                report['normalized_scores'][method] = dict(sorted_normalized)
         
-        # Identify primary bottleneck (most negative score)
-        if results['gradient_scores']:
-            # Get the feature with the most negative impact
-            sorted_by_negative = sorted(results['gradient_scores'].items(), 
-                                       key=lambda x: x[1])
-            if sorted_by_negative:
-                top_negative_feature = sorted_by_negative[0][0]
-                top_negative_score = sorted_by_negative[0][1]
-                
-                # Also get the most positive for comparison
-                sorted_by_positive = sorted(results['gradient_scores'].items(), 
-                                           key=lambda x: x[1], reverse=True)
-                top_positive_feature = sorted_by_positive[0][0] if sorted_by_positive else None
-                
-                report['primary_bottleneck'] = {
-                    'negative_impact': {
-                        'feature': top_negative_feature,
-                        'gradient_score': top_negative_score,
-                        'actual_value': self.actual_feature_values.get(top_negative_feature, 0),
-                        'recommendation': self._get_recommendation(top_negative_feature)
-                    }
-                }
-                
-                if top_positive_feature:
-                    report['primary_bottleneck']['positive_impact'] = {
-                        'feature': top_positive_feature,
-                        'gradient_score': sorted_by_positive[0][1],
-                        'actual_value': self.actual_feature_values.get(top_positive_feature, 0),
-                        'note': 'This feature contributes most positively to performance'
-                    }
+        # Add consensus
+        if 'consensus' in results:
+            sorted_consensus = sorted(results['consensus'].items(), 
+                                    key=lambda x: x[1], reverse=True)[:10]
+            report['bottlenecks']['consensus'] = dict(sorted_consensus)
+        
+        # Identify primary bottleneck
+        if results['consensus']:
+            top_feature = list(results['consensus'].keys())[0]
+            report['primary_bottleneck'] = {
+                'feature': top_feature,
+                'consensus_score': results['consensus'][top_feature],
+                'recommendation': self._get_recommendation(top_feature)
+            }
         
         # Save report
         with open(save_path, 'w') as f:
             json.dump(report, f, indent=2)
         
-        logger.info(f"\n✓ Bottleneck report saved to {save_path}")
+        logger.info(f"✓ Bottleneck report saved to {save_path}")
         
         return report
     
@@ -480,10 +595,7 @@ class IORInterpretabilityAnalyzer:
             'POSIX_CONSEC_WRITES': 'Improve write sequentiality',
             'LUSTRE_STRIPE_SIZE': 'Adjust Lustre stripe size for workload',
             'LUSTRE_STRIPE_WIDTH': 'Optimize Lustre stripe count',
-            'POSIX_OPENS': 'Reduce number of file open operations',
-            'POSIX_SIZE_READ_0_100': 'Avoid very small reads, batch operations',
-            'POSIX_SIZE_READ_100_1K': 'Increase read buffer size',
-            'POSIX_SIZE_READ_1K_10K': 'Increase read size to 100KB or larger'
+            'POSIX_OPENS': 'Reduce number of file open operations'
         }
         
         return recommendations.get(feature_name, 'Optimize I/O pattern for better performance')
@@ -531,12 +643,12 @@ def main():
         use_cpu=True
     )
     
-    # Run gradient analysis
+    # Run comprehensive analysis
     logger.info("\n" + "="*70)
-    logger.info("🔬 RUNNING GRADIENT ANALYSIS")
+    logger.info("🔬 RUNNING INTERPRETABILITY ANALYSIS")
     logger.info("="*70)
     
-    results = analyzer.analyze_with_gradient_method(test_features)
+    results = analyzer.analyze_with_all_methods(test_features)
     
     # Generate report
     logger.info("\n" + "="*70)
@@ -550,19 +662,8 @@ def main():
     logger.info("📋 ANALYSIS SUMMARY")
     logger.info("="*70)
     logger.info(f"Performance: {results['prediction']:.2f} MB/s (predicted) vs {results['actual']:.2f} MB/s (actual)")
-    
-    if 'primary_bottleneck' in report and 'negative_impact' in report['primary_bottleneck']:
-        neg_impact = report['primary_bottleneck']['negative_impact']
-        logger.info(f"Primary Bottleneck (Most Negative Impact): {neg_impact['feature']}")
-        logger.info(f"  - Gradient Score: {neg_impact['gradient_score']:.4f}")
-        logger.info(f"  - Actual Value: {neg_impact['actual_value']:.2f}")
-        logger.info(f"  - Recommendation: {neg_impact['recommendation']}")
-    
-    if 'primary_bottleneck' in report and 'positive_impact' in report['primary_bottleneck']:
-        pos_impact = report['primary_bottleneck']['positive_impact']
-        logger.info(f"Best Performing Feature: {pos_impact['feature']}")
-        logger.info(f"  - Gradient Score: {pos_impact['gradient_score']:.4f}")
-        logger.info(f"  - Actual Value: {pos_impact['actual_value']:.2f}")
+    logger.info(f"Primary Bottleneck: {report.get('primary_bottleneck', {}).get('feature', 'Unknown')}")
+    logger.info(f"Recommendation: {report.get('primary_bottleneck', {}).get('recommendation', 'N/A')}")
     
     logger.info("\n" + "="*70)
     logger.info("✅ ANALYSIS COMPLETE!")

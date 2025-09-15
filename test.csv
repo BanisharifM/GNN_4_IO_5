@@ -1,0 +1,11 @@
+Feature,Gradient_Score,Interpretation
+POSIX_BYTES_READ,0.1596,Contributing to low prediction
+POSIX_BYTES_WRITTEN,0.1075,Contributing to low prediction
+LUSTRE_STRIPE_SIZE,0.0929,Contributing to low prediction
+POSIX_SIZE_WRITE_100K_1M,0.0553,Contributing to low prediction
+POSIX_RW_SWITCHES,0.0409,Potential bottleneck
+POSIX_MEM_ALIGNMENT,0.0393,Contributing to low prediction
+POSIX_FILE_NOT_ALIGNED,0.0387,Potential bottleneck
+POSIX_READS,0.0368,Contributing to low prediction
+POSIX_STRIDE1_COUNT,0.0359,Contributing to low prediction
+POSIX_SEQ_READS,0.0349,Contributing to low prediction
