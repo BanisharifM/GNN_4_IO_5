@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Enhanced IOR Performance Bottleneck Analysis using GNN Interpretability Methods
-With detailed logging and professional publication-quality visualizations
+With detailed logging (visualization removed)
 """
 
 import pandas as pd
@@ -10,11 +10,6 @@ import numpy as np
 import sys
 import os
 from pathlib import Path
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from matplotlib.patches import FancyBboxPatch
-import seaborn as sns
-from scipy import stats
 import json
 import logging
 from typing import Dict, List, Tuple, Optional
@@ -40,17 +35,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Set matplotlib parameters for publication quality
-plt.rcParams['figure.dpi'] = 300
-plt.rcParams['savefig.dpi'] = 300
-plt.rcParams['font.size'] = 10
-plt.rcParams['font.family'] = 'sans-serif'
-plt.rcParams['font.sans-serif'] = ['Arial', 'DejaVu Sans']
-
 
 class IORInterpretabilityAnalyzer:
     """
-    Enhanced interpretability analysis with detailed logging and professional visualizations
+    Enhanced interpretability analysis with detailed logging
     """
     
     def __init__(self, 
@@ -108,7 +96,7 @@ class IORInterpretabilityAnalyzer:
         self.gnn_explainer = IOGNNExplainer(self.model, device=self.device)
         self.gradient_analyzer = GradientAnalyzer(self.model, self.feature_names, self.device)
         
-        # Store for visualization
+        # Store for analysis
         self.normalized_scores = {}
     
     def _load_model(self, checkpoint_path):
@@ -438,7 +426,7 @@ class IORInterpretabilityAnalyzer:
         logger.info("Formula: z = (x - mean) / std")
         
         normalized_scores = {}
-        self.normalized_scores = {}  # Store for visualization
+        self.normalized_scores = {}  # Store for report
         
         for method_name, scores in methods_results.items():
             if not scores:
@@ -535,440 +523,6 @@ class IORInterpretabilityAnalyzer:
         
         return consensus
     
-    def create_professional_visualizations(self, results, output_dir='./interpretability_figures'):
-        """
-        Create multiple types of professional publication-quality visualizations
-        """
-        os.makedirs(output_dir, exist_ok=True)
-        
-        # For each method, create multiple chart types
-        for method_name in ['attention', 'gnn_explainer', 'gradients']:
-            if method_name in results['methods'] and results['methods'][method_name]:
-                scores = results['methods'][method_name]
-                
-                # 1. Horizontal Bar Chart (Classic Academic Style)
-                self._create_horizontal_bar_professional(
-                    scores,
-                    method_name,
-                    f"{output_dir}/{method_name}_barh.png"
-                )
-                
-                # 2. Lollipop Chart (Modern Style)
-                self._create_lollipop_chart(
-                    scores,
-                    method_name,
-                    f"{output_dir}/{method_name}_lollipop.png"
-                )
-                
-                # 3. Heatmap Style
-                self._create_heatmap_single(
-                    scores,
-                    method_name,
-                    f"{output_dir}/{method_name}_heatmap.png"
-                )
-                
-                # Create normalized versions if available
-                if method_name in self.normalized_scores:
-                    norm_scores = self.normalized_scores[method_name]
-                    
-                    # Normalized bar chart
-                    self._create_diverging_bar(
-                        norm_scores,
-                        f"{method_name} (Z-Score Normalized)",
-                        f"{output_dir}/{method_name}_normalized.png"
-                    )
-        
-        # Create consensus visualizations
-        if 'consensus' in results and results['consensus']:
-            # 1. Consensus diverging bar
-            self._create_consensus_diverging(
-                results['consensus'],
-                f"{output_dir}/consensus_diverging.png"
-            )
-            
-            # 2. Consensus dot plot
-            self._create_dot_plot(
-                results,
-                f"{output_dir}/consensus_comparison.png"
-            )
-            
-            # 3. Consensus heatmap
-            self._create_method_comparison_heatmap(
-                self.normalized_scores,
-                f"{output_dir}/method_comparison_heatmap.png"
-            )
-
-            # 4. Consensus contribution chart
-            self._create_consensus_stacked_contribution(
-                results,
-                f"{output_dir}/consensus_contribution_chart.png"
-            )
-        
-            # 5. Consensus flow diagram
-            self._create_consensus_flow_diagram(
-                results,
-                f"{output_dir}/consensus_flow_diagram.png"
-            )
-
-        logger.info(f"\n✓ All visualizations saved to {output_dir}")
-    
-    def _create_horizontal_bar_professional(self, scores, method_name, save_path, top_k=15):
-        """Create professional horizontal bar chart"""
-        sorted_features = sorted(scores.items(), key=lambda x: x[1], reverse=True)[:top_k]
-        
-        if not sorted_features:
-            return
-        
-        features = [item[0] for item in sorted_features]
-        values = [item[1] for item in sorted_features]
-        
-        # Create figure with clean style
-        fig, ax = plt.subplots(figsize=(10, 8))
-        fig.patch.set_facecolor('white')
-        ax.set_facecolor('white')
-        
-        # Color palette
-        colors = plt.cm.viridis(np.linspace(0.3, 0.9, len(features)))
-        
-        # Create bars
-        bars = ax.barh(range(len(features)), values, color=colors, edgecolor='black', linewidth=0.5)
-        
-        # Customize
-        ax.set_yticks(range(len(features)))
-        ax.set_yticklabels(features, fontsize=9)
-        ax.set_xlabel('Importance Score', fontsize=11, fontweight='bold')
-        ax.set_title(f'{method_name.replace("_", " ").title()} - Feature Importance', 
-                    fontsize=12, fontweight='bold', pad=20)
-        
-        # Add value labels
-        for i, (bar, value) in enumerate(zip(bars, values)):
-            ax.text(value + max(values)*0.01, bar.get_y() + bar.get_height()/2, 
-                   f'{value:.3f}', ha='left', va='center', fontsize=8)
-        
-        # Clean grid
-        ax.grid(True, axis='x', alpha=0.2, linestyle='--')
-        ax.set_axisbelow(True)
-        
-        # Remove top and right spines
-        ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-        
-        plt.tight_layout()
-        plt.savefig(save_path, dpi=300, bbox_inches='tight', facecolor='white')
-        plt.close()
-    
-    def _create_lollipop_chart(self, scores, method_name, save_path, top_k=15):
-        """Create modern lollipop chart"""
-        sorted_features = sorted(scores.items(), key=lambda x: x[1], reverse=True)[:top_k]
-        
-        if not sorted_features:
-            return
-        
-        features = [item[0] for item in sorted_features]
-        values = [item[1] for item in sorted_features]
-        
-        fig, ax = plt.subplots(figsize=(10, 8))
-        fig.patch.set_facecolor('white')
-        
-        # Create lollipops
-        y_positions = range(len(features))
-        
-        # Lines
-        for y, val in zip(y_positions, values):
-            ax.plot([0, val], [y, y], color='gray', alpha=0.5, linewidth=1.5)
-        
-        # Dots
-        colors = plt.cm.RdYlBu_r(np.linspace(0.2, 0.8, len(features)))
-        ax.scatter(values, y_positions, color=colors, s=100, edgecolor='black', 
-                  linewidth=0.5, zorder=3)
-        
-        # Customize
-        ax.set_yticks(y_positions)
-        ax.set_yticklabels(features, fontsize=9)
-        ax.set_xlabel('Importance Score', fontsize=11, fontweight='bold')
-        ax.set_title(f'{method_name.replace("_", " ").title()} - Lollipop Chart', 
-                    fontsize=12, fontweight='bold', pad=20)
-        
-        # Add value labels
-        for y, val in zip(y_positions, values):
-            ax.text(val + max(values)*0.02, y, f'{val:.3f}', 
-                   va='center', fontsize=8)
-        
-        # Clean style
-        ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-        ax.spines['left'].set_visible(False)
-        ax.grid(True, axis='x', alpha=0.2, linestyle='--')
-        ax.set_axisbelow(True)
-        
-        plt.tight_layout()
-        plt.savefig(save_path, dpi=300, bbox_inches='tight', facecolor='white')
-        plt.close()
-    
-    def _create_heatmap_single(self, scores, method_name, save_path, top_k=15):
-        """Create single-method heatmap"""
-        sorted_features = sorted(scores.items(), key=lambda x: x[1], reverse=True)[:top_k]
-        
-        if not sorted_features:
-            return
-        
-        features = [item[0] for item in sorted_features]
-        values = [[item[1]] for item in sorted_features]
-        
-        fig, ax = plt.subplots(figsize=(4, 10))
-        
-        # Create heatmap
-        im = ax.imshow(values, cmap='YlOrRd', aspect='auto')
-        
-        # Customize
-        ax.set_yticks(range(len(features)))
-        ax.set_yticklabels(features, fontsize=9)
-        ax.set_xticks([0])
-        ax.set_xticklabels(['Importance'], fontsize=10)
-        ax.set_title(f'{method_name.replace("_", " ").title()} - Heatmap', 
-                    fontsize=12, fontweight='bold', pad=20)
-        
-        # Add text annotations
-        for i, val in enumerate(values):
-            ax.text(0, i, f'{val[0]:.3f}', ha='center', va='center', 
-                   color='white' if val[0] > np.mean([v[0] for v in values]) else 'black',
-                   fontsize=9, fontweight='bold')
-        
-        # Colorbar
-        cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
-        cbar.set_label('Score', fontsize=10)
-        
-        plt.tight_layout()
-        plt.savefig(save_path, dpi=300, bbox_inches='tight', facecolor='white')
-        plt.close()
-    
-    def _create_diverging_bar(self, scores, title, save_path, top_k=15):
-        """Create diverging bar chart for z-scores"""
-        sorted_features = sorted(scores.items(), key=lambda x: x[1], reverse=True)[:top_k]
-        
-        if not sorted_features:
-            return
-        
-        features = [item[0] for item in sorted_features]
-        values = [item[1] for item in sorted_features]
-        
-        fig, ax = plt.subplots(figsize=(10, 8))
-        fig.patch.set_facecolor('white')
-        
-        # Colors based on positive/negative
-        colors = ['#2E7D32' if v > 0 else '#C62828' for v in values]
-        
-        # Create bars
-        bars = ax.barh(range(len(features)), values, color=colors, alpha=0.7, 
-                      edgecolor='black', linewidth=0.5)
-        
-        # Customize
-        ax.set_yticks(range(len(features)))
-        ax.set_yticklabels(features, fontsize=9)
-        ax.set_xlabel('Z-Score', fontsize=11, fontweight='bold')
-        ax.set_title(title, fontsize=12, fontweight='bold', pad=20)
-        
-        # Add center line
-        ax.axvline(x=0, color='black', linestyle='-', linewidth=1)
-        
-        # Add value labels
-        for bar, val in zip(bars, values):
-            x_pos = val + (0.05 if val > 0 else -0.05)
-            ha = 'left' if val > 0 else 'right'
-            ax.text(x_pos, bar.get_y() + bar.get_height()/2, 
-                   f'{val:.2f}', ha=ha, va='center', fontsize=8, fontweight='bold')
-        
-        # Grid
-        ax.grid(True, axis='x', alpha=0.2, linestyle='--')
-        ax.set_axisbelow(True)
-        
-        # Remove spines
-        ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-        
-        plt.tight_layout()
-        plt.savefig(save_path, dpi=300, bbox_inches='tight', facecolor='white')
-        plt.close()
-    
-    def _create_consensus_diverging(self, consensus_scores, save_path, top_k=15):
-        """Create special consensus visualization with diverging bars"""
-        sorted_features = sorted(consensus_scores.items(), key=lambda x: x[1], reverse=True)[:top_k]
-        
-        if not sorted_features:
-            return
-        
-        features = [item[0] for item in sorted_features]
-        values = [item[1] for item in sorted_features]
-        
-        fig, ax = plt.subplots(figsize=(12, 9))
-        fig.patch.set_facecolor('#F5F5F5')
-        ax.set_facecolor('white')
-        
-        # Create gradient colors
-        norm = plt.Normalize(vmin=min(values), vmax=max(values))
-        colors = plt.cm.RdYlGn_r(norm(values))
-        
-        # Create bars with border
-        bars = ax.barh(range(len(features)), values, color=colors, 
-                      edgecolor='black', linewidth=1.5, alpha=0.9)
-        
-        # Customize
-        ax.set_yticks(range(len(features)))
-        ax.set_yticklabels(features, fontsize=10, fontweight='bold')
-        ax.set_xlabel('Z-Score Normalized Consensus', fontsize=12, fontweight='bold')
-        ax.set_title('🏆 Consensus Feature Importance Rankings', 
-                    fontsize=14, fontweight='bold', pad=20)
-        
-        # Add center line
-        ax.axvline(x=0, color='black', linestyle='--', linewidth=1.5, alpha=0.5)
-        
-        # Add value labels with rank
-        for i, (bar, val) in enumerate(zip(bars, values)):
-            # Rank label
-            ax.text(-0.5, bar.get_y() + bar.get_height()/2, 
-                   f'#{i+1}', ha='right', va='center', fontsize=10, 
-                   fontweight='bold', color='#333333')
-            # Value label
-            x_pos = val + max(abs(min(values)), max(values))*0.02
-            ax.text(x_pos, bar.get_y() + bar.get_height()/2, 
-                   f'{val:.3f}', ha='left', va='center', fontsize=9, fontweight='bold')
-        
-        # Grid
-        ax.grid(True, axis='x', alpha=0.3, linestyle='--', color='gray')
-        ax.set_axisbelow(True)
-        
-        # Style
-        ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-        ax.spines['left'].set_linewidth(2)
-        ax.spines['bottom'].set_linewidth(2)
-        
-        plt.tight_layout()
-        plt.savefig(save_path, dpi=300, bbox_inches='tight', facecolor='#F5F5F5')
-        plt.close()
-    
-    def _create_dot_plot(self, results, save_path, top_k=10):
-        """Create dot plot comparing all methods"""
-        # Get top consensus features
-        if 'consensus' not in results:
-            return
-        
-        top_features = list(results['consensus'].keys())[:top_k]
-        
-        fig, ax = plt.subplots(figsize=(12, 8))
-        fig.patch.set_facecolor('white')
-        
-        methods = ['attention', 'gnn_explainer', 'gradients']
-        method_colors = {'attention': '#1f77b4', 'gnn_explainer': '#ff7f0e', 'gradients': '#2ca02c'}
-        
-        y_positions = list(range(len(top_features)))
-        
-        for method in methods:
-            if method in self.normalized_scores:
-                scores = self.normalized_scores[method]
-                x_values = []
-                y_values = []
-                
-                for i, feature in enumerate(top_features):
-                    if feature in scores:
-                        x_values.append(scores[feature])
-                        y_values.append(i)
-                
-                ax.scatter(x_values, y_values, label=method.replace('_', ' ').title(), 
-                          color=method_colors[method], s=100, alpha=0.7, 
-                          edgecolor='black', linewidth=0.5)
-        
-        # Customize
-        ax.set_yticks(y_positions)
-        ax.set_yticklabels(top_features, fontsize=9)
-        ax.set_xlabel('Z-Score', fontsize=11, fontweight='bold')
-        ax.set_title('Method Comparison - Top Features', fontsize=12, fontweight='bold', pad=20)
-        
-        # Add zero line
-        ax.axvline(x=0, color='black', linestyle='--', alpha=0.5)
-        
-        # Legend
-        ax.legend(loc='best', framealpha=0.9)
-        
-        # Grid and style
-        ax.grid(True, alpha=0.2, linestyle='--')
-        ax.set_axisbelow(True)
-        ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-        
-        plt.tight_layout()
-        plt.savefig(save_path, dpi=300, bbox_inches='tight', facecolor='white')
-        plt.close()
-    
-    def _create_method_comparison_heatmap(self, normalized_scores, save_path, top_k=15):
-        """Create heatmap comparing all methods"""
-        if not normalized_scores:
-            return
-        
-        # Get all features that appear in consensus
-        all_features = set()
-        for method_scores in normalized_scores.values():
-            all_features.update(method_scores.keys())
-        
-        # Sort by total absolute z-score
-        feature_totals = {}
-        for feature in all_features:
-            total = 0
-            for method_scores in normalized_scores.values():
-                if feature in method_scores:
-                    total += abs(method_scores[feature])
-            feature_totals[feature] = total
-        
-        top_features = sorted(feature_totals.keys(), 
-                             key=lambda x: feature_totals[x], reverse=True)[:top_k]
-        
-        # Create matrix
-        methods = list(normalized_scores.keys())
-        matrix = []
-        
-        for feature in top_features:
-            row = []
-            for method in methods:
-                if feature in normalized_scores[method]:
-                    row.append(normalized_scores[method][feature])
-                else:
-                    row.append(0)
-            matrix.append(row)
-        
-        matrix = np.array(matrix)
-        
-        # Create figure
-        fig, ax = plt.subplots(figsize=(8, 10))
-        
-        # Create heatmap
-        im = ax.imshow(matrix, cmap='RdBu_r', aspect='auto', vmin=-2, vmax=2)
-        
-        # Set ticks
-        ax.set_xticks(range(len(methods)))
-        ax.set_xticklabels([m.replace('_', ' ').title() for m in methods], fontsize=10)
-        ax.set_yticks(range(len(top_features)))
-        ax.set_yticklabels(top_features, fontsize=9)
-        
-        # Add text annotations
-        for i in range(len(top_features)):
-            for j in range(len(methods)):
-                value = matrix[i, j]
-                if value != 0:
-                    color = 'white' if abs(value) > 1 else 'black'
-                    ax.text(j, i, f'{value:.2f}', ha='center', va='center', 
-                           color=color, fontsize=8, fontweight='bold')
-        
-        # Title and labels
-        ax.set_title('Method Comparison Heatmap (Z-Scores)', fontsize=12, fontweight='bold', pad=20)
-        
-        # Colorbar
-        cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
-        cbar.set_label('Z-Score', fontsize=10)
-        
-        plt.tight_layout()
-        plt.savefig(save_path, dpi=300, bbox_inches='tight', facecolor='white')
-        plt.close()
-    
     def generate_bottleneck_report(self, results, save_path='bottleneck_report.json'):
         """Generate comprehensive bottleneck report"""
         report = {
@@ -983,6 +537,11 @@ class IORInterpretabilityAnalyzer:
                 'gnn_explainer': {},
                 'gradients': {},
                 'consensus': {}
+            },
+            'normalized_scores': {
+                'attention': {},
+                'gnn_explainer': {},
+                'gradients': {}
             }
         }
         
@@ -992,6 +551,12 @@ class IORInterpretabilityAnalyzer:
                 sorted_features = sorted(results['methods'][method].items(), 
                                        key=lambda x: x[1], reverse=True)[:10]
                 report['bottlenecks'][method] = dict(sorted_features)
+            
+            # Add normalized scores
+            if method in self.normalized_scores:
+                sorted_normalized = sorted(self.normalized_scores[method].items(),
+                                         key=lambda x: x[1], reverse=True)[:10]
+                report['normalized_scores'][method] = dict(sorted_normalized)
         
         # Add consensus
         if 'consensus' in results:
@@ -1034,230 +599,7 @@ class IORInterpretabilityAnalyzer:
         }
         
         return recommendations.get(feature_name, 'Optimize I/O pattern for better performance')
-    
-    def _create_consensus_stacked_contribution(self, results, save_path, top_k=10):
-        """Create stacked bar chart showing individual method contributions and agreement strength"""
-        
-        if 'consensus' not in results or not results['consensus']:
-            return
-        
-        # Get top consensus features
-        top_features = list(results['consensus'].keys())[:top_k]
-        
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 8), gridspec_kw={'width_ratios': [3, 1]})
-        fig.patch.set_facecolor('white')
-        
-        # Prepare data for stacking
-        methods = ['attention', 'gnn_explainer', 'gradients']
-        method_colors = {
-            'attention': '#3498db',      # Blue
-            'gnn_explainer': '#2ecc71',  # Green  
-            'gradients': '#e74c3c'       # Red
-        }
-        
-        # Collect contributions for each feature
-        feature_contributions = []
-        agreement_counts = []
-        
-        for feature in top_features:
-            contributions = {}
-            count = 0
-            
-            for method in methods:
-                if method in self.normalized_scores and feature in self.normalized_scores[method]:
-                    z_score = self.normalized_scores[method][feature]
-                    contributions[method] = z_score
-                    count += 1
-                else:
-                    contributions[method] = 0
-            
-            feature_contributions.append(contributions)
-            agreement_counts.append(count)
-        
-        # Create stacked bars (left plot)
-        y_positions = np.arange(len(top_features))
-        bar_height = 0.6
-        
-        # Calculate cumulative positions for stacking
-        for method in methods:
-            values = [fc.get(method, 0) for fc in feature_contributions]
-            colors = [method_colors[method] if v != 0 else 'lightgray' for v in values]
-            
-            # Plot positive and negative separately
-            pos_values = [max(0, v) for v in values]
-            neg_values = [min(0, v) for v in values]
-            
-            if method == methods[0]:
-                pos_left = np.zeros(len(top_features))
-                neg_left = np.zeros(len(top_features))
-            
-            # Positive bars
-            bars_pos = ax1.barh(y_positions, pos_values, bar_height, 
-                            left=pos_left, color=method_colors[method],
-                            alpha=0.8, label=method.replace('_', ' ').title())
-            
-            # Negative bars
-            bars_neg = ax1.barh(y_positions, neg_values, bar_height,
-                            left=neg_left, color=method_colors[method],
-                            alpha=0.8)
-            
-            # Update positions
-            pos_left += np.array(pos_values)
-            neg_left += np.array(neg_values)
-            
-            # Add value labels inside bars
-            for i, (pos_val, neg_val) in enumerate(zip(pos_values, neg_values)):
-                if pos_val > 0.1:  # Only show if significant
-                    ax1.text(pos_left[i] - pos_val/2, i, f'{pos_val:.1f}',
-                            ha='center', va='center', color='white', fontsize=8, fontweight='bold')
-                if neg_val < -0.1:
-                    ax1.text(neg_left[i] - neg_val/2, i, f'{neg_val:.1f}',
-                            ha='center', va='center', color='white', fontsize=8, fontweight='bold')
-        
-        # Add center line
-        ax1.axvline(x=0, color='black', linestyle='-', linewidth=1.5)
-        
-        # Add consensus scores at the end
-        for i, (feature, score) in enumerate(list(results['consensus'].items())[:top_k]):
-            ax1.text(max(pos_left[i], abs(neg_left[i])) + 0.1, i,
-                    f'Σ = {score:.2f}', ha='left', va='center', fontsize=10, fontweight='bold')
-        
-        # Customize left plot
-        ax1.set_yticks(y_positions)
-        ax1.set_yticklabels(top_features, fontsize=10)
-        ax1.set_xlabel('Z-Score Contribution', fontsize=11, fontweight='bold')
-        ax1.set_title('Method Contributions to Consensus', fontsize=13, fontweight='bold')
-        ax1.legend(loc='upper right', framealpha=0.9)
-        ax1.grid(True, axis='x', alpha=0.2, linestyle='--')
-        ax1.spines['top'].set_visible(False)
-        ax1.spines['right'].set_visible(False)
-        
-        # Agreement strength visualization (right plot)
-        agreement_colors = []
-        agreement_labels = []
-        
-        for count in agreement_counts:
-            if count == 3:
-                agreement_colors.append('#27ae60')  # Green - strong
-                agreement_labels.append('✓✓✓')
-            elif count == 2:
-                agreement_colors.append('#f39c12')  # Orange - medium
-                agreement_labels.append('✓✓')
-            else:
-                agreement_colors.append('#e74c3c')  # Red - weak
-                agreement_labels.append('✓')
-        
-        bars = ax2.barh(y_positions, agreement_counts, bar_height,
-                        color=agreement_colors, alpha=0.8)
-        
-        # Add agreement indicators
-        for i, (bar, label, count) in enumerate(zip(bars, agreement_labels, agreement_counts)):
-            ax2.text(bar.get_width()/2, bar.get_y() + bar.get_height()/2,
-                    f'{count}\n{label}', ha='center', va='center',
-                    fontsize=10, fontweight='bold', color='white')
-        
-        # Customize right plot
-        ax2.set_yticks([])
-        ax2.set_xlim(0, 3.5)
-        ax2.set_xticks([1, 2, 3])
-        ax2.set_xticklabels(['1', '2', '3'])
-        ax2.set_xlabel('# Methods', fontsize=11, fontweight='bold')
-        ax2.set_title('Agreement\nStrength', fontsize=13, fontweight='bold')
-        ax2.spines['top'].set_visible(False)
-        ax2.spines['right'].set_visible(False)
-        ax2.spines['left'].set_visible(False)
-        
-        # Add legend for agreement strength
-        from matplotlib.patches import Patch
-        legend_elements = [
-            Patch(facecolor='#27ae60', alpha=0.8, label='Strong (3 methods)'),
-            Patch(facecolor='#f39c12', alpha=0.8, label='Medium (2 methods)'),
-            Patch(facecolor='#e74c3c', alpha=0.8, label='Weak (1 method)')
-        ]
-        ax2.legend(handles=legend_elements, loc='lower right', fontsize=8)
-        
-        # plt.suptitle('🏆 Consensus Analysis with Method Agreement', fontsize=14, fontweight='bold', y=1.02)
-        plt.tight_layout()
-        plt.savefig(save_path, dpi=300, bbox_inches='tight', facecolor='white')
-        plt.close()
-        
-        logger.info(f"Saved consensus contribution chart to {save_path}")    
 
-    def _create_consensus_flow_diagram(self, results, save_path, top_k=5):
-        """Create a flow diagram showing method contributions flowing into consensus"""
-        
-        if 'consensus' not in results:
-            return
-            
-        fig, ax = plt.subplots(figsize=(14, 10))
-        fig.patch.set_facecolor('#f8f9fa')
-        ax.set_facecolor('white')
-        
-        top_features = list(results['consensus'].keys())[:top_k]
-        
-        # Define positions
-        y_positions = np.linspace(0.8, 0.2, len(top_features))
-        method_x = 0.2
-        consensus_x = 0.8
-        
-        methods = ['attention', 'gnn_explainer', 'gradients']
-        method_colors = {'attention': '#3498db', 'gnn_explainer': '#2ecc71', 'gradients': '#e74c3c'}
-        
-        for i, feature in enumerate(top_features):
-            y_pos = y_positions[i]
-            
-            # Draw feature name in center
-            ax.text(0.5, y_pos, feature, ha='center', va='center',
-                    fontsize=11, fontweight='bold', bbox=dict(boxstyle="round,pad=0.3", 
-                    facecolor='white', edgecolor='gray'))
-            
-            # Draw connections from methods
-            for j, method in enumerate(methods):
-                if method in self.normalized_scores and feature in self.normalized_scores[method]:
-                    z_score = self.normalized_scores[method][feature]
-                    
-                    # Line thickness based on absolute z-score
-                    linewidth = min(abs(z_score) * 2, 8)
-                    alpha = min(0.3 + abs(z_score) * 0.2, 0.9)
-                    
-                    # Draw curved line
-                    ax.annotate('', xy=(0.45, y_pos), xytext=(method_x, y_pos + (j-1)*0.05),
-                            arrowprops=dict(arrowstyle='-', lw=linewidth,
-                                            color=method_colors[method], alpha=alpha,
-                                            connectionstyle="arc3,rad=0.3"))
-                    
-                    # Add z-score label
-                    ax.text(method_x - 0.05, y_pos + (j-1)*0.05, f'{z_score:+.1f}',
-                        ha='right', va='center', fontsize=8, color=method_colors[method],
-                        fontweight='bold')
-            
-            # Draw arrow to consensus
-            consensus_score = results['consensus'][feature]
-            ax.annotate('', xy=(consensus_x, y_pos), xytext=(0.55, y_pos),
-                    arrowprops=dict(arrowstyle='->', lw=3, color='black', alpha=0.7))
-            
-            # Add consensus score
-            ax.text(consensus_x + 0.05, y_pos, f'Σ = {consensus_score:.2f}',
-                ha='left', va='center', fontsize=11, fontweight='bold')
-        
-        # Add method labels
-        for j, method in enumerate(methods):
-            ax.text(method_x - 0.1, 0.9, method.replace('_', '\n').title(),
-                ha='center', va='center', fontsize=10, color=method_colors[method],
-                fontweight='bold')
-        
-        # Add titles
-        ax.text(0.5, 0.95, 'Features', ha='center', fontsize=12, fontweight='bold')
-        ax.text(consensus_x + 0.05, 0.95, 'Consensus', ha='center', fontsize=12, fontweight='bold')
-        
-        ax.set_xlim(0, 1)
-        ax.set_ylim(0, 1)
-        ax.axis('off')
-        
-        plt.title('Method Contributions Flow to Consensus', fontsize=14, fontweight='bold', pad=20)
-        plt.tight_layout()
-        plt.savefig(save_path, dpi=300, bbox_inches='tight', facecolor='#f8f9fa')
-        plt.close()
 
 def main():
     """Main execution function"""
@@ -1286,7 +628,7 @@ def main():
         logger.warning("⚠ Training features not found")
     
     # IOR test sample
-    test_features = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/darshan_log/darshan_log_E2E/case1/parsed_log/e2e_pathological_11673694_64procs_1stripe_64kb_parsed.csv'
+    test_features = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/darshan_log/darshan_log_E2E/Study2/case1/e2e_decomp_mismatch_parsed.csv'
     
     # Initialize analyzer
     logger.info("\n" + "="*70)
@@ -1308,13 +650,6 @@ def main():
     
     results = analyzer.analyze_with_all_methods(test_features)
     
-    # Generate visualizations
-    logger.info("\n" + "="*70)
-    logger.info("📊 GENERATING PROFESSIONAL VISUALIZATIONS")
-    logger.info("="*70)
-    
-    analyzer.create_professional_visualizations(results)
-    
     # Generate report
     logger.info("\n" + "="*70)
     logger.info("📝 GENERATING BOTTLENECK REPORT")
@@ -1333,18 +668,8 @@ def main():
     logger.info("\n" + "="*70)
     logger.info("✅ ANALYSIS COMPLETE!")
     logger.info("="*70)
-    logger.info("Outputs:")
-    logger.info("  📊 Visualizations: ./interpretability_figures/")
+    logger.info("Output:")
     logger.info("  📝 Report: bottleneck_report.json")
-    logger.info("\nVisualization types created for each method:")
-    logger.info("  • Horizontal bar chart (classic academic style)")
-    logger.info("  • Lollipop chart (modern style)")
-    logger.info("  • Heatmap (intensity visualization)")
-    logger.info("  • Diverging bar chart (z-score normalized)")
-    logger.info("\nConsensus visualizations:")
-    logger.info("  • Consensus diverging bar with rankings")
-    logger.info("  • Method comparison dot plot")
-    logger.info("  • Method comparison heatmap")
 
 
 if __name__ == "__main__":

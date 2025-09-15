@@ -1,0 +1,9 @@
+
+The following have been reloaded with a version change:
+  1) python/3.12.1 => python/3.9.18
+
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/other/correlation.py", line 3, in <module>
+srun: error: gpua027: task 0: Exited with exit code 1
+    import matplotlib.pyplot as plt
+ModuleNotFoundError: No module named 'matplotlib'
