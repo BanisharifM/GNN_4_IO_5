@@ -1,0 +1,873 @@
+=== E2E CHECKPOINT PATTERN (Burst I/O Issue) ===
+Issue: Simulating checkpoint/restart pattern with burst writes
+Start time: Mon Sep 15 21:44:30 CDT 2025
+Checkpoint 1: Writing initial state
+
+======================   ALLOCATED NODES   ======================
+	cn066: flags=0x11 slots=19 max_slots=0 slots_inuse=0 state=UP
+	cn067: flags=0x10 slots=45 max_slots=0 slots_inuse=0 state=UP
+=================================================================
+checkpoint_1.nc4 64 16 16 16 1.000000 10.237895 0.097676
+Simulating computation phase...
+Checkpoint 2: Writing mid-state
+
+======================   ALLOCATED NODES   ======================
+	cn066: flags=0x11 slots=19 max_slots=0 slots_inuse=0 state=UP
+	cn067: flags=0x10 slots=45 max_slots=0 slots_inuse=0 state=UP
+=================================================================
+checkpoint_2.nc4 64 16 16 16 1.000000 8.082130 0.123730
+Simulating computation phase...
+Checkpoint 3: Writing final state
+
+======================   ALLOCATED NODES   ======================
+	cn066: flags=0x11 slots=19 max_slots=0 slots_inuse=0 state=UP
+	cn067: flags=0x10 slots=45 max_slots=0 slots_inuse=0 state=UP
+=================================================================
+checkpoint_3.nc4 64 16 16 16 1.000000 5.830690 0.171506
+End time: Mon Sep 15 21:45:11 CDT 2025
+-rw-r-----+ 1 mbanisharifdehkordi delta_bdau 1.3G Sep 15 21:44 checkpoint_1.nc4
+-rw-r-----+ 1 mbanisharifdehkordi delta_bdau 1.3G Sep 15 21:44 checkpoint_2.nc4
+-rw-r-----+ 1 mbanisharifdehkordi delta_bdau 1.3G Sep 15 21:45 checkpoint_3.nc4
+Looking for Darshan log...
+Darshan log saved as: /work/hdd/bdau/mbanisharifdehkordi/E2E/darshan_logs/e2e_checkpoint_12235617.darshan
+
+=== Darshan Log Summary ===
+# darshan log version: 3.41
+# compression method: ZLIB
+# exe: ../write_3d_nc4 checkpoint_2 64 8 8 16 16 16
+# uid: 73528
+# jobid: 12235617
+# start_time: 1757990689
+# start_time_asci: Mon Sep 15 21:44:49 2025
+# end_time: 1757990697
+# end_time_asci: Mon Sep 15 21:44:57 2025
+# nprocs: 64
+# run time: 8.2963
+# metadata: lib_ver = 3.4.4
+# metadata: h = romio_no_indep_rw=true;cb_nodes=4
+
+# log file regions
+# -------------------------------------------------------
+# header: 1328 bytes (uncompressed)
+# job data: 378 bytes (compressed)
+# record table: 6391 bytes (compressed)
+# POSIX module: 14600 bytes (compressed), ver=4
+# MPI-IO module: 7778 bytes (compressed), ver=3
+# LUSTRE module: 7591 bytes (compressed), ver=1
+# STDIO module: 51 bytes (compressed), ver=2
+# DXT_POSIX module: 1238307 bytes (compressed), ver=1
+# DXT_MPIIO module: 22764 bytes (compressed), ver=2
+# HEATMAP module: 7657 bytes (compressed), ver=1
+
+# mounted file systems (mount point and fs type)
+# -------------------------------------------------------
+# mount entry:	/sys/firmware/efi/efivars	efivarfs
+# mount entry:	/local/slurmjobs/12216042	xfs
+# mount entry:	/local/slurmjobs/12216044	xfs
+# mount entry:	/local/slurmjobs/12216045	xfs
+# mount entry:	/local/slurmjobs/12216043	xfs
+# mount entry:	/local/slurmjobs/12216047	xfs
+# mount entry:	/local/slurmjobs/12216046	xfs
+# mount entry:	/local/slurmjobs/12234480	xfs
+# mount entry:	/local/slurmjobs/12234484	xfs
+# mount entry:	/local/slurmjobs/12234481	xfs
+# mount entry:	/local/slurmjobs/12234479	xfs
+# mount entry:	/local/slurmjobs/12234483	xfs
+# mount entry:	/local/slurmjobs/12234482	xfs
+# mount entry:	/local/slurmjobs/12234962	xfs
+# mount entry:	/local/slurmjobs/12235066	xfs
+# mount entry:	/proc/sys/fs/binfmt_misc	autofs
+# mount entry:	/sys/kernel/config	configfs
+# mount entry:	/sys/fs/pstore	pstore
+# mount entry:	/run/cxi/cxi0	fuse
+# mount entry:	/opt/cray/pe	nfs
+# mount entry:	/sys/fs/bpf	bpf
+
+=== Expected Patterns ===
+- Large POSIX_BYTES_WRITTEN (burst writes)
+- Low POSIX_RW_SWITCHES (write-only pattern)
+- High POSIX_SIZE_WRITE_100K_1M (large writes)
+#   POSIX_RW_SWITCHES: number of times access alternated between read and write.
+POSIX	0	17688600418247459339	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.0	/work	lustre
+POSIX	0	17688600418247459339	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.0	/work	lustre
+POSIX	0	17688600418247459339	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.0	/work	lustre
+POSIX	0	9862354326966724482	POSIX_BYTES_WRITTEN	1343950817	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	0	9862354326966724482	POSIX_RW_SWITCHES	2	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	0	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	1280	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	0	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	0	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	0	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	0	16407261406468849125	POSIX_BYTES_WRITTEN	208	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	0	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	0	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	1	1786849433185948895	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.1	/work	lustre
+POSIX	1	1786849433185948895	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.1	/work	lustre
+POSIX	1	1786849433185948895	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.1	/work	lustre
+POSIX	1	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	1	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	1	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	1	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	1	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	1	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	1	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	1	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	1	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	2	16278812445412215379	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.2	/work	lustre
+POSIX	2	16278812445412215379	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.2	/work	lustre
+POSIX	2	16278812445412215379	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.2	/work	lustre
+POSIX	2	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	2	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	2	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	2	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	2	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	2	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	2	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	2	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	2	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	3	15445455744072362466	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.3	/work	lustre
+POSIX	3	15445455744072362466	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.3	/work	lustre
+POSIX	3	15445455744072362466	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.3	/work	lustre
+POSIX	3	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	3	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	3	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	3	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	3	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	3	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	3	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	3	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	3	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	4	4932574051075003281	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.4	/work	lustre
+POSIX	4	4932574051075003281	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.4	/work	lustre
+POSIX	4	4932574051075003281	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.4	/work	lustre
+POSIX	4	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	4	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	4	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	4	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	4	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	4	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	4	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	4	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	4	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	5	2635422148277221733	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.5	/work	lustre
+POSIX	5	2635422148277221733	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.5	/work	lustre
+POSIX	5	2635422148277221733	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.5	/work	lustre
+POSIX	5	9862354326966724482	POSIX_BYTES_WRITTEN	1769472	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	5	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	5	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	5	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	5	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	5	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	5	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	5	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	5	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	6	15450130161201538594	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.6	/work	lustre
+POSIX	6	15450130161201538594	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.6	/work	lustre
+POSIX	6	15450130161201538594	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.6	/work	lustre
+POSIX	6	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	6	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	6	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	6	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	6	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	6	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	6	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	6	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	6	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	7	1371524483034598851	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.7	/work	lustre
+POSIX	7	1371524483034598851	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.7	/work	lustre
+POSIX	7	1371524483034598851	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.7	/work	lustre
+POSIX	7	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	7	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	7	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	7	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	7	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	7	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	7	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	7	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	7	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	8	1094241234848523609	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.8	/work	lustre
+POSIX	8	1094241234848523609	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.8	/work	lustre
+POSIX	8	1094241234848523609	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.8	/work	lustre
+POSIX	8	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	8	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	8	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	8	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	8	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	8	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	8	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	8	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	8	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	9	10002474905225329081	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.9	/work	lustre
+POSIX	9	10002474905225329081	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.9	/work	lustre
+POSIX	9	10002474905225329081	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.9	/work	lustre
+POSIX	9	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	9	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	9	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	9	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	9	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	9	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	9	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	9	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	9	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	10	1277907293914520044	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.10	/work	lustre
+POSIX	10	1277907293914520044	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.10	/work	lustre
+POSIX	10	1277907293914520044	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.10	/work	lustre
+POSIX	10	9862354326966724482	POSIX_BYTES_WRITTEN	1769472	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	10	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	10	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	10	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	10	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	10	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	10	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	10	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	10	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	11	12222983591612397623	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.11	/work	lustre
+POSIX	11	12222983591612397623	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.11	/work	lustre
+POSIX	11	12222983591612397623	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.11	/work	lustre
+POSIX	11	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	11	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	11	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	11	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	11	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	11	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	11	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	11	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	11	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	12	13327372527335460954	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.12	/work	lustre
+POSIX	12	13327372527335460954	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.12	/work	lustre
+POSIX	12	13327372527335460954	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.12	/work	lustre
+POSIX	12	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	12	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	12	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	12	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	12	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	12	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	12	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	12	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	12	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	13	12253660735579747241	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.13	/work	lustre
+POSIX	13	12253660735579747241	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.13	/work	lustre
+POSIX	13	12253660735579747241	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.13	/work	lustre
+POSIX	13	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	13	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	13	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	13	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	13	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	13	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	13	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	13	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	13	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	14	15725714022420851832	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.14	/work	lustre
+POSIX	14	15725714022420851832	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.14	/work	lustre
+POSIX	14	15725714022420851832	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.14	/work	lustre
+POSIX	14	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	14	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	14	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	14	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	14	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	14	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	14	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	14	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	14	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	15	17442401526064767832	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.15	/work	lustre
+POSIX	15	17442401526064767832	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.15	/work	lustre
+POSIX	15	17442401526064767832	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.15	/work	lustre
+POSIX	15	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	15	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	15	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	15	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	15	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	15	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	15	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	15	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	15	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	16	18131488082367447120	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.16	/work	lustre
+POSIX	16	18131488082367447120	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.16	/work	lustre
+POSIX	16	18131488082367447120	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.16	/work	lustre
+POSIX	16	9862354326966724482	POSIX_BYTES_WRITTEN	1769472	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	16	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	16	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	16	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	16	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	16	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	16	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	16	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	16	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	17	208282079679542802	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.17	/work	lustre
+POSIX	17	208282079679542802	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.17	/work	lustre
+POSIX	17	208282079679542802	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.17	/work	lustre
+POSIX	17	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	17	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	17	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	17	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	17	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	17	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	17	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	17	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	17	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	18	4072990361303116713	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.18	/work	lustre
+POSIX	18	4072990361303116713	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.18	/work	lustre
+POSIX	18	4072990361303116713	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.18	/work	lustre
+POSIX	18	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	18	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	18	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	18	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	18	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	18	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	18	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	18	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	18	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	19	6349680668290962029	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.19	/work	lustre
+POSIX	19	6349680668290962029	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.19	/work	lustre
+POSIX	19	6349680668290962029	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.19	/work	lustre
+POSIX	19	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	19	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	19	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	19	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	19	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	19	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	19	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	19	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	19	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	20	13840993205868515342	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.20	/work	lustre
+POSIX	20	13840993205868515342	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.20	/work	lustre
+POSIX	20	13840993205868515342	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.20	/work	lustre
+POSIX	20	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	20	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	20	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	20	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	20	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	20	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	20	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	20	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	20	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	21	10628361096006552436	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.21	/work	lustre
+POSIX	21	10628361096006552436	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.21	/work	lustre
+POSIX	21	10628361096006552436	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.21	/work	lustre
+POSIX	21	9862354326966724482	POSIX_BYTES_WRITTEN	1771470	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	21	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	21	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	21	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	21	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	21	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	21	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	21	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	21	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	22	9346029451706136144	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.22	/work	lustre
+POSIX	22	9346029451706136144	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.22	/work	lustre
+POSIX	22	9346029451706136144	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.22	/work	lustre
+POSIX	22	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	22	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	22	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	22	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	22	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	22	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	22	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	22	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	22	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	23	2975466548079591182	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.23	/work	lustre
+POSIX	23	2975466548079591182	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.23	/work	lustre
+POSIX	23	2975466548079591182	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.23	/work	lustre
+POSIX	23	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	23	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	23	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	23	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	23	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	23	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	23	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	23	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	23	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	24	2499109662149581081	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.24	/work	lustre
+POSIX	24	2499109662149581081	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.24	/work	lustre
+POSIX	24	2499109662149581081	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.24	/work	lustre
+POSIX	24	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	24	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	24	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	24	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	24	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	24	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	24	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	24	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	24	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	25	1287603005517736567	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.25	/work	lustre
+POSIX	25	1287603005517736567	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.25	/work	lustre
+POSIX	25	1287603005517736567	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.25	/work	lustre
+POSIX	25	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	25	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	25	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	25	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	25	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	25	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	25	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	25	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	25	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	26	5402238921217507042	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.26	/work	lustre
+POSIX	26	5402238921217507042	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.26	/work	lustre
+POSIX	26	5402238921217507042	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.26	/work	lustre
+POSIX	26	9862354326966724482	POSIX_BYTES_WRITTEN	1769472	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	26	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	26	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	26	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	26	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	26	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	26	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	26	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	26	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	27	11397520701304887307	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.27	/work	lustre
+POSIX	27	11397520701304887307	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.27	/work	lustre
+POSIX	27	11397520701304887307	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.27	/work	lustre
+POSIX	27	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	27	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	27	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	27	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	27	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	27	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	27	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	27	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	27	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	28	11307924912748308528	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.28	/work	lustre
+POSIX	28	11307924912748308528	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.28	/work	lustre
+POSIX	28	11307924912748308528	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.28	/work	lustre
+POSIX	28	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	28	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	28	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	28	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	28	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	28	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	28	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	28	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	28	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	29	7969412625053685783	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.29	/work	lustre
+POSIX	29	7969412625053685783	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.29	/work	lustre
+POSIX	29	7969412625053685783	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.29	/work	lustre
+POSIX	29	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	29	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	29	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	29	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	29	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	29	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	29	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	29	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	29	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	30	6390455087555433070	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.30	/work	lustre
+POSIX	30	6390455087555433070	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.30	/work	lustre
+POSIX	30	6390455087555433070	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.30	/work	lustre
+POSIX	30	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	30	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	30	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	30	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	30	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	30	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	30	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	30	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	30	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	31	16915325709545722812	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.31	/work	lustre
+POSIX	31	16915325709545722812	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.31	/work	lustre
+POSIX	31	16915325709545722812	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.31	/work	lustre
+POSIX	31	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	31	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	31	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	31	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	31	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	31	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	31	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	31	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	31	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	32	9138975344824218725	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.32	/work	lustre
+POSIX	32	9138975344824218725	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.32	/work	lustre
+POSIX	32	9138975344824218725	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.32	/work	lustre
+POSIX	32	9862354326966724482	POSIX_BYTES_WRITTEN	1769472	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	32	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	32	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	32	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	32	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	32	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	32	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	32	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	32	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	33	2379886257886756521	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.33	/work	lustre
+POSIX	33	2379886257886756521	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.33	/work	lustre
+POSIX	33	2379886257886756521	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.33	/work	lustre
+POSIX	33	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	33	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	33	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	33	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	33	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	33	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	33	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	33	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	33	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	34	3885730054586205373	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.34	/work	lustre
+POSIX	34	3885730054586205373	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.34	/work	lustre
+POSIX	34	3885730054586205373	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.34	/work	lustre
+POSIX	34	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	34	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	34	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	34	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	34	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	34	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	34	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	34	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	34	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	35	17751794978674621807	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.35	/work	lustre
+POSIX	35	17751794978674621807	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.35	/work	lustre
+POSIX	35	17751794978674621807	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.35	/work	lustre
+POSIX	35	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	35	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	35	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	35	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	35	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	35	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	35	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	35	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	35	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	36	15228340297119029936	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.36	/work	lustre
+POSIX	36	15228340297119029936	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.36	/work	lustre
+POSIX	36	15228340297119029936	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.36	/work	lustre
+POSIX	36	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	36	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	36	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	36	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	36	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	36	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	36	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	36	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	36	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	37	11612288476634010409	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.37	/work	lustre
+POSIX	37	11612288476634010409	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.37	/work	lustre
+POSIX	37	11612288476634010409	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.37	/work	lustre
+POSIX	37	9862354326966724482	POSIX_BYTES_WRITTEN	1769472	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	37	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	37	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	37	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	37	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	37	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	37	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	37	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	37	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	38	16040161748909441577	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.38	/work	lustre
+POSIX	38	16040161748909441577	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.38	/work	lustre
+POSIX	38	16040161748909441577	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.38	/work	lustre
+POSIX	38	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	38	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	38	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	38	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	38	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	38	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	38	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	38	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	38	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	39	4463234371577468194	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.39	/work	lustre
+POSIX	39	4463234371577468194	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.39	/work	lustre
+POSIX	39	4463234371577468194	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.39	/work	lustre
+POSIX	39	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	39	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	39	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	39	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	39	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	39	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	39	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	39	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	39	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	40	11008424441155348362	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.40	/work	lustre
+POSIX	40	11008424441155348362	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.40	/work	lustre
+POSIX	40	11008424441155348362	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.40	/work	lustre
+POSIX	40	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	40	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	40	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	40	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	40	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	40	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	40	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	40	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	40	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	41	3282607066483085778	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.41	/work	lustre
+POSIX	41	3282607066483085778	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.41	/work	lustre
+POSIX	41	3282607066483085778	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.41	/work	lustre
+POSIX	41	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	41	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	41	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	41	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	41	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	41	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	41	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	41	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	41	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	42	12234078424580161890	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.42	/work	lustre
+POSIX	42	12234078424580161890	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.42	/work	lustre
+POSIX	42	12234078424580161890	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.42	/work	lustre
+POSIX	42	9862354326966724482	POSIX_BYTES_WRITTEN	1710892	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	42	9862354326966724482	POSIX_RW_SWITCHES	1	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	42	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	42	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	42	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	42	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	42	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	42	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	42	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	43	7044526880166786398	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.43	/work	lustre
+POSIX	43	7044526880166786398	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.43	/work	lustre
+POSIX	43	7044526880166786398	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.43	/work	lustre
+POSIX	43	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	43	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	43	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	43	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	43	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	43	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	43	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	43	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	43	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	44	13371789113170006635	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.44	/work	lustre
+POSIX	44	13371789113170006635	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.44	/work	lustre
+POSIX	44	13371789113170006635	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.44	/work	lustre
+POSIX	44	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	44	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	44	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	44	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	44	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	44	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	44	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	44	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	44	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	45	10201714648670280333	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.45	/work	lustre
+POSIX	45	10201714648670280333	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.45	/work	lustre
+POSIX	45	10201714648670280333	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.45	/work	lustre
+POSIX	45	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	45	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	45	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	45	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	45	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	45	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	45	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	45	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	45	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	46	5130962493842822763	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.46	/work	lustre
+POSIX	46	5130962493842822763	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.46	/work	lustre
+POSIX	46	5130962493842822763	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.46	/work	lustre
+POSIX	46	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	46	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	46	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	46	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	46	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	46	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	46	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	46	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	46	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	47	17241272189608924916	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.47	/work	lustre
+POSIX	47	17241272189608924916	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.47	/work	lustre
+POSIX	47	17241272189608924916	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.47	/work	lustre
+POSIX	47	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	47	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	47	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	47	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	47	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	47	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	47	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	47	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	47	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	48	673124767891799287	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.48	/work	lustre
+POSIX	48	673124767891799287	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.48	/work	lustre
+POSIX	48	673124767891799287	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.48	/work	lustre
+POSIX	48	9862354326966724482	POSIX_BYTES_WRITTEN	1703936	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	48	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	48	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	48	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	48	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	48	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	48	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	48	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	48	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	49	15802433848800368292	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.49	/work	lustre
+POSIX	49	15802433848800368292	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.49	/work	lustre
+POSIX	49	15802433848800368292	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.49	/work	lustre
+POSIX	49	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	49	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	49	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	49	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	49	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	49	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	49	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	49	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	49	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	50	8351428648306706452	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.50	/work	lustre
+POSIX	50	8351428648306706452	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.50	/work	lustre
+POSIX	50	8351428648306706452	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.50	/work	lustre
+POSIX	50	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	50	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	50	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	50	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	50	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	50	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	50	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	50	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	50	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	51	15746694075634426668	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.51	/work	lustre
+POSIX	51	15746694075634426668	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.51	/work	lustre
+POSIX	51	15746694075634426668	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.51	/work	lustre
+POSIX	51	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	51	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	51	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	51	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	51	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	51	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	51	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	51	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	51	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	52	17154832928841848027	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.52	/work	lustre
+POSIX	52	17154832928841848027	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.52	/work	lustre
+POSIX	52	17154832928841848027	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.52	/work	lustre
+POSIX	52	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	52	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	52	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	52	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	52	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	52	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	52	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	52	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	52	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	53	4074866397480701374	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.53	/work	lustre
+POSIX	53	4074866397480701374	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.53	/work	lustre
+POSIX	53	4074866397480701374	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.53	/work	lustre
+POSIX	53	9862354326966724482	POSIX_BYTES_WRITTEN	1703936	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	53	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	53	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	53	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	53	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	53	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	53	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	53	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	53	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	54	13376129788637397531	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.54	/work	lustre
+POSIX	54	13376129788637397531	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.54	/work	lustre
+POSIX	54	13376129788637397531	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.54	/work	lustre
+POSIX	54	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	54	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	54	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	54	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	54	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	54	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	54	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	54	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	54	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	55	5991752737320550478	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.55	/work	lustre
+POSIX	55	5991752737320550478	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.55	/work	lustre
+POSIX	55	5991752737320550478	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.55	/work	lustre
+POSIX	55	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	55	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	55	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	55	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	55	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	55	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	55	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	55	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	55	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	56	17059954096086990582	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.56	/work	lustre
+POSIX	56	17059954096086990582	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.56	/work	lustre
+POSIX	56	17059954096086990582	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.56	/work	lustre
+POSIX	56	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	56	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	56	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	56	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	56	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	56	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	56	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	56	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	56	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	57	11964573722292623585	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.57	/work	lustre
+POSIX	57	11964573722292623585	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.57	/work	lustre
+POSIX	57	11964573722292623585	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.57	/work	lustre
+POSIX	57	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	57	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	57	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	57	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	57	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	57	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	57	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	57	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	57	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	58	926303867056591464	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.58	/work	lustre
+POSIX	58	926303867056591464	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.58	/work	lustre
+POSIX	58	926303867056591464	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.58	/work	lustre
+POSIX	58	9862354326966724482	POSIX_BYTES_WRITTEN	1703936	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	58	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	58	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	58	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	58	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	58	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	58	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	58	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	58	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	59	6827425760721760143	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.59	/work	lustre
+POSIX	59	6827425760721760143	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.59	/work	lustre
+POSIX	59	6827425760721760143	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.59	/work	lustre
+POSIX	59	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	59	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	59	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	59	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	59	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	59	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	59	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	59	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	59	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	60	8166438980006215215	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.60	/work	lustre
+POSIX	60	8166438980006215215	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.60	/work	lustre
+POSIX	60	8166438980006215215	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.60	/work	lustre
+POSIX	60	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	60	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	60	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	60	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	60	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	60	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	60	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	60	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	60	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	61	1625586201837523178	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.61	/work	lustre
+POSIX	61	1625586201837523178	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.61	/work	lustre
+POSIX	61	1625586201837523178	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.61	/work	lustre
+POSIX	61	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	61	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	61	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	61	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	61	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	61	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	61	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	61	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	61	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	62	18186674434631931989	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.62	/work	lustre
+POSIX	62	18186674434631931989	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.62	/work	lustre
+POSIX	62	18186674434631931989	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.62	/work	lustre
+POSIX	62	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	62	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	62	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	62	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	62	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	62	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	62	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	62	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	62	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	63	12811967816093664399	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.63	/work	lustre
+POSIX	63	12811967816093664399	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.63	/work	lustre
+POSIX	63	12811967816093664399	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4.locktest.63	/work	lustre
+POSIX	63	9862354326966724482	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	63	9862354326966724482	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	63	9862354326966724482	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4	/work	lustre
+POSIX	63	17618143163624775732	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	63	17618143163624775732	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	63	17618143163624775732	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/.	/work	lustre
+POSIX	63	16407261406468849125	POSIX_BYTES_WRITTEN	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	63	16407261406468849125	POSIX_RW_SWITCHES	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+POSIX	63	16407261406468849125	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/3d/results_checkpoint/checkpoint_2.nc4-3441819649-2127313.loc	/work	lustre
+
+=== LUSTRE Configuration ===
+# LUSTRE module data
+# *******************************************************
+
+# description of LUSTRE counters:
+#   LUSTRE_OSTS: number of OSTs across the entire file system.
+#   LUSTRE_MDTS: number of MDTs across the entire file system.
+#   LUSTRE_STRIPE_OFFSET: OST ID offset specified when the file was created.
+#   LUSTRE_STRIPE_SIZE: stripe size for file in bytes.
+#   LUSTRE_STRIPE_WIDTH: number of OSTs over which the file is striped.
+#   LUSTRE_OST_ID_*: indices of OSTs over which the file is striped.
+
+Parsed output saved to: /work/hdd/bdau/mbanisharifdehkordi/E2E/darshan_logs/e2e_checkpoint_12235617_parsed.txt
+Original log removed from dated subdirectory
