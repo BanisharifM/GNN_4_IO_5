@@ -81,19 +81,17 @@ top10_case3 = get_top_features(case3_combined)
 # Get union of all top features for consistent comparison
 all_top_features = set(list(top10_case1.keys()) + list(top10_case2.keys()) + list(top10_case3.keys()))
 
-# Create the figures
-fig = plt.figure(figsize=(18, 12))
+# ============ Figure 1: Gradient Comparison Heatmap (Transposed) ============
+fig1, ax1 = plt.subplots(figsize=(8, 10))
 
-# ============ Figure 1: Gradient Comparison Heatmap ============
-ax1 = plt.subplot(2, 2, 1)
-
-# Prepare data for heatmap
+# Prepare data for heatmap (note: transposed)
 heatmap_features = sorted(all_top_features)
-heatmap_data = []
 case_names = ['Decomposition', 'Checkpoint', 'Combined']
 
-for case_dict in [case1_decomp, case2_checkpoint, case3_combined]:
-    row = [case_dict.get(feat, 0) for feat in heatmap_features]
+# Create data matrix (features x cases)
+heatmap_data = []
+for feature in heatmap_features:
+    row = [case1_decomp.get(feature, 0), case2_checkpoint.get(feature, 0), case3_combined.get(feature, 0)]
     heatmap_data.append(row)
 
 # Create heatmap
@@ -101,27 +99,31 @@ heatmap_array = np.array(heatmap_data)
 im = ax1.imshow(heatmap_array, cmap='YlOrRd', aspect='auto', vmin=0, vmax=0.16)
 
 # Set ticks and labels
-ax1.set_xticks(np.arange(len(heatmap_features)))
-ax1.set_yticks(np.arange(len(case_names)))
-ax1.set_xticklabels([f.replace('POSIX_', '').replace('LUSTRE_', 'L_')[:15] for f in heatmap_features], 
-                     rotation=45, ha='right', fontsize=9)
-ax1.set_yticklabels(case_names, fontsize=11)
+ax1.set_xticks(np.arange(len(case_names)))
+ax1.set_yticks(np.arange(len(heatmap_features)))
+ax1.set_xticklabels(case_names, fontsize=12)
+ax1.set_yticklabels([f.replace('POSIX_', '').replace('LUSTRE_', 'L_')[:20] for f in heatmap_features], fontsize=10)
 
 # Add colorbar
 cbar = plt.colorbar(im, ax=ax1)
-cbar.set_label('Gradient Score', fontsize=10)
+cbar.set_label('Gradient Score', fontsize=11)
 
 # Add values in cells
-for i in range(len(case_names)):
-    for j in range(len(heatmap_features)):
+for i in range(len(heatmap_features)):
+    for j in range(len(case_names)):
         text = ax1.text(j, i, f'{heatmap_array[i, j]:.3f}',
-                       ha="center", va="center", color="black" if heatmap_array[i, j] < 0.08 else "white",
-                       fontsize=7)
+                       ha="center", va="center", 
+                       color="black" if heatmap_array[i, j] < 0.08 else "white",
+                       fontsize=9)
 
-ax1.set_title('(a) Gradient Comparison Heatmap', fontsize=12, fontweight='bold', pad=10)
+ax1.set_title('Gradient Comparison Heatmap', fontsize=14, fontweight='bold', pad=15)
+plt.tight_layout()
+plt.savefig('e2e_heatmap.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('e2e_heatmap.png', dpi=300, bbox_inches='tight')
+plt.show()
 
-# ============ Figure 3: Feature Importance Radar Chart ============
-ax2 = plt.subplot(2, 2, 2, projection='polar')
+# ============ Figure 2: Feature Importance Radar Chart ============
+fig2, ax2 = plt.subplots(figsize=(10, 10), subplot_kw=dict(projection='polar'))
 
 # Select key features for radar chart (8 most important across all cases)
 radar_features = ['POSIX_BYTES_READ', 'POSIX_BYTES_WRITTEN', 'LUSTRE_STRIPE_SIZE', 
@@ -147,41 +149,47 @@ ax2.fill(angles, values_combined, alpha=0.25, color='#2ca02c')
 
 # Fix axis
 ax2.set_xticks(angles[:-1])
-ax2.set_xticklabels([f.replace('POSIX_', '').replace('LUSTRE_', 'L_')[:12] for f in radar_features], fontsize=9)
+ax2.set_xticklabels([f.replace('POSIX_', '').replace('LUSTRE_', 'L_')[:12] for f in radar_features], fontsize=11)
 ax2.set_ylim(0, 0.18)
-ax2.set_title('(b) Feature Importance Radar Chart', fontsize=12, fontweight='bold', pad=20)
-ax2.legend(loc='upper right', bbox_to_anchor=(1.3, 1.1))
+ax2.set_title('Feature Importance Radar Chart', fontsize=14, fontweight='bold', pad=20)
+ax2.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1), fontsize=11)
+ax2.grid(True)
 
-# ============ Table: Gradient Signature Comparison ============
-ax3 = plt.subplot(2, 1, 2)
+plt.tight_layout()
+plt.savefig('e2e_radar.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('e2e_radar.png', dpi=300, bbox_inches='tight')
+plt.show()
+
+# ============ Figure 3: Gradient Signature Comparison Table ============
+fig3, ax3 = plt.subplots(figsize=(12, 6))
 ax3.axis('tight')
 ax3.axis('off')
 
 # Prepare table data
 key_features = ['POSIX_BYTES_WRITTEN', 'POSIX_BYTES_READ', 'POSIX_FILE_NOT_ALIGNED', 
-                'POSIX_RW_SWITCHES', 'LUSTRE_STRIPE_SIZE', 'POSIX_SEQ_WRITES']
+                'POSIX_RW_SWITCHES', 'LUSTRE_STRIPE_SIZE', 'POSIX_SEQ_WRITES', 'POSIX_STRIDE1_COUNT']
 
 table_data = []
 for feature in key_features:
     row = [feature.replace('POSIX_', '').replace('LUSTRE_', ''),
-           f"{case2_checkpoint.get(feature, 0):.4f}",
            f"{case1_decomp.get(feature, 0):.4f}",
+           f"{case2_checkpoint.get(feature, 0):.4f}",
            f"{case3_combined.get(feature, 0):.4f}"]
     table_data.append(row)
 
 # Add performance row
-table_data.append(['Performance (MB/s)', '2.45', '3.92', '2.81'])
+table_data.append(['Performance (MB/s)', '3.92', '2.45', '2.81'])
 
 # Create table
-columns = ['Feature', 'Checkpoint', 'Decomposition', 'Combined']
+columns = ['Feature', 'Decomposition', 'Checkpoint', 'Combined']
 table = ax3.table(cellText=table_data, colLabels=columns,
                   cellLoc='center', loc='center',
                   colWidths=[0.3, 0.15, 0.15, 0.15])
 
 # Style the table
 table.auto_set_font_size(False)
-table.set_fontsize(10)
-table.scale(1, 2)
+table.set_fontsize(11)
+table.scale(1.2, 2.5)
 
 # Color code cells based on values
 for i in range(len(table_data)):
@@ -203,27 +211,27 @@ for j in range(4):
     table[(0, j)].set_facecolor('#4CAF50')
     table[(0, j)].set_text_props(weight='bold', color='white')
 
-ax3.set_title('(c) Gradient Signature Comparison Table', fontsize=12, fontweight='bold', pad=20)
+ax3.set_title('Gradient Signature Comparison Table', fontsize=14, fontweight='bold', pad=20)
 
 # Add legend for table colors
 legend_elements = [mpatches.Patch(color='#ffcccc', label='High (>0.1)'),
                   mpatches.Patch(color='#ffffcc', label='Medium (0.04-0.1)'),
                   mpatches.Patch(color='#ccffcc', label='Low (<0.04)')]
-ax3.legend(handles=legend_elements, loc='upper right', bbox_to_anchor=(1.15, 0.9))
+ax3.legend(handles=legend_elements, loc='upper right', bbox_to_anchor=(1.05, 0.95))
 
 plt.tight_layout()
-plt.savefig('e2e_gradient_analysis_figures.pdf', dpi=300, bbox_inches='tight')
-plt.savefig('e2e_gradient_analysis_figures.png', dpi=300, bbox_inches='tight')
+plt.savefig('e2e_table.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('e2e_table.png', dpi=300, bbox_inches='tight')
 plt.show()
 
-# Also save the data to CSV for reference
+# Save data to CSV
 df_comparison = pd.DataFrame({
     'Feature': list(all_top_features),
-    'Checkpoint': [case2_checkpoint.get(f, 0) for f in all_top_features],
     'Decomposition': [case1_decomp.get(f, 0) for f in all_top_features],
+    'Checkpoint': [case2_checkpoint.get(f, 0) for f in all_top_features],
     'Combined': [case3_combined.get(f, 0) for f in all_top_features]
 })
 df_comparison = df_comparison.sort_values('Feature')
 df_comparison.to_csv('gradient_comparison.csv', index=False)
 print("Data saved to gradient_comparison.csv")
-print("Figures saved as e2e_gradient_analysis_figures.pdf and .png")
+print("Three separate figures saved: e2e_heatmap, e2e_radar, e2e_table (.pdf and .png)")
