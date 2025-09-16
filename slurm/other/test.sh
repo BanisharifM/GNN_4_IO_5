@@ -12,4 +12,4 @@
 #SBATCH --error=logs/slurm/darshan/ior_interpret_%j.err
 
 
-srun python /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_interpret.py
+srun python /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_interpret2.py

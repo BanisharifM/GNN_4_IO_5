@@ -1,0 +1,193 @@
+22:58:33 - 
+======================================================================
+22:58:33 - 🚀 INITIALIZING IOR INTERPRETABILITY ANALYZER
+22:58:33 - ======================================================================
+22:58:33 - Model configuration: hidden=512, layers=2, heads=[8, 1]
+22:58:38 - ✓ Loaded 1,000,000 training samples
+22:58:38 - 
+======================================================================
+22:58:38 - 🔬 RUNNING INTERPRETABILITY ANALYSIS
+22:58:38 - ======================================================================
+22:58:38 - 
+======================================================================
+22:58:38 - 🔍 CREATING SUBGRAPH FOR ANALYSIS
+22:58:38 - ======================================================================
+22:58:39 - Selected 100 neighbors for analysis
+22:58:39 - Created subgraph with 101 nodes and 200 edges
+22:58:39 - 
+======================================================================
+22:58:39 - 📈 PERFORMANCE PREDICTION
+22:58:39 - ======================================================================
+22:58:39 - Predicted: 7.88 MB/s
+22:58:39 - Actual: 6.13 MB/s
+22:58:39 - Error: 1.76 MB/s
+22:58:39 - Relative Error: 28.7%
+22:58:39 - 
+======================================================================
+22:58:39 - 📊 ATTENTION ANALYSIS
+22:58:39 - ======================================================================
+22:58:39 -   Using fallback: extracting raw attention weights
+22:58:39 -   Extracted 10 features from raw attention
+22:58:39 - Raw Attention Scores (Top 10):
+22:58:39 -    1. POSIX_STRIDE4_STRIDE          :   0.0409
+22:58:39 -    2. POSIX_STRIDE1_COUNT           :   0.0409
+22:58:39 -    3. POSIX_STRIDE2_COUNT           :   0.0407
+22:58:39 -    4. POSIX_STRIDE4_COUNT           :   0.0405
+22:58:39 -    5. POSIX_STRIDE3_COUNT           :   0.0404
+22:58:39 -    6. POSIX_ACCESS1_ACCESS          :   0.0395
+22:58:39 -    7. POSIX_ACCESS2_COUNT           :   0.0391
+22:58:39 -    8. POSIX_WRITES                  :   0.0379
+22:58:39 -    9. POSIX_READS                   :   0.0268
+22:58:39 -   10. POSIX_FILENOS                 :   0.0268
+22:58:39 - 
+======================================================================
+22:58:39 - 📊 GNNEXPLAINER ANALYSIS
+22:58:39 - ======================================================================
+22:58:43 - Raw GNNExplainer Scores (Top 10):
+22:58:43 -    1. POSIX_ACCESS3_COUNT           :   0.5525
+22:58:43 -    2. POSIX_CONSEC_WRITES           :   0.5524
+22:58:43 -    3. POSIX_MEM_ALIGNMENT           :   0.5473
+22:58:43 -    4. POSIX_SEQ_READS               :   0.5452
+22:58:43 -    5. POSIX_SIZE_WRITE_10K_100K     :   0.5451
+22:58:43 -    6. POSIX_STRIDE1_STRIDE          :   0.5445
+22:58:43 -    7. POSIX_ACCESS1_COUNT           :   0.5304
+22:58:43 -    8. POSIX_ACCESS4_COUNT           :   0.5285
+22:58:43 -    9. POSIX_OPENS                   :   0.5280
+22:58:43 -   10. POSIX_SIZE_WRITE_1K_10K       :   0.5271
+22:58:43 - 
+======================================================================
+22:58:43 - 📊 GRADIENT ANALYSIS (INTEGRATED GRADIENTS)
+22:58:43 - ======================================================================
+22:58:44 - Raw Gradient Scores (Top 10):
+22:58:44 -    1. POSIX_BYTES_READ              :   0.1591
+22:58:44 -    2. POSIX_BYTES_WRITTEN           :   0.0887
+22:58:44 -    3. LUSTRE_STRIPE_SIZE            :   0.0858
+22:58:44 -    4. POSIX_SIZE_WRITE_100K_1M      :   0.0658
+22:58:44 -    5. POSIX_STRIDE1_COUNT           :   0.0474
+22:58:44 -    6. POSIX_SEQ_READS               :   0.0435
+22:58:44 -    7. POSIX_READS                   :   0.0381
+22:58:44 -    8. POSIX_MEM_ALIGNMENT           :   0.0381
+22:58:44 -    9. POSIX_FILE_NOT_ALIGNED        :   0.0380
+22:58:44 -   10. POSIX_RW_SWITCHES             :   0.0370
+22:58:44 - 
+======================================================================
+22:58:44 - 🔬 Z-SCORE NORMALIZATION AND CONSENSUS CALCULATION
+22:58:44 - ======================================================================
+22:58:44 - 
+📊 Step 1: Raw Scores from Each Method
+22:58:44 - --------------------------------------------------
+22:58:44 - 
+ATTENTION:
+22:58:44 -   - POSIX_STRIDE4_STRIDE          :   0.0409
+22:58:44 -   - POSIX_STRIDE1_COUNT           :   0.0409
+22:58:44 -   - POSIX_STRIDE2_COUNT           :   0.0407
+22:58:44 -   - POSIX_STRIDE4_COUNT           :   0.0405
+22:58:44 -   - POSIX_STRIDE3_COUNT           :   0.0404
+22:58:44 - 
+GNN EXPLAINER:
+22:58:44 -   - POSIX_ACCESS3_COUNT           :   0.5525
+22:58:44 -   - POSIX_CONSEC_WRITES           :   0.5524
+22:58:44 -   - POSIX_MEM_ALIGNMENT           :   0.5473
+22:58:44 -   - POSIX_SEQ_READS               :   0.5452
+22:58:44 -   - POSIX_SIZE_WRITE_10K_100K     :   0.5451
+22:58:44 - 
+GRADIENTS:
+22:58:44 -   - POSIX_BYTES_READ              :   0.1591
+22:58:44 -   - POSIX_BYTES_WRITTEN           :   0.0887
+22:58:44 -   - LUSTRE_STRIPE_SIZE            :   0.0858
+22:58:44 -   - POSIX_SIZE_WRITE_100K_1M      :   0.0658
+22:58:44 -   - POSIX_STRIDE1_COUNT           :   0.0474
+22:58:44 - 
+📊 Step 2: Z-Score Normalization
+22:58:44 - --------------------------------------------------
+22:58:44 - Formula: z = (x - mean) / std
+22:58:44 - 
+ATTENTION:
+22:58:44 -   Mean = 0.0373, Std = 0.0053
+22:58:44 -   Z-normalized scores (Top 5):
+22:58:44 -     - POSIX_STRIDE4_STRIDE          :  +0.667 (high importance)
+22:58:44 -     - POSIX_STRIDE1_COUNT           :  +0.666 (high importance)
+22:58:44 -     - POSIX_STRIDE2_COUNT           :  +0.625 (high importance)
+22:58:44 -     - POSIX_STRIDE4_COUNT           :  +0.588 (high importance)
+22:58:44 -     - POSIX_STRIDE3_COUNT           :  +0.567 (high importance)
+22:58:44 - 
+GNN EXPLAINER:
+22:58:44 -   Mean = 0.4735, Std = 0.0508
+22:58:44 -   Z-normalized scores (Top 5):
+22:58:44 -     - POSIX_ACCESS3_COUNT           :  +1.557 (very high importance)
+22:58:44 -     - POSIX_CONSEC_WRITES           :  +1.554 (very high importance)
+22:58:44 -     - POSIX_MEM_ALIGNMENT           :  +1.454 (high importance)
+22:58:44 -     - POSIX_SEQ_READS               :  +1.412 (high importance)
+22:58:44 -     - POSIX_SIZE_WRITE_10K_100K     :  +1.410 (high importance)
+22:58:44 - 
+GRADIENTS:
+22:58:44 -   Mean = 0.0198, Std = 0.0301
+22:58:44 -   Z-normalized scores (Top 5):
+22:58:44 -     - POSIX_BYTES_READ              :  +4.633 (very high importance)
+22:58:44 -     - POSIX_BYTES_WRITTEN           :  +2.292 (very high importance)
+22:58:44 -     - LUSTRE_STRIPE_SIZE            :  +2.194 (very high importance)
+22:58:44 -     - POSIX_SIZE_WRITE_100K_1M      :  +1.532 (very high importance)
+22:58:44 -     - POSIX_STRIDE1_COUNT           :  +0.920 (high importance)
+22:58:44 - 
+📊 Step 3: Equal Weight Consensus (1/3 each method)
+22:58:44 - --------------------------------------------------
+22:58:44 - Formula: Consensus = (1/3 × Attention_Z) + (1/3 × GNN_Z) + (1/3 × Gradient_Z)
+22:58:44 - 
+🏆 Final Consensus Rankings:
+22:58:44 - Rank  1: POSIX_BYTES_READ               →  +2.045
+22:58:44 -          Contributing methods: GNN(-0.54) + Grad(+4.63)
+22:58:44 -          Consensus strength: STRONG (multiple methods agree)
+22:58:44 - 
+22:58:44 - Rank  2: POSIX_BYTES_WRITTEN            →  +1.313
+22:58:44 -          Contributing methods: GNN(+0.33) + Grad(+2.29)
+22:58:44 -          Consensus strength: STRONG (multiple methods agree)
+22:58:44 - 
+22:58:44 - Rank  3: LUSTRE_STRIPE_SIZE             →  +1.137
+22:58:44 -          Contributing methods: GNN(+0.08) + Grad(+2.19)
+22:58:44 -          Consensus strength: STRONG (multiple methods agree)
+22:58:44 - 
+22:58:44 - Rank  4: POSIX_SEQ_READS                →  +1.100
+22:58:44 -          Contributing methods: GNN(+1.41) + Grad(+0.79)
+22:58:44 -          Consensus strength: STRONG (multiple methods agree)
+22:58:44 - 
+22:58:44 - Rank  5: POSIX_MEM_ALIGNMENT            →  +1.032
+22:58:44 -          Contributing methods: GNN(+1.45) + Grad(+0.61)
+22:58:44 -          Consensus strength: STRONG (multiple methods agree)
+22:58:44 - 
+22:58:44 - Rank  6: POSIX_ACCESS3_COUNT            →  +0.751
+22:58:44 -          Contributing methods: GNN(+1.56) + Grad(-0.05)
+22:58:44 -          Consensus strength: STRONG (multiple methods agree)
+22:58:44 - 
+22:58:44 - Rank  7: POSIX_CONSEC_WRITES            →  +0.614
+22:58:44 -          Contributing methods: GNN(+1.55) + Grad(-0.33)
+22:58:44 -          Consensus strength: STRONG (multiple methods agree)
+22:58:44 - 
+22:58:44 - Rank  8: POSIX_STRIDE1_STRIDE           →  +0.565
+22:58:44 -          Contributing methods: GNN(+1.40) + Grad(-0.27)
+22:58:44 -          Consensus strength: STRONG (multiple methods agree)
+22:58:44 - 
+22:58:44 - Rank  9: POSIX_OPENS                    →  +0.564
+22:58:44 -          Contributing methods: GNN(+1.07) + Grad(+0.06)
+22:58:44 -          Consensus strength: STRONG (multiple methods agree)
+22:58:44 - 
+22:58:44 - Rank 10: POSIX_SIZE_WRITE_100K_1M       →  +0.411
+22:58:44 -          Contributing methods: GNN(-0.71) + Grad(+1.53)
+22:58:44 -          Consensus strength: STRONG (multiple methods agree)
+22:58:44 - 
+======================================================================
+22:58:44 - 📝 GENERATING BOTTLENECK REPORT
+22:58:44 - ======================================================================
+22:58:44 - ✓ Bottleneck report saved to bottleneck_report.json
+22:58:44 - 
+======================================================================
+22:58:44 - 📋 ANALYSIS SUMMARY
+22:58:44 - ======================================================================
+22:58:44 - Performance: 7.88 MB/s (predicted) vs 6.13 MB/s (actual)
+22:58:44 - Primary Bottleneck: POSIX_BYTES_READ
+22:58:44 - Recommendation: Optimize I/O pattern for better performance
+22:58:44 - 
+======================================================================
+22:58:44 - ✅ ANALYSIS COMPLETE!
+22:58:44 - ======================================================================
+22:58:44 - Output:
+22:58:44 -   📝 Report: bottleneck_report.json

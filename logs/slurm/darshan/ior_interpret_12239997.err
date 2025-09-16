@@ -1,0 +1,93 @@
+22:56:01 - 
+======================================================================
+22:56:01 - 🚀 INITIALIZING IOR INTERPRETABILITY ANALYZER
+22:56:01 - ======================================================================
+22:56:03 - Model configuration: hidden=512, layers=2, heads=[8, 1]
+22:56:08 - ✓ Loaded 1,000,000 training samples
+22:56:08 - 
+======================================================================
+22:56:08 - 🔬 RUNNING GRADIENT ANALYSIS
+22:56:08 - ======================================================================
+22:56:08 - 
+======================================================================
+22:56:08 - 🔍 CREATING SUBGRAPH FOR ANALYSIS
+22:56:08 - ======================================================================
+22:56:08 - Selected 100 neighbors for analysis
+22:56:08 - Created subgraph with 101 nodes and 200 edges
+22:56:09 - 
+======================================================================
+22:56:09 - 📈 PERFORMANCE PREDICTION
+22:56:09 - ======================================================================
+22:56:09 - Predicted: 7.88 MB/s
+22:56:09 - Actual: 6.13 MB/s
+22:56:09 - Error: 1.76 MB/s
+22:56:09 - Relative Error: 28.7%
+22:56:09 - 
+======================================================================
+22:56:09 - 📊 GRADIENT ANALYSIS (INTEGRATED GRADIENTS)
+22:56:09 - ======================================================================
+22:56:10 - 
+Raw Gradient Scores (Top 10 Positive - Most Important for High Performance):
+22:56:10 -    1. POSIX_BYTES_READ              : Score=  0.1591, Actual Value=    9.42
+22:56:10 -    2. POSIX_BYTES_WRITTEN           : Score=  0.0887, Actual Value=   10.66
+22:56:10 -    3. LUSTRE_STRIPE_SIZE            : Score=  0.0858, Actual Value=    6.02
+22:56:10 -    4. POSIX_SIZE_WRITE_100K_1M      : Score=  0.0658, Actual Value=    4.71
+22:56:10 -    5. POSIX_STRIDE1_COUNT           : Score=  0.0474, Actual Value=    4.31
+22:56:10 -    6. POSIX_SEQ_READS               : Score=  0.0435, Actual Value=    4.01
+22:56:10 -    7. POSIX_READS                   : Score=  0.0381, Actual Value=    4.01
+22:56:10 -    8. POSIX_MEM_ALIGNMENT           : Score=  0.0381, Actual Value=    0.95
+22:56:10 -    9. POSIX_FILE_NOT_ALIGNED        : Score=  0.0380, Actual Value=    4.79
+22:56:10 -   10. POSIX_RW_SWITCHES             : Score=  0.0370, Actual Value=    4.31
+22:56:10 - 
+Raw Gradient Scores (Top 10 Negative - Most Detrimental to Performance):
+22:56:10 -    1. POSIX_FILENOS                 : Score=  0.0000, Actual Value=    0.00
+22:56:10 -    2. POSIX_STATS                   : Score=  0.0000, Actual Value=    0.00
+22:56:10 -    3. POSIX_CONSEC_READS            : Score=  0.0000, Actual Value=    0.00
+22:56:10 -    4. POSIX_SIZE_READ_100_1K        : Score=  0.0000, Actual Value=    0.00
+22:56:10 -    5. POSIX_SIZE_WRITE_100_1K       : Score=  0.0000, Actual Value=    0.00
+22:56:10 -    6. POSIX_SIZE_WRITE_10K_100K     : Score=  0.0000, Actual Value=    0.00
+22:56:10 -    7. POSIX_ACCESS2_ACCESS          : Score=  0.0003, Actual Value=    5.41
+22:56:10 -    8. POSIX_ACCESS1_COUNT           : Score=  0.0004, Actual Value=    4.61
+22:56:10 -    9. POSIX_STRIDE3_COUNT           : Score=  0.0005, Actual Value=    0.48
+22:56:10 -   10. POSIX_SIZE_WRITE_1K_10K       : Score=  0.0005, Actual Value=    0.70
+22:56:10 - 
+======================================================================
+22:56:10 - 🔬 Z-SCORE NORMALIZATION
+22:56:10 - ======================================================================
+22:56:10 - Mean = 0.0198, Std = 0.0301
+22:56:10 - 
+Z-normalized scores (Top 10):
+22:56:10 -   POSIX_BYTES_READ              : Z= +4.633 (very high importance), Actual=    9.42
+22:56:10 -   POSIX_BYTES_WRITTEN           : Z= +2.292 (very high importance), Actual=   10.66
+22:56:10 -   LUSTRE_STRIPE_SIZE            : Z= +2.194 (very high importance), Actual=    6.02
+22:56:10 -   POSIX_SIZE_WRITE_100K_1M      : Z= +1.532 (very high importance), Actual=    4.71
+22:56:10 -   POSIX_STRIDE1_COUNT           : Z= +0.920 (high importance), Actual=    4.31
+22:56:10 -   POSIX_SEQ_READS               : Z= +0.788 (high importance), Actual=    4.01
+22:56:10 -   POSIX_READS                   : Z= +0.610 (high importance), Actual=    4.01
+22:56:10 -   POSIX_MEM_ALIGNMENT           : Z= +0.609 (high importance), Actual=    0.95
+22:56:10 -   POSIX_FILE_NOT_ALIGNED        : Z= +0.606 (high importance), Actual=    4.79
+22:56:10 -   POSIX_RW_SWITCHES             : Z= +0.574 (high importance), Actual=    4.31
+22:56:10 - 
+======================================================================
+22:56:10 - 📝 GENERATING BOTTLENECK REPORT
+22:56:10 - ======================================================================
+22:56:10 - 
+✓ Bottleneck report saved to bottleneck_report.json
+22:56:10 - 
+======================================================================
+22:56:10 - 📋 ANALYSIS SUMMARY
+22:56:10 - ======================================================================
+22:56:10 - Performance: 7.88 MB/s (predicted) vs 6.13 MB/s (actual)
+22:56:10 - Primary Bottleneck (Most Negative Impact): POSIX_FILENOS
+22:56:10 -   - Gradient Score: 0.0000
+22:56:10 -   - Actual Value: 0.00
+22:56:10 -   - Recommendation: Optimize I/O pattern for better performance
+22:56:10 - Best Performing Feature: POSIX_BYTES_READ
+22:56:10 -   - Gradient Score: 0.1591
+22:56:10 -   - Actual Value: 9.42
+22:56:10 - 
+======================================================================
+22:56:10 - ✅ ANALYSIS COMPLETE!
+22:56:10 - ======================================================================
+22:56:10 - Output:
+22:56:10 -   📝 Report: bottleneck_report.json
