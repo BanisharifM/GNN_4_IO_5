@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_interpret2.py", line 22, in <module>
+    from src.models.gat import create_gat_model
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/src/models/gat.py", line 9, in <module>
+    from torch_geometric.nn import GATConv, global_mean_pool, global_max_pool, global_add_pool
+ModuleNotFoundError: No module named 'torch_geometric'
+srun: error: gpua050: task 0: Exited with exit code 1

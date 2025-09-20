@@ -1,0 +1,19 @@
+[cn063.delta.ncsa.illinois.edu:1854360] mca: base: components_register: registering framework ras components
+[cn063.delta.ncsa.illinois.edu:1854360] mca: base: components_register: found loaded component simulator
+[cn063.delta.ncsa.illinois.edu:1854360] mca: base: components_register: component simulator register function successful
+[cn063.delta.ncsa.illinois.edu:1854360] mca: base: components_register: found loaded component slurm
+[cn063.delta.ncsa.illinois.edu:1854360] mca: base: components_register: component slurm register function successful
+[cn063.delta.ncsa.illinois.edu:1854360] mca: base: components_open: opening ras components
+[cn063.delta.ncsa.illinois.edu:1854360] mca: base: components_open: found loaded component simulator
+[cn063.delta.ncsa.illinois.edu:1854360] mca: base: components_open: found loaded component slurm
+[cn063.delta.ncsa.illinois.edu:1854360] mca: base: components_open: component slurm open function successful
+[cn063.delta.ncsa.illinois.edu:1854360] mca:base:select: Auto-selecting ras components
+[cn063.delta.ncsa.illinois.edu:1854360] mca:base:select:(  ras) Querying component [simulator]
+[cn063.delta.ncsa.illinois.edu:1854360] mca:base:select:(  ras) Querying component [slurm]
+[cn063.delta.ncsa.illinois.edu:1854360] mca:base:select:(  ras) Query of component [slurm] set priority to 50
+[cn063.delta.ncsa.illinois.edu:1854360] mca:base:select:(  ras) Selected component [slurm]
+[cn063.delta.ncsa.illinois.edu:1854360] mca: base: close: unloading component simulator
+[cn063.delta.ncsa.illinois.edu:1854360] mca: base: close: component slurm closed
+[cn063.delta.ncsa.illinois.edu:1854360] mca: base: close: unloading component slurm
+54.02user 25.22system 0:06.62elapsed 1195%CPU (0avgtext+0avgdata 47880maxresident)k
+20648inputs+62800outputs (68major+188855minor)pagefaults 0swaps
