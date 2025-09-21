@@ -358,8 +358,16 @@ class IORInterpretabilityAnalyzer:
         logger.info("GNNEXPLAINER ANALYSIS")
         logger.info("="*70)
         try:
-            # Try with lower threshold if needed
-            self.gnn_explainer.feature_mask_threshold = 0.01
+            import random
+            random.seed(42)
+            np.random.seed(42)
+            torch.manual_seed(42)
+            if torch.cuda.is_available():
+                torch.cuda.manual_seed_all(42)
+                torch.backends.cudnn.deterministic = True
+                torch.backends.cudnn.benchmark = False
+            
+            self.gnn_explainer.feature_mask_threshold = 0.001
             gnn_scores = self.gnn_explainer.explain_bottleneck_pattern(
                 data, new_node_idx, self.feature_names
             )
@@ -677,7 +685,7 @@ def main():
         logger.warning("Training features not found")
     
     # IOR test sample
-    test_features = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/evaluation/E2E/Study3/case4/e2e_s3_c4_decomposition_mismatch_fixed_parsed.csv'
+    test_features = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/evaluation/E2E/Study3/case1/e2e_s3_c1_decomposition_mismatch_parsed.csv'
     
     # Initialize analyzer
     logger.info("\n" + "="*70)
