@@ -67,7 +67,7 @@ class IORInterpretabilityAnalyzer:
         
         if features_csv_path:
             self.training_features = self._load_training_features(features_csv_path)
-            logger.info(f"✓ Loaded {len(self.training_features):,} training samples")
+            logger.info(f"Loaded {len(self.training_features):,} training samples")
             
         if similarity_graph_path:
             self.similarity_matrix = self._load_similarity_matrix(similarity_graph_path)
@@ -98,6 +98,8 @@ class IORInterpretabilityAnalyzer:
         
         # Store for analysis
         self.normalized_scores = {}
+
+        self.raw_scores_complete = {}
     
     def _load_model(self, checkpoint_path):
         """Load trained GAT model"""
@@ -227,7 +229,7 @@ class IORInterpretabilityAnalyzer:
         
         # Create subgraph
         logger.info("\n" + "="*70)
-        logger.info("🔍 CREATING SUBGRAPH FOR ANALYSIS")
+        logger.info("CREATING SUBGRAPH FOR ANALYSIS")
         logger.info("="*70)
         subgraph_features, edge_index, edge_attr, new_node_idx = self.create_subgraph_for_analysis(
             new_features, k_neighbors=100, subgraph_size=500
@@ -278,7 +280,7 @@ class IORInterpretabilityAnalyzer:
         actual_bandwidth = 10**actual_tag - 1
         
         logger.info("\n" + "="*70)
-        logger.info("📈 PERFORMANCE PREDICTION")
+        logger.info("PERFORMANCE PREDICTION")
         logger.info("="*70)
         logger.info(f"Predicted: {predicted_bandwidth:.2f} MB/s")
         logger.info(f"Actual: {actual_bandwidth:.2f} MB/s")
@@ -294,7 +296,7 @@ class IORInterpretabilityAnalyzer:
         
         # 1. Attention Analysis
         logger.info("\n" + "="*70)
-        logger.info("📊 ATTENTION ANALYSIS")
+        logger.info("ATTENTION ANALYSIS")
         logger.info("="*70)
         try:
             attention_scores = self.attention_analyzer.attention_based_bottleneck_detection(
@@ -333,6 +335,11 @@ class IORInterpretabilityAnalyzer:
             
             results['methods']['attention'] = attention_scores
             
+            # Store complete raw scores for full report
+            if not hasattr(self, 'raw_scores_complete'):
+                self.raw_scores_complete = {}
+            self.raw_scores_complete['attention'] = attention_scores.copy() if attention_scores else {}
+            
             # Log raw scores
             if attention_scores:
                 logger.info("Raw Attention Scores (Top 10):")
@@ -348,7 +355,7 @@ class IORInterpretabilityAnalyzer:
         
         # 2. GNNExplainer
         logger.info("\n" + "="*70)
-        logger.info("📊 GNNEXPLAINER ANALYSIS")
+        logger.info("GNNEXPLAINER ANALYSIS")
         logger.info("="*70)
         try:
             # Try with lower threshold if needed
@@ -358,6 +365,8 @@ class IORInterpretabilityAnalyzer:
             )
             
             results['methods']['gnn_explainer'] = gnn_scores
+            
+            self.raw_scores_complete['gnn_explainer'] = gnn_scores.copy() if gnn_scores else {}
             
             # Log raw scores
             if gnn_scores:
@@ -374,13 +383,15 @@ class IORInterpretabilityAnalyzer:
         
         # 3. Gradient Methods
         logger.info("\n" + "="*70)
-        logger.info("📊 GRADIENT ANALYSIS (INTEGRATED GRADIENTS)")
+        logger.info("GRADIENT ANALYSIS (INTEGRATED GRADIENTS)")
         logger.info("="*70)
         try:
             gradient_scores = self.gradient_analyzer.integrated_gradients(
                 data, new_node_idx
             )
             results['methods']['gradients'] = gradient_scores
+
+            self.raw_scores_complete['gradients'] = gradient_scores.copy() if gradient_scores else {}
             
             # Log raw scores
             if gradient_scores:
@@ -406,11 +417,11 @@ class IORInterpretabilityAnalyzer:
         Calculate consensus using z-score normalization with detailed step-by-step logging
         """
         logger.info("\n" + "="*70)
-        logger.info("🔬 Z-SCORE NORMALIZATION AND CONSENSUS CALCULATION")
+        logger.info("Z-SCORE NORMALIZATION AND CONSENSUS CALCULATION")
         logger.info("="*70)
         
         # Step 1: Log raw scores
-        logger.info("\n📊 Step 1: Raw Scores from Each Method")
+        logger.info("\nStep 1: Raw Scores from Each Method")
         logger.info("-" * 50)
         
         for method_name, scores in methods_results.items():
@@ -421,7 +432,7 @@ class IORInterpretabilityAnalyzer:
                     logger.info(f"  - {feat:30s}: {score:8.4f}")
         
         # Step 2: Z-normalize each method
-        logger.info("\n📊 Step 2: Z-Score Normalization")
+        logger.info("\nStep 2: Z-Score Normalization")
         logger.info("-" * 50)
         logger.info("Formula: z = (x - mean) / std")
         
@@ -476,7 +487,7 @@ class IORInterpretabilityAnalyzer:
                 self.normalized_scores[method_name] = {feature: 0 for feature in scores}
         
         # Step 3: Calculate consensus
-        logger.info("\n📊 Step 3: Equal Weight Consensus (1/3 each method)")
+        logger.info("\nStep 3: Equal Weight Consensus (1/3 each method)")
         logger.info("-" * 50)
         logger.info("Formula: Consensus = (1/3 × Attention_Z) + (1/3 × GNN_Z) + (1/3 × Gradient_Z)")
         
@@ -506,7 +517,7 @@ class IORInterpretabilityAnalyzer:
         consensus = dict(sorted(consensus.items(), key=lambda x: x[1], reverse=True))
         
         # Log final consensus rankings
-        logger.info("\n🏆 Final Consensus Rankings:")
+        logger.info("\nFinal Consensus Rankings:")
         for i, (feature, score) in enumerate(list(consensus.items())[:10], 1):
             contributors = " + ".join(feature_contributions[feature])
             num_methods = len(feature_contributions[feature])
@@ -577,6 +588,44 @@ class IORInterpretabilityAnalyzer:
         with open(save_path, 'w') as f:
             json.dump(report, f, indent=2)
         
+        # Generate additional full scores report with ALL scores
+        full_scores_report = {
+            'performance': report['performance'],
+            'all_raw_scores': {
+                'attention': {},
+                'gnn_explainer': {},
+                'gradients': {}
+            },
+            'all_normalized_scores': {
+                'attention': {},
+                'gnn_explainer': {},
+                'gradients': {}
+            },
+            'consensus_all': {}
+        }
+        
+        # Add ALL raw scores from stored complete scores
+        if hasattr(self, 'raw_scores_complete'):
+            for method in ['attention', 'gnn_explainer', 'gradients']:
+                if method in self.raw_scores_complete:
+                    full_scores_report['all_raw_scores'][method] = self.raw_scores_complete[method]
+        
+        # Add ALL normalized scores
+        if hasattr(self, 'normalized_scores'):
+            for method in ['attention', 'gnn_explainer', 'gradients']:
+                if method in self.normalized_scores:
+                    full_scores_report['all_normalized_scores'][method] = self.normalized_scores[method]
+        
+        # Add ALL consensus scores
+        if 'consensus' in results and results['consensus']:
+            full_scores_report['consensus_all'] = results['consensus']
+        
+        # Save full scores report
+        full_scores_path = save_path.replace('.json', '_full_scores.json')
+        with open(full_scores_path, 'w') as f:
+            json.dump(full_scores_report, f, indent=2)
+        
+        logger.info(f"✓ Full scores report saved to {full_scores_path}")
         logger.info(f"✓ Bottleneck report saved to {save_path}")
         
         return report
@@ -625,14 +674,14 @@ def main():
     training_features = os.path.join(data_dir, 'aiio_sample_1000000_normalized.csv')
     if not os.path.exists(training_features):
         training_features = None
-        logger.warning("⚠ Training features not found")
+        logger.warning("Training features not found")
     
     # IOR test sample
-    test_features = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/darshan_log/darshan_log_E2E/Study3/case4/e2e_s3_c4_decomposition_mismatch_fixed_parsed.csv'
+    test_features = '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/evaluation/E2E/Study3/case4/e2e_s3_c4_decomposition_mismatch_fixed_parsed.csv'
     
     # Initialize analyzer
     logger.info("\n" + "="*70)
-    logger.info("🚀 INITIALIZING IOR INTERPRETABILITY ANALYZER")
+    logger.info("INITIALIZING IOR INTERPRETABILITY ANALYZER")
     logger.info("="*70)
     
     analyzer = IORInterpretabilityAnalyzer(
@@ -645,31 +694,31 @@ def main():
     
     # Run comprehensive analysis
     logger.info("\n" + "="*70)
-    logger.info("🔬 RUNNING INTERPRETABILITY ANALYSIS")
+    logger.info("RUNNING INTERPRETABILITY ANALYSIS")
     logger.info("="*70)
     
     results = analyzer.analyze_with_all_methods(test_features)
     
     # Generate report
     logger.info("\n" + "="*70)
-    logger.info("📝 GENERATING BOTTLENECK REPORT")
+    logger.info("GENERATING BOTTLENECK REPORT")
     logger.info("="*70)
     
     report = analyzer.generate_bottleneck_report(results)
     
     # Print summary
     logger.info("\n" + "="*70)
-    logger.info("📋 ANALYSIS SUMMARY")
+    logger.info("ANALYSIS SUMMARY")
     logger.info("="*70)
     logger.info(f"Performance: {results['prediction']:.2f} MB/s (predicted) vs {results['actual']:.2f} MB/s (actual)")
     logger.info(f"Primary Bottleneck: {report.get('primary_bottleneck', {}).get('feature', 'Unknown')}")
     logger.info(f"Recommendation: {report.get('primary_bottleneck', {}).get('recommendation', 'N/A')}")
     
     logger.info("\n" + "="*70)
-    logger.info("✅ ANALYSIS COMPLETE!")
+    logger.info("ANALYSIS COMPLETE!")
     logger.info("="*70)
     logger.info("Output:")
-    logger.info("  📝 Report: bottleneck_report.json")
+    logger.info("Report: bottleneck_report.json")
 
 
 if __name__ == "__main__":
