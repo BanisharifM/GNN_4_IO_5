@@ -18,7 +18,7 @@
 PROJECT_DIR="/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5"
 DATA_DIR="${PROJECT_DIR}/data/1M"
 MODEL_PATH="${PROJECT_DIR}/data/1M/best_model.pt"
-OUTPUT_DIR="${PROJECT_DIR}/benchmark_evaluation/E2E/results/Study7/case1"
+OUTPUT_DIR="${PROJECT_DIR}/benchmark_evaluation/E2E/results/Study7/case3"
 TEST_FILE="${PROJECT_DIR}/benchmark_evaluation/E2E/darshan/Study7/case1/parsed.csv"
 
 # Create output directory

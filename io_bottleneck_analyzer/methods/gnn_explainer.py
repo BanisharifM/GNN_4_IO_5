@@ -61,11 +61,11 @@ class GNNExplainerMethod(InterpretabilityMethod):
         # Get original prediction
         original_pred = self._get_prediction(data, node_idx)
         
-        # Learn feature mask
-        feature_mask = self._learn_mask(data, node_idx, original_pred)
+        # Learn feature mask using perturbation
+        feature_importance = self._learn_feature_importance(data, node_idx, original_pred)
         
-        # Convert mask to scores
-        scores = self._mask_to_scores(feature_mask, feature_mask_threshold)
+        # Convert to scores
+        scores = self._importance_to_scores(feature_importance, feature_mask_threshold)
         
         return scores
     
@@ -104,24 +104,47 @@ class GNNExplainerMethod(InterpretabilityMethod):
             
         return prediction
     
-    def _learn_mask(self, 
-                   data: Data, 
-                   node_idx: int, 
-                   original_pred: torch.Tensor) -> torch.Tensor:
-        """Learn feature importance mask"""
-        # Initialize feature mask
+    def _learn_feature_importance(self, 
+                                 data: Data, 
+                                 node_idx: int, 
+                                 original_pred: torch.Tensor) -> torch.Tensor:
+        """Learn feature importance through optimization"""
         num_features = data.x.shape[1]
+        
+        # Initialize with random values to break symmetry
         feature_mask = torch.nn.Parameter(
-            torch.ones(num_features, device=self.device) * 0.5
+            torch.randn(num_features, device=self.device) * 0.1
         )
         
         optimizer = torch.optim.Adam([feature_mask], lr=self.lr)
         
+        # Get baseline prediction (with zeros or mean values)
+        baseline_x = torch.zeros_like(data.x)
+        # Use mean of non-zero features as baseline
+        for i in range(num_features):
+            non_zero = data.x[:, i][data.x[:, i] != 0]
+            if len(non_zero) > 0:
+                baseline_x[:, i] = non_zero.mean()
+        
+        baseline_data = Data(
+            x=baseline_x,
+            edge_index=data.edge_index,
+            edge_attr=data.edge_attr
+        )
+        baseline_pred = self._get_prediction(baseline_data, node_idx)
+        
+        best_mask = None
+        best_loss = float('inf')
+        
         for epoch in range(self.num_epochs):
             optimizer.zero_grad()
             
-            # Apply mask to features
-            masked_x = data.x * torch.sigmoid(feature_mask)
+            # Compute soft mask
+            soft_mask = torch.sigmoid(feature_mask)
+            
+            # Interpolate between baseline and original features
+            masked_x = baseline_x + (data.x - baseline_x) * soft_mask.unsqueeze(0)
+            
             masked_data = Data(
                 x=masked_x,
                 edge_index=data.edge_index,
@@ -131,32 +154,47 @@ class GNNExplainerMethod(InterpretabilityMethod):
             # Get prediction with masked features
             masked_pred = self._get_prediction(masked_data, node_idx)
             
-            # Compute loss
+            # Loss: maintain prediction while minimizing mask
             pred_loss = F.mse_loss(masked_pred, original_pred)
-            size_loss = torch.sigmoid(feature_mask).sum() * 0.01
-            entropy_loss = -torch.sigmoid(feature_mask) * torch.log(torch.sigmoid(feature_mask) + 1e-8)
-            entropy_loss = entropy_loss.sum() * 0.1
             
-            loss = pred_loss + size_loss + entropy_loss
+            # L1 regularization to encourage sparsity
+            mask_loss = soft_mask.sum() * 0.01
             
-            loss.backward()
+            # Entropy regularization for decisive masks
+            entropy = -soft_mask * torch.log(soft_mask + 1e-8) - (1 - soft_mask) * torch.log(1 - soft_mask + 1e-8)
+            entropy_loss = entropy.sum() * 0.01
+            
+            total_loss = pred_loss + mask_loss + entropy_loss
+            
+            # Track best mask
+            if total_loss.item() < best_loss:
+                best_loss = total_loss.item()
+                best_mask = soft_mask.detach().clone()
+            
+            total_loss.backward()
             optimizer.step()
             
             if epoch % 50 == 0:
-                logger.debug(f"Epoch {epoch}: Loss = {loss.item():.4f}")
+                logger.debug(f"Epoch {epoch}: Loss = {total_loss.item():.4f}, "
+                           f"Pred = {pred_loss.item():.4f}, "
+                           f"Mask = {mask_loss.item():.4f}")
         
-        return torch.sigmoid(feature_mask).detach()
+        return best_mask if best_mask is not None else torch.sigmoid(feature_mask).detach()
     
-    def _mask_to_scores(self, 
-                       feature_mask: torch.Tensor,
-                       threshold: float) -> Dict[str, float]:
-        """Convert learned mask to feature scores"""
+    def _importance_to_scores(self, 
+                            feature_importance: torch.Tensor,
+                            threshold: float) -> Dict[str, float]:
+        """Convert importance values to scores"""
         scores = {}
-        mask_values = feature_mask.cpu().numpy()
+        importance_values = feature_importance.cpu().numpy()
         
-        # Only keep features above threshold
+        # Normalize to [0, 1] if needed
+        if importance_values.max() > 0:
+            importance_values = importance_values / importance_values.max()
+        
+        # Create scores for features above threshold
         for i, feat_name in enumerate(self.feature_names):
-            if i < len(mask_values) and mask_values[i] > threshold:
-                scores[feat_name] = float(mask_values[i])
+            if i < len(importance_values) and importance_values[i] > threshold:
+                scores[feat_name] = float(importance_values[i])
         
         return scores
