@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "timestamp": "2025-09-21T22:05:47.577188",
+    "test_file": "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/E2E/darshan/Study7/case1/parsed.csv",
+    "analysis_version": "1.0"
+  },
+  "performance": {
+    "predicted_mbps": 7.473609754552294,
+    "actual_mbps": 216.38908521241424,
+    "absolute_error_mbps": 208.91547545786196,
+    "relative_error_percent": 96.54621685413755
+  },
+  "bottlenecks": {
+    "attention": {},
+    "gnn_explainer": {
+      "POSIX_SIZE_WRITE_1K_10K": 1.0,
+      "POSIX_OPENS": 0.9929532408714294,
+      "POSIX_SEQ_READS": 0.9817065596580505,
+      "POSIX_ACCESS2_ACCESS": 0.975391149520874,
+      "POSIX_SIZE_READ_0_100": 0.9678527116775513,
+      "POSIX_SIZE_READ_100K_1M": 0.9671971201896667,
+      "POSIX_STRIDE1_COUNT": 0.9650682806968689,
+      "POSIX_ACCESS4_ACCESS": 0.9464960098266602,
+      "LUSTRE_STRIPE_WIDTH": 0.9427995085716248,
+      "POSIX_STRIDE4_STRIDE": 0.942387044429779
+    },
+    "gradients": {
+      "nprocs": 0.016489362344145775,
+      "POSIX_CONSEC_WRITES": 0.01502756867557764,
+      "POSIX_STRIDE2_STRIDE": 0.01232156716287136,
+      "POSIX_WRITES": 0.011481172405183315,
+      "POSIX_SIZE_WRITE_100_1K": 0.009114463813602924,
+      "POSIX_BYTES_WRITTEN": 0.007381486240774393,
+      "POSIX_STRIDE2_COUNT": 0.007300601806491613,
+      "POSIX_FILE_ALIGNMENT": 0.0070530809462070465,
+      "POSIX_ACCESS1_ACCESS": 0.006912891287356615,
+      "POSIX_SIZE_WRITE_100K_1M": 0.006559513043612242
+    },
+    "consensus": {
+      "nprocs": 1.6552558572627911,
+      "POSIX_WRITES": 1.2146526892350855,
+      "POSIX_CONSEC_WRITES": 0.8535016297090389,
+      "POSIX_SIZE_WRITE_1K_10K": 0.8253241791332574,
+      "POSIX_STRIDE2_COUNT": 0.7720833532668168,
+      "POSIX_ACCESS1_ACCESS": 0.7146662423922775,
+      "POSIX_ACCESS2_ACCESS": 0.7097616048941103,
+      "POSIX_OPENS": 0.6382107773350039,
+      "POSIX_STRIDE1_COUNT": 0.4694634958711599,
+      "POSIX_SIZE_WRITE_100K_1M": 0.4692009069528833
+    }
+  },
+  "normalized_scores": {
+    "attention": {},
+    "gnn_explainer": {
+      "POSIX_SIZE_WRITE_1K_10K": 2.080432542379807,
+      "POSIX_OPENS": 1.918754680455593,
+      "POSIX_SEQ_READS": 1.6607155820351567,
+      "POSIX_ACCESS2_ACCESS": 1.5158174821393642,
+      "POSIX_SIZE_READ_0_100": 1.3428587516762385,
+      "POSIX_SIZE_READ_100K_1M": 1.3278171377764336,
+      "POSIX_STRIDE1_COUNT": 1.2789739445729214,
+      "POSIX_ACCESS4_ACCESS": 0.8528596144834502,
+      "LUSTRE_STRIPE_WIDTH": 0.7680486526483563,
+      "POSIX_STRIDE4_STRIDE": 0.7585852497765817
+    },
+    "gradients": {
+      "nprocs": 3.1469871518874664,
+      "POSIX_CONSEC_WRITES": 2.79919841050101,
+      "POSIX_STRIDE2_STRIDE": 2.1553887672318526,
+      "POSIX_WRITES": 1.9554427411073878,
+      "POSIX_SIZE_WRITE_100_1K": 1.3923573891913958,
+      "POSIX_BYTES_WRITTEN": 0.9800487974491965,
+      "POSIX_STRIDE2_COUNT": 0.9608048396993191,
+      "POSIX_FILE_ALIGNMENT": 0.9019148812077181,
+      "POSIX_ACCESS1_ACCESS": 0.8685610734471835,
+      "POSIX_SIZE_WRITE_100K_1M": 0.7844856137787908
+    }
+  },
+  "primary_bottleneck": {
+    "feature": "nprocs",
+    "consensus_score": 1.6552558572627911,
+    "recommendation": "Consider process count - too many processes may cause contention"
+  },
+  "recommendations": [
+    {
+      "feature": "POSIX_SIZE_WRITE_1K_10K",
+      "priority": "high",
+      "recommendation": "Increase write size to 100KB or larger for improved throughput",
+      "category": "Write Size"
+    },
+    {
+      "feature": "POSIX_CONSEC_WRITES",
+      "priority": "low",
+      "recommendation": "Already using consecutive writes, but check if size can be increased",
+      "category": "Access Pattern"
+    },
+    {
+      "feature": "nprocs",
+      "priority": "unknown",
+      "recommendation": "Consider process count - too many processes may cause contention",
+      "category": "Other"
+    },
+    {
+      "feature": "POSIX_WRITES",
+      "priority": "unknown",
+      "recommendation": "Analyze I/O pattern for optimization opportunities",
+      "category": "Other"
+    },
+    {
+      "feature": "POSIX_STRIDE2_COUNT",
+      "priority": "unknown",
+      "recommendation": "Analyze I/O pattern for optimization opportunities",
+      "category": "Stride Pattern"
+    }
+  ]
+}

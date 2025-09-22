@@ -1,0 +1,138 @@
+{
+  "metadata": {
+    "timestamp": "2025-09-21T22:16:04.338554",
+    "test_file": "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/E2E/darshan/Study7/case1/parsed.csv",
+    "analysis_version": "1.0"
+  },
+  "performance": {
+    "predicted_mbps": 7.473609754552294,
+    "actual_mbps": 216.38908521241424,
+    "absolute_error_mbps": 208.91547545786196,
+    "relative_error_percent": 96.54621685413755
+  },
+  "bottlenecks": {
+    "attention": {
+      "POSIX_STATS": 0.07241131365299225,
+      "POSIX_SIZE_WRITE_1K_10K": 0.06590211391448975,
+      "POSIX_STRIDE1_COUNT": 0.06029301881790161,
+      "POSIX_STRIDE2_COUNT": 0.05537685379385948,
+      "POSIX_SIZE_WRITE_0_100": 0.051783930510282516,
+      "POSIX_ACCESS1_COUNT": 0.04939807578921318,
+      "POSIX_STRIDE2_STRIDE": 0.047027911990880966,
+      "POSIX_SIZE_WRITE_100_1K": 0.04355650395154953,
+      "POSIX_ACCESS2_COUNT": 0.0394020639359951,
+      "POSIX_FILE_NOT_ALIGNED": 0.03652085363864899
+    },
+    "gnn_explainer": {
+      "POSIX_SIZE_WRITE_1K_10K": 1.0,
+      "POSIX_OPENS": 0.9929532408714294,
+      "POSIX_SEQ_READS": 0.9817065596580505,
+      "POSIX_ACCESS2_ACCESS": 0.975391149520874,
+      "POSIX_SIZE_READ_0_100": 0.9678527116775513,
+      "POSIX_SIZE_READ_100K_1M": 0.9671971201896667,
+      "POSIX_STRIDE1_COUNT": 0.9650682806968689,
+      "POSIX_ACCESS4_ACCESS": 0.9464960098266602,
+      "LUSTRE_STRIPE_WIDTH": 0.9427995085716248,
+      "POSIX_STRIDE4_STRIDE": 0.942387044429779
+    },
+    "gradients": {
+      "nprocs": 0.01648905500769615,
+      "POSIX_CONSEC_WRITES": 0.015027373097836971,
+      "POSIX_STRIDE2_STRIDE": 0.012321176007390022,
+      "POSIX_WRITES": 0.01148176845163107,
+      "POSIX_SIZE_WRITE_100_1K": 0.009114711545407772,
+      "POSIX_BYTES_WRITTEN": 0.007381298113614321,
+      "POSIX_STRIDE2_COUNT": 0.007300288882106543,
+      "POSIX_FILE_ALIGNMENT": 0.007052780594676733,
+      "POSIX_ACCESS1_ACCESS": 0.006912576034665108,
+      "POSIX_SIZE_WRITE_100K_1M": 0.006560705602169037
+    },
+    "consensus": {
+      "POSIX_SIZE_WRITE_1K_10K": 1.236258247525463,
+      "POSIX_STRIDE2_COUNT": 1.0028603883880507,
+      "POSIX_STRIDE1_COUNT": 0.8935214800369643,
+      "nprocs": 0.8825063293631409,
+      "POSIX_WRITES": 0.7733306038439287,
+      "POSIX_CONSEC_WRITES": 0.48770044049775435,
+      "POSIX_SIZE_WRITE_0_100": 0.4708952941240045,
+      "POSIX_STRIDE2_STRIDE": 0.4631384481758971,
+      "POSIX_SEQ_READS": 0.4422896600608897,
+      "POSIX_SIZE_WRITE_100_1K": 0.35319899225478596
+    }
+  },
+  "normalized_scores": {
+    "attention": {
+      "POSIX_STATS": 2.425268028661852,
+      "POSIX_SIZE_WRITE_1K_10K": 2.0581350045514646,
+      "POSIX_STRIDE1_COUNT": 1.7417698401592436,
+      "POSIX_STRIDE2_COUNT": 1.4644874391251754,
+      "POSIX_SIZE_WRITE_0_100": 1.261838750578448,
+      "POSIX_ACCESS1_COUNT": 1.1272713545815103,
+      "POSIX_STRIDE2_STRIDE": 0.9935889607579561,
+      "POSIX_SIZE_WRITE_100_1K": 0.7977939963075239,
+      "POSIX_ACCESS2_COUNT": 0.5634745426619681,
+      "POSIX_FILE_NOT_ALIGNED": 0.40096801466195
+    },
+    "gnn_explainer": {
+      "POSIX_SIZE_WRITE_1K_10K": 2.080432542379807,
+      "POSIX_OPENS": 1.918754680455593,
+      "POSIX_SEQ_READS": 1.6607155820351567,
+      "POSIX_ACCESS2_ACCESS": 1.5158174821393642,
+      "POSIX_SIZE_READ_0_100": 1.3428587516762385,
+      "POSIX_SIZE_READ_100K_1M": 1.3278171377764336,
+      "POSIX_STRIDE1_COUNT": 1.2789739445729214,
+      "POSIX_ACCESS4_ACCESS": 0.8528596144834502,
+      "LUSTRE_STRIPE_WIDTH": 0.7680486526483563,
+      "POSIX_STRIDE4_STRIDE": 0.7585852497765817
+    },
+    "gradients": {
+      "nprocs": 3.146902189404068,
+      "POSIX_CONSEC_WRITES": 2.799142155048171,
+      "POSIX_STRIDE2_STRIDE": 2.155289900464049,
+      "POSIX_WRITES": 1.9555799646289287,
+      "POSIX_SIZE_WRITE_100_1K": 1.392415171059115,
+      "POSIX_BYTES_WRITTEN": 0.9800053912517295,
+      "POSIX_STRIDE2_COUNT": 0.960731859204662,
+      "POSIX_FILE_ALIGNMENT": 0.9018452505934547,
+      "POSIX_ACCESS1_ACCESS": 0.8684881006707376,
+      "POSIX_SIZE_WRITE_100K_1M": 0.7847718879514827
+    }
+  },
+  "primary_bottleneck": {
+    "feature": "POSIX_SIZE_WRITE_1K_10K",
+    "consensus_score": 1.236258247525463,
+    "recommendation": "Increase write size to 100KB or larger for improved throughput"
+  },
+  "recommendations": [
+    {
+      "feature": "POSIX_SIZE_WRITE_1K_10K",
+      "priority": "high",
+      "recommendation": "Increase write size to 100KB or larger for improved throughput",
+      "category": "Write Size"
+    },
+    {
+      "feature": "POSIX_STRIDE2_COUNT",
+      "priority": "unknown",
+      "recommendation": "Analyze I/O pattern for optimization opportunities",
+      "category": "Stride Pattern"
+    },
+    {
+      "feature": "POSIX_STRIDE1_COUNT",
+      "priority": "unknown",
+      "recommendation": "Analyze I/O pattern for optimization opportunities",
+      "category": "Stride Pattern"
+    },
+    {
+      "feature": "nprocs",
+      "priority": "unknown",
+      "recommendation": "Consider process count - too many processes may cause contention",
+      "category": "Other"
+    },
+    {
+      "feature": "POSIX_WRITES",
+      "priority": "unknown",
+      "recommendation": "Analyze I/O pattern for optimization opportunities",
+      "category": "Other"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+
+======================================================================
+IO BOTTLENECK ANALYZER
+======================================================================
+
+Analyzing: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/E2E/darshan/Study7/case1/parsed.csv
+
+======================================================================
+I/O BOTTLENECK ANALYSIS SUMMARY
+======================================================================
+
+Performance Metrics:
+  Predicted: 7.47 MB/s
+  Actual: 216.39 MB/s
+  Error: 208.92 MB/s (96.5%)
+
+Primary Bottleneck:
+  Feature: nprocs
+  Consensus Score: 1.655
+  Recommendation: Consider process count - too many processes may cause contention
+
+Top 5 Bottlenecks (Consensus):
+  1. nprocs: 1.655
+  2. POSIX_WRITES: 1.215
+  3. POSIX_CONSEC_WRITES: 0.854
+  4. POSIX_SIZE_WRITE_1K_10K: 0.825
+  5. POSIX_STRIDE2_COUNT: 0.772
+
+======================================================================
+
+Reports saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/E2E/results/Study7/case4/

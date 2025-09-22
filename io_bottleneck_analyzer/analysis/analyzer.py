@@ -130,7 +130,7 @@ class BottleneckAnalyzer:
         # Attention analysis
         logger.info("\nRunning attention analysis...")
         methods_results['attention'] = self.attention_method.analyze(
-            data, node_idx, threshold=ATTENTION_THRESHOLD
+            data, node_idx, threshold=ATTENTION_THRESHOLD, filter_irrelevant=True
         )
         
         # GNNExplainer analysis
@@ -138,13 +138,14 @@ class BottleneckAnalyzer:
         methods_results['gnn_explainer'] = self.gnn_explainer.analyze(
             data, node_idx, 
             feature_mask_threshold=GNN_EXPLAINER_THRESHOLD,
-            seed=RANDOM_SEED
+            seed=RANDOM_SEED,
+            filter_irrelevant=True
         )
         
         # Gradient analysis
         logger.info("Running gradient analysis...")
         methods_results['gradients'] = self.gradient_method.analyze(
-            data, node_idx, method='integrated_gradients'
+            data, node_idx, method='integrated_gradients', filter_irrelevant=True
         )
         
         # Build consensus
