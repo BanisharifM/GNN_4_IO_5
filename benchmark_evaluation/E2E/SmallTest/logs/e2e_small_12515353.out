@@ -1,0 +1,51 @@
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33me2e_small_suite_12515353[0m at: [34mhttps://wandb.ai/msharif-iowa-state-university/E2E/runs/1uxhwbzi[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250930_143510-1uxhwbzi/logs[0m
+==================================================
+TEST 1: Small Baseline Configuration (Poor I/O Pattern)
+==================================================
+Configuration: 32x32x32 points per block, 8x4x2 decomposition
+Expected: Many small, non-contiguous writes (~256MB total)
+
+======================   ALLOCATED NODES   ======================
+	cn061: flags=0x11 slots=18 max_slots=0 slots_inuse=0 state=UP
+	cn062: flags=0x10 slots=46 max_slots=0 slots_inuse=0 state=UP
+=================================================================
+WARNING: Could not find Darshan log for Test1
+==================================================
+TEST 2: Small Optimized Decomposition
+==================================================
+Configuration: 64x64x16 points per block, 4x4x4 decomposition
+Expected: Larger contiguous writes despite restrictions
+
+======================   ALLOCATED NODES   ======================
+	cn061: flags=0x11 slots=18 max_slots=0 slots_inuse=0 state=UP
+	cn062: flags=0x10 slots=46 max_slots=0 slots_inuse=0 state=UP
+=================================================================
+WARNING: Could not find Darshan log for Test2
+==================================================
+TEST 3: Small Optimized + Tuned Lustre
+==================================================
+Configuration: 64x64x16 with Lustre tuning
+Expected: Best performance with proper striping
+
+======================   ALLOCATED NODES   ======================
+	cn061: flags=0x11 slots=18 max_slots=0 slots_inuse=0 state=UP
+	cn062: flags=0x10 slots=46 max_slots=0 slots_inuse=0 state=UP
+=================================================================
+WARNING: Could not find Darshan log for Test3
+==================================================
+VERIFICATION AND W&B FINALIZATION
+==================================================
+File sizes (should all be ~256MB):
+Summary metrics: {}
+
+Performance Comparison:
+-----------------------
+
+==================================================
+EVALUATION COMPLETE
+Results saved in: /work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/SmallTest
+Summary: /work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/SmallTest/summary.txt
+W&B Dashboard: https://wandb.ai/msharif-iowa-state-university/E2E
+==================================================

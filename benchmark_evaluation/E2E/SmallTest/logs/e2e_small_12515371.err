@@ -1,0 +1,105 @@
+wandb: Currently logged in as: msharif (msharif-iowa-state-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.21.1
+wandb: Run data is saved locally in /work/hdd/bdau/mbanisharifdehkordi/E2E/wandb/run-20250930_143942-bhmyo507
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run e2e_small_suite_12515371
+wandb: ⭐️ View project at https://wandb.ai/msharif-iowa-state-university/E2E
+wandb: 🚀 View run at https://wandb.ai/msharif-iowa-state-university/E2E/runs/bhmyo507
+[cn097.delta.ncsa.illinois.edu:1304346] mca: base: components_register: registering framework ras components
+[cn097.delta.ncsa.illinois.edu:1304346] mca: base: components_register: found loaded component simulator
+[cn097.delta.ncsa.illinois.edu:1304346] mca: base: components_register: component simulator register function successful
+[cn097.delta.ncsa.illinois.edu:1304346] mca: base: components_register: found loaded component slurm
+[cn097.delta.ncsa.illinois.edu:1304346] mca: base: components_register: component slurm register function successful
+[cn097.delta.ncsa.illinois.edu:1304346] mca: base: components_open: opening ras components
+[cn097.delta.ncsa.illinois.edu:1304346] mca: base: components_open: found loaded component simulator
+[cn097.delta.ncsa.illinois.edu:1304346] mca: base: components_open: found loaded component slurm
+[cn097.delta.ncsa.illinois.edu:1304346] mca: base: components_open: component slurm open function successful
+[cn097.delta.ncsa.illinois.edu:1304346] mca:base:select: Auto-selecting ras components
+[cn097.delta.ncsa.illinois.edu:1304346] mca:base:select:(  ras) Querying component [simulator]
+[cn097.delta.ncsa.illinois.edu:1304346] mca:base:select:(  ras) Querying component [slurm]
+[cn097.delta.ncsa.illinois.edu:1304346] mca:base:select:(  ras) Query of component [slurm] set priority to 50
+[cn097.delta.ncsa.illinois.edu:1304346] mca:base:select:(  ras) Selected component [slurm]
+[cn097.delta.ncsa.illinois.edu:1304346] mca: base: close: unloading component simulator
+[cn097.delta.ncsa.illinois.edu:1304346] mca: base: close: component slurm closed
+[cn097.delta.ncsa.illinois.edu:1304346] mca: base: close: unloading component slurm
+wandb: Currently logged in as: msharif (msharif-iowa-state-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.21.1
+wandb: Run data is saved locally in /work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/SmallTest/Test1/wandb/run-20250930_144000-xske9zg2
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run e2e_small_12515371_Test1
+wandb: ⭐️ View project at https://wandb.ai/msharif-iowa-state-university/E2E
+wandb: 🚀 View run at https://wandb.ai/msharif-iowa-state-university/E2E/runs/xske9zg2
+[cn097.delta.ncsa.illinois.edu:1305052] mca: base: components_register: registering framework ras components
+[cn097.delta.ncsa.illinois.edu:1305052] mca: base: components_register: found loaded component simulator
+[cn097.delta.ncsa.illinois.edu:1305052] mca: base: components_register: component simulator register function successful
+[cn097.delta.ncsa.illinois.edu:1305052] mca: base: components_register: found loaded component slurm
+[cn097.delta.ncsa.illinois.edu:1305052] mca: base: components_register: component slurm register function successful
+[cn097.delta.ncsa.illinois.edu:1305052] mca: base: components_open: opening ras components
+[cn097.delta.ncsa.illinois.edu:1305052] mca: base: components_open: found loaded component simulator
+[cn097.delta.ncsa.illinois.edu:1305052] mca: base: components_open: found loaded component slurm
+[cn097.delta.ncsa.illinois.edu:1305052] mca: base: components_open: component slurm open function successful
+[cn097.delta.ncsa.illinois.edu:1305052] mca:base:select: Auto-selecting ras components
+[cn097.delta.ncsa.illinois.edu:1305052] mca:base:select:(  ras) Querying component [simulator]
+[cn097.delta.ncsa.illinois.edu:1305052] mca:base:select:(  ras) Querying component [slurm]
+[cn097.delta.ncsa.illinois.edu:1305052] mca:base:select:(  ras) Query of component [slurm] set priority to 50
+[cn097.delta.ncsa.illinois.edu:1305052] mca:base:select:(  ras) Selected component [slurm]
+[cn097.delta.ncsa.illinois.edu:1305052] mca: base: close: unloading component simulator
+[cn097.delta.ncsa.illinois.edu:1305052] mca: base: close: component slurm closed
+[cn097.delta.ncsa.illinois.edu:1305052] mca: base: close: unloading component slurm
+
+# *ERROR*: The LUSTRE module contains incomplete data!
+#            This happens when a module runs out of
+#            memory to store new record data.
+
+# To avoid this error, consult the darshan-runtime
+# documentation and consider setting the
+# DARSHAN_EXCLUDE_DIRS environment variable to prevent
+# Darshan from instrumenting unecessary files.
+
+# You can display the (incomplete) data that is
+# present in this log using the --show-incomplete
+# option to darshan-parser.
+
+# *ERROR*: The LUSTRE module contains incomplete data!
+#            This happens when a module runs out of
+#            memory to store new record data.
+
+# To avoid this error, consult the darshan-runtime
+# documentation and consider setting the
+# DARSHAN_EXCLUDE_DIRS environment variable to prevent
+# Darshan from instrumenting unecessary files.
+
+# You can display the (incomplete) data that is
+# present in this log using the --show-incomplete
+# option to darshan-parser.
+wandb: Currently logged in as: msharif (msharif-iowa-state-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.21.1
+wandb: Run data is saved locally in /work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/SmallTest/Test2/wandb/run-20250930_144016-r127rh2d
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run e2e_small_12515371_Test2
+wandb: ⭐️ View project at https://wandb.ai/msharif-iowa-state-university/E2E
+wandb: 🚀 View run at https://wandb.ai/msharif-iowa-state-university/E2E/runs/r127rh2d
+[cn097.delta.ncsa.illinois.edu:1305391] mca: base: components_register: registering framework ras components
+[cn097.delta.ncsa.illinois.edu:1305391] mca: base: components_register: found loaded component simulator
+[cn097.delta.ncsa.illinois.edu:1305391] mca: base: components_register: component simulator register function successful
+[cn097.delta.ncsa.illinois.edu:1305391] mca: base: components_register: found loaded component slurm
+[cn097.delta.ncsa.illinois.edu:1305391] mca: base: components_register: component slurm register function successful
+[cn097.delta.ncsa.illinois.edu:1305391] mca: base: components_open: opening ras components
+[cn097.delta.ncsa.illinois.edu:1305391] mca: base: components_open: found loaded component simulator
+[cn097.delta.ncsa.illinois.edu:1305391] mca: base: components_open: found loaded component slurm
+[cn097.delta.ncsa.illinois.edu:1305391] mca: base: components_open: component slurm open function successful
+[cn097.delta.ncsa.illinois.edu:1305391] mca:base:select: Auto-selecting ras components
+[cn097.delta.ncsa.illinois.edu:1305391] mca:base:select:(  ras) Querying component [simulator]
+[cn097.delta.ncsa.illinois.edu:1305391] mca:base:select:(  ras) Querying component [slurm]
+[cn097.delta.ncsa.illinois.edu:1305391] mca:base:select:(  ras) Query of component [slurm] set priority to 50
+[cn097.delta.ncsa.illinois.edu:1305391] mca:base:select:(  ras) Selected component [slurm]
+[cn097.delta.ncsa.illinois.edu:1305391] mca: base: close: unloading component simulator
+[cn097.delta.ncsa.illinois.edu:1305391] mca: base: close: component slurm closed
+[cn097.delta.ncsa.illinois.edu:1305391] mca: base: close: unloading component slurm
+wandb: Currently logged in as: msharif (msharif-iowa-state-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.21.1
+wandb: Run data is saved locally in /work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/SmallTest/Test3/wandb/run-20250930_144032-n7og3she
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run e2e_small_12515371_Test3
+wandb: ⭐️ View project at https://wandb.ai/msharif-iowa-state-university/E2E
+wandb: 🚀 View run at https://wandb.ai/msharif-iowa-state-university/E2E/runs/n7og3she

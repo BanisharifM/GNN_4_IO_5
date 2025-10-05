@@ -1,0 +1,20 @@
+E2E Small Test Evaluation Summary
+==================================
+Study: SmallTest
+Job ID: 12516266
+Date: Tue Sep 30 16:35:09 CDT 2025
+Nodes: 2
+Tasks: 64
+Data size per test: ~256MB
+
+Test Configurations:
+--------------------
+Test1: 32x32x32 x 8x4x2 (baseline - poor decomposition)
+Test2: 64x64x16 x 4x4x4 (optimized decomposition)
+Test3: 64x64x16 x 4x4x4 (optimized + Lustre tuning)
+
+W&B Project: E2E
+W&B Entity: msharif-iowa-state-university
+
+Output Files:
+-------------

@@ -1,0 +1,68 @@
+{
+  "os": "Linux-4.18.0-477.95.1.el8_8.x86_64-x86_64-with-glibc2.28",
+  "python": "CPython 3.9.21",
+  "startedAt": "2025-09-30T20:44:24.974293Z",
+  "args": [
+    "Test3",
+    "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/SmallTest/Test3",
+    "{\n    \"slurm_job_id\": \"12515705\",\n    \"job_name\": \"test3_tuned_small\",\n    \"nodes\": 2,\n    \"tasks\": 64,\n    \"block_x\": 64,\n    \"block_y\": 64,\n    \"block_z\": 16,\n    \"decomp_x\": 4,\n    \"decomp_y\": 4,\n    \"decomp_z\": 4,\n    \"stripe_count\": 4,\n    \"stripe_size\": \"1048576\",\n    \"collective_io\": true\n}"
+  ],
+  "program": "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/SmallTest/wandb_logger.py",
+  "codePath": "evaluation/SmallTest/wandb_logger.py",
+  "git": {
+    "remote": "git@github.com:BanisharifM/E2E.git",
+    "commit": "c094b714bdf49bbf721a84080535c927eabe80b5"
+  },
+  "email": "msharif@iastate.edu",
+  "root": "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/SmallTest/Test3",
+  "host": "cn093.delta.ncsa.illinois.edu",
+  "executable": "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/bin/python",
+  "cpu_count": 128,
+  "cpu_count_logical": 128,
+  "disk": {
+    "/": {
+      "total": "135076450304",
+      "used": "9818673152"
+    }
+  },
+  "memory": {
+    "total": "270152904704"
+  },
+  "slurm": {
+    "cluster_name": "delta",
+    "conf": "/var/spool/slurmd/conf-cache/slurm.conf",
+    "cpus_on_node": "38",
+    "gtids": "0",
+    "job_account": "bdau-delta-cpu",
+    "job_cpus_per_node": "38,26",
+    "job_end_time": "1759266798",
+    "job_gid": "202",
+    "job_id": "12515705",
+    "job_name": "e2e_small_test",
+    "job_nodelist": "cn[093,097]",
+    "job_num_nodes": "2",
+    "job_partition": "cpu",
+    "job_qos": "bdau-delta-cpu",
+    "job_start_time": "1759264998",
+    "job_uid": "73528",
+    "job_user": "mbanisharifdehkordi",
+    "jobid": "12515705",
+    "localid": "0",
+    "mem_per_cpu": "1000",
+    "mpi_type": "pmi2",
+    "nnodes": "2",
+    "nodeid": "0",
+    "nodelist": "cn[093,097]",
+    "nprocs": "64",
+    "ntasks": "64",
+    "prio_process": "0",
+    "procid": "0",
+    "submit_dir": "/work/hdd/bdau/mbanisharifdehkordi/E2E",
+    "submit_host": "dt-login03.delta.ncsa.illinois.edu",
+    "task_pid": "3419358",
+    "tasks_per_node": "38,26",
+    "topology_addr": "ss00.ss04.cn093",
+    "topology_addr_pattern": "switch.switch.node"
+  },
+  "writerId": "xl8i8isyeq38ybg7z4qsa3deq71lbg52"
+}

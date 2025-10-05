@@ -1,0 +1,200 @@
+wandb: Currently logged in as: msharif (msharif-iowa-state-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.21.1
+wandb: Run data is saved locally in /work/hdd/bdau/mbanisharifdehkordi/E2E/wandb/run-20250930_162430-w0fu2fks
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run e2e_small_suite_12516193
+wandb: ⭐️ View project at https://wandb.ai/msharif-iowa-state-university/E2E
+wandb: 🚀 View run at https://wandb.ai/msharif-iowa-state-university/E2E/runs/w0fu2fks
+[cn061.delta.ncsa.illinois.edu:2970012] mca: base: components_register: registering framework ras components
+[cn061.delta.ncsa.illinois.edu:2970012] mca: base: components_register: found loaded component simulator
+[cn061.delta.ncsa.illinois.edu:2970012] mca: base: components_register: component simulator register function successful
+[cn061.delta.ncsa.illinois.edu:2970012] mca: base: components_register: found loaded component slurm
+[cn061.delta.ncsa.illinois.edu:2970012] mca: base: components_register: component slurm register function successful
+[cn061.delta.ncsa.illinois.edu:2970012] mca: base: components_open: opening ras components
+[cn061.delta.ncsa.illinois.edu:2970012] mca: base: components_open: found loaded component simulator
+[cn061.delta.ncsa.illinois.edu:2970012] mca: base: components_open: found loaded component slurm
+[cn061.delta.ncsa.illinois.edu:2970012] mca: base: components_open: component slurm open function successful
+[cn061.delta.ncsa.illinois.edu:2970012] mca:base:select: Auto-selecting ras components
+[cn061.delta.ncsa.illinois.edu:2970012] mca:base:select:(  ras) Querying component [simulator]
+[cn061.delta.ncsa.illinois.edu:2970012] mca:base:select:(  ras) Querying component [slurm]
+[cn061.delta.ncsa.illinois.edu:2970012] mca:base:select:(  ras) Query of component [slurm] set priority to 50
+[cn061.delta.ncsa.illinois.edu:2970012] mca:base:select:(  ras) Selected component [slurm]
+[cn061.delta.ncsa.illinois.edu:2970012] mca: base: close: unloading component simulator
+[cn061.delta.ncsa.illinois.edu:2970012] mca: base: close: component slurm closed
+[cn061.delta.ncsa.illinois.edu:2970012] mca: base: close: unloading component slurm
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+wandb: Currently logged in as: msharif (msharif-iowa-state-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.21.1
+wandb: Run data is saved locally in /work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/SmallTest/Test1/wandb/run-20250930_162448-5qapj11p
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run e2e_small_12516193_Test1
+wandb: ⭐️ View project at https://wandb.ai/msharif-iowa-state-university/E2E
+wandb: 🚀 View run at https://wandb.ai/msharif-iowa-state-university/E2E/runs/5qapj11p
+[cn061.delta.ncsa.illinois.edu:2970618] mca: base: components_register: registering framework ras components
+[cn061.delta.ncsa.illinois.edu:2970618] mca: base: components_register: found loaded component simulator
+[cn061.delta.ncsa.illinois.edu:2970618] mca: base: components_register: component simulator register function successful
+[cn061.delta.ncsa.illinois.edu:2970618] mca: base: components_register: found loaded component slurm
+[cn061.delta.ncsa.illinois.edu:2970618] mca: base: components_register: component slurm register function successful
+[cn061.delta.ncsa.illinois.edu:2970618] mca: base: components_open: opening ras components
+[cn061.delta.ncsa.illinois.edu:2970618] mca: base: components_open: found loaded component simulator
+[cn061.delta.ncsa.illinois.edu:2970618] mca: base: components_open: found loaded component slurm
+[cn061.delta.ncsa.illinois.edu:2970618] mca: base: components_open: component slurm open function successful
+[cn061.delta.ncsa.illinois.edu:2970618] mca:base:select: Auto-selecting ras components
+[cn061.delta.ncsa.illinois.edu:2970618] mca:base:select:(  ras) Querying component [simulator]
+[cn061.delta.ncsa.illinois.edu:2970618] mca:base:select:(  ras) Querying component [slurm]
+[cn061.delta.ncsa.illinois.edu:2970618] mca:base:select:(  ras) Query of component [slurm] set priority to 50
+[cn061.delta.ncsa.illinois.edu:2970618] mca:base:select:(  ras) Selected component [slurm]
+[cn061.delta.ncsa.illinois.edu:2970618] mca: base: close: unloading component simulator
+[cn061.delta.ncsa.illinois.edu:2970618] mca: base: close: component slurm closed
+[cn061.delta.ncsa.illinois.edu:2970618] mca: base: close: unloading component slurm
+
+# *ERROR*: The LUSTRE module contains incomplete data!
+#            This happens when a module runs out of
+#            memory to store new record data.
+
+# To avoid this error, consult the darshan-runtime
+# documentation and consider setting the
+# DARSHAN_EXCLUDE_DIRS environment variable to prevent
+# Darshan from instrumenting unecessary files.
+
+# You can display the (incomplete) data that is
+# present in this log using the --show-incomplete
+# option to darshan-parser.
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+wandb: Currently logged in as: msharif (msharif-iowa-state-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.21.1
+wandb: Run data is saved locally in /work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/SmallTest/Test2/wandb/run-20250930_162504-tc7fyifg
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run e2e_small_12516193_Test2
+wandb: ⭐️ View project at https://wandb.ai/msharif-iowa-state-university/E2E
+wandb: 🚀 View run at https://wandb.ai/msharif-iowa-state-university/E2E/runs/tc7fyifg
+[cn061.delta.ncsa.illinois.edu:2971496] mca: base: components_register: registering framework ras components
+[cn061.delta.ncsa.illinois.edu:2971496] mca: base: components_register: found loaded component simulator
+[cn061.delta.ncsa.illinois.edu:2971496] mca: base: components_register: component simulator register function successful
+[cn061.delta.ncsa.illinois.edu:2971496] mca: base: components_register: found loaded component slurm
+[cn061.delta.ncsa.illinois.edu:2971496] mca: base: components_register: component slurm register function successful
+[cn061.delta.ncsa.illinois.edu:2971496] mca: base: components_open: opening ras components
+[cn061.delta.ncsa.illinois.edu:2971496] mca: base: components_open: found loaded component simulator
+[cn061.delta.ncsa.illinois.edu:2971496] mca: base: components_open: found loaded component slurm
+[cn061.delta.ncsa.illinois.edu:2971496] mca: base: components_open: component slurm open function successful
+[cn061.delta.ncsa.illinois.edu:2971496] mca:base:select: Auto-selecting ras components
+[cn061.delta.ncsa.illinois.edu:2971496] mca:base:select:(  ras) Querying component [simulator]
+[cn061.delta.ncsa.illinois.edu:2971496] mca:base:select:(  ras) Querying component [slurm]
+[cn061.delta.ncsa.illinois.edu:2971496] mca:base:select:(  ras) Query of component [slurm] set priority to 50
+[cn061.delta.ncsa.illinois.edu:2971496] mca:base:select:(  ras) Selected component [slurm]
+[cn061.delta.ncsa.illinois.edu:2971496] mca: base: close: unloading component simulator
+[cn061.delta.ncsa.illinois.edu:2971496] mca: base: close: component slurm closed
+[cn061.delta.ncsa.illinois.edu:2971496] mca: base: close: unloading component slurm
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 500, in process_darshan_logs
+    counters = parse_darshan_file(darshan_file, temp_dir, verbose=verbose)
+  File "/work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/parser.py", line 166, in parse_darshan_file
+    cmd = f"{darshan_parser} --total {darshan_file} > {total_file} 2>{temp_dir}/darshan_error.txt"
+NameError: name 'total_file' is not defined
+wandb: Currently logged in as: msharif (msharif-iowa-state-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.21.1
+wandb: Run data is saved locally in /work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/SmallTest/Test3/wandb/run-20250930_162522-cftjtmac
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run e2e_small_12516193_Test3
+wandb: ⭐️ View project at https://wandb.ai/msharif-iowa-state-university/E2E
+wandb: 🚀 View run at https://wandb.ai/msharif-iowa-state-university/E2E/runs/cftjtmac

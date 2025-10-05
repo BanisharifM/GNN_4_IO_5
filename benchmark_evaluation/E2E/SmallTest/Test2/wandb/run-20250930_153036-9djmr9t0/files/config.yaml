@@ -1,0 +1,117 @@
+_wandb:
+    value:
+        cli_version: 0.21.1
+        e:
+            0yrsqj2qzzgbwfiuq3kcpd59e9k8htmp:
+                args:
+                    - Test2
+                    - /work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/SmallTest/Test2
+                    - |-
+                      {
+                          "slurm_job_id": "12515592",
+                          "job_name": "test2_optimized_small",
+                          "nodes": 2,
+                          "tasks": 64,
+                          "block_x": 64,
+                          "block_y": 64,
+                          "block_z": 16,
+                          "decomp_x": 4,
+                          "decomp_y": 4,
+                          "decomp_z": 4,
+                          "stripe_count": 1,
+                          "stripe_size": "65536",
+                          "collective_io": false
+                      }
+                codePath: evaluation/SmallTest/wandb_logger.py
+                cpu_count: 128
+                cpu_count_logical: 128
+                disk:
+                    /:
+                        total: "135076442112"
+                        used: "8156471296"
+                email: msharif@iastate.edu
+                executable: /u/mbanisharifdehkordi/.conda/envs/gnn4_env/bin/python
+                git:
+                    commit: b372cff2c1bd6114fb82c8bd1af21d27457c3182
+                    remote: git@github.com:BanisharifM/E2E.git
+                host: cn062.delta.ncsa.illinois.edu
+                memory:
+                    total: "270152884224"
+                os: Linux-4.18.0-477.95.1.el8_8.x86_64-x86_64-with-glibc2.28
+                program: /work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/SmallTest/wandb_logger.py
+                python: CPython 3.9.21
+                root: /work/hdd/bdau/mbanisharifdehkordi/E2E/evaluation/SmallTest/Test2
+                slurm:
+                    cluster_name: delta
+                    conf: /var/spool/slurmd/conf-cache/slurm.conf
+                    cpus_on_node: "28"
+                    gtids: "0"
+                    job_account: bdau-delta-cpu
+                    job_cpus_per_node: 28,36
+                    job_end_time: "1759265985"
+                    job_gid: "202"
+                    job_id: "12515592"
+                    job_name: e2e_small_test
+                    job_nodelist: cn[062,071]
+                    job_num_nodes: "2"
+                    job_partition: cpu
+                    job_qos: bdau-delta-cpu
+                    job_start_time: "1759264185"
+                    job_uid: "73528"
+                    job_user: mbanisharifdehkordi
+                    jobid: "12515592"
+                    localid: "0"
+                    mem_per_cpu: "1000"
+                    mpi_type: pmi2
+                    nnodes: "2"
+                    nodeid: "0"
+                    nodelist: cn[062,071]
+                    nprocs: "64"
+                    ntasks: "64"
+                    prio_process: "0"
+                    procid: "0"
+                    submit_dir: /work/hdd/bdau/mbanisharifdehkordi/E2E
+                    submit_host: dt-login03.delta.ncsa.illinois.edu
+                    task_pid: "993521"
+                    tasks_per_node: 28,36
+                    topology_addr: ss00.ss03.cn062
+                    topology_addr_pattern: switch.switch.node
+                startedAt: "2025-09-30T20:30:36.118117Z"
+                writerId: 0yrsqj2qzzgbwfiuq3kcpd59e9k8htmp
+        m: []
+        python_version: 3.9.21
+        t:
+            "3":
+                - 13
+                - 15
+                - 16
+            "4": 3.9.21
+            "5": 0.21.1
+            "12": 0.21.1
+            "13": linux-x86_64
+block_x:
+    value: 64
+block_y:
+    value: 64
+block_z:
+    value: 16
+collective_io:
+    value: false
+decomp_x:
+    value: 4
+decomp_y:
+    value: 4
+decomp_z:
+    value: 4
+job_name:
+    value: test2_optimized_small
+nodes:
+    value: 2
+slurm_job_id:
+    value: "12515592"
+stripe_count:
+    value: 1
+stripe_size:
+    value: "65536"
+tasks:
+    value: 64
