@@ -1,0 +1,2 @@
+14:11:52 - __main__ - ERROR - Test file not found: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IO500/ION_V1/Config4/Config4_parsed.csv
+srun: error: gpub078: task 0: Exited with exit code 1

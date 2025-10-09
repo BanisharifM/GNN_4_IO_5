@@ -1,0 +1,158 @@
+14:07:50 - __main__ - WARNING - No similarity matrix found - will create single-node graph
+14:07:50 - __main__ - INFO - Auto-detected training features: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/aiio_sample_1000000_normalized.csv
+14:07:50 - __main__ - INFO - 
+Initializing analyzer...
+14:07:50 - io_bottleneck_analyzer.analysis.analyzer - INFO - Initializing Bottleneck Analyzer
+14:07:50 - io_bottleneck_analyzer.core.model_loader - INFO - Model loader initialized with device: cuda
+14:07:50 - io_bottleneck_analyzer.core.model_loader - INFO - Loading model from: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/best_model.pt
+14:07:51 - io_bottleneck_analyzer.core.model_loader - INFO - Detected model config: hidden=512, layers=2, heads=[8, 1]
+14:07:51 - io_bottleneck_analyzer.core.model_loader - INFO - Model loaded successfully
+14:07:51 - io_bottleneck_analyzer.core.data_loader - INFO - Loading training features from: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/aiio_sample_1000000_normalized.csv
+14:07:56 - io_bottleneck_analyzer.core.data_loader - INFO - Loaded 1,000,000 training samples with 45 features
+14:07:56 - io_bottleneck_analyzer.core.graph_builder - INFO - Graph builder initialized with threshold: 0.75
+14:07:56 - io_bottleneck_analyzer.analysis.analyzer - INFO - Bottleneck Analyzer initialized successfully
+14:07:56 - __main__ - INFO - 
+Running analysis...
+14:07:56 - io_bottleneck_analyzer.analysis.analyzer - INFO - 
+======================================================================
+14:07:56 - io_bottleneck_analyzer.analysis.analyzer - INFO - RUNNING BOTTLENECK ANALYSIS
+14:07:56 - io_bottleneck_analyzer.analysis.analyzer - INFO - ======================================================================
+14:07:56 - io_bottleneck_analyzer.core.data_loader - INFO - Loading test sample from: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IO500/ION_V1/Config2/Config2_parsed.csv
+14:07:56 - io_bottleneck_analyzer.core.data_loader - INFO - Loaded test sample with 45 features
+14:07:56 - io_bottleneck_analyzer.analysis.analyzer - INFO - 
+Creating analysis subgraph...
+14:07:56 - io_bottleneck_analyzer.core.graph_builder - INFO - Selected 100 neighbors for subgraph
+14:07:56 - io_bottleneck_analyzer.core.graph_builder - DEBUG - Augmented features from 45 to 49
+14:07:56 - io_bottleneck_analyzer.core.graph_builder - INFO - Created subgraph with 101 nodes and 200 edges
+14:07:56 - io_bottleneck_analyzer.analysis.analyzer - INFO - 
+Predicting performance...
+14:07:57 - io_bottleneck_analyzer.analysis.predictor - DEBUG - Predicted performance: 7.71 MB/s
+14:07:57 - io_bottleneck_analyzer.analysis.analyzer - INFO - Predicted: 7.71 MB/s
+14:07:57 - io_bottleneck_analyzer.analysis.analyzer - INFO - Actual: 2425.21 MB/s
+14:07:57 - io_bottleneck_analyzer.analysis.analyzer - INFO - Error: 2417.51 MB/s (99.7%)
+14:07:57 - io_bottleneck_analyzer.analysis.analyzer - INFO - 
+Running attention analysis...
+14:07:57 - io_bottleneck_analyzer.methods.attention - DEBUG - Running attention analysis for node 100
+14:07:57 - io_bottleneck_analyzer.methods.attention - DEBUG - Feature filtering enabled: 45/45 features active
+14:07:57 - io_bottleneck_analyzer.analysis.analyzer - INFO - Running GNNExplainer analysis...
+14:07:57 - io_bottleneck_analyzer.methods.gnn_explainer - DEBUG - Running GNNExplainer for node 100
+14:07:57 - io_bottleneck_analyzer.methods.gnn_explainer - DEBUG - Feature filtering enabled: 45/45 features active
+14:07:57 - io_bottleneck_analyzer.methods.gnn_explainer - DEBUG - Epoch 0: Loss = 2.7865, Pred = 0.0000, Mask = 2.4495
+14:07:57 - io_bottleneck_analyzer.methods.gnn_explainer - DEBUG - Epoch 50: Loss = 1.6228, Pred = 0.0000, Mask = 1.3374
+14:07:57 - io_bottleneck_analyzer.methods.gnn_explainer - DEBUG - Epoch 100: Loss = 0.8791, Pred = 0.0000, Mask = 0.6822
+14:07:58 - io_bottleneck_analyzer.methods.gnn_explainer - DEBUG - Epoch 150: Loss = 0.5244, Pred = 0.0000, Mask = 0.3889
+14:07:58 - io_bottleneck_analyzer.analysis.analyzer - INFO - Running gradient analysis...
+14:07:58 - io_bottleneck_analyzer.methods.gradients - DEBUG - Running integrated_gradients gradient analysis for node 100
+14:07:58 - io_bottleneck_analyzer.methods.gradients - DEBUG - Feature filtering enabled: 45/45 features active
+14:07:58 - io_bottleneck_analyzer.analysis.analyzer - INFO - 
+Building consensus...
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+======================================================================
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - Z-SCORE NORMALIZATION AND CONSENSUS CALCULATION
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - ======================================================================
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+Step 1: Raw Scores from Each Method
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - --------------------------------------------------
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+ATTENTION:
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_SIZE_WRITE_0_100        :   0.0866
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_ACCESS1_COUNT           :   0.0618
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_SIZE_READ_1K_10K        :   0.0567
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_MEM_NOT_ALIGNED         :   0.0556
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_STRIDE1_STRIDE          :   0.0524
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+GNN EXPLAINER:
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_SIZE_WRITE_1K_10K       :   1.0000
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_OPENS                   :   0.9846
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_SEQ_READS               :   0.9603
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_ACCESS2_ACCESS          :   0.9468
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_SIZE_READ_0_100         :   0.9307
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+GRADIENTS:
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_MEM_NOT_ALIGNED         :   1.0000
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_ACCESS2_ACCESS          :   0.5211
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_SIZE_READ_100K_1M       :   0.4618
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_SIZE_READ_100_1K        :   0.4383
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   - POSIX_SIZE_READ_1K_10K        :   0.3036
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+Step 2: Z-Score Normalization
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - --------------------------------------------------
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - Formula: z = (x - mean) / std
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+ATTENTION:
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   Mean = 0.0244, Std = 0.0178
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   Z-normalized scores (Top 5):
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_SIZE_WRITE_0_100        :  +3.494 (very high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_ACCESS1_COUNT           :  +2.102 (very high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_SIZE_READ_1K_10K        :  +1.815 (very high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_MEM_NOT_ALIGNED         :  +1.753 (very high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_STRIDE1_STRIDE          :  +1.574 (very high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+GNN EXPLAINER:
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   Mean = 0.8113, Std = 0.0879
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   Z-normalized scores (Top 5):
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_SIZE_WRITE_1K_10K       :  +2.146 (very high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_OPENS                   :  +1.972 (very high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_SEQ_READS               :  +1.695 (very high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_ACCESS2_ACCESS          :  +1.541 (very high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_SIZE_READ_0_100         :  +1.358 (high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+GRADIENTS:
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   Mean = 0.1489, Std = 0.1816
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -   Z-normalized scores (Top 5):
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_MEM_NOT_ALIGNED         :  +4.686 (very high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_ACCESS2_ACCESS          :  +2.049 (very high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_SIZE_READ_100K_1M       :  +1.722 (very high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_SIZE_READ_100_1K        :  +1.593 (very high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -     - POSIX_SIZE_READ_1K_10K        :  +0.851 (high importance)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+Step 3: Equal Weight Consensus
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - --------------------------------------------------
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - Formula: Consensus = 0.33 × attention + gnn explainer + gradients
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+Final Consensus Rankings:
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - Rank  1: POSIX_MEM_NOT_ALIGNED          →  +2.383
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Contributing methods: Att(+1.75) + GNN(+0.71) + Grad(+4.69)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Consensus strength: STRONG (multiple methods agree)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - Rank  2: POSIX_ACCESS2_ACCESS           →  +1.482
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Contributing methods: Att(+0.86) + GNN(+1.54) + Grad(+2.05)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Consensus strength: STRONG (multiple methods agree)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - Rank  3: POSIX_SIZE_READ_100K_1M        →  +0.942
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Contributing methods: Att(-0.24) + GNN(+1.34) + Grad(+1.72)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Consensus strength: STRONG (multiple methods agree)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - Rank  4: POSIX_SIZE_WRITE_1K_10K        →  +0.912
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Contributing methods: Att(+1.25) + GNN(+2.15) + Grad(-0.66)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Consensus strength: STRONG (multiple methods agree)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - Rank  5: POSIX_SIZE_WRITE_0_100         →  +0.871
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Contributing methods: Att(+3.49) + GNN(-0.35) + Grad(-0.53)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Consensus strength: STRONG (multiple methods agree)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - Rank  6: POSIX_ACCESS1_COUNT            →  +0.810
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Contributing methods: Att(+2.10) + GNN(+0.03) + Grad(+0.29)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Consensus strength: STRONG (multiple methods agree)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - Rank  7: POSIX_SIZE_READ_1K_10K         →  +0.796
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Contributing methods: Att(+1.82) + GNN(-0.28) + Grad(+0.85)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Consensus strength: STRONG (multiple methods agree)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - Rank  8: POSIX_SIZE_READ_0_100          →  +0.597
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Contributing methods: Att(+0.67) + GNN(+1.36) + Grad(-0.23)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Consensus strength: STRONG (multiple methods agree)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - Rank  9: POSIX_MEM_ALIGNMENT            →  +0.575
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Contributing methods: GNN(+0.58)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Consensus strength: WEAK (single method)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - 
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO - Rank 10: POSIX_STRIDE2_COUNT            →  +0.533
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Contributing methods: Att(+0.48) + GNN(+0.57) + Grad(+0.55)
+14:07:58 - io_bottleneck_analyzer.analysis.consensus - INFO -          Consensus strength: STRONG (multiple methods agree)
+14:07:58 - io_bottleneck_analyzer.analysis.analyzer - INFO - 
+Analysis complete!
+14:07:58 - __main__ - INFO - 
+Generating report...
+14:07:58 - io_bottleneck_analyzer.reporting.generator - INFO - Main report saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IO500/ION_V1/Config2/analysis_results/bottleneck_report_20251009_140758.json
+14:07:58 - io_bottleneck_analyzer.reporting.generator - INFO - Full scores report saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IO500/ION_V1/Config2/analysis_results/bottleneck_report_full_scores_20251009_140758.json

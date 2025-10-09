@@ -1,0 +1,31 @@
+
+======================================================================
+IO BOTTLENECK ANALYZER
+======================================================================
+
+Analyzing: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IO500/ION_V1/Config2/Config2_parsed.csv
+
+======================================================================
+I/O BOTTLENECK ANALYSIS SUMMARY
+======================================================================
+
+Performance Metrics:
+  Predicted: 7.71 MB/s
+  Actual: 2425.21 MB/s
+  Error: 2417.51 MB/s (99.7%)
+
+Primary Bottleneck:
+  Feature: POSIX_MEM_NOT_ALIGNED
+  Consensus Score: 2.383
+  Recommendation: Align memory buffers for better DMA performance
+
+Top 5 Bottlenecks (Consensus):
+  1. POSIX_MEM_NOT_ALIGNED: 2.383
+  2. POSIX_ACCESS2_ACCESS: 1.482
+  3. POSIX_SIZE_READ_100K_1M: 0.942
+  4. POSIX_SIZE_WRITE_1K_10K: 0.912
+  5. POSIX_SIZE_WRITE_0_100: 0.871
+
+======================================================================
+
+Reports saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IO500/ION_V1/Config2/analysis_results/

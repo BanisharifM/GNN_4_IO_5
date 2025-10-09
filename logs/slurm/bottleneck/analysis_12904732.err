@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/sw/external/python/anaconda3/lib/python3.9/runpy.py", line 188, in _run_module_as_main
+    mod_name, mod_spec, code = _get_module_details(mod_name, _Error)
+  File "/sw/external/python/anaconda3/lib/python3.9/runpy.py", line 111, in _get_module_details
+    __import__(pkg_name)
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/io_bottleneck_analyzer/__init__.py", line 11, in <module>
+    from .analysis import BottleneckAnalyzer
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/io_bottleneck_analyzer/analysis/__init__.py", line 4, in <module>
+    from .predictor import PerformancePredictor
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/io_bottleneck_analyzer/analysis/predictor.py", line 6, in <module>
+    from torch_geometric.data import Data
+ModuleNotFoundError: No module named 'torch_geometric'
+srun: error: gpub047: task 0: Exited with exit code 1

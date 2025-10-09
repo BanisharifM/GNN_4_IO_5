@@ -1,0 +1,138 @@
+{
+  "metadata": {
+    "timestamp": "2025-10-09T14:13:52.850563",
+    "test_file": "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IO500/ION_V1/Config5/Config5_parsed.csv",
+    "analysis_version": "1.0"
+  },
+  "performance": {
+    "predicted_mbps": 6.663004073775369,
+    "actual_mbps": 0.00029557153100778777,
+    "absolute_error_mbps": 6.662708502244361,
+    "relative_error_percent": 2254178.025714124
+  },
+  "bottlenecks": {
+    "attention": {
+      "nprocs": 0.22313019633293152,
+      "POSIX_BYTES_WRITTEN": 0.10572826117277145,
+      "POSIX_ACCESS1_ACCESS": 0.09407869726419449,
+      "POSIX_SEEKS": 0.07250770181417465,
+      "POSIX_FILENOS": 0.05637403205037117,
+      "POSIX_SIZE_WRITE_0_100": 0.05229807272553444,
+      "POSIX_SIZE_WRITE_100_1K": 0.05159102752804756,
+      "POSIX_WRITES": 0.04334947466850281,
+      "POSIX_CONSEC_WRITES": 0.04052756354212761,
+      "POSIX_SEQ_WRITES": 0.03620235621929169
+    },
+    "gnn_explainer": {
+      "POSIX_SIZE_WRITE_1K_10K": 1.0,
+      "POSIX_OPENS": 0.9846371412277222,
+      "POSIX_ACCESS2_ACCESS": 0.9467748999595642,
+      "LUSTRE_STRIPE_WIDTH": 0.8780240416526794,
+      "POSIX_MEM_NOT_ALIGNED": 0.8737179040908813,
+      "POSIX_RW_SWITCHES": 0.8647419810295105,
+      "POSIX_MEM_ALIGNMENT": 0.8618420362472534,
+      "POSIX_ACCESS1_ACCESS": 0.8593093752861023,
+      "POSIX_WRITES": 0.8515068292617798,
+      "nprocs": 0.8238659501075745
+    },
+    "gradients": {
+      "nprocs": 1.0,
+      "POSIX_SIZE_WRITE_1K_10K": 0.27194082736968994,
+      "POSIX_ACCESS1_ACCESS": 0.16803987324237823,
+      "POSIX_BYTES_WRITTEN": 0.15846426784992218,
+      "POSIX_FILENOS": 0.05825512856245041,
+      "POSIX_SIZE_WRITE_100_1K": 0.05228274315595627,
+      "POSIX_ACCESS2_ACCESS": 0.049505386501550674,
+      "POSIX_OPENS": 0.04544477164745331,
+      "POSIX_CONSEC_WRITES": 0.04211629554629326,
+      "POSIX_STATS": 0.03881977126002312
+    },
+    "consensus": {
+      "nprocs": 2.6803118296159005,
+      "POSIX_MEM_NOT_ALIGNED": 0.7689799857960451,
+      "POSIX_SIZE_WRITE_1K_10K": 0.6800733396467153,
+      "POSIX_RW_SWITCHES": 0.6629324473438748,
+      "POSIX_MEM_ALIGNMENT": 0.6286705665653858,
+      "POSIX_ACCESS1_ACCESS": 0.6089909356061355,
+      "POSIX_BYTES_WRITTEN": 0.4434587223488767,
+      "POSIX_OPENS": 0.4421973920151876,
+      "POSIX_ACCESS2_ACCESS": 0.32830579115635533,
+      "LUSTRE_STRIPE_WIDTH": 0.19095844602613332
+    }
+  },
+  "normalized_scores": {
+    "attention": {
+      "nprocs": 3.6190226133408787,
+      "POSIX_BYTES_WRITTEN": 1.1270360834536204,
+      "POSIX_ACCESS1_ACCESS": 0.8797611445896997,
+      "POSIX_SEEKS": 0.4218927966414607,
+      "POSIX_FILENOS": 0.0794377282969739,
+      "POSIX_SIZE_WRITE_0_100": -0.007079037546834087,
+      "POSIX_SIZE_WRITE_100_1K": -0.02208685752659099,
+      "POSIX_WRITES": -0.19702297491955867,
+      "POSIX_CONSEC_WRITES": -0.2569211742624628,
+      "POSIX_SEQ_WRITES": -0.34872850582623116
+    },
+    "gnn_explainer": {
+      "POSIX_SIZE_WRITE_1K_10K": 2.2609608472828,
+      "POSIX_OPENS": 2.0794537927716203,
+      "POSIX_ACCESS2_ACCESS": 1.6321240352283213,
+      "LUSTRE_STRIPE_WIDTH": 0.8198555654487271,
+      "POSIX_MEM_NOT_ALIGNED": 0.7689799857960451,
+      "POSIX_RW_SWITCHES": 0.6629324473438748,
+      "POSIX_MEM_ALIGNMENT": 0.6286705665653858,
+      "POSIX_ACCESS1_ACCESS": 0.5987480216830809,
+      "POSIX_WRITES": 0.5065635417268993,
+      "nprocs": 0.17999576982025112
+    },
+    "gradients": {
+      "nprocs": 4.241917105686571,
+      "POSIX_SIZE_WRITE_1K_10K": 0.8347051284099675,
+      "POSIX_ACCESS1_ACCESS": 0.34846364054562584,
+      "POSIX_BYTES_WRITTEN": 0.303651187644332,
+      "POSIX_FILENOS": -0.16531313894924937,
+      "POSIX_SIZE_WRITE_100_1K": -0.19326304172487394,
+      "POSIX_ACCESS2_ACCESS": -0.20626067050808372,
+      "POSIX_OPENS": -0.22526376268258902,
+      "POSIX_CONSEC_WRITES": -0.24084055103205745,
+      "POSIX_STATS": -0.2562678094937349
+    }
+  },
+  "primary_bottleneck": {
+    "feature": "nprocs",
+    "consensus_score": 2.6803118296159005,
+    "recommendation": "Consider process count - too many processes may cause contention"
+  },
+  "recommendations": [
+    {
+      "feature": "POSIX_MEM_NOT_ALIGNED",
+      "priority": "high",
+      "recommendation": "Align memory buffers for better DMA performance",
+      "category": "Alignment"
+    },
+    {
+      "feature": "POSIX_SIZE_WRITE_1K_10K",
+      "priority": "high",
+      "recommendation": "Increase write size to 100KB or larger for improved throughput",
+      "category": "Write Size"
+    },
+    {
+      "feature": "POSIX_RW_SWITCHES",
+      "priority": "high",
+      "recommendation": "Minimize switching between reads and writes, batch similar operations",
+      "category": "Other"
+    },
+    {
+      "feature": "nprocs",
+      "priority": "unknown",
+      "recommendation": "Consider process count - too many processes may cause contention",
+      "category": "Other"
+    },
+    {
+      "feature": "POSIX_MEM_ALIGNMENT",
+      "priority": "unknown",
+      "recommendation": "Analyze I/O pattern for optimization opportunities",
+      "category": "Other"
+    }
+  ]
+}

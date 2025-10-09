@@ -1,0 +1,31 @@
+
+======================================================================
+IO BOTTLENECK ANALYZER
+======================================================================
+
+Analyzing: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IO500/ION_V1/Config5/Config5_parsed.csv
+
+======================================================================
+I/O BOTTLENECK ANALYSIS SUMMARY
+======================================================================
+
+Performance Metrics:
+  Predicted: 6.66 MB/s
+  Actual: 0.00 MB/s
+  Error: 6.66 MB/s (2254178.0%)
+
+Primary Bottleneck:
+  Feature: nprocs
+  Consensus Score: 2.680
+  Recommendation: Consider process count - too many processes may cause contention
+
+Top 5 Bottlenecks (Consensus):
+  1. nprocs: 2.680
+  2. POSIX_MEM_NOT_ALIGNED: 0.769
+  3. POSIX_SIZE_WRITE_1K_10K: 0.680
+  4. POSIX_RW_SWITCHES: 0.663
+  5. POSIX_MEM_ALIGNMENT: 0.629
+
+======================================================================
+
+Reports saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IO500/ION_V1/Config5/analysis_results/

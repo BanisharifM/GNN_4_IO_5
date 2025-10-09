@@ -1,0 +1,37 @@
+=== Darshan Metrics for Config5: 4KB Random I/O ===
+Job ID: 12898163
+Date: Thu Oct  9 13:08:31 CDT 2025
+
+Performance Summary:
+
+Key I/O Counters:
+#   POSIX_MAX_*_TIME_SIZE: size of the slowest read and write operations.
+#   POSIX_SIZE_*_*: histogram of read and write access sizes.
+#   POSIX_STRIDE*_STRIDE: the four most common strides detected.
+#   POSIX_STRIDE*_COUNT: count of the four most common strides.
+POSIX	0	5641858317770008088	POSIX_READS	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_WRITES	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SEEKS	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_CONSEC_READS	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_CONSEC_WRITES	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SEQ_READS	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SEQ_WRITES	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_FILE_NOT_ALIGNED	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_MAX_READ_TIME_SIZE	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_MAX_WRITE_TIME_SIZE	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_READ_0_100	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_READ_100_1K	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_READ_1K_10K	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_READ_10K_100K	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_READ_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_READ_1M_4M	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_READ_4M_10M	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_READ_10M_100M	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_READ_100M_1G	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_READ_1G_PLUS	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_WRITE_0_100	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_WRITE_100_1K	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_WRITE_1K_10K	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_WRITE_10K_100K	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_WRITE_100K_1M	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre
+POSIX	0	5641858317770008088	POSIX_SIZE_WRITE_1M_4M	0	/work/hdd/bdau/mbanisharifdehkordi/io500/configs_ion/config-ion-5_4K_Random.ini	/work	lustre

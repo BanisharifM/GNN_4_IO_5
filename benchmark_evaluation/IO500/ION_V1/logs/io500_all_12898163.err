@@ -1,0 +1,39 @@
+
+# *ERROR*: The LUSTRE module contains incomplete data!
+#            This happens when a module runs out of
+#            memory to store new record data.
+
+# To avoid this error, consult the darshan-runtime
+# documentation and consider setting the
+# DARSHAN_EXCLUDE_DIRS environment variable to prevent
+# Darshan from instrumenting unecessary files.
+
+# You can display the (incomplete) data that is
+# present in this log using the --show-incomplete
+# option to darshan-parser.
+
+# *ERROR*: The LUSTRE module contains incomplete data!
+#            This happens when a module runs out of
+#            memory to store new record data.
+
+# To avoid this error, consult the darshan-runtime
+# documentation and consider setting the
+# DARSHAN_EXCLUDE_DIRS environment variable to prevent
+# Darshan from instrumenting unecessary files.
+
+# You can display the (incomplete) data that is
+# present in this log using the --show-incomplete
+# option to darshan-parser.
+
+# *ERROR*: The LUSTRE module contains incomplete data!
+#            This happens when a module runs out of
+#            memory to store new record data.
+
+# To avoid this error, consult the darshan-runtime
+# documentation and consider setting the
+# DARSHAN_EXCLUDE_DIRS environment variable to prevent
+# Darshan from instrumenting unecessary files.
+
+# You can display the (incomplete) data that is
+# present in this log using the --show-incomplete
+# option to darshan-parser.

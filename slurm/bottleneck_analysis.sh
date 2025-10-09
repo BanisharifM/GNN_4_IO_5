@@ -18,8 +18,8 @@
 PROJECT_DIR="/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5"
 DATA_DIR="${PROJECT_DIR}/data/1M"
 MODEL_PATH="${PROJECT_DIR}/data/1M/best_model.pt"
-OUTPUT_DIR="${PROJECT_DIR}/benchmark_evaluation/IOR/AIIO_V3/Pattern3/analysis_results"
-TEST_FILE="${PROJECT_DIR}/benchmark_evaluation/IOR/AIIO_V3/Pattern3/parsed.csv"
+OUTPUT_DIR="${PROJECT_DIR}/benchmark_evaluation/IO500/ION_V1/Config5/analysis_results"
+TEST_FILE="${PROJECT_DIR}/benchmark_evaluation/IO500/ION_V1/Config5/Config5_parsed.csv"
 
 # Create output directory
 mkdir -p ${OUTPUT_DIR}

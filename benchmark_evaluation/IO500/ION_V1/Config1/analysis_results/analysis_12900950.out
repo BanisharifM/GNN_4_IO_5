@@ -1,0 +1,31 @@
+
+======================================================================
+IO BOTTLENECK ANALYZER
+======================================================================
+
+Analyzing: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IO500/ION_V1/Config1/Config1_parsed.csv
+
+======================================================================
+I/O BOTTLENECK ANALYSIS SUMMARY
+======================================================================
+
+Performance Metrics:
+  Predicted: 7.55 MB/s
+  Actual: 1312.30 MB/s
+  Error: 1304.75 MB/s (99.4%)
+
+Primary Bottleneck:
+  Feature: POSIX_SIZE_READ_100K_1M
+  Consensus Score: 2.573
+  Recommendation: Analyze I/O pattern for optimization opportunities
+
+Top 5 Bottlenecks (Consensus):
+  1. POSIX_SIZE_READ_100K_1M: 2.573
+  2. POSIX_SIZE_WRITE_0_100: 1.075
+  3. POSIX_SIZE_WRITE_1K_10K: 0.932
+  4. POSIX_SEQ_READS: 0.819
+  5. POSIX_STRIDE2_COUNT: 0.800
+
+======================================================================
+
+Reports saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IO500/ION_V1/Config1/analysis_results/
