@@ -1,13 +1,13 @@
 #!/bin/bash
 #SBATCH --job-name=io_bottleneck_analysis
 #SBATCH --account=bdau-delta-gpu
-#SBATCH --partition=gpuH200x8-interactive
+#SBATCH --partition=gpuA40x4
 #SBATCH --nodes=1                     
 #SBATCH --ntasks=1                   
 #SBATCH --gres=gpu:1                
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=1
 #SBATCH --mem=64G
-#SBATCH --time=00:30:00
+#SBATCH --time=00:03:00
 #SBATCH --output=logs/slurm/bottleneck/analysis_%j.out
 #SBATCH --error=logs/slurm/bottleneck/analysis_%j.err
 
@@ -18,8 +18,8 @@
 PROJECT_DIR="/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5"
 DATA_DIR="${PROJECT_DIR}/data/1M"
 MODEL_PATH="${PROJECT_DIR}/data/1M/best_model.pt"
-OUTPUT_DIR="${PROJECT_DIR}/benchmark_evaluation/E2E/results/Study7/case7"
-TEST_FILE="${PROJECT_DIR}/benchmark_evaluation/E2E/darshan/Study7/case1/parsed.csv"
+OUTPUT_DIR="${PROJECT_DIR}/benchmark_evaluation/IOR/AIIO_V3/Pattern3/analysis_results"
+TEST_FILE="${PROJECT_DIR}/benchmark_evaluation/IOR/AIIO_V3/Pattern3/parsed.csv"
 
 # Create output directory
 mkdir -p ${OUTPUT_DIR}

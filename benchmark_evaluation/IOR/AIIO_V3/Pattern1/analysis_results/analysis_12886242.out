@@ -1,0 +1,31 @@
+
+======================================================================
+IO BOTTLENECK ANALYZER
+======================================================================
+
+Analyzing: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IOR/AIIO_V3/Pattern1/parsed.csv
+
+======================================================================
+I/O BOTTLENECK ANALYSIS SUMMARY
+======================================================================
+
+Performance Metrics:
+  Predicted: 7.29 MB/s
+  Actual: 10.75 MB/s
+  Error: 3.45 MB/s (32.1%)
+
+Primary Bottleneck:
+  Feature: POSIX_SIZE_WRITE_1K_10K
+  Consensus Score: 1.668
+  Recommendation: Increase write size to 100KB or larger for improved throughput
+
+Top 5 Bottlenecks (Consensus):
+  1. POSIX_SIZE_WRITE_1K_10K: 1.668
+  2. POSIX_SIZE_WRITE_100_1K: 1.544
+  3. nprocs: 0.931
+  4. LUSTRE_STRIPE_WIDTH: 0.828
+  5. POSIX_MEM_ALIGNMENT: 0.644
+
+======================================================================
+
+Reports saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IOR/AIIO_V3/Pattern1/analysis_results/

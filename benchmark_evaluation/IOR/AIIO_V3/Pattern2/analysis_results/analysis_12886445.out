@@ -1,0 +1,31 @@
+
+======================================================================
+IO BOTTLENECK ANALYZER
+======================================================================
+
+Analyzing: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IOR/AIIO_V3/Pattern2/parsed.csv
+
+======================================================================
+I/O BOTTLENECK ANALYSIS SUMMARY
+======================================================================
+
+Performance Metrics:
+  Predicted: 7.42 MB/s
+  Actual: 126.83 MB/s
+  Error: 119.41 MB/s (94.1%)
+
+Primary Bottleneck:
+  Feature: POSIX_SIZE_READ_0_100
+  Consensus Score: 1.405
+  Recommendation: Avoid very small reads (<100B), batch read operations
+
+Top 5 Bottlenecks (Consensus):
+  1. POSIX_SIZE_READ_0_100: 1.405
+  2. POSIX_SIZE_READ_100K_1M: 1.060
+  3. POSIX_STRIDE1_COUNT: 1.058
+  4. POSIX_MEM_NOT_ALIGNED: 0.968
+  5. POSIX_SIZE_WRITE_1K_10K: 0.966
+
+======================================================================
+
+Reports saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IOR/AIIO_V3/Pattern2/analysis_results/

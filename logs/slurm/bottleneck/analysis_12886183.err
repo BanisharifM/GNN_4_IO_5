@@ -1,0 +1,38 @@
+07:08:19 - __main__ - WARNING - No similarity matrix found - will create single-node graph
+07:08:19 - __main__ - INFO - Auto-detected training features: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/aiio_sample_1000000_normalized.csv
+07:08:19 - __main__ - INFO - 
+Initializing analyzer...
+07:08:19 - io_bottleneck_analyzer.analysis.analyzer - INFO - Initializing Bottleneck Analyzer
+07:08:19 - io_bottleneck_analyzer.core.model_loader - INFO - Model loader initialized with device: cpu
+07:08:19 - io_bottleneck_analyzer.core.model_loader - INFO - Loading model from: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/best_model.pt
+07:08:21 - io_bottleneck_analyzer.core.model_loader - INFO - Detected model config: hidden=512, layers=2, heads=[8, 1]
+07:08:21 - io_bottleneck_analyzer.core.model_loader - INFO - Model loaded successfully
+07:08:21 - io_bottleneck_analyzer.core.data_loader - INFO - Loading training features from: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/data/1M/aiio_sample_1000000_normalized.csv
+07:08:26 - io_bottleneck_analyzer.core.data_loader - INFO - Loaded 1,000,000 training samples with 45 features
+07:08:26 - io_bottleneck_analyzer.core.graph_builder - INFO - Graph builder initialized with threshold: 0.75
+07:08:26 - io_bottleneck_analyzer.analysis.analyzer - INFO - Bottleneck Analyzer initialized successfully
+07:08:26 - __main__ - INFO - 
+Running analysis...
+07:08:26 - io_bottleneck_analyzer.analysis.analyzer - INFO - 
+======================================================================
+07:08:26 - io_bottleneck_analyzer.analysis.analyzer - INFO - RUNNING BOTTLENECK ANALYSIS
+07:08:26 - io_bottleneck_analyzer.analysis.analyzer - INFO - ======================================================================
+07:08:26 - io_bottleneck_analyzer.core.data_loader - INFO - Loading test sample from: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IOR/AIIO_V3/Pattern1/parsed.csv
+07:08:26 - io_bottleneck_analyzer.core.data_loader - INFO - Loaded test sample with 45 features
+07:08:26 - io_bottleneck_analyzer.analysis.analyzer - INFO - 
+Creating analysis subgraph...
+07:08:26 - io_bottleneck_analyzer.core.graph_builder - INFO - Selected 100 neighbors for subgraph
+07:08:26 - __main__ - ERROR - Analysis failed: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/io_bottleneck_analyzer/run_analysis.py", line 199, in main
+    results = analyzer.analyze(str(test_path))
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/io_bottleneck_analyzer/analysis/analyzer.py", line 107, in analyze
+    data, node_idx = self.graph_builder.create_subgraph(
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/io_bottleneck_analyzer/core/graph_builder.py", line 70, in create_subgraph
+    edge_index, edge_attr = self._build_edges(
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/io_bottleneck_analyzer/core/graph_builder.py", line 144, in _build_edges
+    edge_index = torch.tensor(edges, dtype=torch.long).t().to(self.device)
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/torch/cuda/__init__.py", line 247, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx
+srun: error: cn034: task 0: Exited with exit code 1

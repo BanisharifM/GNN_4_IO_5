@@ -1,0 +1,138 @@
+{
+  "metadata": {
+    "timestamp": "2025-10-09T07:44:30.984270",
+    "test_file": "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IOR/AIIO_V3/Pattern6/parsed.csv",
+    "analysis_version": "1.0"
+  },
+  "performance": {
+    "predicted_mbps": 7.378839248759899,
+    "actual_mbps": 1.7136742352314651,
+    "absolute_error_mbps": 5.6651650135284335,
+    "relative_error_percent": 330.58587782077745
+  },
+  "bottlenecks": {
+    "attention": {
+      "POSIX_FILENOS": 0.05521738529205322,
+      "POSIX_ACCESS4_ACCESS": 0.04843843728303909,
+      "POSIX_CONSEC_READS": 0.04495127126574516,
+      "POSIX_SIZE_READ_100_1K": 0.04309286177158356,
+      "POSIX_ACCESS1_COUNT": 0.042412132024765015,
+      "POSIX_FILE_NOT_ALIGNED": 0.03774838149547577,
+      "POSIX_READS": 0.036965616047382355,
+      "POSIX_SEQ_READS": 0.0358416885137558,
+      "POSIX_SEEKS": 0.03541571646928787,
+      "POSIX_BYTES_WRITTEN": 0.034561287611722946
+    },
+    "gnn_explainer": {
+      "POSIX_SIZE_WRITE_1K_10K": 1.0,
+      "POSIX_OPENS": 0.9846371412277222,
+      "POSIX_SEQ_READS": 0.9603216052055359,
+      "POSIX_ACCESS2_ACCESS": 0.9467748999595642,
+      "POSIX_SIZE_READ_0_100": 0.9306992888450623,
+      "POSIX_SIZE_READ_100K_1M": 0.9293063282966614,
+      "POSIX_STRIDE1_COUNT": 0.924789309501648,
+      "POSIX_ACCESS4_ACCESS": 0.8857255578041077,
+      "LUSTRE_STRIPE_WIDTH": 0.8780240416526794,
+      "POSIX_STRIDE4_STRIDE": 0.8771675825119019
+    },
+    "gradients": {
+      "POSIX_MEM_NOT_ALIGNED": 1.0,
+      "POSIX_SIZE_READ_100K_1M": 0.9667166471481323,
+      "nprocs": 0.7859902381896973,
+      "POSIX_SIZE_READ_0_100": 0.4318925142288208,
+      "POSIX_SIZE_WRITE_1K_10K": 0.42255792021751404,
+      "POSIX_SIZE_READ_1K_10K": 0.41792622208595276,
+      "POSIX_CONSEC_WRITES": 0.38678860664367676,
+      "POSIX_SIZE_WRITE_100_1K": 0.37257644534111023,
+      "POSIX_FILENOS": 0.36745041608810425,
+      "POSIX_SIZE_WRITE_100K_1M": 0.3476381301879883
+    },
+    "consensus": {
+      "POSIX_SIZE_READ_100K_1M": 1.6507490182169444,
+      "POSIX_SIZE_READ_0_100": 0.8635328249478461,
+      "POSIX_MEM_NOT_ALIGNED": 0.826988393139004,
+      "nprocs": 0.7754396426199301,
+      "POSIX_ACCESS4_ACCESS": 0.6704388099669498,
+      "POSIX_CONSEC_READS": 0.6637724147365068,
+      "POSIX_ACCESS1_COUNT": 0.6366451769417593,
+      "POSIX_SEQ_READS": 0.6247360802485741,
+      "POSIX_MEM_ALIGNMENT": 0.5750820360761176,
+      "POSIX_SIZE_WRITE_1K_10K": 0.5643010486870704
+    }
+  },
+  "normalized_scores": {
+    "attention": {
+      "POSIX_FILENOS": 2.523878769354135,
+      "POSIX_ACCESS4_ACCESS": 1.9972803231349532,
+      "POSIX_CONSEC_READS": 1.7263922437495536,
+      "POSIX_SIZE_READ_100_1K": 1.582028317257838,
+      "POSIX_ACCESS1_COUNT": 1.5291482499534195,
+      "POSIX_FILE_NOT_ALIGNED": 1.166861390840191,
+      "POSIX_READS": 1.1060550432812575,
+      "POSIX_SEQ_READS": 1.0187467334839715,
+      "POSIX_SEEKS": 0.9856566114692665,
+      "POSIX_BYTES_WRITTEN": 0.9192833470335129
+    },
+    "gnn_explainer": {
+      "POSIX_SIZE_WRITE_1K_10K": 2.14634067690573,
+      "POSIX_OPENS": 1.971620205221689,
+      "POSIX_SEQ_READS": 1.69508170506227,
+      "POSIX_ACCESS2_ACCESS": 1.5410161912523093,
+      "POSIX_SIZE_READ_0_100": 1.358189648473478,
+      "POSIX_SIZE_READ_100K_1M": 1.3423476279445228,
+      "POSIX_STRIDE1_COUNT": 1.2909759616310525,
+      "POSIX_ACCESS4_ACCESS": 0.8467072728725127,
+      "LUSTRE_STRIPE_WIDTH": 0.7591185919762234,
+      "POSIX_STRIDE4_STRIDE": 0.7493781558195887
+    },
+    "gradients": {
+      "POSIX_MEM_NOT_ALIGNED": 3.3640788792675647,
+      "POSIX_SIZE_READ_100K_1M": 3.2233215815820544,
+      "nprocs": 2.4590187465097086,
+      "POSIX_SIZE_READ_0_100": 0.961518210336236,
+      "POSIX_SIZE_WRITE_1K_10K": 0.9220416517734421,
+      "POSIX_SIZE_READ_1K_10K": 0.9024539222680894,
+      "POSIX_CONSEC_WRITES": 0.7707710769270004,
+      "POSIX_SIZE_WRITE_100_1K": 0.7106669934194523,
+      "POSIX_FILENOS": 0.6889887079197536,
+      "POSIX_SIZE_WRITE_100K_1M": 0.6052013612337189
+    }
+  },
+  "primary_bottleneck": {
+    "feature": "POSIX_SIZE_READ_100K_1M",
+    "consensus_score": 1.6507490182169444,
+    "recommendation": "Analyze I/O pattern for optimization opportunities"
+  },
+  "recommendations": [
+    {
+      "feature": "POSIX_SIZE_READ_0_100",
+      "priority": "critical",
+      "recommendation": "Avoid very small reads (<100B), batch read operations",
+      "category": "Read Size"
+    },
+    {
+      "feature": "POSIX_MEM_NOT_ALIGNED",
+      "priority": "high",
+      "recommendation": "Align memory buffers for better DMA performance",
+      "category": "Alignment"
+    },
+    {
+      "feature": "POSIX_SIZE_READ_100K_1M",
+      "priority": "unknown",
+      "recommendation": "Analyze I/O pattern for optimization opportunities",
+      "category": "Read Size"
+    },
+    {
+      "feature": "nprocs",
+      "priority": "unknown",
+      "recommendation": "Consider process count - too many processes may cause contention",
+      "category": "Other"
+    },
+    {
+      "feature": "POSIX_ACCESS4_ACCESS",
+      "priority": "unknown",
+      "recommendation": "Analyze I/O pattern for optimization opportunities",
+      "category": "Other"
+    }
+  ]
+}

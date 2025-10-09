@@ -1,0 +1,2 @@
+07:06:06 - __main__ - ERROR - Test file not found: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/GNN_4_IO_5/benchmark_evaluation/IOR/AIIO_V3/Pattern1/parsed.csv
+srun: error: cn034: task 0: Exited with exit code 1

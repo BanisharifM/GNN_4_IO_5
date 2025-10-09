@@ -1,0 +1,2 @@
+16:01:12 - __main__ - ERROR - Test file not found: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/E2E/SmallTest/Test1/parsed_logs/parsed.csv
+srun: error: gpue02: task 0: Exited with exit code 1

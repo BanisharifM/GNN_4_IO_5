@@ -1,0 +1,31 @@
+
+======================================================================
+IO BOTTLENECK ANALYZER
+======================================================================
+
+Analyzing: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IOR/AIIO_V3/Pattern6/parsed.csv
+
+======================================================================
+I/O BOTTLENECK ANALYSIS SUMMARY
+======================================================================
+
+Performance Metrics:
+  Predicted: 7.38 MB/s
+  Actual: 1.71 MB/s
+  Error: 5.67 MB/s (330.6%)
+
+Primary Bottleneck:
+  Feature: POSIX_SIZE_READ_100K_1M
+  Consensus Score: 1.651
+  Recommendation: Analyze I/O pattern for optimization opportunities
+
+Top 5 Bottlenecks (Consensus):
+  1. POSIX_SIZE_READ_100K_1M: 1.651
+  2. POSIX_SIZE_READ_0_100: 0.864
+  3. POSIX_MEM_NOT_ALIGNED: 0.827
+  4. nprocs: 0.775
+  5. POSIX_ACCESS4_ACCESS: 0.670
+
+======================================================================
+
+Reports saved to: /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IOR/AIIO_V3/Pattern6/analysis_results/

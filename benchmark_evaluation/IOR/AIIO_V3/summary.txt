@@ -1,0 +1,105 @@
+IOR AIIO Pattern Benchmark Summary
+===================================
+Job ID: 12885150
+Date: Thu Oct  9 06:20:01 CDT 2025
+Nodes: 2
+Tasks: 256
+
+Pattern Descriptions (AIIO Paper Table 3):
+------------------------------------------
+Pattern1:           Sequential Writing with Small I/O - BASELINE (Fig 7a: ior -w -t 1k -b 1m -Y)
+Pattern1_Optimized: Sequential Writing with Large I/O - OPTIMIZED (Fig 7b: ior -w -t 1M -b 1m -Y)
+Pattern2:           Sequential Reading with Small Requests (Fig 8a: ior -r -t 1k -b 1m)
+Pattern3:           Noncontiguous Writing with Fixed Stride (Fig 9: ior -w -t 1k -b 1k -s 1024 -Y)
+Pattern4:           Noncontiguous Reading with Fixed Stride (Fig 10: ior -r -t 1k -b 1k -s 1024)
+Pattern5:           Writing with Random Offset (Fig 11: ior -w -t 1k -b 1m -z -Y)
+Pattern6:           Reading with Random Offset (Fig 12: ior -a POSIX -r -t 1k -b 1m -z)
+
+Note: Fig 8(b) requires IOR source code modification (skipped)
+
+Performance Results:
+--------------------
+
+Pattern1:
+#   POSIX_STRIDE*_STRIDE: the four most common strides detected.
+#   POSIX_STRIDE*_COUNT: count of the four most common strides.
+POSIX	0	18091742354887706118	POSIX_STRIDE1_STRIDE	24976	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern1/cufile.log	/work	lustre
+POSIX	0	18091742354887706118	POSIX_STRIDE2_STRIDE	9152	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern1/cufile.log	/work	lustre
+POSIX	0	18091742354887706118	POSIX_STRIDE3_STRIDE	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern1/cufile.log	/work	lustre
+
+Pattern1_Optimized:
+#   POSIX_STRIDE*_STRIDE: the four most common strides detected.
+#   POSIX_STRIDE*_COUNT: count of the four most common strides.
+POSIX	0	4280604563449906930	POSIX_STRIDE1_STRIDE	26471	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern1_Optimized/cufile.log	/work	lustre
+POSIX	0	4280604563449906930	POSIX_STRIDE2_STRIDE	10509	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern1_Optimized/cufile.log	/work	lustre
+POSIX	0	4280604563449906930	POSIX_STRIDE3_STRIDE	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern1_Optimized/cufile.log	/work	lustre
+
+Pattern2:
+#   POSIX_STRIDE*_STRIDE: the four most common strides detected.
+#   POSIX_STRIDE*_COUNT: count of the four most common strides.
+POSIX	0	1793006227039572662	POSIX_STRIDE1_STRIDE	25171	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern2/cufile.log	/work	lustre
+POSIX	0	1793006227039572662	POSIX_STRIDE2_STRIDE	12324	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern2/cufile.log	/work	lustre
+POSIX	0	1793006227039572662	POSIX_STRIDE3_STRIDE	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern2/cufile.log	/work	lustre
+
+Pattern3:
+#   POSIX_STRIDE*_STRIDE: the four most common strides detected.
+#   POSIX_STRIDE*_COUNT: count of the four most common strides.
+POSIX	0	15680695791160513233	POSIX_STRIDE1_STRIDE	26959	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern3/cufile.log	/work	lustre
+POSIX	0	15680695791160513233	POSIX_STRIDE2_STRIDE	8946	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern3/cufile.log	/work	lustre
+POSIX	0	15680695791160513233	POSIX_STRIDE3_STRIDE	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern3/cufile.log	/work	lustre
+
+Pattern4:
+  No metrics found
+
+Pattern5:
+#   POSIX_STRIDE*_STRIDE: the four most common strides detected.
+#   POSIX_STRIDE*_COUNT: count of the four most common strides.
+POSIX	0	13794824134391109598	POSIX_STRIDE1_STRIDE	27395	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern5/cufile.log	/work	lustre
+POSIX	0	13794824134391109598	POSIX_STRIDE2_STRIDE	15186	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern5/cufile.log	/work	lustre
+POSIX	0	13794824134391109598	POSIX_STRIDE3_STRIDE	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern5/cufile.log	/work	lustre
+
+Pattern6:
+#   POSIX_STRIDE*_STRIDE: the four most common strides detected.
+#   POSIX_STRIDE*_COUNT: count of the four most common strides.
+POSIX	0	15080281753329232811	POSIX_STRIDE1_STRIDE	26661	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern6/cufile.log	/work	lustre
+POSIX	0	15080281753329232811	POSIX_STRIDE2_STRIDE	2502	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern6/cufile.log	/work	lustre
+POSIX	0	15080281753329232811	POSIX_STRIDE3_STRIDE	0	/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern6/cufile.log	/work	lustre
+
+Pattern1 Optimization Analysis:
+
+Files Generated:
+----------------
+Pattern1:
+  - Darshan: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern1/ior_Pattern1_12885150.darshan
+  - CSV: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern1/parsed.csv
+/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern1/parsed_raw.csv
+  - Metrics: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern1/metrics.txt
+Pattern1_Optimized:
+  - Darshan: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern1_Optimized/ior_Pattern1_Optimized_12885150.darshan
+  - CSV: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern1_Optimized/parsed.csv
+/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern1_Optimized/parsed_raw.csv
+  - Metrics: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern1_Optimized/metrics.txt
+Pattern2:
+  - Darshan: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern2/ior_Pattern2_12885150.darshan
+  - CSV: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern2/parsed.csv
+/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern2/parsed_raw.csv
+  - Metrics: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern2/metrics.txt
+Pattern3:
+  - Darshan: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern3/ior_Pattern3_12885150.darshan
+  - CSV: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern3/parsed.csv
+/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern3/parsed_raw.csv
+  - Metrics: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern3/metrics.txt
+Pattern4:
+  - Darshan: 
+  - CSV: 
+  - Metrics: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern4/metrics.txt
+Pattern5:
+  - Darshan: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern5/ior_Pattern5_12885150.darshan
+  - CSV: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern5/parsed.csv
+/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern5/parsed_raw.csv
+  - Metrics: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern5/metrics.txt
+Pattern6:
+  - Darshan: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern6/ior_Pattern6_12885150.darshan
+  - CSV: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern6/parsed.csv
+/work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern6/parsed_raw.csv
+  - Metrics: /work/hdd/bdau/mbanisharifdehkordi/E2E/IOR_Bench/AIIO_V3/Pattern6/metrics.txt
