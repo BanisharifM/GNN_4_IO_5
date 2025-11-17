@@ -1,15 +1,16 @@
 #!/bin/bash
 #SBATCH --job-name=data_sampeling
-#SBATCH --account=bdau-delta-gpu
-#SBATCH --partition=gpuA100x4-interactive
+#SBATCH --account=bdau-delta-cpu
+#SBATCH --partition=cpu
 #SBATCH --nodes=1                     
-#SBATCH --ntasks=1                   
-#SBATCH --gres=gpu:1                
+#SBATCH --ntasks=1                            
 #SBATCH --cpus-per-task=16
-#SBATCH --mem=128G
+#SBATCH --mem=64G
 #SBATCH --time=00:10:00
-#SBATCH --output=logs/slurm/darshan/ior_interpret_%j.out
-#SBATCH --error=logs/slurm/darshan/ior_interpret_%j.err
+#SBATCH --output=logs/slurm/darshan/ior_interpret_pattern1_%j.out
+#SBATCH --error=logs/slurm/darshan/ior_interpret_pattern1_%j.err
 
 
-srun python /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_interpret2.py
+PYTHON_PATH="/u/mbanisharifdehkordi/.conda/envs/gnn4_env/bin/python"
+
+srun $PYTHON_PATH /work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_interpret_chart.py

@@ -1,0 +1,29 @@
+16:54:53 - 
+======================================================================
+16:54:53 - 🚀 INITIALIZING IOR INTERPRETABILITY ANALYZER
+16:54:53 - ======================================================================
+16:54:55 - Model configuration: hidden=512, layers=2, heads=[8, 1]
+16:55:02 - ✓ Loaded 1,000,000 training samples
+16:55:02 - 
+======================================================================
+16:55:02 - 🔬 RUNNING INTERPRETABILITY ANALYSIS
+16:55:02 - ======================================================================
+Traceback (most recent call last):
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_interpret_chart.py", line 1351, in <module>
+    main()
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_interpret_chart.py", line 1309, in main
+    results = analyzer.analyze_with_all_methods(test_features)
+  File "/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/scripts/ior/ior_interpret_chart.py", line 236, in analyze_with_all_methods
+    new_data = pd.read_csv(features_path)
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/u/mbanisharifdehkordi/.conda/envs/gnn4_env/lib/python3.9/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: '/work/hdd/bdau/mbanisharifdehkordi/GNN_4_IO_5/benchmark_evaluation/IO500/ION_V1/Config5/Config5_parsed.csv'
+srun: error: cn028: task 0: Exited with exit code 1
