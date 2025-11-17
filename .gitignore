@@ -181,3 +181,5 @@ data/*
 *.pt
 catboost_info/*
 # logs/*
+*.nc4
+*.darshan
