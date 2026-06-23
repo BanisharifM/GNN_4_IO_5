@@ -1,8 +1,12 @@
 # GraphXIO (IEEE Cluster 2026) — Camera-Ready Action Items
 
-Created 2026-06-22. Internal working doc (LOCAL ONLY, not paper-tied, not for Overleaf).
+Created 2026-06-22. Updated 2026-06-23 to map the FINAL submitted rebuttal. Internal working
+doc (LOCAL ONLY, not paper-tied, not for Overleaf).
 Notification: July 5. If accepted, every promise in the rebuttal becomes a task below.
-Rebuttal submitted at commit `883ddcf` (GraphXIO_Papers). 803 words.
+Rebuttal SUBMITTED and received (PC-chair confirmation email, A. Butt) at commit `f995b5e`
+(GraphXIO_Papers), 792 words. The final references line is "After correction, every flagged
+entry cites a real, published paper"; the speedup provenance is "Darshan logs and benchmark
+and application run records" (NOT "SLURM records" — SLURM appears nowhere in the paper).
 
 The single organizing principle: **unify the entire paper onto ONE evaluation run
 (the production-arch run), end to end.** Every number issue below traces back to the
@@ -46,7 +50,12 @@ needed. This section is the camera-ready execution of that promise.
 
 ## 1. Artifact-release hygiene (before releasing anything)
 
-The rebuttal promises to release the prediction pipeline + closed-loop measurements.
+The rebuttal's exact promise (`f995b5e`): release **code, data, trained models, training
+logs, result files, and closed-loop measurement records** for independent reproduction.
+Deliver all six. The closed-loop measurement records must include the IOR and E2E
+(benchmark and application) run records that back the 11.58x / 4.24x speedups, since the
+rebuttal names "Darshan logs and benchmark and application run records" as the provenance.
+
 There are TWO architecture families in `results/`:
 
 - **production-arch** (keep): `bootstrap_ci_prod_*.json`, GAT ~0.2555-0.2596, beats
@@ -98,6 +107,9 @@ Priority: P0 = must, load-bearing. P1 = important. P2 = secondary, only if feasi
 | o | Define notation on first use (a_ij, top-K, counter names, acronyms: E2E/HPC/IOR/GAT/k-NN/HNSW/MAE/RMSE) | P1 | low | R2 |
 | p | Restructure methodology: (i) method, (ii) implementation/training, (iii) evaluation; move HPO/optimizer to reproducibility; add a related-work gap paragraph | P1 | med | R2 |
 | q | Future-work paragraph: incremental graph maintenance, continual retraining, multi-GPU construction, coupling with rule-based tools | P2 | low | R1/R2 |
+| r | State the gain belongs to the **attention-weighted relational model, not the graph alone** (eval + discussion wording) | P0 | trivial (writing) | rebuttal promised this exact framing to R3/R4; GCN underperforms, so never claim "graph structure alone" drives the gain |
+| s | Scope the E2E case to **one application**; broader application workloads = future work | P1 | trivial (writing) | rebuttal conceded "covers one application" |
+| t | Release the full artifact exactly as promised: code, data, trained models, training logs, result files, closed-loop measurement records (incl. IOR + E2E run records) | P0 | med | see §1; deliver all six, production-arch only |
 
 ---
 
